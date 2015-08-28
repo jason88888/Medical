@@ -7,6 +7,11 @@
     <groupId>com.taotao-tech</groupId>
     <artifactId>medical-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>medical-web</module>
+    </modules>
 
     <build>
         <finalName>medical-parent</finalName>
