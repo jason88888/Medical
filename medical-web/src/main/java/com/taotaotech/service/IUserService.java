@@ -1,5 +1,6 @@
 package com.taotaotech.service;
 
+import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.domain.user.User;
 
 /**
@@ -11,5 +12,7 @@ import com.taotaotech.domain.user.User;
 public interface IUserService {
 
     User login(String username,String password);
+
+    ResponseResult isValidUser(String username,String password);
 
 }

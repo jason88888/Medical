@@ -1,5 +1,6 @@
 package com.taotaotech.service.impl;
 
+import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.exception.BusinessException;
 import com.taotaotech.dao.user.UserMapper;
 import com.taotaotech.domain.user.User;
@@ -28,5 +29,20 @@ public class UserServiceImpl implements IUserService {
             throw new BusinessException(UserErrorCode.PASSWORD_ERROR);
         }
         return user;
+    }
+
+    public ResponseResult isValidUser(String username, String password) {
+        ResponseResult result = new ResponseResult();
+
+        User user = userMapper.selectByUsername(username);
+        if (null==user){
+            result.setSuccess(false);
+            result.setMsg("用户不存在");
+        }
+        if (!user.getPassword().equals(password) ){
+            result.setSuccess(false);
+            result.setMsg("密码不正确");
+        }
+        return result;
     }
 }

@@ -10,24 +10,24 @@ import java.io.Serializable;
 
 public class ResponseResult implements Serializable {
 
-    private int code = 20000;  //状态码
-    private String message="success";//消息
+    private boolean success = true;  //状态码
+    private String msg="操作成功";//消息
     private Object data;//服务数据
 
-    public int getCode() {
-        return code;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public Object getData() {

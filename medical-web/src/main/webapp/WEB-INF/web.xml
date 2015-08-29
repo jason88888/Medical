@@ -49,6 +49,11 @@
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
 
+    <!-- 不拦截以下路径 -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/medical/*</url-pattern>
+    </servlet-mapping>
 
     <!-- Spring MVC servlet -->
     <servlet>
