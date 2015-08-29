@@ -2,10 +2,7 @@ package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.ResponseResult;
-import com.taotaotech.core.exception.BusinessException;
-import com.taotaotech.core.utils.JsonUtil;
-import com.taotaotech.domain.user.User;
-import com.taotaotech.exception.user.UserErrorCode;
+import com.taotaotech.domain.User;
 import com.taotaotech.service.IUserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;

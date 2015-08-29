@@ -2,8 +2,8 @@ package com.taotaotech.service.impl;
 
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.exception.BusinessException;
-import com.taotaotech.dao.user.UserMapper;
-import com.taotaotech.domain.user.User;
+import com.taotaotech.dao.UserMapper;
+import com.taotaotech.domain.User;
 import com.taotaotech.exception.user.UserErrorCode;
 import com.taotaotech.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

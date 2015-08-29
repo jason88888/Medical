@@ -1,6 +1,6 @@
-package com.taotaotech.dao.user;
+package com.taotaotech.dao;
 
-import com.taotaotech.domain.user.User;
+import com.taotaotech.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    Boolean existBySalesmanCode(@Param("code")String code);
 }

@@ -1,4 +1,4 @@
-package com.taotaotech.domain.user;
+package com.taotaotech.domain;
 
 public class User {
     private Integer id;

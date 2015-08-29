@@ -1,7 +1,7 @@
 package com.taotaotech.service;
 
 import com.taotaotech.core.dto.ResponseResult;
-import com.taotaotech.domain.user.User;
+import com.taotaotech.domain.User;
 
 /**
  * @author Cailin.Chen

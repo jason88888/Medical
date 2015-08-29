@@ -1,8 +1,7 @@
 package com.taotaotech.dao;
 
 import com.taotaotech.core.utils.JsonUtil;
-import com.taotaotech.dao.user.UserMapper;
-import com.taotaotech.domain.user.User;
+import com.taotaotech.domain.User;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;

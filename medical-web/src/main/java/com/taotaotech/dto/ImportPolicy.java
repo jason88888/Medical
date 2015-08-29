@@ -1,4 +1,4 @@
-package com.taotaotech.dto.policy;
+package com.taotaotech.dto;
 
 /**
  * @author Cailin.Chen
@@ -13,7 +13,7 @@ public class ImportPolicy {
     private String units;//单位
     private String manufacturerName;//厂家
     private String price;//单价
-//    private String regionalCode;//区域代码
+    private String regionalCode;//区域代码
     private String regionalName;//区域
     private String saleMode;//销售模式
     private String month;//月份
@@ -214,6 +214,14 @@ public class ImportPolicy {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
+    }
+
+    public String getRegionalCode() {
+        return regionalCode;
+    }
+
+    public void setRegionalCode(String regionalCode) {
+        this.regionalCode = regionalCode;
     }
 
     @Override

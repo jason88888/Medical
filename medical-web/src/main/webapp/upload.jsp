@@ -14,7 +14,6 @@
   <title>Insert title here</title>
 </head>
 <body>
-//注意action地址，还有enctype要写成multipart/form-data，和method="POST"
 <%--<form name="uploadform" method="POST" action="excel/upload" ENCTYPE="multipart/form-data">--%>
 
   <%--<table border="1" width="450" cellpadding="4" cellspacing="2" bordercolor="#9BD7FF">--%>
@@ -33,12 +32,22 @@
   <%--</table>--%>
 
 <%--</form>--%>
-
+销售政策表<br>
 <form method="POST" enctype="multipart/form-data"
-      action="excel/upload">
-  File to upload: <input type="file" name="file"><br /> Name: <input
-        type="text" name="name"><br /> <br /> <input type="submit"
-                                                     value="Upload"> Press here to upload the file!
+      action="upload/policy">
+  <input type="file" name="file"><br />
+  <input type="submit" value="上传政策表">
+</form>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+单据表<br>
+<form method="POST" enctype="multipart/form-data"
+      action="upload/bill">
+  <input type="file" name="file"><br />
+  <input type="submit" value="上传单据表">
 </form>
 </body>
 </html>
