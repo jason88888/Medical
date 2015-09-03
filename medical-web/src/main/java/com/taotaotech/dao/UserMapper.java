@@ -4,6 +4,8 @@ import com.taotaotech.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -21,4 +23,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     Boolean existBySalesmanCode(@Param("code")String code);
+
+    List<User> findUserList();
 }

@@ -2,6 +2,7 @@ package com.taotaotech.service;
 
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.domain.User;
+import java.util.List;
 
 /**
  * @author Cailin.Chen
@@ -15,4 +16,7 @@ public interface IUserService {
 
     ResponseResult isValidUser(String username,String password);
 
+    public List<User> findUserList();
+
+    public int save(User user);
 }

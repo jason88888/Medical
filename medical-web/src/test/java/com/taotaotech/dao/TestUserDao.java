@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * @author Cailin.Chen
  * @Date 15/8/23
@@ -27,5 +29,11 @@ public class TestUserDao {
         User user = userMapper.selectByPrimaryKey(1);
         System.out.println(JsonUtil.clazz2Json(user));
         System.out.println(user.toString());
+    }
+
+    @Test
+    public void findUserList(){
+        List<User> list = userMapper.findUserList();
+        System.out.printf(JsonUtil.clazz2Json(list));
     }
 }

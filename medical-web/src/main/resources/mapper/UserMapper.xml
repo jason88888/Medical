@@ -105,6 +105,11 @@
     from sys_user
     where code = #{code,jdbcType=INTEGER}
   </select>
+  <select id="findUserList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+  </select>
   <!--ccl end-->
 
 </mapper>

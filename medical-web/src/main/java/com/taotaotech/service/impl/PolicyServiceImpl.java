@@ -1,5 +1,6 @@
 package com.taotaotech.service.impl;
 
+import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.utils.ProcessPolicylUtil;
 import com.taotaotech.dao.AgentMapper;
@@ -75,6 +76,51 @@ public class PolicyServiceImpl implements IPolicyService {
         } else {
             result.setSuccess(false);
             result.setMsg("文件不能为空，请选择文件上传!");
+        }
+        return result;
+    }
+
+    @Transactional
+    public DWZResponseResult parsePolicyTable2(MultipartFile file) {
+        DWZResponseResult result = new DWZResponseResult();
+
+        if (!file.isEmpty()) {
+            try {
+                HSSFWorkbook hssfWorkbook = new HSSFWorkbook(file.getInputStream());
+
+                List<ImportPolicy> list = new ArrayList<ImportPolicy>();
+                // 循环工作表Sheet
+                for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
+
+                    HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
+
+                    if (hssfSheet == null || !ProcessPolicylUtil.isValidPolicyExcel(hssfSheet.getRow(0))) {
+                        result.setStatusCode("300");
+                        result.setMessage("请选择有效的文件上传!");
+                        continue;
+                    }
+                    List<ImportPolicy> importPolicies = ProcessPolicylUtil.getImportPolicys(hssfSheet);
+                    for (int index = 0; index < importPolicies.size(); index++) {
+                        ImportPolicy ip = importPolicies.get(index);
+                        generateMedicinePolicy(ip);
+                        generateSalesman(ip);
+                        generateTwoLevelAgent(ip);
+                        generateThreeLevelAgent(ip);
+                    }
+                    break;
+                }
+                list.size();
+
+                result.setMessage("导入成功！");
+                result.setCallbackType("closeCurrent");
+                result.setNavTabId("policy_list");
+            } catch (Exception e) {
+                result.setStatusCode("300");
+                result.setMessage("异常情况:" + e.getMessage());
+            }
+        } else {
+            result.setStatusCode("300");
+            result.setMessage("文件不能为空，请选择文件上传!");
         }
         return result;
     }

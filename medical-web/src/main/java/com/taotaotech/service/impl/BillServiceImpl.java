@@ -1,5 +1,6 @@
 package com.taotaotech.service.impl;
 
+import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.utils.ProcessBillUtil;
 import com.taotaotech.core.utils.ProcessPolicylUtil;
@@ -79,6 +80,50 @@ public class BillServiceImpl implements IBillService{
         } else {
             result.setSuccess(false);
             result.setMsg("文件不能为空，请选择文件上传!");
+        }
+        return result;
+    }
+
+    @Transactional
+    public DWZResponseResult parseBillTable2(MultipartFile file) {
+        DWZResponseResult result = new DWZResponseResult();
+
+        if (!file.isEmpty()) {
+            try {
+                HSSFWorkbook hssfWorkbook = new HSSFWorkbook(file.getInputStream());
+
+                List<ImportBill> list = new ArrayList<ImportBill>();
+                // 循环工作表Sheet
+                for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
+
+                    HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
+
+                    if (hssfSheet == null || !ProcessBillUtil.isValidBillExcel(hssfSheet.getRow(0))) {
+                        result.setStatusCode("300");
+                        result.setMessage("请选择有效的文件上传!");
+                        continue;
+                    }
+                    List<ImportBill> importBills = ProcessBillUtil.getImportBills(hssfSheet);
+                    for (int index = 0; index < importBills.size(); index++) {
+                        ImportBill ib = importBills.get(index);
+                        generateMedicine(ib);
+                        generateBill(ib);
+                        generateCilent(ib);
+                    }
+                    break;
+                }
+                list.size();
+
+                result.setMessage("导入成功！");
+                result.setCallbackType("closeCurrent");
+                result.setNavTabId("bill_list");
+            } catch (Exception e) {
+                result.setStatusCode("300");
+                result.setMessage("异常情况:" + e.getMessage());
+            }
+        } else {
+            result.setStatusCode("300");
+            result.setMessage("文件不能为空，请选择文件上传!");
         }
         return result;
     }

@@ -9,6 +9,8 @@ import com.taotaotech.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Cailin.Chen
  * @Date 15/8/23
@@ -44,5 +46,15 @@ public class UserServiceImpl implements IUserService {
             result.setMsg("密码不正确");
         }
         return result;
+    }
+
+    @Override
+    public List<User> findUserList(){
+        return userMapper.findUserList();
+    }
+
+    @Override
+    public int save(User user) {
+        return userMapper.insert(user);
     }
 }

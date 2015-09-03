@@ -66,8 +66,8 @@ public abstract class BaseController {
      */
     @ModelAttribute
     public void init(ModelMap model){
-        model.addAttribute("webPath",getWebPath());
-        model.addAttribute("basePath",getBasePath());
+        model.addAttribute("webPath", getWebPath());
+        model.addAttribute("basePath", getBasePath());
     }
 
     private String getWebPath() {

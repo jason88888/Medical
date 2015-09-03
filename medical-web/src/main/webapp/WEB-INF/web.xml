@@ -52,9 +52,7 @@
     <!-- 不拦截以下路径 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/medical/*</url-pattern>
-        <url-pattern>/dwz-ria/*</url-pattern>
-        <url-pattern>/jsp/*</url-pattern>
+        <url-pattern>/assets/*</url-pattern>
     </servlet-mapping>
 
     <!-- Spring MVC servlet -->

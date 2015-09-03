@@ -1,5 +1,6 @@
 package com.taotaotech.service;
 
+import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,4 +12,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface IPolicyService {
     ResponseResult parsePolicyTable(MultipartFile file);
+    DWZResponseResult parsePolicyTable2(MultipartFile file);
 }
