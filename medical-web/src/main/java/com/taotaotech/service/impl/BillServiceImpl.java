@@ -170,6 +170,7 @@ public class BillServiceImpl implements IBillService{
             medicine.setCode(bill.getMedicineCode());
             medicine.setName(bill.getMedicineName());
             medicine.setLotNumber(bill.getLotNumber());
+            medicine.setSpecification(bill.getMedicineSpecification());
             medicine.setManufacturerName(bill.getManufacturerName());
             if (!bill.getPrice().equals("")){
                 medicine.setPrice(Float.parseFloat(bill.getPrice()));
