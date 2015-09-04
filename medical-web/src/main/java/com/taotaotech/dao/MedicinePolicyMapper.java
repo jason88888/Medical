@@ -1,7 +1,10 @@
 package com.taotaotech.dao;
 
+import com.taotaotech.domain.Client;
 import com.taotaotech.domain.MedicinePolicy;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MedicinePolicyMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,6 +18,8 @@ public interface MedicinePolicyMapper {
     int updateByPrimaryKeySelective(MedicinePolicy record);
 
     int updateByPrimaryKey(MedicinePolicy record);
+
+    List<MedicinePolicy> findMedicinePolicyList();
 
     Boolean existByMonthAndClientAndMedicine(@Param("clientCode")String clientCode,
                                              @Param("medicineCode")String medicineCode,

@@ -45,7 +45,6 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public String list(ModelMap model) {
-
         List<User> users = userService.findUserList();
         model.addAttribute("users", users);
         return "user/user_list";

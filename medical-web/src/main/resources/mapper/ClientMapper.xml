@@ -90,7 +90,11 @@
       business_type = #{businessType,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <select id="findClientList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from client
+  </select>
   <select id="existByClientCode" resultType="java.lang.Boolean">
     select
     COUNT(id)

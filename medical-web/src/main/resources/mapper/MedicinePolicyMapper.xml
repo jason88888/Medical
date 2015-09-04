@@ -221,7 +221,11 @@
       add_policy3 = #{addPolicy3,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <select id="findMedicinePolicyList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from medicine_policy
+  </select>
   <select id="existByMonthAndClientAndMedicine" resultType="java.lang.Boolean">
     select
     COUNT(id)

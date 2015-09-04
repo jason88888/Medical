@@ -73,11 +73,12 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="list.html" target="navTab" rel="list1">产品目录</a></li>
+                        <li><a href="medicine/list" target="navTab" rel="list1">产品目录</a></li>
                         <li><a href="list.html" target="navTab" rel="list2">商业配送单位</a></li>
-                        <li><a href="list.html" target="navTab" rel="list3">医疗机构管理</a></li>
+                        <li><a href="client/list" target="navTab" rel="list3">医疗机构管理</a></li>
+                        <li><a href="agent/list" target="navTab" rel="list3">代理商管理</a></li>
                         <li><a href="policy/list" target="navTab" rel="list3">销售政策管理</a></li>
-                        <li><a href="list.html" target="navTab" rel="list3">公司人员管理</a></li>
+                        <li><a href="user/list" target="navTab" rel="list3">公司人员管理</a></li>
                         <li><a href="list.html" target="navTab" rel="list3">管理员设置</a></li>
                         <li><a href="list.html" target="navTab" rel="list3">产品关联表</a></li>
                     </ul>
@@ -199,7 +200,7 @@
 
 </div>
 
-<div id="footer">Copyright &copy; 2010 <a href="demo_page2.html" target="dialog">DWZ团队</a> Tel：010-52897073</div>
+<div id="footer">Copyright &copy; 2015 <%--<a href="demo_page2.html" target="dialog">--%>taotao-tech团队</a> Tel：15158121565</div>
 
 </body>
 </html>

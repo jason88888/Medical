@@ -79,7 +79,11 @@
       level = #{level,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <select id="findAgentList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from agent
+  </select>
   <!-- ccl start-->
   <select id="existByAgentCode" resultType="java.lang.Boolean">
     select

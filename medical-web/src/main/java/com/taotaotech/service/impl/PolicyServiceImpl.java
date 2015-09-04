@@ -125,6 +125,10 @@ public class PolicyServiceImpl implements IPolicyService {
         return result;
     }
 
+    @Override
+    public List<MedicinePolicy> findMedicinePolicyList() {
+        return policyMapper.findMedicinePolicyList();
+    }
 
 
     private Boolean generateMedicinePolicy( ImportPolicy ip ){

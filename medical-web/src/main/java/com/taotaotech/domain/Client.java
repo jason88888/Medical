@@ -1,5 +1,8 @@
 package com.taotaotech.domain;
 
+/**
+ * 客户，包括医院等
+ */
 public class Client {
     private Integer id;
 

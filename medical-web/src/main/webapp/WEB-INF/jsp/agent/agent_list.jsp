@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form id="pagerForm" method="post" action="policy/search">
+<form id="pagerForm" method="post" action="agent/search">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}" />
     <input type="hidden" name="pageNum" value="1" />
@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="policy/list" method="post">
+    <form onsubmit="return navTabSearch(this);" action="agent/list" method="post">
         <div class="searchBar">
             <table class="searchContent">
                 <tr>
@@ -56,42 +56,18 @@
         <thead>
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
-            <th>所属区域</th>
+            <th>代理商代码</th>
             <th>业务员编码</th>
-            <th>月份</th>
-            <th>药品编号</th>
-            <th>客户代码</th>
-            <th>业务员政策</th>
-            <th>临床政策</th>
-            <th>厂家政策</th>
-            <th>二级代码</th>
-            <th>二级政策</th>
-            <th>三级代码</th>
-            <th>三级政策</th>
-            <th>附加政策1</th>
-            <th>附加政策2</th>
-            <th>附加政策3</th>
+            <th>代理级别</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${policys}" var="policy">
+        <c:forEach items="${agents}" var="agent">
             <tr>
-                <td><div><input name="ids" value="${policy.id}" type="checkbox"></div></td>
-                <td>${policy.regional}</td>
-                <td>${policy.userCode}</td>
-                <td>${policy.month}</td>
-                <td>${policy.medicineCode}</td>
-                <td>${policy.clientCode}</td>
-                <td>${policy.salesmanPolicy}</td>
-                <td>${policy.clinicalPolicy}</td>
-                <td>${policy.manufacturerPolicy}</td>
-                <td>${policy.twoLevelCode}</td>
-                <td>${policy.twoLevelPolicy}</td>
-                <td>${policy.threeLevelCode}</td>
-                <td>${policy.threeLevelPolicy}</td>
-                <td>${policy.addPolicy1}</td>
-                <td>${policy.addPolicy2}</td>
-                <td>${policy.addPolicy3}</td>
+                <td><div><input name="ids" value="${agent.id}" type="checkbox"></div></td>
+                <td>${agent.code}</td>
+                <td>${agent.name}</td>
+                <td>${agent.level}</td>
             </tr>
         </c:forEach>
         </tbody>
