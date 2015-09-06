@@ -13,7 +13,7 @@
         <div class="headerNav">
             <a class="logo" href="http://j-ui.com">标志</a>
             <ul class="nav">
-                <li id="switchEnvBox"><a href="javascript:">（<span>北京</span>）切换城市</a>
+                <li id="switchEnvBox"><a href="javascript:">（<span>杭州</span>）切换城市</a>
                     <ul>
                         <li><a href="sidebar_1.html">北京</a></li>
                         <li><a href="sidebar_2.html">上海</a></li>
@@ -24,11 +24,11 @@
                         <li><a href="sidebar_2.html">杭州</a></li>
                     </ul>
                 </li>
-                <li><a href="https://me.alipay.com/dwzteam" target="_blank">捐赠</a></li>
+                <%--<li><a href="https://me.alipay.com/dwzteam" target="_blank">捐赠</a></li>--%>
                 <li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
-                <li><a href="http://www.cnblogs.com/dwzjs" target="_blank">博客</a></li>
-                <li><a href="http://weibo.com/dwzui" target="_blank">微博</a></li>
-                <li><a href="http://bbs.dwzjs.com" target="_blank">论坛</a></li>
+                <%--<li><a href="http://www.cnblogs.com/dwzjs" target="_blank">博客</a></li>--%>
+                <%--<li><a href="http://weibo.com/dwzui" target="_blank">微博</a></li>--%>
+                <%--<li><a href="http://bbs.dwzjs.com" target="_blank">论坛</a></li>--%>
                 <li><a href="login.html">退出</a></li>
             </ul>
             <ul class="themeList" id="themeList">
@@ -190,7 +190,7 @@
             <div class="navTab-panel tabsPageContent layoutBox">
                 <div class="page unitBox">
                     <div class="pageFormContent" layoutH="80" style="margin-right:230px">
-                        Hello DWZ
+                        欢迎！
                     </div>
                 </div>
 
