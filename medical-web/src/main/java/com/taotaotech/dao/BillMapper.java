@@ -1,7 +1,10 @@
 package com.taotaotech.dao;
 
+import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Bill;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BillMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,6 +18,8 @@ public interface BillMapper {
     int updateByPrimaryKeySelective(Bill record);
 
     int updateByPrimaryKey(Bill record);
+
+    List<Bill> findBillList();
 
     Boolean existByBillCode(@Param("code") String code);
 }

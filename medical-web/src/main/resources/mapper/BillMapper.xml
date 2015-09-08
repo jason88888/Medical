@@ -113,7 +113,11 @@
       three_level_code = #{threeLevelCode,jdbcType=VARCHAR},
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+    <select id="findBillList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from bill
+    </select>
     <select id="existByBillCode" resultType="java.lang.Boolean">
     select
     COUNT(id)

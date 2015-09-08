@@ -113,7 +113,7 @@
                     <ul class="tree treeFolder">
                         <li><a href="bill/list" target="navTab"
                                rel="bill_list">销售流向导入</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="commission/commission_list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
                         <li><a href="manager!edit.action" target="dialog"
                                rel="admin_info">费用结算复核</a></li>
