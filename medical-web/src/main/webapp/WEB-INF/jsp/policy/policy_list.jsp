@@ -60,13 +60,13 @@
             <th>业务员编码</th>
             <th>月份</th>
             <th>药品编号</th>
-            <th>客户代码</th>
+            <%--<th>客户代码</th>--%>
             <th>业务员政策</th>
             <th>临床政策</th>
             <th>厂家政策</th>
-            <th>二级代码</th>
+            <%--<th>二级代码</th>--%>
             <th>二级政策</th>
-            <th>三级代码</th>
+            <%--<th>三级代码</th>--%>
             <th>三级政策</th>
             <th>附加政策1</th>
             <th>附加政策2</th>
@@ -78,16 +78,16 @@
             <tr>
                 <td><div><input name="ids" value="${policy.id}" type="checkbox"></div></td>
                 <td>${policy.regional}</td>
-                <td>${policy.userCode}</td>
+                <%--<td>${policy.userCode}</td>--%>
                 <td>${policy.month}</td>
                 <td>${policy.medicineCode}</td>
                 <td>${policy.clientCode}</td>
                 <td>${policy.salesmanPolicy}</td>
                 <td>${policy.clinicalPolicy}</td>
                 <td>${policy.manufacturerPolicy}</td>
-                <td>${policy.twoLevelCode}</td>
+                <%--<td>${policy.twoLevelCode}</td>--%>
                 <td>${policy.twoLevelPolicy}</td>
-                <td>${policy.threeLevelCode}</td>
+                <%--<td>${policy.threeLevelCode}</td>--%>
                 <td>${policy.threeLevelPolicy}</td>
                 <td>${policy.addPolicy1}</td>
                 <td>${policy.addPolicy2}</td>

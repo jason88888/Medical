@@ -7,9 +7,9 @@ package com.taotaotech.dto;
  */
 
 public class ImportBill {
-     /*
-         部门名称 药品编号 品名 规格 生产厂商 客户码 客户名称 开票日期 单位 数量 单价 批号 有效期 单据号 商业类型
-     */
+    /*
+        部门名称 药品编号 品名 规格 生产厂商 客户码 客户名称 开票日期 单位 数量 单价 批号 有效期 单据号 商业类型
+    */
     private String departmentName;
     private String departmentCode;
     private String medicineCode;
@@ -28,6 +28,45 @@ public class ImportBill {
     private String validityPeriod;//有效期
     private String billCode;//单据号
     private String businessType;//商业类型
+
+    private String salesmanName;//业务员姓名
+    private String salesmanCode;//业务员代码
+    private String twoLevelCode;//二级代码
+
+    public String getSalesmanName() {
+        return salesmanName;
+    }
+
+    public void setSalesmanName(String salesmanName) {
+        this.salesmanName = salesmanName;
+    }
+
+
+    public String getSalesmanCode() {
+        return salesmanCode;
+    }
+
+    public void setSalesmanCode(String salesmanCode) {
+        this.salesmanCode = salesmanCode;
+    }
+
+    public String getTwoLevelCode() {
+        return twoLevelCode;
+    }
+
+    public void setTwoLevelCode(String twoLevelCode) {
+        this.twoLevelCode = twoLevelCode;
+    }
+
+    public String getThreeLevelCode() {
+        return threeLevelCode;
+    }
+
+    public void setThreeLevelCode(String threeLevelCode) {
+        this.threeLevelCode = threeLevelCode;
+    }
+
+    private String threeLevelCode;//三级代码
 
     public String getDepartmentName() {
         return departmentName;
@@ -177,6 +216,10 @@ public class ImportBill {
                 ", validityPeriod='" + validityPeriod + '\'' +
                 ", billCode='" + billCode + '\'' +
                 ", businessType='" + businessType + '\'' +
+                ", salesmanCode='" + salesmanCode + '\'' +
+                ", twoLevelCode='" + twoLevelCode + '\'' +
+                ", threeLevelCode='" + threeLevelCode + '\'' +
+                ", salesmanName='" + salesmanName + '\'' +
                 '}';
     }
 }

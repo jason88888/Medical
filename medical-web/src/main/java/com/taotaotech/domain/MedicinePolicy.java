@@ -5,7 +5,7 @@ public class MedicinePolicy {
 
     private String regional;
 
-    private String userCode;
+//    private String userCode;
 
     private String month;
 
@@ -19,11 +19,11 @@ public class MedicinePolicy {
 
     private Float manufacturerPolicy;
 
-    private String twoLevelCode;
+//    private String twoLevelCode;
 
     private Float twoLevelPolicy;
 
-    private String threeLevelCode;
+//    private String threeLevelCode;
 
     private Float threeLevelPolicy;
 
@@ -49,13 +49,13 @@ public class MedicinePolicy {
         this.regional = regional == null ? null : regional.trim();
     }
 
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode == null ? null : userCode.trim();
-    }
+//    public String getUserCode() {
+//        return userCode;
+//    }
+//
+//    public void setUserCode(String userCode) {
+//        this.userCode = userCode == null ? null : userCode.trim();
+//    }
 
     public String getMonth() {
         return month;
@@ -105,13 +105,13 @@ public class MedicinePolicy {
         this.manufacturerPolicy = manufacturerPolicy;
     }
 
-    public String getTwoLevelCode() {
-        return twoLevelCode;
-    }
-
-    public void setTwoLevelCode(String twoLevelCode) {
-        this.twoLevelCode = twoLevelCode == null ? null : twoLevelCode.trim();
-    }
+//    public String getTwoLevelCode() {
+//        return twoLevelCode;
+//    }
+//
+//    public void setTwoLevelCode(String twoLevelCode) {
+//        this.twoLevelCode = twoLevelCode == null ? null : twoLevelCode.trim();
+//    }
 
     public Float getTwoLevelPolicy() {
         return twoLevelPolicy;
@@ -121,13 +121,13 @@ public class MedicinePolicy {
         this.twoLevelPolicy = twoLevelPolicy;
     }
 
-    public String getThreeLevelCode() {
-        return threeLevelCode;
-    }
-
-    public void setThreeLevelCode(String threeLevelCode) {
-        this.threeLevelCode = threeLevelCode == null ? null : threeLevelCode.trim();
-    }
+//    public String getThreeLevelCode() {
+//        return threeLevelCode;
+//    }
+//
+//    public void setThreeLevelCode(String threeLevelCode) {
+//        this.threeLevelCode = threeLevelCode == null ? null : threeLevelCode.trim();
+//    }
 
     public Float getThreeLevelPolicy() {
         return threeLevelPolicy;

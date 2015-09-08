@@ -17,12 +17,12 @@ public class ImportPolicy {
     private String regionalName;//区域
     private String saleMode;//销售模式
     private String month;//月份
-    private String salesmanName;//业务员姓名
-    private String salesmanCode;//业务员代码
+//    private String salesmanName;//业务员姓名
+    //    private String salesmanCode;//业务员代码
     private String salesmanPolicy;//业务员政策
-    private String twoLevelCode;//二级代码
+    //    private String twoLevelCode;//二级代码
     private String twoLevelPolicy;//二级政策
-    private String threeLevelCode;//三级代码
+    //    private String threeLevelCode;//三级代码
     private String threeLevelPolicy;//三级政策
     private String clinicalPolicy;//临床政策
     private String manufacturerPolicy;//厂家政策
@@ -104,21 +104,14 @@ public class ImportPolicy {
         this.month = month;
     }
 
-    public String getSalesmanName() {
-        return salesmanName;
-    }
 
-    public void setSalesmanName(String salesmanName) {
-        this.salesmanName = salesmanName;
-    }
-
-    public String getSalesmanCode() {
-        return salesmanCode;
-    }
-
-    public void setSalesmanCode(String salesmanCode) {
-        this.salesmanCode = salesmanCode;
-    }
+//    public String getSalesmanCode() {
+//        return salesmanCode;
+//    }
+//
+//    public void setSalesmanCode(String salesmanCode) {
+//        this.salesmanCode = salesmanCode;
+//    }
 
     public String getSalesmanPolicy() {
         return salesmanPolicy;
@@ -128,13 +121,13 @@ public class ImportPolicy {
         this.salesmanPolicy = salesmanPolicy;
     }
 
-    public String getTwoLevelCode() {
-        return twoLevelCode;
-    }
-
-    public void setTwoLevelCode(String twoLevelCode) {
-        this.twoLevelCode = twoLevelCode;
-    }
+//    public String getTwoLevelCode() {
+//        return twoLevelCode;
+//    }
+//
+//    public void setTwoLevelCode(String twoLevelCode) {
+//        this.twoLevelCode = twoLevelCode;
+//    }
 
     public String getTwoLevelPolicy() {
         return twoLevelPolicy;
@@ -144,13 +137,13 @@ public class ImportPolicy {
         this.twoLevelPolicy = twoLevelPolicy;
     }
 
-    public String getThreeLevelCode() {
-        return threeLevelCode;
-    }
-
-    public void setThreeLevelCode(String threeLevelCode) {
-        this.threeLevelCode = threeLevelCode;
-    }
+//    public String getThreeLevelCode() {
+//        return threeLevelCode;
+//    }
+//
+//    public void setThreeLevelCode(String threeLevelCode) {
+//        this.threeLevelCode = threeLevelCode;
+//    }
 
     public String getThreeLevelPolicy() {
         return threeLevelPolicy;
@@ -236,12 +229,12 @@ public class ImportPolicy {
                 ", regionalName='" + regionalName + '\'' +
                 ", saleMode='" + saleMode + '\'' +
                 ", month='" + month + '\'' +
-                ", salesmanName='" + salesmanName + '\'' +
-                ", salesmanCode='" + salesmanCode + '\'' +
+//                ", salesmanName='" + salesmanName + '\'' +
+//                ", salesmanCode='" + salesmanCode + '\'' +
                 ", salesmanPolicy='" + salesmanPolicy + '\'' +
-                ", twoLevelCode='" + twoLevelCode + '\'' +
+//                ", twoLevelCode='" + twoLevelCode + '\'' +
                 ", twoLevelPolicy='" + twoLevelPolicy + '\'' +
-                ", threeLevelCode='" + threeLevelCode + '\'' +
+//                ", threeLevelCode='" + threeLevelCode + '\'' +
                 ", threeLevelPolicy='" + threeLevelPolicy + '\'' +
                 ", clinicalPolicy='" + clinicalPolicy + '\'' +
                 ", manufacturerPolicy='" + manufacturerPolicy + '\'' +

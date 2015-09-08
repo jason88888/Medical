@@ -61,9 +61,9 @@ public class PolicyServiceImpl implements IPolicyService {
                     for (int index = 0; index < importPolicies.size(); index++) {
                         ImportPolicy ip = importPolicies.get(index);
                         generateMedicinePolicy(ip);
-                        generateSalesman(ip);
-                        generateTwoLevelAgent(ip);
-                        generateThreeLevelAgent(ip);
+//                        generateSalesman(ip);
+//                        generateTwoLevelAgent(ip);
+//                        generateThreeLevelAgent(ip);
                     }
                     break;
                 }
@@ -103,9 +103,9 @@ public class PolicyServiceImpl implements IPolicyService {
                     for (int index = 0; index < importPolicies.size(); index++) {
                         ImportPolicy ip = importPolicies.get(index);
                         generateMedicinePolicy(ip);
-                        generateSalesman(ip);
-                        generateTwoLevelAgent(ip);
-                        generateThreeLevelAgent(ip);
+//                        generateSalesman(ip);
+//                        generateTwoLevelAgent(ip);
+//                        generateThreeLevelAgent(ip);
                     }
                     break;
                 }
@@ -141,7 +141,6 @@ public class PolicyServiceImpl implements IPolicyService {
 
             MedicinePolicy policy = new MedicinePolicy();
             policy.setRegional(ip.getRegionalName());
-            policy.setUserCode(ip.getSalesmanCode());
             policy.setMonth(ip.getMonth());
             policy.setMedicineCode(ip.getMedicineCode());
             policy.setClientCode(ip.getClientCode());
@@ -150,9 +149,7 @@ public class PolicyServiceImpl implements IPolicyService {
             policy.setClinicalPolicy(Float.parseFloat(ip.getClinicalPolicy()));
             policy.setManufacturerPolicy(Float.parseFloat(ip.getManufacturerPolicy()));
 
-            policy.setTwoLevelCode(ip.getTwoLevelCode());
             policy.setTwoLevelPolicy(Float.parseFloat(ip.getTwoLevelPolicy()));
-            policy.setThreeLevelCode(ip.getThreeLevelCode());
             policy.setThreeLevelPolicy(Float.parseFloat(ip.getThreeLevelPolicy()));
 
             policy.setAddPolicy1(Float.parseFloat(ip.getAddPolicy1()));
@@ -164,55 +161,55 @@ public class PolicyServiceImpl implements IPolicyService {
         return false;
     }
 
-    private Boolean generateSalesman(ImportPolicy ip){
-        if (ip.getSalesmanName()==null || ip.getSalesmanName().equals("") ||
-            ip.getSalesmanCode()==null || ip.getSalesmanCode().equals("") ){
-            return false;
-        }
-        if (!userMapper.existBySalesmanCode(ip.getSalesmanCode())){
-            User user = new User();
-            user.setUsername(ip.getSalesmanName());
-            user.setCode(ip.getSalesmanCode());
-            user.setPassword("000000");
-            user.setRole((byte) 2);
-            userMapper.insertSelective(user);
-            return true;
-        }
-
-        return false;
-    }
-
-
-    private Boolean generateTwoLevelAgent(ImportPolicy ip){
-        if (ip.getTwoLevelCode()==null || ip.getTwoLevelCode().equals("")){
-            return false;
-        }
-        Agent agent = new Agent();
-        agent.setName(ip.getTwoLevelCode());
-        agent.setCode(ip.getTwoLevelCode());
-        agent.setLevel("2");
-        return generateAgent(agent);
-    }
-
-    private Boolean generateThreeLevelAgent(ImportPolicy ip){
-        if (ip.getThreeLevelCode()==null || ip.getThreeLevelCode().equals("")){
-            return false;
-        }
-        Agent agent = new Agent();
-        agent.setName(ip.getThreeLevelCode());
-        agent.setCode(ip.getThreeLevelCode());
-        agent.setLevel("3");
-        return generateAgent(agent);
-    }
-
-    private Boolean generateAgent(Agent agent ){
-
-        if (!agentMapper.existByAgentCode(agent.getCode())){
-            agentMapper.insertSelective(agent);
-            return true;
-        }
-
-        return false;
-    }
+//    private Boolean generateSalesman(ImportPolicy ip){
+//        if (ip.getSalesmanName()==null || ip.getSalesmanName().equals("") ||
+//            ip.getSalesmanCode()==null || ip.getSalesmanCode().equals("") ){
+//            return false;
+//        }
+//        if (!userMapper.existBySalesmanCode(ip.getSalesmanCode())){
+//            User user = new User();
+//            user.setUsername(ip.getSalesmanName());
+//            user.setCode(ip.getSalesmanCode());
+//            user.setPassword("000000");
+//            user.setRole((byte) 2);
+//            userMapper.insertSelective(user);
+//            return true;
+//        }
+//
+//        return false;
+//    }
+//
+//
+//    private Boolean generateTwoLevelAgent(ImportPolicy ip){
+//        if (ip.getTwoLevelCode()==null || ip.getTwoLevelCode().equals("")){
+//            return false;
+//        }
+//        Agent agent = new Agent();
+//        agent.setName(ip.getTwoLevelCode());
+//        agent.setCode(ip.getTwoLevelCode());
+//        agent.setLevel("2");
+//        return generateAgent(agent);
+//    }
+//
+//    private Boolean generateThreeLevelAgent(ImportPolicy ip){
+//        if (ip.getThreeLevelCode()==null || ip.getThreeLevelCode().equals("")){
+//            return false;
+//        }
+//        Agent agent = new Agent();
+//        agent.setName(ip.getThreeLevelCode());
+//        agent.setCode(ip.getThreeLevelCode());
+//        agent.setLevel("3");
+//        return generateAgent(agent);
+//    }
+//
+//    private Boolean generateAgent(Agent agent ){
+//
+//        if (!agentMapper.existByAgentCode(agent.getCode())){
+//            agentMapper.insertSelective(agent);
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
 }

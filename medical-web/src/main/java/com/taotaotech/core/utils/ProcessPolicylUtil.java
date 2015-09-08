@@ -33,12 +33,8 @@ public class ProcessPolicylUtil {
         list.add("所属区域");
         list.add("销售模式");
         list.add("月份");
-        list.add("业务员姓名");
-        list.add("业务员代码");
         list.add("业务员政策");
-        list.add("二级代码");
         list.add("二级政策");
-        list.add("三级代码");
         list.add("三级政策");
         list.add("临床政策");
         list.add("厂家政策");
@@ -47,6 +43,7 @@ public class ProcessPolicylUtil {
         list.add("附加政策3");
         list.add("客户码");
         list.add("客户名称");
+
 //        if (list.size() != row.getLastCellNum()) {
 //            return false;
 //        }
@@ -77,23 +74,20 @@ public class ProcessPolicylUtil {
                 policy.setRegionalName(getValue(hssfRow.getCell(6)));
                 policy.setSaleMode(getValue(hssfRow.getCell(7)));
                 policy.setMonth(getValue(hssfRow.getCell(8)));
-                policy.setSalesmanName(getValue(hssfRow.getCell(9)));
-                policy.setSalesmanCode(getValue(hssfRow.getCell(10)));
 
-                policy.setSalesmanPolicy(getValue(hssfRow.getCell(11)));
-                policy.setTwoLevelCode(getValue(hssfRow.getCell(12)));
-                policy.setTwoLevelPolicy(getValue(hssfRow.getCell(13)));
-                policy.setThreeLevelCode(getValue(hssfRow.getCell(14)));
-                policy.setThreeLevelPolicy(getValue(hssfRow.getCell(15)));
 
-                policy.setClinicalPolicy(getValue(hssfRow.getCell(16)));
-                policy.setManufacturerPolicy(getValue(hssfRow.getCell(17)));
-                policy.setAddPolicy1(getValue(hssfRow.getCell(18)));
-                policy.setAddPolicy2(getValue(hssfRow.getCell(19)));
-                policy.setAddPolicy3(getValue(hssfRow.getCell(20)));
+                policy.setSalesmanPolicy(getValue(hssfRow.getCell(9)));
+                policy.setTwoLevelPolicy(getValue(hssfRow.getCell(10)));
+                policy.setThreeLevelPolicy(getValue(hssfRow.getCell(11)));
 
-                policy.setClientCode(getValue(hssfRow.getCell(21)));
-                policy.setClientName(getValue(hssfRow.getCell(22)));
+                policy.setClinicalPolicy(getValue(hssfRow.getCell(12)));
+                policy.setManufacturerPolicy(getValue(hssfRow.getCell(13)));
+                policy.setAddPolicy1(getValue(hssfRow.getCell(14)));
+                policy.setAddPolicy2(getValue(hssfRow.getCell(15)));
+                policy.setAddPolicy3(getValue(hssfRow.getCell(16)));
+
+                policy.setClientCode(getValue(hssfRow.getCell(17)));
+                policy.setClientName(getValue(hssfRow.getCell(18)));
 
                 list.add(policy);
             }else {
