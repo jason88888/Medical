@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 public interface IPolicyService {
-    ResponseResult parsePolicyTable(MultipartFile file);
-    DWZResponseResult parsePolicyTable2(MultipartFile file);
+    DWZResponseResult parsePolicyTable(MultipartFile file);
     public List<MedicinePolicy> findMedicinePolicyList();
 }

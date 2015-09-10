@@ -38,50 +38,9 @@ public class PolicyServiceImpl implements IPolicyService {
     @Autowired
     AgentMapper agentMapper;
 
-    @Transactional
-    public ResponseResult parsePolicyTable(MultipartFile file) {
-        ResponseResult result = new ResponseResult();
-
-        if (!file.isEmpty()) {
-            try {
-                HSSFWorkbook hssfWorkbook = new HSSFWorkbook(file.getInputStream());
-
-                List<ImportPolicy> list = new ArrayList<ImportPolicy>();
-                // 循环工作表Sheet
-                for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
-
-                    HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
-
-                    if (hssfSheet == null || !ProcessPolicylUtil.isValidPolicyExcel(hssfSheet.getRow(0))) {
-                        result.setSuccess(false);
-                        result.setMsg("请选择有效的文件上传!");
-                        continue;
-                    }
-                    List<ImportPolicy> importPolicies = ProcessPolicylUtil.getImportPolicys(hssfSheet);
-                    for (int index = 0; index < importPolicies.size(); index++) {
-                        ImportPolicy ip = importPolicies.get(index);
-                        generateMedicinePolicy(ip);
-//                        generateSalesman(ip);
-//                        generateTwoLevelAgent(ip);
-//                        generateThreeLevelAgent(ip);
-                    }
-                    break;
-                }
-                list.size();
-
-            } catch (Exception e) {
-                result.setSuccess(false);
-                result.setMsg("异常情况:" + e.getMessage());
-            }
-        } else {
-            result.setSuccess(false);
-            result.setMsg("文件不能为空，请选择文件上传!");
-        }
-        return result;
-    }
 
     @Transactional
-    public DWZResponseResult parsePolicyTable2(MultipartFile file) {
+    public DWZResponseResult parsePolicyTable(MultipartFile file) {
         DWZResponseResult result = new DWZResponseResult();
 
         if (!file.isEmpty()) {
@@ -103,9 +62,6 @@ public class PolicyServiceImpl implements IPolicyService {
                     for (int index = 0; index < importPolicies.size(); index++) {
                         ImportPolicy ip = importPolicies.get(index);
                         generateMedicinePolicy(ip);
-//                        generateSalesman(ip);
-//                        generateTwoLevelAgent(ip);
-//                        generateThreeLevelAgent(ip);
                     }
                     break;
                 }

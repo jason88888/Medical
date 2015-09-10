@@ -64,7 +64,6 @@
             <th width="120">单价</th>
             <th width="120">药品批号</th>
             <th width="150">有效期</th>
-            <th width="120">数量</th>
         </tr>
         </thead>
         <tbody>
@@ -79,7 +78,6 @@
                 <td>${medicine.price}</td>
                 <td>${medicine.lotNumber}</td>
                 <td>${medicine.validityPeriod}</td>
-                <td>${medicine.number}</td>
             </tr>
         </c:forEach>
         </tbody>

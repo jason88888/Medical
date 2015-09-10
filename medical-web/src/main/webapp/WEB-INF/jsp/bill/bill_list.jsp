@@ -59,6 +59,9 @@
             <th>单据编号</th>
             <th>开票日期</th>
             <th>数量</th>
+            <th>客户名称</th>
+            <th>业务员名称</th>
+            <th>药品名称</th>
         </tr>
         </thead>
         <tbody>
@@ -66,8 +69,11 @@
             <tr>
                 <td><div><input name="ids" value="${bill.id}" type="checkbox"></div></td>
                 <td>${bill.code}</td>
-                <td></td>
-                <td></td>
+                <td>${bill.date}</td>
+                <td>${bill.number}</td>
+                <td>${bill.clientName}</td>
+                <td>${bill.userName}</td>
+                <td>${bill.medicineName}</td>
             </tr>
         </c:forEach>
         </tbody>

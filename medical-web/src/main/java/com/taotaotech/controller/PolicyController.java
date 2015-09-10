@@ -1,7 +1,6 @@
 package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
-import com.taotaotech.domain.Medicine;
 import com.taotaotech.domain.MedicinePolicy;
 import com.taotaotech.service.IPolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,6 @@ public class PolicyController extends BaseController {
     @RequestMapping(value = "upload", method = {RequestMethod.POST})
     @ResponseBody
     public Object uploadSave(@RequestParam("file") MultipartFile file) {
-        return policyService.parsePolicyTable2(file);
+        return policyService.parsePolicyTable(file);
     }
 }

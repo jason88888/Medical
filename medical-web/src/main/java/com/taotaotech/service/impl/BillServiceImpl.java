@@ -46,53 +46,7 @@ public class BillServiceImpl implements IBillService {
     UserMapper userMapper;
 
     @Transactional
-    public ResponseResult parseBillTable(MultipartFile file) {
-        ResponseResult result = new ResponseResult();
-
-        if (!file.isEmpty()) {
-            try {
-                HSSFWorkbook hssfWorkbook = new HSSFWorkbook(file.getInputStream());
-
-                List<ImportBill> list = new ArrayList<ImportBill>();
-                // 循环工作表Sheet
-                for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
-
-                    HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
-
-                    if (hssfSheet == null || !ProcessBillUtil.isValidBillExcel(hssfSheet.getRow(0))) {
-                        result.setSuccess(false);
-                        result.setMsg("请选择有效的文件上传!");
-                        continue;
-                    }
-                    List<ImportBill> importBills = ProcessBillUtil.getImportBills(hssfSheet);
-                    for (int index = 0; index < importBills.size(); index++) {
-                        ImportBill ib = importBills.get(index);
-                        generateMedicine(ib);
-                        generateBill(ib);
-                        generateCilent(ib);
-                        generateSalesman(ib);
-                        generateTwoLevelAgent(ib);
-                        generateThreeLevelAgent(ib);
-                        //方便bill计算佣金，减少数据库查询使用
-                        generateBillRich(ib);
-                    }
-                    break;
-                }
-                list.size();
-
-            } catch (Exception e) {
-                result.setSuccess(false);
-                result.setMsg("异常情况:" + e.getMessage());
-            }
-        } else {
-            result.setSuccess(false);
-            result.setMsg("文件不能为空，请选择文件上传!");
-        }
-        return result;
-    }
-
-    @Transactional
-    public DWZResponseResult parseBillTable2(MultipartFile file) {
+    public DWZResponseResult parseBillTable(MultipartFile file) {
         DWZResponseResult result = new DWZResponseResult();
 
         if (!file.isEmpty()) {
@@ -138,6 +92,11 @@ public class BillServiceImpl implements IBillService {
             result.setMessage("文件不能为空，请选择文件上传!");
         }
         return result;
+    }
+
+    @Override
+    public List<BillRich> findBillList() {
+        return billRichMapper.findBillList();
     }
 
     private Integer generateCilent(ImportBill bill) {

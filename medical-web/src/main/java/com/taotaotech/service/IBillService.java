@@ -2,7 +2,11 @@ package com.taotaotech.service;
 
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
+import com.taotaotech.domain.Client;
+import com.taotaotech.dto.BillRich;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * @author Cailin.Chen
@@ -11,6 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 
 public interface IBillService {
-    ResponseResult parseBillTable(MultipartFile file);
-    DWZResponseResult parseBillTable2(MultipartFile file);
+    DWZResponseResult parseBillTable(MultipartFile file);
+    public List<BillRich> findBillList();
 }
