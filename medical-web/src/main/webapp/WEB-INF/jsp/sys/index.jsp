@@ -55,16 +55,17 @@
             <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
             <div class="accordion" fillSpace="sidebar">
-                <div class="accordionHeader">
-                    <h2>
-                        <span>Folder</span>DWZ演示
-                    </h2>
-                </div>
-                <div class="accordionContent">
-                    <ul class="tree treeFolder">
-                        <li><a href="${basePath}user/list" target="navTab" rel="user_list">用户管理</a></li>
-                    </ul>
-                </div>
+                <%--演示--%>
+                <%--<div class="accordionHeader">--%>
+                    <%--<h2>--%>
+                        <%--<span>Folder</span>DWZ演示--%>
+                    <%--</h2>--%>
+                <%--</div>--%>
+                <%--<div class="accordionContent">--%>
+                    <%--<ul class="tree treeFolder">--%>
+                        <%--<li><a href="${basePath}user/list" target="navTab" rel="user_list">用户管理</a></li>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
 
                 <div class="accordionHeader">
                     <h2>
@@ -115,9 +116,9 @@
                                rel="bill_list">销售流向导入</a></li>
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="manager!edit.action" target="navTab"
                                rel="admin_info">费用结算复核</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="manager!edit.action" target="navTab"
                                rel="admin_info">结算规则更改</a></li>
                     </ul>
                 </div>

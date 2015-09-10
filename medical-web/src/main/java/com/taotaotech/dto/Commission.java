@@ -20,6 +20,7 @@ public class Commission {
     private String twoLevelCharge;//二级费用
     private String threeLevelCharge;//三级费用
     private String manufacturerCharge;//厂家费用
+    private String clinicalCharge;//临床费用
     private String addCharge1;//附加费用1
     private String addCharge2;//附加费用2
     private String addCharge3;//附加费用3
@@ -32,6 +33,14 @@ public class Commission {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getClinicalCharge() {
+        return clinicalCharge;
+    }
+
+    public void setClinicalCharge(String clinicalCharge) {
+        this.clinicalCharge = clinicalCharge;
     }
 
     public String getMedicineCode() {

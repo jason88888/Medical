@@ -31,7 +31,6 @@ public class CommissionServiceImpl implements ICommissionService {
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }
-        //TODO 根据一个单据，查询一个政策，生成一条佣金结算
         for (int i = 0; i < billList.size(); i++) {
             BillRich billRich = billList.get(i);
             //根据日期生成月份
@@ -42,6 +41,11 @@ public class CommissionServiceImpl implements ICommissionService {
             int month = calendar.get(Calendar.MONTH) + 1;
             MedicinePolicy policy = medicinePolicyMapper.getPolicyByMonthAndClientAndMedicine(billRich.getClientCode(),
                     billRich.getMedicineCode(), year + "/" + month);
+            if (policy == null) {//没找到对应的政策
+                continue;
+            }else{
+                //TODO 如何提醒客户该单据没有对应政策
+            }
             Commission commission = new Commission();
             commission.setId(billRich.getId());
             commission.setMedicineCode(billRich.getMedicineCode());
@@ -55,8 +59,29 @@ public class CommissionServiceImpl implements ICommissionService {
         药品编码 药品名称 客户码 终端名称 月份(开票日期) 业务员姓名  业务员费用 二级费用 三级费用
         厂家费用 附加费用1 附加费用2 附加费用3 营业额 总费用
         */
-            if (policy.getPrice() != null) {
-                commission.setSalesmanCharge("" + (billRich.getNumber() * policy.getPrice()));
+            if (policy.getPrice() != null && billRich.getNumber() != null) {
+                float salesmanCharge = billRich.getNumber() * policy.getSalesmanPolicy();
+                float twoLevelCharge = billRich.getNumber() * policy.getTwoLevelPolicy();
+                float threeLevelCharge = billRich.getNumber() * policy.getThreeLevelPolicy();
+                float manufacturerCharge = billRich.getNumber() * policy.getManufacturerPolicy();
+                float clinicalCharge = billRich.getNumber() * policy.getClinicalPolicy();
+                float addCharge1 = billRich.getNumber() * policy.getAddPolicy1();
+                float addCharge2 = billRich.getNumber() * policy.getAddPolicy2();
+                float addCharge3 = billRich.getNumber() * policy.getAddPolicy3();
+                commission.setSalesmanCharge("" + salesmanCharge);
+                commission.setTwoLevelCharge("" + twoLevelCharge);
+                commission.setThreeLevelCharge("" + threeLevelCharge);
+                commission.setManufacturerCharge("" + manufacturerCharge);
+                commission.setClinicalCharge("" + clinicalCharge);
+                commission.setAddCharge1("" + addCharge1);
+                commission.setAddCharge2("" + addCharge2);
+                commission.setAddCharge3("" + addCharge3);
+                commission.setBusinessFee("" + (billRich.getNumber() * policy.getPrice()));
+                commission.setTotalCharge("" + (salesmanCharge + twoLevelCharge + threeLevelCharge + manufacturerCharge +
+                        clinicalCharge + addCharge1 + addCharge2 + addCharge3));
+            } else {
+                //TODO 数据有误,有脏数据
+                continue;
             }
             commissionList.add(commission);
         }
