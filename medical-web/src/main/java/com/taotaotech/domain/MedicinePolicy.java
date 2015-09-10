@@ -33,6 +33,17 @@ public class MedicinePolicy {
 
     private Float addPolicy3;
 
+    private Float price;
+
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }

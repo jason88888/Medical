@@ -155,6 +155,7 @@ public class PolicyServiceImpl implements IPolicyService {
             policy.setAddPolicy1(Float.parseFloat(ip.getAddPolicy1()));
             policy.setAddPolicy2(Float.parseFloat(ip.getAddPolicy2()));
             policy.setAddPolicy3(Float.parseFloat(ip.getAddPolicy3()));
+            policy.setPrice(Float.parseFloat(ip.getPrice()));
             policyMapper.insertSelective(policy);
             return true;
         }

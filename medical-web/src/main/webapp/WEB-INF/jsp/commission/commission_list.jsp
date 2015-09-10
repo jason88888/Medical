@@ -77,7 +77,6 @@
             <th width="120">药品名称</th>
             <th width="100">客户码</th>
             <th width="150">客户名称</th>
-            <th width="150">终端名称</th>
             <th width="150">开票日期</th>
             <th width="150">业务员姓名</th>
             <th width="150">业务员费用</th>
@@ -99,7 +98,6 @@
                 <td>${commission.medicineName}</td>
                 <td>${commission.clientCode}</td>
                 <td>${commission.clientName}</td>
-                <td>${commission.terminalName}</td>
                 <td>${commission.invoiceDate}</td>
                 <td>${commission.salesmanName}</td>
                 <td>${commission.salesmanCharge}</td>

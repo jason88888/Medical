@@ -71,6 +71,7 @@
             <th>附加政策1</th>
             <th>附加政策2</th>
             <th>附加政策3</th>
+            <th>单价</th>
         </tr>
         </thead>
         <tbody>
@@ -92,6 +93,7 @@
                 <td>${policy.addPolicy1}</td>
                 <td>${policy.addPolicy2}</td>
                 <td>${policy.addPolicy3}</td>
+                <td>${policy.price}</td>
             </tr>
         </c:forEach>
         </tbody>

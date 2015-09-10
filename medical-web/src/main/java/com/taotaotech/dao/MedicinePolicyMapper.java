@@ -24,4 +24,8 @@ public interface MedicinePolicyMapper {
     Boolean existByMonthAndClientAndMedicine(@Param("clientCode")String clientCode,
                                              @Param("medicineCode")String medicineCode,
                                              @Param("month")String month);
+
+    MedicinePolicy getPolicyByMonthAndClientAndMedicine(@Param("clientCode")String clientCode,
+                                         @Param("medicineCode")String medicineCode,
+                                         @Param("month")String month);
 }

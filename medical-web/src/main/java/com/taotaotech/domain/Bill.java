@@ -6,12 +6,26 @@ public class Bill {
 
     private String code;
 
-    private String date;
+    private String date;//开票日期
+
+
+    private String month;
 
     private Integer number;
+
+    private String clientCode;
     private String userCode;
     private String twoLevelCode;
     private String threeLevelCode;
+    private String medicineCode;
+
+    public String getMedicineCode() {
+        return medicineCode;
+    }
+
+    public void setMedicineCode(String medicineCode) {
+        this.medicineCode = medicineCode;
+    }
 
     public String getUserCode() {
         return userCode;
@@ -67,5 +81,21 @@ public class Bill {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public String getClientCode() {
+        return clientCode;
+    }
+
+    public void setClientCode(String clientCode) {
+        this.clientCode = clientCode;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 }

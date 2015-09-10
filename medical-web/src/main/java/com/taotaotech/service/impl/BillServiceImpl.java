@@ -3,11 +3,10 @@ package com.taotaotech.service.impl;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.utils.ProcessBillUtil;
-import com.taotaotech.core.utils.ProcessPolicylUtil;
 import com.taotaotech.dao.*;
 import com.taotaotech.domain.*;
+import com.taotaotech.dto.BillRich;
 import com.taotaotech.dto.ImportBill;
-import com.taotaotech.dto.ImportPolicy;
 import com.taotaotech.service.IBillService;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +25,13 @@ import java.util.List;
  */
 
 @Service
-public class BillServiceImpl implements IBillService{
+public class BillServiceImpl implements IBillService {
 
     @Autowired
     private BillMapper billMapper;
+
+    @Autowired
+    private BillRichMapper billRichMapper;
 
     @Autowired
     private ClientMapper clientMapper;
@@ -73,6 +73,8 @@ public class BillServiceImpl implements IBillService{
                         generateSalesman(ib);
                         generateTwoLevelAgent(ib);
                         generateThreeLevelAgent(ib);
+                        //方便bill计算佣金，减少数据库查询使用
+                        generateBillRich(ib);
                     }
                     break;
                 }
@@ -117,6 +119,8 @@ public class BillServiceImpl implements IBillService{
                         generateSalesman(ib);
                         generateTwoLevelAgent(ib);
                         generateThreeLevelAgent(ib);
+                        //方便bill计算佣金，减少数据库查询使用
+                        generateBillRich(ib);
                     }
                     break;
                 }
@@ -137,11 +141,11 @@ public class BillServiceImpl implements IBillService{
     }
 
     private Integer generateCilent(ImportBill bill) {
-        if (bill.getClientCode()==null || bill.getClientCode().equals("") ||
-                bill.getClientName()==null || bill.getClientName().equals("") ){
+        if (bill.getClientCode() == null || bill.getClientCode().equals("") ||
+                bill.getClientName() == null || bill.getClientName().equals("")) {
             return null;
         }
-        if (!clientMapper.existByClientCode(bill.getClientCode())){
+        if (!clientMapper.existByClientCode(bill.getClientCode())) {
             Client client = new Client();
             client.setCode(bill.getClientCode());
             client.setName(bill.getClientName());
@@ -152,51 +156,54 @@ public class BillServiceImpl implements IBillService{
     }
 
     private Integer generateBill(ImportBill ib) {
-        if (ib.getBillCode()==null || ib.getBillCode().equals("") ){
+        if (ib.getBillCode() == null || ib.getBillCode().equals("")) {
             return null;
         }
         if (!billMapper.existByBillCode(ib.getBillCode())) {
             Bill bill = new Bill();
             bill.setCode(ib.getBillCode());
-            if (!ib.getNumber().equals("")){
+            if (!ib.getNumber().equals("")) {
                 bill.setNumber(Integer.parseInt(ib.getNumber()));
             }
+            bill.setClientCode(ib.getClientCode());
             bill.setUserCode(ib.getSalesmanCode());
             bill.setDate(ib.getInvoiceDate());
-
+            bill.setTwoLevelCode(ib.getTwoLevelCode());
+            bill.setThreeLevelCode(ib.getThreeLevelCode());
+            bill.setMedicineCode(ib.getMedicineCode());
             return billMapper.insertSelective(bill);
         }
         return null;
     }
 
-    private Integer generateMedicine(ImportBill bill) {
-        if (bill.getLotNumber()==null || bill.getLotNumber().equals("") ||
-            bill.getMedicineCode() == null || bill.getMedicineCode().equals("")){
+    private Integer generateMedicine(ImportBill ib) {
+        if (ib.getLotNumber() == null || ib.getLotNumber().equals("") ||
+                ib.getMedicineCode() == null || ib.getMedicineCode().equals("")) {
             return null;
         }
-        if (!medicineMapper.existByMedicineCodeAndLotNumber(bill.getMedicineCode(), bill.getLotNumber())){
+        if (!medicineMapper.existByMedicineCodeAndLotNumber(ib.getMedicineCode(), ib.getLotNumber())) {
             Medicine medicine = new Medicine();
-            medicine.setCode(bill.getMedicineCode());
-            medicine.setName(bill.getMedicineName());
-            medicine.setLotNumber(bill.getLotNumber());
-            medicine.setSpecification(bill.getMedicineSpecification());
-            medicine.setManufacturerName(bill.getManufacturerName());
-            if (!bill.getPrice().equals("")){
-                medicine.setPrice(Float.parseFloat(bill.getPrice()));
+            medicine.setCode(ib.getMedicineCode());
+            medicine.setName(ib.getMedicineName());
+            medicine.setLotNumber(ib.getLotNumber());
+            medicine.setSpecification(ib.getMedicineSpecification());
+            medicine.setManufacturerName(ib.getManufacturerName());
+            if (!ib.getPrice().equals("")) {
+                medicine.setPrice(Float.parseFloat(ib.getPrice()));
             }
-            medicine.setUnits(bill.getUnits());
-            medicine.setValidityPeriod(bill.getValidityPeriod());
+            medicine.setUnits(ib.getUnits());
+            medicine.setValidityPeriod(ib.getValidityPeriod());
             return medicineMapper.insertSelective(medicine);
         }
         return null;
     }
 
-    private Boolean generateSalesman(ImportBill ib){
-        if (ib.getSalesmanName()==null || ib.getSalesmanName().equals("") ||
-                ib.getSalesmanCode()==null || ib.getSalesmanCode().equals("") ){
+    private Boolean generateSalesman(ImportBill ib) {
+        if (ib.getSalesmanName() == null || ib.getSalesmanName().equals("") ||
+                ib.getSalesmanCode() == null || ib.getSalesmanCode().equals("")) {
             return false;
         }
-        if (!userMapper.existBySalesmanCode(ib.getSalesmanCode())){
+        if (!userMapper.existBySalesmanCode(ib.getSalesmanCode())) {
             User user = new User();
             user.setUsername(ib.getSalesmanName());
             user.setCode(ib.getSalesmanCode());
@@ -210,8 +217,33 @@ public class BillServiceImpl implements IBillService{
     }
 
 
-    private Boolean generateTwoLevelAgent(ImportBill ib){
-        if (ib.getTwoLevelCode()==null || ib.getTwoLevelCode().equals("")){
+    private Integer generateBillRich(ImportBill ib) {
+        if (ib.getBillCode() == null || ib.getBillCode().equals("")) {
+            return null;
+        }
+        if (!billRichMapper.existByBillCode(ib.getBillCode())) {
+            BillRich bill = new BillRich();
+            bill.setCode(ib.getBillCode());
+            if (!ib.getNumber().equals("")) {
+                bill.setNumber(Integer.parseInt(ib.getNumber()));
+            }
+            bill.setClientCode(ib.getClientCode());
+            bill.setUserCode(ib.getSalesmanCode());
+            bill.setDate(ib.getInvoiceDate());
+            bill.setTwoLevelCode(ib.getTwoLevelCode());
+            bill.setThreeLevelCode(ib.getThreeLevelCode());
+            bill.setMedicineCode(ib.getMedicineCode());
+            bill.setUserName(ib.getSalesmanName());
+            bill.setMedicineName(ib.getMedicineName());
+            bill.setClientName(ib.getClientName());
+            return billRichMapper.insertSelective(bill);
+        }
+        return null;
+    }
+
+
+    private Boolean generateTwoLevelAgent(ImportBill ib) {
+        if (ib.getTwoLevelCode() == null || ib.getTwoLevelCode().equals("")) {
             return false;
         }
         Agent agent = new Agent();
@@ -221,8 +253,8 @@ public class BillServiceImpl implements IBillService{
         return generateAgent(agent);
     }
 
-    private Boolean generateThreeLevelAgent(ImportBill ib){
-        if (ib.getThreeLevelCode()==null || ib.getThreeLevelCode().equals("")){
+    private Boolean generateThreeLevelAgent(ImportBill ib) {
+        if (ib.getThreeLevelCode() == null || ib.getThreeLevelCode().equals("")) {
             return false;
         }
         Agent agent = new Agent();
@@ -232,9 +264,9 @@ public class BillServiceImpl implements IBillService{
         return generateAgent(agent);
     }
 
-    private Boolean generateAgent(Agent agent ){
+    private Boolean generateAgent(Agent agent) {
 
-        if (!agentMapper.existByAgentCode(agent.getCode())){
+        if (!agentMapper.existByAgentCode(agent.getCode())) {
             agentMapper.insertSelective(agent);
             return true;
         }

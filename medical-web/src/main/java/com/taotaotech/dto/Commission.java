@@ -6,14 +6,14 @@ package com.taotaotech.dto;
 
 public class Commission {
     /*
-        药品编码 药品名称 客户码 终端名称 月份(开票日期) 业务员姓名  业务员费用 二级费用 三级费用
-        厂家费用 附加费用1 附加费用2 附加费用3 营业额 总费用
-    */
+            药品编码 药品名称 客户码 终端名称 月份(开票日期) 业务员姓名  业务员费用 二级费用 三级费用
+            厂家费用 附加费用1 附加费用2 附加费用3 营业额 总费用
+        */
+    private Integer id;
     private String medicineCode;//药品编码
     private String medicineName;//药品名称
     private String clientCode;//客户码
     private String clientName;//客户名称
-    private String terminalName;//终端名称
     private String invoiceDate;//开票日期
     private String salesmanName;//业务员姓名
     private String salesmanCharge;//业务员费用
@@ -25,6 +25,14 @@ public class Commission {
     private String addCharge3;//附加费用3
     private String businessFee;//营业额
     private String totalCharge;//总费用
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getMedicineCode() {
         return medicineCode;
@@ -56,14 +64,6 @@ public class Commission {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
-    }
-
-    public String getTerminalName() {
-        return terminalName;
-    }
-
-    public void setTerminalName(String terminalName) {
-        this.terminalName = terminalName;
     }
 
     public String getInvoiceDate() {
