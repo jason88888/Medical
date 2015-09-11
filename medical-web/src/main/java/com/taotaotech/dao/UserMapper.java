@@ -1,5 +1,6 @@
 package com.taotaotech.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,8 @@ import java.util.List;
 @Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
+
+    int delete(List<Integer> ids);
 
     int insert(User record);
 
@@ -24,5 +27,7 @@ public interface UserMapper {
 
     Boolean existBySalesmanCode(@Param("code")String code);
 
-    List<User> findUserList();
+    List<User> findAllList();
+
+    List<User> findList(User user, PageBounds pageBounds);
 }

@@ -1,6 +1,13 @@
 package com.taotaotech.domain;
 
+import com.taotaotech.service.Page;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.xml.bind.annotation.XmlTransient;
+
 public class User {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
 
     private String code;
@@ -10,6 +17,22 @@ public class User {
     private String password;
 
     private Byte role;
+
+    protected Page<User> page;
+
+    @JsonIgnore
+    @XmlTransient
+    public Page<User> getPage() {
+        if (page == null){
+            page = new Page<User>();
+        }
+        return page;
+    }
+
+    public Page<User> setPage(Page<User> page) {
+        this.page = page;
+        return page;
+    }
 
     public Integer getId() {
         return id;

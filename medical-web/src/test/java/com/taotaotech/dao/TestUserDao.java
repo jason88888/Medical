@@ -1,5 +1,6 @@
 package com.taotaotech.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.utils.JsonUtil;
 import com.taotaotech.domain.User;
 import org.apache.log4j.Logger;
@@ -32,8 +33,8 @@ public class TestUserDao {
     }
 
     @Test
-    public void findUserList(){
-        List<User> list = userMapper.findUserList();
+    public void findList(){
+        List<User> list = userMapper.findList(new User(), new PageBounds());
         System.out.printf(JsonUtil.clazz2Json(list));
     }
 }

@@ -55,18 +55,6 @@
             <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
             <div class="accordion" fillSpace="sidebar">
-                <%--演示--%>
-                <%--<div class="accordionHeader">--%>
-                    <%--<h2>--%>
-                        <%--<span>Folder</span>DWZ演示--%>
-                    <%--</h2>--%>
-                <%--</div>--%>
-                <%--<div class="accordionContent">--%>
-                    <%--<ul class="tree treeFolder">--%>
-                        <%--<li><a href="${basePath}user/list" target="navTab" rel="user_list">用户管理</a></li>--%>
-                    <%--</ul>--%>
-                <%--</div>--%>
-
                 <div class="accordionHeader">
                     <h2>
                         <span>Folder</span>基础数据管理

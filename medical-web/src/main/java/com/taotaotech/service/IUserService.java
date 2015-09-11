@@ -16,7 +16,15 @@ public interface IUserService {
 
     ResponseResult isValidUser(String username,String password);
 
-    public List<User> findUserList();
+    public User get(Integer id);
+
+    public User get(User user);
+
+    public List<User> findList();
+
+    public Page<User> findPage(Page<User> page, User user);
 
     public int save(User user);
+
+    public int delete(Integer[] ids);
 }
