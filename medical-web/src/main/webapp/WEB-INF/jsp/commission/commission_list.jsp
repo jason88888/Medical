@@ -12,6 +12,22 @@
 
 <div class="pageHeader">
     <form onsubmit="return navTabSearch(this);" action="commission/list" method="post">
+        <div class="all_data">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>业务员费用</td>
+                    <td>二级费用</td>
+                    <td>三级费用</td>
+                    <td>厂家费用</td>
+                    <td>附加费用1</td>
+                    <td>附加费用2</td>
+                    <td>附加费用3</td>
+                    <td>总营业额</td>
+                    <td>总费用</td>
+                </tr>
+            </tbody>
+        </div>
         <div class="searchBar">
             <!--<ul class="searchContent">
                 <li>
@@ -33,21 +49,21 @@
             <table class="searchContent">
                 <tr>
                     <td>
-                        我的客户：<input type="text" name="keyword" />
-                    </td>
-                    <td>
                         <select class="combox" name="province">
-                            <option value="">所有省市</option>
-                            <option value="北京">北京</option>
-                            <option value="上海">上海</option>
-                            <option value="天津">天津</option>
-                            <option value="重庆">重庆</option>
-                            <option value="广东">广东</option>
+                            <option value="">所有</option>
+                            <option value="药品代码">药品代码</option>
+                            <option value="业务员代码">业务员代码</option>
+                            <option value="二级代码">二级代码</option>
+                            <option value="三级代码">三级代码</option>
+                            <option value="终端代码">终端代码</option>
                         </select>
                     </td>
                     <td>
-                        建档日期：<input type="text" class="date" readonly="true" />
+                        代码：<input type="text" name="keyword" />
                     </td>
+                    <%--<td>--%>
+                        <%--建档日期：<input type="text" class="date" readonly="true" />--%>
+                    <%--</td>--%>
                 </tr>
             </table>
             <div class="subBar">
@@ -83,6 +99,7 @@
             <th width="150">二级费用</th>
             <th width="150">三级费用</th>
             <th width="150">厂家费用</th>
+            <th width="150">临床费用</th>
             <th width="150">附加费用1</th>
             <th width="150">附加费用2</th>
             <th width="150">附加费用3</th>
@@ -104,6 +121,7 @@
                 <td>${commission.twoLevelCharge}</td>
                 <td>${commission.threeLevelCharge}</td>
                 <td>${commission.manufacturerCharge}</td>
+                <td>${commission.clinicalCharge}</td>
                 <td>${commission.addCharge1}</td>
                 <td>${commission.addCharge2}</td>
                 <td>${commission.addCharge3}</td>

@@ -13,24 +13,23 @@
 <div class="pageHeader">
     <form onsubmit="return navTabSearch(this);" action="user/list" method="post">
         <div class="searchBar">
-            <table class="searchContent">
-                <tr>
-
-                    <td>
-                        用户编号：<input type="text" name="code" />
-                    </td>
-                    <td>
-                        用户名：<input type="text" class="username" />
-                    </td>
-                    <td>
-                        <select class="combox" name="role">
-                            <option value="">所有角色</option>
-                            <option value="1">管理员</option>
-                            <option value="2">业务员</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+            <%--<table class="searchContent">--%>
+                <%--<tr>--%>
+                    <%--<td>--%>
+                        <%--用户编号：<input type="text" name="code" />--%>
+                    <%--</td>--%>
+                    <%--<td>--%>
+                        <%--用户名：<input type="text" class="username" />--%>
+                    <%--</td>--%>
+                    <%--<td>--%>
+                        <%--<select class="combox" name="role">--%>
+                            <%--<option value="">所有角色</option>--%>
+                            <%--<option value="1">管理员</option>--%>
+                            <%--<option value="2">业务员</option>--%>
+                        <%--</select>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
+            <%--</table>--%>
             <div class="subBar">
                 <ul>
                     <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
