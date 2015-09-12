@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="user/list" method="post">
+    <form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel="pagerForm">
         <div class="searchBar">
             <table class="searchContent">
                 <tr>
@@ -19,7 +19,7 @@
                         用户编号：<input type="text" name="code" value="${param.code}"/>
                     </td>
                     <td>
-                        用户名：<input type="text" class="username" value="${param.username}"/>
+                        用户名：<input type="text" name="username" value="${param.username}"/>
                     </td>
                     <td>
                         <select class="combox" name="role">

@@ -2,9 +2,7 @@ package com.taotaotech.core.utils;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Cailin.Chen
@@ -14,51 +12,55 @@ import java.util.Set;
 
 public class MapUtil {
 
-    public static void setValue(Map map,Object thisObj)
-    {
-        Set set = map.keySet();
-        Iterator iterator = set.iterator();
-        while (iterator.hasNext())
-        {
-            Object obj = iterator.next();
-            Object val = map.get(obj);
-//            setMethod(obj, val, thisObj);
-        }
+    // TODO: 对象转实体类待实现，我看之前没有实现，直接删掉了
+    public static void map2Bean(Map map, Object bean) {
     }
 
-    public static Map getValue(Object thisObj)
-    {
+    public static Map bean2Map(Object bean) {
         Map map = new HashMap();
-        Class c;
-        try
-        {
-            c = Class.forName(thisObj.getClass().getName());
-            Method[] m = c.getMethods();
-            for (int i = 0; i < m.length; i++)
-            {
-                String method = m[i].getName();
-                if (method.startsWith("get") && !method.equals("getClass") )
-                {
-                    try{
-                        Object value = m[i].invoke(thisObj);
-                        if (value != null && !value.equals(""))
-                        {
-                            String key=method.substring(3);
-                            key=key.substring(0,1).toLowerCase()+key.substring(1);
-                            map.put(key, value);
-                        }
-                    }catch (Exception e) {
-                        // TODO: handle exception
-                        System.out.println("error:"+method);
-                    }
+        try {
+            Method[] methods = bean.getClass().getDeclaredMethods();
+            for (Method method : methods) {
+                if (method.getName().startsWith("get")) {
+                    String field = method.getName();
+                    field = field.substring(field.indexOf("get") + 3);
+                    field = field.toLowerCase().charAt(0) + field.substring(1);
+                    Object value = method.invoke(bean, (Object[]) null);
+                    map.put(field, (null == value ? "" : value));
                 }
             }
-        }
-        catch (Exception e)
-        {
-            // TODO: handle exception
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return map;
     }
+
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setAge(18);
+        person.setName("小林zi");
+        System.out.println(bean2Map(person));
+    }
+}
+
+class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
 }

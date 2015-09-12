@@ -3,6 +3,7 @@ package com.taotaotech.service.impl;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.exception.BusinessException;
+import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.dao.UserMapper;
 import com.taotaotech.domain.User;
 import com.taotaotech.exception.user.UserErrorCode;
@@ -70,11 +71,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Page<User> findPage(Page<User> page, User user) {
-        Map map = new HashMap();
-        map.put("code", user.getCode());
-        map.put("username", user.getUsername());
-        map.put("role", user.getRole());
-        map.put("page", page);
+        Map map = MapUtil.bean2Map(user);
         PageList<User> users = (PageList)userMapper.findList(map, page.createPageBounds());
 
         page.setList(users);
