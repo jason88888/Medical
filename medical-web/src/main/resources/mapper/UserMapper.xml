@@ -119,10 +119,10 @@
     from sys_user t
     <where>
       <if test="code != null and code != ''">
-        code like #{code}
+        code like '%${code}%'
       </if>
       <if test="username != null and username != ''">
-        AND username like #{username}
+        AND username like '%${username}%'
       </if>
       <if test="role != null and role != ''">
         AND role = #{role}

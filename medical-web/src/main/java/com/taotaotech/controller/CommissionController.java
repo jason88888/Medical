@@ -2,15 +2,19 @@ package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.domain.Agent;
+import com.taotaotech.dto.BillRich;
 import com.taotaotech.dto.Commission;
 import com.taotaotech.service.IAgentService;
 import com.taotaotech.service.ICommissionService;
+import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -24,8 +28,8 @@ public class CommissionController extends BaseController {
     @Autowired
     private ICommissionService commissionService;
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(ModelMap model) {
-        List<Commission> commissions = commissionService.findCommissionList();
+    public String list(BillRich billRich,HttpServletRequest request, HttpServletResponse response,ModelMap model) {
+        List<Commission> commissions = commissionService.findCommissionList(new Page<Commission>(request, response),billRich);
         model.addAttribute("commissions", commissions);
         return "commission/commission_list";
     }

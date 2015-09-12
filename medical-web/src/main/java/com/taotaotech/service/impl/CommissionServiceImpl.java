@@ -1,11 +1,13 @@
 package com.taotaotech.service.impl;
 
 import com.taotaotech.core.utils.DateUtil;
+import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.dao.*;
 import com.taotaotech.domain.MedicinePolicy;
 import com.taotaotech.dto.BillRich;
 import com.taotaotech.dto.Commission;
 import com.taotaotech.service.ICommissionService;
+import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +27,10 @@ public class CommissionServiceImpl implements ICommissionService {
     private MedicinePolicyMapper medicinePolicyMapper;
 
     @Override
-    public List<Commission> findCommissionList() {
+    public List<Commission> findCommissionList(Page page,BillRich billR) {
+        Map billMap =  MapUtil.getValue(billR);
         List<Commission> commissionList = null;
-        ArrayList<BillRich> billList = (ArrayList<BillRich>) billRichMapper.findBillList();
+        ArrayList<BillRich> billList = (ArrayList<BillRich>) billRichMapper.findBillList(billMap,page.createPageBounds());
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserMapper {
@@ -29,5 +30,5 @@ public interface UserMapper {
 
     List<User> findAllList();
 
-    List<User> findList(User user, PageBounds pageBounds);
+    List<User> findList(Map user, PageBounds pageBounds);
 }

@@ -128,10 +128,10 @@
                 number = #{number,jdbcType=INTEGER},
             </if>
             <if test="clientCode != null">
-                number = #{clientCode,jdbcType=INTEGER},
+                client_code = #{clientCode,jdbcType=INTEGER},
             </if>
             <if test="clientName != null">
-                number = #{clientName,jdbcType=INTEGER},
+                client_name = #{clientName,jdbcType=INTEGER},
             </if>
             <if test="userCode != null">
                 user_code = #{userCode,jdbcType=VARCHAR},
@@ -173,7 +173,35 @@
         select
         <include refid="Base_Column_List"/>
         from billrich
+        <where>
+            <if test="clientCode != null">
+                client_code = '%${clientCode,jdbcType=VARCHAR}%'
+            </if>
+            <if test="clientName != null">
+                AND client_name = '%${clientName,jdbcType=VARCHAR}'
+            </if>
+            <if test="userCode != null">
+                AND user_code = '%${userCode,jdbcType=VARCHAR}'
+            </if>
+            <if test="twoLevelCode != null">
+                AND  two_level_code = '%${twoLevelCode,jdbcType=VARCHAR}'
+            </if>
+            <if test="threeLevelCode != null">
+                AND three_level_code = '%${threeLevelCode,jdbcType=VARCHAR}'
+            </if>
+            <if test="userName != null">
+                AND user_name = '%${userName,jdbcType=VARCHAR}'
+            </if>
+            <if test="medicineName != null">
+                medicine_name = '%${medicineName,jdbcType=VARCHAR}'
+            </if>
+            <if test="medicineCode != null">
+                medicine_code = '%${medicineCode,jdbcType=VARCHAR}'
+            </if>
+        </where>
     </select>
+
+
     <select id="existByBillCode" resultType="java.lang.Boolean">
     select
     COUNT(id)

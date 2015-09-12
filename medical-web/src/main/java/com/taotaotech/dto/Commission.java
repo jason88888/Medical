@@ -6,10 +6,11 @@ package com.taotaotech.dto;
 
 public class Commission {
     /*
-            药品编码 药品名称 客户码 终端名称 月份(开票日期) 业务员姓名  业务员费用 二级费用 三级费用
+            richBill单据id 药品编码 药品名称 客户码 终端名称 月份(开票日期) 业务员姓名  业务员费用 二级费用 三级费用
             厂家费用 附加费用1 附加费用2 附加费用3 营业额 总费用
         */
     private Integer id;
+    private Integer richBillId;
     private String medicineCode;//药品编码
     private String medicineName;//药品名称
     private String clientCode;//客户码
@@ -33,6 +34,14 @@ public class Commission {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getRichBillId() {
+        return richBillId;
+    }
+
+    public void setRichBillId(Integer richBillId) {
+        this.richBillId = richBillId;
     }
 
     public String getClinicalCharge() {

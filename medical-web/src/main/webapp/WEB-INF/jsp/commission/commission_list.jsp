@@ -47,6 +47,7 @@
             </ul>
             -->
             <table class="searchContent">
+                <%--药品代码 业务员代码  二级代码 三级代码 终端代码--%>
                 <tr>
                     <td>
                         <select class="combox" name="province">
@@ -61,9 +62,6 @@
                     <td>
                         代码：<input type="text" name="keyword" />
                     </td>
-                    <%--<td>--%>
-                        <%--建档日期：<input type="text" class="date" readonly="true" />--%>
-                    <%--</td>--%>
                 </tr>
             </table>
             <div class="subBar">

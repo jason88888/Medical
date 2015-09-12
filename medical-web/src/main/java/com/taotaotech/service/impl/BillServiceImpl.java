@@ -1,5 +1,6 @@
 package com.taotaotech.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.utils.ProcessBillUtil;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -96,7 +98,7 @@ public class BillServiceImpl implements IBillService {
 
     @Override
     public List<BillRich> findBillList() {
-        return billRichMapper.findBillList();
+        return billRichMapper.findBillList(new HashMap(),new PageBounds());
     }
 
     private Integer generateCilent(ImportBill bill) {
