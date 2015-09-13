@@ -13,20 +13,32 @@
 <div class="pageHeader">
     <form onsubmit="return navTabSearch(this);" action="commission/list" method="post">
         <div class="all_data">
-            <tbody>
+            <table>
                 <tr>
-                    <td></td>
                     <td>业务员费用</td>
                     <td>二级费用</td>
                     <td>三级费用</td>
                     <td>厂家费用</td>
+                    <td>临床费用</td>
                     <td>附加费用1</td>
                     <td>附加费用2</td>
                     <td>附加费用3</td>
                     <td>总营业额</td>
                     <td>总费用</td>
                 </tr>
-            </tbody>
+                <tr>
+                    <td>${countCommission.salesmanCharge}</td>
+                    <td>${countCommission.twoLevelCharge}</td>
+                    <td>${countCommission.threeLevelCharge}</td>
+                    <td>${countCommission.manufacturerCharge}</td>
+                    <td>${countCommission.clinicalCharge}</td>
+                    <td>${countCommission.addCharge1}</td>
+                    <td>${countCommission.addCharge2}</td>
+                    <td>${countCommission.addCharge3}</td>
+                    <td>${countCommission.businessFee}</td>
+                    <td>${countCommission.totalCharge}</td>
+                </tr>
+            </table>
         </div>
         <div class="searchBar">
             <!--<ul class="searchContent">
@@ -52,15 +64,15 @@
                     <td>
                         <select class="combox" name="province">
                             <option value="">所有</option>
-                            <option value="medicineCode">药品代码</option>
-                            <option value="userCode">业务员代码</option>
-                            <option value="twoLevelCode">二级代码</option>
-                            <option value="threeLevelCode">三级代码</option>
-                            <option value="clientCode">终端代码</option>
+                            <option value="medicineCode" ${param.province.equals("medicineCode")?"selected":""}>药品代码</option>
+                            <option value="userCode" ${param.province.equals("userCode")?"selected":""}>业务员代码</option>
+                            <option value="twoLevelCode" ${param.province.equals("twoLevelCode")?"selected":""}>二级代码</option>
+                            <option value="threeLevelCode" ${param.province.equals("threeLevelCode")?"selected":""}>三级代码</option>
+                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码</option>
                         </select>
                     </td>
                     <td>
-                        代码：<input type="text" name="keyword" />
+                        代码：<input type="text" name="keyword" value="${param.keyword}" />
                     </td>
                 </tr>
             </table>
@@ -106,7 +118,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${commissions}" var="commission">
+        <c:forEach items="${page.list}" var="commission">
             <tr>
                 <td><div><input name="ids" value="${commission.id}" type="checkbox"></div></td>
                 <td>${commission.medicineCode}</td>
@@ -138,10 +150,10 @@
                 <option value="100">100</option>
                 <option value="200">200</option>
             </select>
-            <span>条，共${totalCount}条</span>
+            <span>条，共${page.totalCount}条</span>
         </div>
 
-        <div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
+        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
 
     </div>
 </div>

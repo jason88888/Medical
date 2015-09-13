@@ -44,8 +44,11 @@ public class CommissionController extends BaseController {
             }
         }
 
-        List<Commission> commissions = commissionService.findCommissionList(new Page<Commission>(request, response),billRich);
-        model.addAttribute("commissions", commissions);
+        Page<Commission> page = commissionService.findCommissionList(new Page<Commission>(request, response),billRich);
+        Commission countCommission = commissionService.statisticsCommission(billRich);
+        model.addAttribute("page", page);
+        model.addAttribute("countCommission", countCommission);
+
         return "commission/commission_list";
     }
 }

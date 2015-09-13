@@ -12,5 +12,7 @@ import java.util.List;
  * @description
  */
 public interface ICommissionService {
-    public List<Commission> findCommissionList(Page page,BillRich billRich);
+    public Page<Commission> findCommissionList(Page page,BillRich billRich);
+
+    public Commission statisticsCommission(BillRich billRich);
 }

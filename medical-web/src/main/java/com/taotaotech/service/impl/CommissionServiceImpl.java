@@ -1,5 +1,6 @@
 package com.taotaotech.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.dao.*;
@@ -27,13 +28,19 @@ public class CommissionServiceImpl implements ICommissionService {
     private MedicinePolicyMapper medicinePolicyMapper;
 
     @Override
-    public List<Commission> findCommissionList(Page page,BillRich billR) {
+    public Page<Commission> findCommissionList(Page page,BillRich billR) {
         Map billMap =  MapUtil.bean2Map(billR);
         List<Commission> commissionList = null;
         List<BillRich> billList =  billRichMapper.findBillList(billMap,page.createPageBounds());
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }
+        calculatePrice(billList,commissionList);
+         page.setList(commissionList);
+        return page;
+    }
+
+    private void calculatePrice(List<BillRich> billList,List<Commission> commissionList){
         for (int i = 0; i < billList.size(); i++) {
             BillRich billRich = billList.get(i);
             //根据日期生成月份
@@ -88,6 +95,50 @@ public class CommissionServiceImpl implements ICommissionService {
             }
             commissionList.add(commission);
         }
-        return commissionList;
+    }
+
+    private Commission initCommission(){
+        Commission commission = new Commission();
+        commission.setSalesmanCharge("0" );
+        commission.setTwoLevelCharge("0" );
+        commission.setThreeLevelCharge("0" );
+        commission.setManufacturerCharge("0" );
+        commission.setClinicalCharge("0" );
+        commission.setAddCharge1("0" );
+        commission.setAddCharge2("0" );
+        commission.setAddCharge3("0" );
+        commission.setBusinessFee("0" );
+        commission.setTotalCharge("0");
+        return commission;
+    }
+    @Override
+    public Commission statisticsCommission(BillRich billRich) {
+
+        Map billMap =  MapUtil.bean2Map(billRich);
+        List<Commission> commissionList = null;
+        List<BillRich> billList =  billRichMapper.findBillList(billMap,new PageBounds());
+        if (billList.size() != 0) {
+            commissionList = new ArrayList<>();
+        }
+        calculatePrice(billList, commissionList);
+        Commission countCommission = initCommission();
+
+        if (commissionList.size()>0){
+            for (int index = 0; index < commissionList.size(); index++) {
+                Commission commission = commissionList.get(index);
+
+                countCommission.setSalesmanCharge(""+(Float.parseFloat(countCommission.getSalesmanCharge()) + Float.parseFloat(commission.getSalesmanCharge())));
+                countCommission.setTwoLevelCharge("" + (Float.parseFloat(countCommission.getTwoLevelCharge()) + Float.parseFloat(commission.getTwoLevelCharge())));
+                countCommission.setThreeLevelCharge("" + (Float.parseFloat(countCommission.getThreeLevelCharge()) + Float.parseFloat(commission.getThreeLevelCharge())));
+                countCommission.setManufacturerCharge("" + (Float.parseFloat(countCommission.getManufacturerCharge()) + Float.parseFloat(commission.getManufacturerCharge())));
+                countCommission.setClinicalCharge("" + (Float.parseFloat(countCommission.getClinicalCharge()) + Float.parseFloat(commission.getClinicalCharge())));
+                countCommission.setAddCharge1("" + (Float.parseFloat(countCommission.getAddCharge1()) + Float.parseFloat(commission.getAddCharge1())));
+                countCommission.setAddCharge2("" + (Float.parseFloat(countCommission.getAddCharge2()) + Float.parseFloat(commission.getAddCharge2())));
+                countCommission.setAddCharge3("" + (Float.parseFloat(countCommission.getAddCharge3()) + Float.parseFloat(commission.getAddCharge3())));
+                countCommission.setBusinessFee("" + (Float.parseFloat(countCommission.getBusinessFee()) + Float.parseFloat(commission.getBusinessFee())));
+                countCommission.setTotalCharge("" + (Float.parseFloat(countCommission.getTotalCharge()) + Float.parseFloat(commission.getTotalCharge())));
+            }
+        }
+        return countCommission;
     }
 }
