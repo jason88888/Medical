@@ -28,7 +28,22 @@ public class CommissionController extends BaseController {
     @Autowired
     private ICommissionService commissionService;
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(BillRich billRich,HttpServletRequest request, HttpServletResponse response,ModelMap model) {
+    public String list(String province,String keyword,HttpServletRequest request, HttpServletResponse response,ModelMap model) {
+        BillRich billRich = new BillRich();
+        if (null !=province && null != keyword){
+            if (province.equals("medicineCode")){
+                billRich.setMedicineCode(keyword);
+            }else if (province.equals("userCode")){
+                billRich.setUserCode(keyword);
+            }else if (province.equals("twoLevelCode")){
+                billRich.setTwoLevelCode(keyword);
+            }else if (province.equals("threeLevelCode")){
+                billRich.setThreeLevelCode(keyword);
+            }else if (province.equals("clientCode")){
+                billRich.setClientCode(keyword);
+            }
+        }
+
         List<Commission> commissions = commissionService.findCommissionList(new Page<Commission>(request, response),billRich);
         model.addAttribute("commissions", commissions);
         return "commission/commission_list";

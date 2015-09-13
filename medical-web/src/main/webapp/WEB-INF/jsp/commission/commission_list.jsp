@@ -52,11 +52,11 @@
                     <td>
                         <select class="combox" name="province">
                             <option value="">所有</option>
-                            <option value="药品代码">药品代码</option>
-                            <option value="业务员代码">业务员代码</option>
-                            <option value="二级代码">二级代码</option>
-                            <option value="三级代码">三级代码</option>
-                            <option value="终端代码">终端代码</option>
+                            <option value="medicineCode">药品代码</option>
+                            <option value="userCode">业务员代码</option>
+                            <option value="twoLevelCode">二级代码</option>
+                            <option value="threeLevelCode">三级代码</option>
+                            <option value="clientCode">终端代码</option>
                         </select>
                     </td>
                     <td>

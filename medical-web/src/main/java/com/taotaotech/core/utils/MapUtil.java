@@ -18,15 +18,17 @@ public class MapUtil {
 
     public static Map bean2Map(Object bean) {
         Map map = new HashMap();
+        Class c;
         try {
-            Method[] methods = bean.getClass().getDeclaredMethods();
+            c = Class.forName(bean.getClass().getName());
+            Method[] methods = c.getMethods();
             for (Method method : methods) {
                 if (method.getName().startsWith("get")) {
                     String field = method.getName();
                     field = field.substring(field.indexOf("get") + 3);
                     field = field.toLowerCase().charAt(0) + field.substring(1);
                     Object value = method.invoke(bean, (Object[]) null);
-                    map.put(field, (null == value ? "" : value));
+                    map.put(field, value);
                 }
             }
         } catch (Exception e) {

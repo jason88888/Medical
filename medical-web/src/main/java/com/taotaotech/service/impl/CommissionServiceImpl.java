@@ -30,7 +30,7 @@ public class CommissionServiceImpl implements ICommissionService {
     public List<Commission> findCommissionList(Page page,BillRich billR) {
         Map billMap =  MapUtil.bean2Map(billR);
         List<Commission> commissionList = null;
-        ArrayList<BillRich> billList = (ArrayList<BillRich>) billRichMapper.findBillList(billMap,page.createPageBounds());
+        List<BillRich> billList =  billRichMapper.findBillList(billMap,page.createPageBounds());
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }

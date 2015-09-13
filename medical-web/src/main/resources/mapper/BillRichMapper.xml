@@ -175,28 +175,28 @@
         from billrich
         <where>
             <if test="clientCode != null">
-                client_code = '%${clientCode,jdbcType=VARCHAR}%'
+                client_code = '%${clientCode}%'
             </if>
             <if test="clientName != null">
-                AND client_name = '%${clientName,jdbcType=VARCHAR}'
+                AND client_name = '%${clientName}%'
             </if>
             <if test="userCode != null">
-                AND user_code = '%${userCode,jdbcType=VARCHAR}'
+                AND user_code = '%${userCode}%'
             </if>
             <if test="twoLevelCode != null">
-                AND  two_level_code = '%${twoLevelCode,jdbcType=VARCHAR}'
+                AND  two_level_code = '%${twoLevelCode}%'
             </if>
             <if test="threeLevelCode != null">
-                AND three_level_code = '%${threeLevelCode,jdbcType=VARCHAR}'
+                AND three_level_code = '%${threeLevelCode}%'
             </if>
             <if test="userName != null">
-                AND user_name = '%${userName,jdbcType=VARCHAR}'
+                AND user_name = '%${userName}%'
             </if>
             <if test="medicineName != null">
-                medicine_name = '%${medicineName,jdbcType=VARCHAR}'
+                medicine_name = '%${medicineName}%'
             </if>
             <if test="medicineCode != null">
-                medicine_code = '%${medicineCode,jdbcType=VARCHAR}'
+                medicine_code = '%${medicineCode}%'
             </if>
         </where>
     </select>
