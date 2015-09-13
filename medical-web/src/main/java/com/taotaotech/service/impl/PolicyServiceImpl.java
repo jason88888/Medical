@@ -1,7 +1,9 @@
 package com.taotaotech.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
+import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.core.utils.ProcessPolicylUtil;
 import com.taotaotech.dao.AgentMapper;
 import com.taotaotech.dao.MedicinePolicyMapper;
@@ -11,6 +13,7 @@ import com.taotaotech.domain.MedicinePolicy;
 import com.taotaotech.domain.User;
 import com.taotaotech.dto.ImportPolicy;
 import com.taotaotech.service.IPolicyService;
+import com.taotaotech.service.Page;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Cailin.Chen
@@ -84,6 +88,15 @@ public class PolicyServiceImpl implements IPolicyService {
     @Override
     public List<MedicinePolicy> findMedicinePolicyList() {
         return policyMapper.findMedicinePolicyList();
+    }
+
+    @Override
+    public Page<MedicinePolicy> findPage(Page<MedicinePolicy> page, MedicinePolicy medicinePolicy) {
+        Map map = MapUtil.bean2Map(medicinePolicy);
+        PageList<MedicinePolicy> medicinePolicies = (PageList)policyMapper.findList(map, page.createPageBounds());
+
+        page.setList(medicinePolicies);
+        return page;
     }
 
 

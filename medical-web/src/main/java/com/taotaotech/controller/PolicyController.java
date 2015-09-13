@@ -3,6 +3,7 @@ package com.taotaotech.controller;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.domain.MedicinePolicy;
 import com.taotaotech.service.IPolicyService;
+import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -21,10 +24,11 @@ public class PolicyController extends BaseController {
     @Autowired
     private IPolicyService policyService;
 
-    @RequestMapping(value = {"list", ""}, method = {RequestMethod.GET})
-    public String list(ModelMap model) {
-        List<MedicinePolicy> policys = policyService.findMedicinePolicyList();
-        model.addAttribute("policys", policys);
+    @RequestMapping(value = {"list", ""}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String list(MedicinePolicy medicinePolicy, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+        Page<MedicinePolicy> page = policyService.findPage(new Page<MedicinePolicy>(request, response), medicinePolicy);
+        model.addAttribute("page", page);
+
         return "policy/policy_list";
     }
 

@@ -66,7 +66,7 @@
                         <li><a href="list.html" target="navTab" rel="list2">商业配送单位</a></li>
                         <li><a href="client/list" target="navTab" rel="list3">医疗机构管理</a></li>
                         <li><a href="agent/list" target="navTab" rel="list3">代理商管理</a></li>
-                        <li><a href="policy/list" target="navTab" rel="list3">销售政策管理</a></li>
+                        <li><a href="policy/list" target="navTab" rel="policy_list">销售政策管理</a></li>
                         <li><a href="user/list" target="navTab" rel="user_list">公司人员管理</a></li>
                         <li><a href="list.html" target="navTab" rel="list3">管理员设置</a></li>
                         <li><a href="list.html" target="navTab" rel="list3">产品关联表</a></li>

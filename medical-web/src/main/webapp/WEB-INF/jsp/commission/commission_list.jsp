@@ -8,38 +8,44 @@
     <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
     <input type="hidden" name="orderField" value="${param.orderField}" />
 </form>
-
-
+<div class="panel" style="margin: 5px;">
+    <h1>当前数据总计</h1>
+    <div>
+        <table class="table" width="100%">
+            <thead>
+            <tr>
+                <th>业务员费用</th>
+                <th>二级费用</th>
+                <th>三级费用</th>
+                <th>厂家费用</th>
+                <th>临床费用</th>
+                <th>附加费用1</th>
+                <th>附加费用2</th>
+                <th>附加费用3</th>
+                <th>总营业额</th>
+                <th>总费用</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${countCommission.salesmanCharge}</td>
+                <td>${countCommission.twoLevelCharge}</td>
+                <td>${countCommission.threeLevelCharge}</td>
+                <td>${countCommission.manufacturerCharge}</td>
+                <td>${countCommission.clinicalCharge}</td>
+                <td>${countCommission.addCharge1}</td>
+                <td>${countCommission.addCharge2}</td>
+                <td>${countCommission.addCharge3}</td>
+                <td>${countCommission.businessFee}</td>
+                <td>${countCommission.totalCharge}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <div class="pageHeader">
+
     <form onsubmit="return navTabSearch(this);" action="commission/list" method="post">
-        <div class="all_data">
-            <table>
-                <tr>
-                    <td>业务员费用</td>
-                    <td>二级费用</td>
-                    <td>三级费用</td>
-                    <td>厂家费用</td>
-                    <td>临床费用</td>
-                    <td>附加费用1</td>
-                    <td>附加费用2</td>
-                    <td>附加费用3</td>
-                    <td>总营业额</td>
-                    <td>总费用</td>
-                </tr>
-                <tr>
-                    <td>${countCommission.salesmanCharge}</td>
-                    <td>${countCommission.twoLevelCharge}</td>
-                    <td>${countCommission.threeLevelCharge}</td>
-                    <td>${countCommission.manufacturerCharge}</td>
-                    <td>${countCommission.clinicalCharge}</td>
-                    <td>${countCommission.addCharge1}</td>
-                    <td>${countCommission.addCharge2}</td>
-                    <td>${countCommission.addCharge3}</td>
-                    <td>${countCommission.businessFee}</td>
-                    <td>${countCommission.totalCharge}</td>
-                </tr>
-            </table>
-        </div>
         <div class="searchBar">
             <!--<ul class="searchContent">
                 <li>
@@ -64,11 +70,11 @@
                     <td>
                         <select class="combox" name="province">
                             <option value="">所有</option>
-                            <option value="medicineCode" ${param.province.equals("medicineCode")?"selected":""}>药品代码</option>
+                            <%--<option value="medicineCode" ${param..equals("medicineCode")?"selected":""}>药品代码</option>
                             <option value="userCode" ${param.province.equals("userCode")?"selected":""}>业务员代码</option>
                             <option value="twoLevelCode" ${param.province.equals("twoLevelCode")?"selected":""}>二级代码</option>
                             <option value="threeLevelCode" ${param.province.equals("threeLevelCode")?"selected":""}>三级代码</option>
-                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码</option>
+                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码</option>--%>
                         </select>
                     </td>
                     <td>
@@ -95,7 +101,7 @@
             <li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
         </ul>
     </div>
-    <table class="table" width="100%" layoutH="138">
+    <table class="table" width="100%" layoutH="230">
         <thead>
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>

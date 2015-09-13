@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotaotech.dao.MedicinePolicyMapper">
-    <resultMap id="BaseResultMap" type="com.taotaotech.domain.MedicinePolicy">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="regional" property="regional" jdbcType="VARCHAR"/>
-        <result column="month" property="month" jdbcType="VARCHAR"/>
-        <result column="medicine_code" property="medicineCode" jdbcType="VARCHAR"/>
-        <result column="client_code" property="clientCode" jdbcType="VARCHAR"/>
-        <result column="salesman_policy" property="salesmanPolicy" jdbcType="REAL"/>
-        <result column="clinical_policy" property="clinicalPolicy" jdbcType="REAL"/>
-        <result column="manufacturer_policy" property="manufacturerPolicy" jdbcType="REAL"/>
-        <result column="two_level_policy" property="twoLevelPolicy" jdbcType="REAL"/>
-        <result column="three_level_policy" property="threeLevelPolicy" jdbcType="REAL"/>
-        <result column="add_policy1" property="addPolicy1" jdbcType="REAL"/>
-        <result column="add_policy2" property="addPolicy2" jdbcType="REAL"/>
-        <result column="add_policy3" property="addPolicy3" jdbcType="REAL"/>
-        <result column="price" property="price" jdbcType="REAL"/>
-    </resultMap>
-    <sql id="Base_Column_List">
+  <resultMap id="BaseResultMap" type="MedicinePolicy">
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="regional" property="regional" jdbcType="VARCHAR"/>
+    <result column="month" property="month" jdbcType="VARCHAR"/>
+    <result column="medicine_code" property="medicineCode" jdbcType="VARCHAR"/>
+    <result column="client_code" property="clientCode" jdbcType="VARCHAR"/>
+    <result column="salesman_policy" property="salesmanPolicy" jdbcType="REAL"/>
+    <result column="clinical_policy" property="clinicalPolicy" jdbcType="REAL"/>
+    <result column="manufacturer_policy" property="manufacturerPolicy" jdbcType="REAL"/>
+    <result column="two_level_policy" property="twoLevelPolicy" jdbcType="REAL"/>
+    <result column="three_level_policy" property="threeLevelPolicy" jdbcType="REAL"/>
+    <result column="add_policy1" property="addPolicy1" jdbcType="REAL"/>
+    <result column="add_policy2" property="addPolicy2" jdbcType="REAL"/>
+    <result column="add_policy3" property="addPolicy3" jdbcType="REAL"/>
+    <result column="price" property="price" jdbcType="REAL"/>
+  </resultMap>
+  <sql id="Base_Column_List">
     id, regional, month, medicine_code, client_code, salesman_policy, clinical_policy,
     manufacturer_policy, two_level_policy, three_level_policy,
     add_policy1, add_policy2, add_policy3,price
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        <include refid="Base_Column_List"/>
-        from medicine_policy
-        where id = #{id,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List"/>
+    from medicine_policy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from medicine_policy
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.taotaotech.domain.MedicinePolicy">
+  <insert id="insert" parameterType="com.taotaotech.domain.MedicinePolicy">
     insert into medicine_policy (id, regional,
       month, medicine_code, client_code, 
       salesman_policy, clinical_policy, manufacturer_policy,  two_level_policy,
@@ -44,143 +44,143 @@
       #{twoLevelPolicy,jdbcType=REAL},#{threeLevelPolicy,jdbcType=REAL}, #{addPolicy1,jdbcType=REAL},
       #{addPolicy2,jdbcType=REAL}, #{addPolicy3,jdbcType=REAL},#{price,jdbcType=REAL})
   </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.MedicinePolicy">
-        insert into medicine_policy
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="regional != null">
-                regional,
-            </if>
-            <if test="month != null">
-                month,
-            </if>
-            <if test="medicineCode != null">
-                medicine_code,
-            </if>
-            <if test="clientCode != null">
-                client_code,
-            </if>
-            <if test="salesmanPolicy != null">
-                salesman_policy,
-            </if>
-            <if test="clinicalPolicy != null">
-                clinical_policy,
-            </if>
-            <if test="manufacturerPolicy != null">
-                manufacturer_policy,
-            </if>
-            <if test="twoLevelPolicy != null">
-                two_level_policy,
-            </if>
-            <if test="threeLevelPolicy != null">
-                three_level_policy,
-            </if>
-            <if test="addPolicy1 != null">
-                add_policy1,
-            </if>
-            <if test="addPolicy2 != null">
-                add_policy2,
-            </if>
-            <if test="addPolicy3 != null">
-                add_policy3,
-            </if>
-            <if test="price != null">
-                price,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="regional != null">
-                #{regional,jdbcType=VARCHAR},
-            </if>
-            <if test="month != null">
-                #{month,jdbcType=VARCHAR},
-            </if>
-            <if test="medicineCode != null">
-                #{medicineCode,jdbcType=VARCHAR},
-            </if>
-            <if test="clientCode != null">
-                #{clientCode,jdbcType=VARCHAR},
-            </if>
-            <if test="salesmanPolicy != null">
-                #{salesmanPolicy,jdbcType=REAL},
-            </if>
-            <if test="clinicalPolicy != null">
-                #{clinicalPolicy,jdbcType=REAL},
-            </if>
-            <if test="manufacturerPolicy != null">
-                #{manufacturerPolicy,jdbcType=REAL},
-            </if>
-            <if test="twoLevelPolicy != null">
-                #{twoLevelPolicy,jdbcType=REAL},
-            </if>
-            <if test="threeLevelPolicy != null">
-                #{threeLevelPolicy,jdbcType=REAL},
-            </if>
-            <if test="addPolicy1 != null">
-                #{addPolicy1,jdbcType=REAL},
-            </if>
-            <if test="addPolicy2 != null">
-                #{addPolicy2,jdbcType=REAL},
-            </if>
-            <if test="addPolicy3 != null">
-                #{addPolicy3,jdbcType=REAL},
-            </if>
-            <if test="price != null">
-                #{price,jdbcType=REAL},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.MedicinePolicy">
-        update medicine_policy
-        <set>
-            <if test="regional != null">
-                regional = #{regional,jdbcType=VARCHAR},
-            </if>
-            <if test="month != null">
-                month = #{month,jdbcType=VARCHAR},
-            </if>
-            <if test="medicineCode != null">
-                medicine_code = #{medicineCode,jdbcType=VARCHAR},
-            </if>
-            <if test="clientCode != null">
-                client_code = #{clientCode,jdbcType=VARCHAR},
-            </if>
-            <if test="salesmanPolicy != null">
-                salesman_policy = #{salesmanPolicy,jdbcType=REAL},
-            </if>
-            <if test="clinicalPolicy != null">
-                clinical_policy = #{clinicalPolicy,jdbcType=REAL},
-            </if>
-            <if test="manufacturerPolicy != null">
-                manufacturer_policy = #{manufacturerPolicy,jdbcType=REAL},
-            </if>
-            <if test="twoLevelPolicy != null">
-                two_level_policy = #{twoLevelPolicy,jdbcType=REAL},
-            </if>
-            <if test="threeLevelPolicy != null">
-                three_level_policy = #{threeLevelPolicy,jdbcType=REAL},
-            </if>
-            <if test="addPolicy1 != null">
-                add_policy1 = #{addPolicy1,jdbcType=REAL},
-            </if>
-            <if test="addPolicy2 != null">
-                add_policy2 = #{addPolicy2,jdbcType=REAL},
-            </if>
-            <if test="addPolicy3 != null">
-                add_policy3 = #{addPolicy3,jdbcType=REAL},
-            </if>
-            <if test="price != null">
-                price = #{price,jdbcType=REAL},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.MedicinePolicy">
+  <insert id="insertSelective" parameterType="com.taotaotech.domain.MedicinePolicy">
+    insert into medicine_policy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="regional != null">
+        regional,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="medicineCode != null">
+        medicine_code,
+      </if>
+      <if test="clientCode != null">
+        client_code,
+      </if>
+      <if test="salesmanPolicy != null">
+        salesman_policy,
+      </if>
+      <if test="clinicalPolicy != null">
+        clinical_policy,
+      </if>
+      <if test="manufacturerPolicy != null">
+        manufacturer_policy,
+      </if>
+      <if test="twoLevelPolicy != null">
+        two_level_policy,
+      </if>
+      <if test="threeLevelPolicy != null">
+        three_level_policy,
+      </if>
+      <if test="addPolicy1 != null">
+        add_policy1,
+      </if>
+      <if test="addPolicy2 != null">
+        add_policy2,
+      </if>
+      <if test="addPolicy3 != null">
+        add_policy3,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="regional != null">
+        #{regional,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCode != null">
+        #{medicineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="clientCode != null">
+        #{clientCode,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanPolicy != null">
+        #{salesmanPolicy,jdbcType=REAL},
+      </if>
+      <if test="clinicalPolicy != null">
+        #{clinicalPolicy,jdbcType=REAL},
+      </if>
+      <if test="manufacturerPolicy != null">
+        #{manufacturerPolicy,jdbcType=REAL},
+      </if>
+      <if test="twoLevelPolicy != null">
+        #{twoLevelPolicy,jdbcType=REAL},
+      </if>
+      <if test="threeLevelPolicy != null">
+        #{threeLevelPolicy,jdbcType=REAL},
+      </if>
+      <if test="addPolicy1 != null">
+        #{addPolicy1,jdbcType=REAL},
+      </if>
+      <if test="addPolicy2 != null">
+        #{addPolicy2,jdbcType=REAL},
+      </if>
+      <if test="addPolicy3 != null">
+        #{addPolicy3,jdbcType=REAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.MedicinePolicy">
+    update medicine_policy
+    <set>
+      <if test="regional != null">
+        regional = #{regional,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCode != null">
+        medicine_code = #{medicineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="clientCode != null">
+        client_code = #{clientCode,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanPolicy != null">
+        salesman_policy = #{salesmanPolicy,jdbcType=REAL},
+      </if>
+      <if test="clinicalPolicy != null">
+        clinical_policy = #{clinicalPolicy,jdbcType=REAL},
+      </if>
+      <if test="manufacturerPolicy != null">
+        manufacturer_policy = #{manufacturerPolicy,jdbcType=REAL},
+      </if>
+      <if test="twoLevelPolicy != null">
+        two_level_policy = #{twoLevelPolicy,jdbcType=REAL},
+      </if>
+      <if test="threeLevelPolicy != null">
+        three_level_policy = #{threeLevelPolicy,jdbcType=REAL},
+      </if>
+      <if test="addPolicy1 != null">
+        add_policy1 = #{addPolicy1,jdbcType=REAL},
+      </if>
+      <if test="addPolicy2 != null">
+        add_policy2 = #{addPolicy2,jdbcType=REAL},
+      </if>
+      <if test="addPolicy3 != null">
+        add_policy3 = #{addPolicy3,jdbcType=REAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.MedicinePolicy">
     update medicine_policy
     set regional = #{regional,jdbcType=VARCHAR},
       month = #{month,jdbcType=VARCHAR},
@@ -197,12 +197,12 @@
       price = #{price,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="findMedicinePolicyList" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from medicine_policy
-    </select>
-    <select id="existByMonthAndClientAndMedicine" resultType="java.lang.Boolean">
+  <select id="findMedicinePolicyList" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from medicine_policy
+  </select>
+  <select id="existByMonthAndClientAndMedicine" resultType="java.lang.Boolean">
     select
     COUNT(id)
     from medicine_policy
@@ -210,12 +210,67 @@
       AND medicine_code = #{medicineCode,jdbcType=VARCHAR}
       AND client_code = #{clientCode,jdbcType=VARCHAR}
   </select>
-    <select id="getPolicyByMonthAndClientAndMedicine" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from medicine_policy
-        where month = #{month,jdbcType=VARCHAR}
-        AND medicine_code = #{medicineCode,jdbcType=VARCHAR}
-        AND client_code = #{clientCode,jdbcType=VARCHAR}
-    </select>
+  <select id="getPolicyByMonthAndClientAndMedicine" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from medicine_policy
+    where month = #{month,jdbcType=VARCHAR}
+    AND medicine_code = #{medicineCode,jdbcType=VARCHAR}
+    AND client_code = #{clientCode,jdbcType=VARCHAR}
+  </select>
+  <select id="findList" parameterType="java.util.Map" resultType="medicinePolicy">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM medicine_policy t
+    <where>
+      <if test="regional != null and regional != ''">
+        regional = #{regional}
+      </if>
+      <if test="month != null and month != ''">
+        AND month = #{month}
+      </if>
+      <if test="medicineCode != null and medicineCode != ''">
+        AND medicineCode LIKE '%' #{medicineCode} '%'
+      </if>
+      <if test="clientCode != null and clientCode != ''">
+        AND clientCode LIKE '%' #{clientCode} '%'
+      </if>
+      <if test="salesmanPolicy != null and salesmanPolicy != ''">
+        AND salesmanPolicy = #{salesmanPolicy}
+      </if>
+      <if test="clinicalPolicy != null and clinicalPolicy != ''">
+        AND clinicalPolicy = #{clinicalPolicy}
+      </if>
+      <if test="manufacturerPolicy != null and manufacturerPolicy != ''">
+        AND manufacturerPolicy = #{manufacturerPolicy}
+      </if>
+      <if test="twoLevelPolicy != null and twoLevelPolicy != ''">
+        AND twoLevelPolicy = #{twoLevelPolicy}
+      </if>
+      <if test="threeLevelPolicy != null and threeLevelPolicy != ''">
+        AND threeLevelPolicy = #{threeLevelPolicy}
+      </if>
+      <if test="addPolicy1 != null and addPolicy1 != ''">
+        AND addPolicy1 = #{addPolicy1}
+      </if>
+      <if test="addPolicy2 != null and addPolicy2 != ''">
+        AND addPolicy2 = #{addPolicy2}
+      </if>
+      <if test="addPolicy3 != null and addPolicy3 != ''">
+        AND addPolicy3 = #{addPolicy3}
+      </if>
+      <if test="price != null and price != ''">
+        AND price = #{price}
+      </if>
+    </where>
+    <choose>
+      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+        ORDER BY ${page.orderBy}
+      </when>
+      <otherwise>
+        ORDER BY t.id DESC
+      </otherwise>
+    </choose>
+  </select>
+
 </mapper>
