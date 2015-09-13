@@ -29,7 +29,7 @@
                 <%--<li><a href="http://www.cnblogs.com/dwzjs" target="_blank">博客</a></li>--%>
                 <%--<li><a href="http://weibo.com/dwzui" target="_blank">微博</a></li>--%>
                 <%--<li><a href="http://bbs.dwzjs.com" target="_blank">论坛</a></li>--%>
-                <li><a href="login.html">退出</a></li>
+                <li><a href="logout">退出</a></li>
             </ul>
             <ul class="themeList" id="themeList">
                 <li theme="default"><div class="selected">蓝色</div></li>
@@ -63,13 +63,13 @@
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
                         <li><a href="medicine/list" target="navTab" rel="list1">产品目录</a></li>
-                        <li><a href="list.html" target="navTab" rel="list2">商业配送单位</a></li>
+                        <li><a href="coming.html" target="navTab" rel="list2">商业配送单位</a></li>
                         <li><a href="client/list" target="navTab" rel="list3">医疗机构管理</a></li>
                         <li><a href="agent/list" target="navTab" rel="list3">代理商管理</a></li>
                         <li><a href="policy/list" target="navTab" rel="policy_list">销售政策管理</a></li>
                         <li><a href="user/list" target="navTab" rel="user_list">公司人员管理</a></li>
-                        <li><a href="list.html" target="navTab" rel="list3">管理员设置</a></li>
-                        <li><a href="list.html" target="navTab" rel="list3">产品关联表</a></li>
+                        <li><a href="coming.html" target="navTab" rel="list3">管理员设置</a></li>
+                        <li><a href="coming.html" target="navTab" rel="list3">产品关联表</a></li>
                     </ul>
                 </div>
 
@@ -80,15 +80,15 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="../dwz-ria/w_tabs.html" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="category_list">采购数据导入</a></li>
-                        <li><a href="../dwz-ria/w_checkbox.html" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="category_list">厂家发货与结算</a></li>
-                        <li><a href="../dwz-ria/w_button.html" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="category_list">采购政策管理</a></li>
-                        <li><a href="../dwz-ria/w_checkbox.html" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="category_list">结算方式匹配</a></li>
-                        <li><a href="../dwz-ria/w_checkbox.html" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="category_list">采购关联表</a></li>
                     </ul>
                 </div>
@@ -104,9 +104,9 @@
                                rel="bill_list">销售流向导入</a></li>
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
-                        <li><a href="manager!edit.action" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="admin_info">费用结算复核</a></li>
-                        <li><a href="manager!edit.action" target="navTab"
+                        <li><a href="coming" target="navTab"
                                rel="admin_info">结算规则更改</a></li>
                     </ul>
                 </div>
@@ -129,11 +129,11 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">收入流水账审批</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">支出流水账审批</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">销售政策审批</a></li>
                     </ul>
                 </div>
@@ -145,15 +145,15 @@
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">销售指标</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">业务统计</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">医院覆盖情况</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">财务情况</a></li>
-                        <li><a href="manager!edit.action" target="dialog"
+                        <li><a href="coming" target="dialog"
                                rel="admin_info">业务员业绩</a></li>
                     </ul>
                 </div>

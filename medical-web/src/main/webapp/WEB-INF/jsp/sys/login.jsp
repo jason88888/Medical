@@ -35,11 +35,11 @@
                     <label>密码：</label>
                     <input type="password" name="password" size="20" class="login_input" />
                 </p>
-                <p>
-                    <label>验证码：</label>
-                    <input class="code" type="text" size="5" />
-                    <span><img src="${basePath}assets/js/lib/dwz-ria/themes/default/images/header_bg.png" alt="" width="75" height="24" /></span>
-                </p>
+                <%--<p>--%>
+                    <%--<label>验证码：</label>--%>
+                    <%--<input class="code" type="text" size="5" />--%>
+                    <%--<span><img src="${basePath}assets/js/lib/dwz-ria/themes/default/images/header_bg.png" alt="" width="75" height="24" /></span>--%>
+                <%--</p>--%>
                 <div class="login_bar">
                     <input class="sub" type="submit" value=" " />
                 </div>

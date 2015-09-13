@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * @author Cailin.Chen
@@ -21,30 +23,57 @@ import javax.servlet.http.HttpServletResponse;
  * @eMail cailin618@sina.com
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class LoginController extends BaseController {
 
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "login", method = {RequestMethod.GET})
+    @RequestMapping(value = "index", method = {RequestMethod.GET})
     public String index() {
-        return "sys/login";
+        return "sys/index";
     }
 
-    @RequestMapping(value = "login", method = {RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public String login(@Param(value = "username") String username,
+    @RequestMapping(value = "coming", method = {RequestMethod.GET})
+    public String coming() {
+        return "coming";
+    }
+
+    @RequestMapping(value = "login", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
+    public void login(@Param(value = "username") String username,
                       @Param(value = "password") String password, HttpServletRequest request, HttpServletResponse response, Model model) {
 
         User user = userService.login(username, password);
-
-        if (user != null) {
-
-        } else {
-
+        try {
+            if (user != null) {
+                request.getSession().setAttribute("user", user);
+                response.sendRedirect("/index");
+            } else {
+                response.sendRedirect("/");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return "sys/login";
+    }
+
+    @RequestMapping(value = "logout", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
+    public void login( HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        HttpSession session=request.getSession(false);
+        try {
+            if(session==null)
+            {
+                response.sendRedirect("/");
+                return ;
+            }
+            session.removeAttribute("user");
+            response.sendRedirect("/");
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

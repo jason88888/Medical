@@ -30,11 +30,12 @@ public class UserServiceImpl implements IUserService {
 
     public User login(String username, String password) {
         User user = userMapper.selectByUsername(username);
-        if (null == user) {
-            throw new BusinessException(UserErrorCode.USERNAME_NOT_EXIST);
-        }
-        if (!user.getPassword().equals(password)) {
-            throw new BusinessException(UserErrorCode.PASSWORD_ERROR);
+//        if (null == user) {
+//            throw new BusinessException(UserErrorCode.USERNAME_NOT_EXIST);
+//        }
+        if (null != user && !user.getPassword().equals(password)) {
+//            throw new BusinessException(UserErrorCode.PASSWORD_ERROR);
+            user = null;
         }
         return user;
     }
