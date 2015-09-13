@@ -123,7 +123,7 @@ public class CommissionServiceImpl implements ICommissionService {
         calculatePrice(billList, commissionList);
         Commission countCommission = initCommission();
 
-        if (commissionList.size()>0){
+        if (null != commissionList && commissionList.size()>0){
             for (int index = 0; index < commissionList.size(); index++) {
                 Commission commission = commissionList.get(index);
 
