@@ -218,7 +218,7 @@
     AND medicine_code = #{medicineCode,jdbcType=VARCHAR}
     AND client_code = #{clientCode,jdbcType=VARCHAR}
   </select>
-  <select id="findList" parameterType="java.util.Map" resultType="medicinePolicy">
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM medicine_policy t
