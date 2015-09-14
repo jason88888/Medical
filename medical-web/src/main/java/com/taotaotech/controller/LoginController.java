@@ -47,9 +47,9 @@ public class LoginController extends BaseController {
         try {
             if (user != null) {
                 request.getSession().setAttribute("user", user);
-                response.sendRedirect("/index");
+                response.sendRedirect("index");
             } else {
-                response.sendRedirect("/");
+                response.sendRedirect("");
             }
         } catch (IOException e) {
             e.printStackTrace();
