@@ -57,10 +57,10 @@
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
             <th>所属区域</th>
-            <th>业务员编码</th>
+            <%--<th>业务员编码</th>--%>
             <th>月份</th>
             <th>药品编号</th>
-            <%--<th>客户代码</th>--%>
+            <th>客户代码</th>
             <th>业务员政策</th>
             <th>临床政策</th>
             <th>厂家政策</th>
