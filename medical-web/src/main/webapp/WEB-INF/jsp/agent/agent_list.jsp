@@ -57,6 +57,7 @@
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
             <th>代理商代码</th>
+            <th>代理商姓名</th>
             <th>代理级别</th>
         </tr>
         </thead>
@@ -65,7 +66,8 @@
             <tr>
                 <td><div><input name="ids" value="${agent.id}" type="checkbox"></div></td>
                 <td>${agent.code}</td>
-                <td>${agent.level}</td>
+                <td>${agent.name}</td>
+                <td>${agent.level}级代理</td>
             </tr>
         </c:forEach>
         </tbody>

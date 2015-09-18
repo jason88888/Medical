@@ -63,15 +63,23 @@
                 <td>${user.code}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
-                <td>${user.role}</td>
+                <c:choose>
+                    <c:when test="${user.role == 2}">
+                        <td>业务员</td>
+                    </c:when>
+                    <c:when test="${user.role == 1}">
+                        <td>管理员</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td></td>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
         </tbody>
-    </table>
-    <div class="panelBar">
-        <div class="pages">
-            <span>显示</span>
-            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+        </table>
+
+        <div class="subBar">
                 <option value="20" <c:if test="${page.numPerPage == 20}">selected</c:if>>20</option>
                 <option value="50" <c:if test="${page.numPerPage == 50}">selected</c:if>>50</option>
                 <option value="100" <c:if test="${page.numPerPage == 100}">selected</c:if>>100</option>

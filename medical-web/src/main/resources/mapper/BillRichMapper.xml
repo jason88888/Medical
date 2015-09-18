@@ -9,14 +9,17 @@
         <result column="client_code" property="clientCode" jdbcType="VARCHAR"/>
         <result column="client_name" property="clientName" jdbcType="VARCHAR"/>
         <result column="two_level_code" property="twoLevelCode" jdbcType="VARCHAR"/>
+        <result column="two_level_name" property="twoLevelName" jdbcType="VARCHAR"/>
         <result column="three_level_code" property="threeLevelCode" jdbcType="VARCHAR"/>
+        <result column="three_level_name" property="threeLevelName" jdbcType="VARCHAR"/>
         <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
         <result column="medicine_code" property="medicineCode" jdbcType="VARCHAR"/>
+        <result column="regional" property="regional" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, code, date, number,client_code,client_name,two_level_code,three_level_code,user_code,user_name,medicine_name,medicine_code
+    id, code, date, number,client_code,client_name,two_level_code,two_level_name,three_level_code,three_level_name,user_code,user_name,medicine_name,medicine_code,regional
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -30,11 +33,11 @@
   </delete>
     <insert id="insert" parameterType="com.taotaotech.dto.BillRich">
     insert into billrich (id, code, date,client_code,client_name,user_code,two_level_code,three_level_code,
-      number,user_name,medicine_name,medicine_code)
+      number,user_name,medicine_name,medicine_code,two_level_name,three_level_name,regional)
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{clientCode,jdbcType=VARCHAR},
     #{clientName,jdbcType=VARCHAR},#{userCode,jdbcType=VARCHAR}, #{twoLevelCode,jdbcType=VARCHAR},
     #{threeLevelCode,jdbcType=VARCHAR},#{number,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{medicineName,jdbcType=VARCHAR}
-     ,#{medicineCode,jdbcType=VARCHAR})
+     ,#{medicineCode,jdbcType=VARCHAR},#{twoLevelName,jdbcType=VARCHAR},#{threeLevelName,jdbcType=VARCHAR},#{regional,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.taotaotech.dto.BillRich">
         insert into billrich
@@ -63,8 +66,14 @@
             <if test="twoLevelCode != null">
                 two_level_code,
             </if>
+            <if test="twoLevelName != null">
+                two_level_name,
+            </if>
             <if test="threeLevelCode != null">
                 three_level_code,
+            </if>
+            <if test="threeLevelName != null">
+                three_level_name,
             </if>
             <if test="userName != null">
                 user_name,
@@ -74,6 +83,9 @@
             </if>
             <if test="medicineCode != null">
                 medicine_code,
+            </if>
+            <if test="regional != null">
+                regional,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -101,8 +113,14 @@
             <if test="twoLevelCode != null">
                 #{twoLevelCode,jdbcType=VARCHAR},
             </if>
+            <if test="twoLevelName != null">
+                #{twoLevelName,jdbcType=VARCHAR},
+            </if>
             <if test="threeLevelCode != null">
                 #{threeLevelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="threeLevelName != null">
+                #{threeLevelName,jdbcType=VARCHAR},
             </if>
             <if test="userName != null">
                 #{userName,jdbcType=VARCHAR},
@@ -112,6 +130,9 @@
             </if>
             <if test="medicineCode != null">
                 #{medicineCode,jdbcType=VARCHAR},
+            </if>
+            <if test="regional != null">
+                #{regional,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -139,8 +160,14 @@
             <if test="twoLevelCode != null">
                 two_level_code = #{twoLevelCode,jdbcType=VARCHAR},
             </if>
+            <if test="twoLevelName != null">
+                two_level_name = #{twoLevelName,jdbcType=VARCHAR},
+            </if>
             <if test="threeLevelCode != null">
                 three_level_code = #{threeLevelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="threeLevelName != null">
+                three_level_name = #{threeLevelName,jdbcType=VARCHAR},
             </if>
             <if test="userName != null">
                 user_name = #{userName,jdbcType=VARCHAR},
@@ -150,6 +177,9 @@
             </if>
             <if test="medicineCode != null">
                 medicine_code = #{medicineCode,jdbcType=VARCHAR},
+            </if>
+            <if test="regional != null">
+                regional = #{regional,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -163,10 +193,13 @@
       client_name = #{clientName,jdbcType=INTEGER}
       user_code = #{userCode,jdbcType=VARCHAR},
       two_level_code = #{twoLevelCode,jdbcType=VARCHAR},
+      two_level_name = #{twoLevelName,jdbcType=VARCHAR},
       three_level_code = #{threeLevelCode,jdbcType=VARCHAR},
+      three_level_name = #{threeLevelName,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       medicine_name = #{medicineName,jdbcType=VARCHAR},
       medicine_code = #{medicineCode,jdbcType=VARCHAR},
+      regional = #{regional,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="findBillList" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -186,8 +219,14 @@
             <if test="twoLevelCode != null">
                 AND  two_level_code LIKE  '%${twoLevelCode}%'
             </if>
+            <if test="twoLevelName != null">
+                AND  two_level_name LIKE  '%${twoLevelName}%'
+            </if>
             <if test="threeLevelCode != null">
                 AND three_level_code LIKE  '%${threeLevelCode}%'
+            </if>
+            <if test="threeLevelName != null">
+                AND three_level_name LIKE  '%${threeLevelName}%'
             </if>
             <if test="userName != null">
                 AND user_name LIKE  '%${userName}%'

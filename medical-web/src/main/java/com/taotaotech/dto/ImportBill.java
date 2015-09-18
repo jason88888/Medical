@@ -32,6 +32,10 @@ public class ImportBill {
     private String salesmanName;//业务员姓名
     private String salesmanCode;//业务员代码
     private String twoLevelCode;//二级代码
+    private String twoLevelName;//二级姓名
+    private String threeLevelCode;//三级代码
+    private String threeLevelName;//三级姓名
+    private String regional;//地级市(区域)
 
     public String getSalesmanName() {
         return salesmanName;
@@ -65,8 +69,6 @@ public class ImportBill {
     public void setThreeLevelCode(String threeLevelCode) {
         this.threeLevelCode = threeLevelCode;
     }
-
-    private String threeLevelCode;//三级代码
 
     public String getDepartmentName() {
         return departmentName;
@@ -196,6 +198,29 @@ public class ImportBill {
         this.businessType = businessType;
     }
 
+    public String getTwoLevelName() {
+        return twoLevelName;
+    }
+
+    public void setTwoLevelName(String twoLevelName) {
+        this.twoLevelName = twoLevelName;
+    }
+
+    public String getThreeLevelName() {
+        return threeLevelName;
+    }
+
+    public void setThreeLevelName(String threeLevelName) {
+        this.threeLevelName = threeLevelName;
+    }
+
+    public String getRegional() {
+        return regional;
+    }
+
+    public void setRegional(String regional) {
+        this.regional = regional;
+    }
 
     @Override
     public String toString() {
@@ -216,10 +241,13 @@ public class ImportBill {
                 ", validityPeriod='" + validityPeriod + '\'' +
                 ", billCode='" + billCode + '\'' +
                 ", businessType='" + businessType + '\'' +
+                ", salesmanName='" + salesmanName + '\'' +
                 ", salesmanCode='" + salesmanCode + '\'' +
                 ", twoLevelCode='" + twoLevelCode + '\'' +
+                ", twoLevelName='" + twoLevelName + '\'' +
                 ", threeLevelCode='" + threeLevelCode + '\'' +
-                ", salesmanName='" + salesmanName + '\'' +
+                ", threeLevelName='" + threeLevelName + '\'' +
+                ", regional='" + regional + '\'' +
                 '}';
     }
 }

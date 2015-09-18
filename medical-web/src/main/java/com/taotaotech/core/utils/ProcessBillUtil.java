@@ -46,7 +46,10 @@ public class ProcessBillUtil {
         list.add("业务员姓名");
         list.add("业务员代码");
         list.add("二级代码");
+        list.add("二级姓名");
         list.add("三级代码");
+        list.add("三级姓名");
+        list.add("地级市");
 //        if (list.size() != row.getLastCellNum()) {
 //            return false;
 //        }
@@ -88,7 +91,10 @@ public class ProcessBillUtil {
                 bill.setSalesmanName(getValue(hssfRow.getCell(15)));
                 bill.setSalesmanCode(getValue(hssfRow.getCell(16)));
                 bill.setTwoLevelCode(getValue(hssfRow.getCell(17)));
-                bill.setThreeLevelCode(getValue(hssfRow.getCell(18)));
+                bill.setTwoLevelName(getValue(hssfRow.getCell(18)));
+                bill.setThreeLevelCode(getValue(hssfRow.getCell(19)));
+                bill.setThreeLevelName(getValue(hssfRow.getCell(20)));
+                bill.setRegional(getValue(hssfRow.getCell(21)));
                 list.add(bill);
             }else {
                 break;

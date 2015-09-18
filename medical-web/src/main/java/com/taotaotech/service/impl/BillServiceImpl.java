@@ -110,6 +110,7 @@ public class BillServiceImpl implements IBillService {
             Client client = new Client();
             client.setCode(bill.getClientCode());
             client.setName(bill.getClientName());
+            client.setRegional(bill.getRegional());
             client.setBusinessType(bill.getBusinessType());
             return clientMapper.insertSelective(client);
         }
@@ -208,7 +209,7 @@ public class BillServiceImpl implements IBillService {
             return false;
         }
         Agent agent = new Agent();
-        agent.setName(ib.getTwoLevelCode());
+        agent.setName(ib.getTwoLevelName());
         agent.setCode(ib.getTwoLevelCode());
         agent.setLevel("2");
         return generateAgent(agent);
@@ -219,7 +220,7 @@ public class BillServiceImpl implements IBillService {
             return false;
         }
         Agent agent = new Agent();
-        agent.setName(ib.getThreeLevelCode());
+        agent.setName(ib.getThreeLevelName());
         agent.setCode(ib.getThreeLevelCode());
         agent.setLevel("3");
         return generateAgent(agent);

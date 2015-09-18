@@ -16,8 +16,11 @@ public class Bill {
     private String clientCode;
     private String userCode;
     private String twoLevelCode;
+    private String twoLevelName;
     private String threeLevelCode;
+    private String threeLevelName;
     private String medicineCode;
+    private String regional;//地级市(区域)
 
     public String getMedicineCode() {
         return medicineCode;
@@ -97,5 +100,29 @@ public class Bill {
 
     public void setMonth(String month) {
         this.month = month;
+    }
+
+    public String getTwoLevelName() {
+        return twoLevelName;
+    }
+
+    public void setTwoLevelName(String twoLevelName) {
+        this.twoLevelName = twoLevelName;
+    }
+
+    public String getThreeLevelName() {
+        return threeLevelName;
+    }
+
+    public void setThreeLevelName(String threeLevelName) {
+        this.threeLevelName = threeLevelName;
+    }
+
+    public String getRegional() {
+        return regional;
+    }
+
+    public void setRegional(String regional) {
+        this.regional = regional;
     }
 }

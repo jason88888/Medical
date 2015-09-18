@@ -16,9 +16,9 @@
         <div class="login_headerContent">
             <div class="navList">
                 <ul>
-                    <li><a href="#">设为首页</a></li>
-                    <li><a href="http://bbs.dwzjs.com">反馈</a></li>
-                    <li><a href="${basePath}assets/js/lib/dwz-ria/doc/dwz-user-guide.pdf" target="_blank">帮助</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="http://bbs.dwzjs.com"></a></li>
+                    <li><a href="${basePath}assets/js/lib/dwz-ria/doc/dwz-user-guide.pdf" target="_blank"></a></li>
                 </ul>
             </div>
             <h2 class="login_title"><img src="${basePath}assets/js/lib/dwz-ria/themes/default/images/login_title.png" /></h2>
@@ -56,9 +56,9 @@
         </div>
     </div>
     <div id="login_footer">
-        版权所有：杭州简学科技有限公司
-        &nbsp;浙ICP备15007838号&nbsp;&nbsp;
-    </div>
-</div>
+<%--    版权所有：杭州简学科技--%>
+        <%--p;浙ICP备15007838号&nbsp;&nbsp;
+   --%>
+            Copyright © 2015 taotao-tech团队 Tel：15158121565>
 </body>
 </html>
