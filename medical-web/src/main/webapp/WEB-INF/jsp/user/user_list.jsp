@@ -51,7 +51,7 @@
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
             <th width="120">用户编号</th>
-            <th>用户名</th>
+            <th width="120">用户名</th>
             <th width="100">密码</th>
             <th width="150">角色</th>
         </tr>

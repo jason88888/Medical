@@ -70,11 +70,11 @@
                     <td>
                         <select class="combox" name="province">
                             <option value="">所有</option>
-                            <%--<option value="medicineCode" ${param..equals("medicineCode")?"selected":""}>药品代码</option>
+                            <option value="medicineCode" ${param.province.equals("medicineCode")?"selected":""}>药品代码</option>
                             <option value="userCode" ${param.province.equals("userCode")?"selected":""}>业务员代码</option>
                             <option value="twoLevelCode" ${param.province.equals("twoLevelCode")?"selected":""}>二级代码</option>
                             <option value="threeLevelCode" ${param.province.equals("threeLevelCode")?"selected":""}>三级代码</option>
-                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码</option>--%>
+                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码</option>
                         </select>
                     </td>
                     <td>
@@ -101,7 +101,7 @@
             <li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
         </ul>
     </div>
-    <table class="table" width="100%" layoutH="230">
+    <table class="table" width="150%" layoutH="230">
         <thead>
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
