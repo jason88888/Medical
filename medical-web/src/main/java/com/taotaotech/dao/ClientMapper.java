@@ -1,5 +1,6 @@
 package com.taotaotech.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.domain.Client;
 import com.taotaotech.domain.Medicine;
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +20,7 @@ public interface ClientMapper {
 
     int updateByPrimaryKey(Client record);
 
-    List<Client> findClientList();
+    List<Client> findClientList(PageBounds pageBounds);
 
     Boolean existByClientCode(@Param("code")String code);
 }

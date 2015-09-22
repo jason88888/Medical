@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form id="pagerForm" method="post" action="medicine/search">
+<form id="pagerForm" method="post" action="medicine/list">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}" />
     <input type="hidden" name="pageNum" value="1" />
@@ -67,7 +67,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${medicines}" var="medicine">
+        <c:forEach items="${page.list}" var="medicine">
             <tr>
                 <td><div><input name="ids" value="${medicine.id}" type="checkbox"></div></td>
                 <td>${medicine.code}</td>
@@ -86,15 +86,14 @@
         <div class="pages">
             <span>显示</span>
             <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="200">200</option>
+                <option value="20" <c:if test="${page.numPerPage == 20}">selected</c:if>>20</option>
+                <option value="50" <c:if test="${page.numPerPage == 50}">selected</c:if>>50</option>
+                <option value="100" <c:if test="${page.numPerPage == 100}">selected</c:if>>100</option>
+                <option value="200" <c:if test="${page.numPerPage == 200}">selected</c:if>>200</option>
             </select>
-            <span>条，共${totalCount}条</span>
+            <span>条，共${page.totalCount}条</span>
         </div>
 
-        <div class="pagination" targetType="navTab" totalCount="200" numPerPage="20" pageNumShown="10" currentPage="1"></div>
-
+        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
     </div>
 </div>

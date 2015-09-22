@@ -1,3 +1,5 @@
+<%@ page import="com.taotaotech.domain.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -55,6 +57,12 @@
             <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
             <div class="accordion" fillSpace="sidebar">
+                <%--<%--%>
+                    <%--User user = (User)session.getAttribute("user");--%>
+                    <%--out.write(user.getUsername());--%>
+                    <%--out.write(user.getRole());--%>
+                <%--%>--%>
+                <c:if test="${user.getRole() == 1}">
                 <div class="accordionHeader">
                     <h2>
                         <span>Folder</span>基础数据管理
@@ -92,7 +100,7 @@
                                rel="category_list">采购关联表</a></li>
                     </ul>
                 </div>
-
+                </c:if>
                 <div class="accordionHeader">
                     <h2>
                         <span>Folder</span>销售业务管理
@@ -104,13 +112,16 @@
                                rel="bill_list">销售流向导入</a></li>
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
+                        <c:if test="${user.getRole() == 1}">
                         <li><a href="coming" target="navTab"
                                rel="admin_info">费用结算复核</a></li>
                         <li><a href="coming" target="navTab"
                                rel="admin_info">结算规则更改</a></li>
+                        </c:if>
                     </ul>
                 </div>
 
+                <c:if test="${user.getRole() == 1}">
                 <div class="accordionHeader">
                     <h2>
                         <span>Folder</span>财务管理
@@ -157,6 +168,7 @@
                                rel="admin_info">业务员业绩</a></li>
                     </ul>
                 </div>
+                </c:if>
 
             </div>
         </div>

@@ -11,7 +11,7 @@ import java.util.List;
  * @description
  */
 public interface IAgentService {
-    public List<Agent> findAgentList();
+    public Page<Agent> findAgentList(Page<Agent> page);
 
     public int save(Agent agent);
 }

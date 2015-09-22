@@ -213,9 +213,9 @@
             <if test="clientName != null">
                 AND client_name LIKE  '%${clientName}%'
             </if>
-            <if test="userCode != null">
-                AND user_code LIKE  '%${userCode}%'
-            </if>
+            <!--<if test="userCode != null">-->
+                <!--AND user_code LIKE  '%${userCode}%'-->
+            <!--</if>-->
             <if test="twoLevelCode != null">
                 AND  two_level_code LIKE  '%${twoLevelCode}%'
             </if>
@@ -232,10 +232,13 @@
                 AND user_name LIKE  '%${userName}%'
             </if>
             <if test="medicineName != null">
-                medicine_name LIKE  '%${medicineName}%'
+                AND  medicine_name LIKE  '%${medicineName}%'
             </if>
             <if test="medicineCode != null">
-                medicine_code LIKE  '%${medicineCode}%'
+                AND  medicine_code LIKE  '%${medicineCode}%'
+            </if>
+            <if test="userCode != null">
+               AND user_code = #{userCode,jdbcType=VARCHAR}
             </if>
         </where>
     </select>

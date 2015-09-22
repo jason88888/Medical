@@ -7,6 +7,7 @@ import com.taotaotech.dto.BillRich;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Cailin.Chen
@@ -16,5 +17,5 @@ import java.util.List;
 
 public interface IBillService {
     DWZResponseResult parseBillTable(MultipartFile file);
-    public List<BillRich> findBillList();
+    public Page<BillRich> findBillList(Page<BillRich> page,Map map);
 }

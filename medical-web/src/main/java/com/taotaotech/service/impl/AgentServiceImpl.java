@@ -1,11 +1,13 @@
 package com.taotaotech.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.dao.AgentMapper;
 import com.taotaotech.dao.ClientMapper;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Client;
 import com.taotaotech.service.IAgentService;
 import com.taotaotech.service.IClientService;
+import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,10 @@ public class AgentServiceImpl implements IAgentService{
 
 
     @Override
-    public List<Agent> findAgentList() {
-        return agentMapper.findAgentList();
+    public Page<Agent> findAgentList(Page<Agent> page) {
+        PageList<Agent> list = (PageList)agentMapper.findAgentList(page.createPageBounds());
+        page.setList(list);
+        return page;
     }
 
     @Override

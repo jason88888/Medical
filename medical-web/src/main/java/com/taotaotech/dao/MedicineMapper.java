@@ -1,5 +1,6 @@
 package com.taotaotech.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.domain.Medicine;
 import com.taotaotech.domain.User;
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +20,7 @@ public interface MedicineMapper {
 
     int updateByPrimaryKey(Medicine record);
 
-    List<Medicine> findMedicineList();
+    List<Medicine> findMedicineList(PageBounds pageBounds);
 
     Boolean existByMedicineCodeAndLotNumber(@Param("code")String code,@Param("lotNumber")String lotNumber);
 }

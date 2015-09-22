@@ -1,6 +1,7 @@
 package com.taotaotech.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.utils.ProcessBillUtil;
@@ -9,6 +10,7 @@ import com.taotaotech.domain.*;
 import com.taotaotech.dto.BillRich;
 import com.taotaotech.dto.ImportBill;
 import com.taotaotech.service.IBillService;
+import com.taotaotech.service.Page;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Cailin.Chen
@@ -97,8 +100,10 @@ public class BillServiceImpl implements IBillService {
     }
 
     @Override
-    public List<BillRich> findBillList() {
-        return billRichMapper.findBillList(new HashMap(),new PageBounds());
+    public Page<BillRich> findBillList(Page<BillRich>page,Map map) {
+         PageList<BillRich> list = (PageList)billRichMapper.findBillList(map, page.createPageBounds());
+        page.setList(list);
+        return page;
     }
 
     private Integer generateCilent(ImportBill bill) {

@@ -41,9 +41,11 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "login", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
     public void login(@Param(value = "username") String username,
-                      @Param(value = "password") String password, HttpServletRequest request, HttpServletResponse response, Model model) {
+                      @Param(value = "password") String password, HttpServletRequest request, HttpServletResponse response,
+                      Model model) {
 
         User user = userService.login(username, password);
+
         try {
             if (user != null) {
                 request.getSession().setAttribute("user", user);
@@ -64,11 +66,11 @@ public class LoginController extends BaseController {
         try {
             if(session==null)
             {
-                response.sendRedirect("/");
+                response.sendRedirect("");
                 return ;
             }
             session.removeAttribute("user");
-            response.sendRedirect("/");
+            response.sendRedirect("");
         }catch (IOException e) {
             e.printStackTrace();
         }

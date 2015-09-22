@@ -3,6 +3,7 @@ package com.taotaotech.controller;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.dto.BillRich;
 import com.taotaotech.service.IBillService;
+import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("bill")
@@ -22,9 +27,14 @@ public class BillController extends BaseController {
     public IBillService billService;
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(ModelMap model) {
-        List<BillRich> bills =  billService.findBillList();
-        model.addAttribute("bills", bills);
+    public String list(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+
+        Map map = new HashMap();
+        if(getUser().getRole() != 1){
+            map.put("userCode", getUser().getCode());
+        }
+        Page<BillRich> page =  billService.findBillList(new Page<BillRich>(request, response),map);
+        model.addAttribute("page", page);
         return "bill/bill_list";
     }
 

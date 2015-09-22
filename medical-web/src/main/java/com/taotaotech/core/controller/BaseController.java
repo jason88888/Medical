@@ -51,7 +51,7 @@ public abstract class BaseController {
 
 
     public User getUser() {
-        return (User)request.getSession().getAttribute("admin");
+        return (User)request.getSession().getAttribute("user");
     }
 
     public void setUser(User user) {

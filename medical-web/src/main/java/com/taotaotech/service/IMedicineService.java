@@ -11,7 +11,7 @@ import java.util.List;
  * @description
  */
 public interface IMedicineService {
-    public List<Medicine> findMedicineList();
+    public Page<Medicine> findMedicineList(Page<Medicine> page);
 
     public int save(Medicine medicine);
 }

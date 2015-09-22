@@ -11,7 +11,7 @@ import java.util.List;
  * @description
  */
 public interface IClientService {
-    public List<Client> findClientList();
+    public Page<Client> findClientList(Page<Client> page);
 
     public int save(Client client);
 }

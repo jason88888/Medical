@@ -43,6 +43,9 @@ public class CommissionController extends BaseController {
                 billRich.setClientCode(keyword);
             }
         }
+        if (1 != getUser().getRole()){
+            billRich.setUserCode(getUser().getCode());
+        }
 
         Page<Commission> page = commissionService.findCommissionList(new Page<Commission>(request, response),billRich);
         Commission countCommission = commissionService.statisticsCommission(billRich);

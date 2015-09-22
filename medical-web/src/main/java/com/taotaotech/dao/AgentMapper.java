@@ -1,5 +1,6 @@
 package com.taotaotech.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Client;
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +20,7 @@ public interface AgentMapper {
 
     int updateByPrimaryKey(Agent record);
 
-    List<Agent> findAgentList();
+    List<Agent> findAgentList(PageBounds pageBounds);
 
     Boolean existByAgentCode(@Param("code")String code);
 }
