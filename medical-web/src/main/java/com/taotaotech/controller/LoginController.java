@@ -64,19 +64,12 @@ public class LoginController extends BaseController {
 
         HttpSession session=request.getSession(false);
         try {
-            if(session==null)
-            {
-                response.sendRedirect("");
-                return ;
+            if (session != null) {
+                session.removeAttribute("user");
             }
-            session.removeAttribute("user");
-            response.sendRedirect("");
-        }catch (IOException e) {
+            response.sendRedirect(request.getContextPath() + "/login");
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }

@@ -4,6 +4,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
+import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.core.utils.ProcessBillUtil;
 import com.taotaotech.dao.*;
 import com.taotaotech.domain.*;
@@ -120,6 +121,15 @@ public class BillServiceImpl implements IBillService {
             return clientMapper.insertSelective(client);
         }
         return null;
+    }
+
+
+    public Page<Bill> findPage(Page<Bill> page, Bill bill) {
+        Map map = MapUtil.bean2Map(bill);
+        PageList<Bill> bills = (PageList)billMapper.findList(map, page.createPageBounds());
+
+        page.setList(bills);
+        return page;
     }
 
     private Integer generateBill(ImportBill ib) {

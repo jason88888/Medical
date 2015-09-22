@@ -3,10 +3,10 @@
 
 <form id="pagerForm" method="post" action="user/list">
     <input type="hidden" name="status" value="${param.status}">
-    <input type="hidden" name="keywords" value="${param.keywords}" />
-    <input type="hidden" name="currentPage" value="1" />
-    <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-    <input type="hidden" name="orderField" value="${param.orderField}" />
+    <input type="hidden" name="keywords" value="${param.keywords}"/>
+    <input type="hidden" name="currentPage" value="1"/>
+    <input type="hidden" name="numPerPage" value="${param.numPerPage}"/>
+    <input type="hidden" name="orderField" value="${param.orderField}"/>
 </form>
 
 
@@ -32,7 +32,13 @@
             </table>
             <div class="subBar">
                 <ul>
-                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+                    <li>
+                        <div class="buttonActive">
+                            <div class="buttonContent">
+                                <button type="submit">检索</button>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -42,14 +48,17 @@
     <div class="panelBar">
         <ul class="toolBar">
             <li><a class="add" href="user/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="user/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="delete" href="user/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a>
+            </li>
             <li><a class="edit" href="user/edit?id={id}" target="dialog" warn="请选择一个用户"><span>修改</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
         <thead>
         <tr>
-            <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
+            <th style="width: 18px; cursor: col-resize;">
+                <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
+            </th>
             <th width="120">用户编号</th>
             <th width="120">用户名</th>
             <th width="100">密码</th>
@@ -59,7 +68,9 @@
         <tbody>
         <c:forEach items="${page.list}" var="user">
             <tr target="id" rel="${user.id}">
-                <td><div><input name="ids" value="${user.id}" type="checkbox"></div></td>
+                <td>
+                    <div><input name="ids" value="${user.id}" type="checkbox"></div>
+                </td>
                 <td>${user.code}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
@@ -77,7 +88,7 @@
             </tr>
         </c:forEach>
         </tbody>
-        </table>
+    </table>
     <div class="panelBar">
         <div class="pages">
             <span>显示</span>
@@ -90,7 +101,8 @@
             <span>条，共${page.totalCount}条</span>
         </div>
 
-        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
-    </div>
+        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}"
+             pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
+
     </div>
 </div>

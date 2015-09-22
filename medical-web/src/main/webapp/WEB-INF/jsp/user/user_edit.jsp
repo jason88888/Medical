@@ -2,8 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="pageContent">
-    <form method="post" action="user/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" action="user/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);" autocomplete="off">
         <input type="hidden" name="id" value="${user.id}"/>
+        <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+        <input style="display:none" type="text" name="fakeusernameremembered">
+        <input style="display:none" type="password" name="fakepasswordremembered">
         <div class="pageFormContent" layoutH="56">
             <p>
                 <label>用户编号：</label>
@@ -11,11 +14,11 @@
             </p>
             <p>
                 <label>用户名：</label>
-                <input name="username" class="required" type="text" size="30" value="${user.username}" alt="请输入客户名称"/>
+                <input name="username" class="required" type="text" size="30" value="${user.username}" autocomplete="off" alt="请输入客户名称"/>
             </p>
             <p>
                 <label>密码：</label>
-                <input name="password" class="required" type="text" size="30" value="${user.password}" alt="请输入密码"/>
+                <input name="password" class="required" type="password" size="30" value="${user.password}" autocomplete="off" alt="请输入密码"/>
             </p>
             <p>
                 <label>角色：</label>

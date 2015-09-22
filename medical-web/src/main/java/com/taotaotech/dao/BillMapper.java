@@ -1,10 +1,12 @@
 package com.taotaotech.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Bill;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BillMapper {
     int deleteByPrimaryKey(Integer id);
@@ -19,7 +21,7 @@ public interface BillMapper {
 
     int updateByPrimaryKey(Bill record);
 
-    List<Bill> findBillList();
+    List<Bill> findList(Map bill, PageBounds pageBounds);
 
     Boolean existByBillCode(@Param("code") String code);
 }

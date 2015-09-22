@@ -16,7 +16,7 @@
         <result column="regional" property="regional" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, code, date, number,client_code,two_level_code,two_level_name,two_level_name,three_level_name,user_code,medicine_code,regional
+    id, code, date, number,client_code,two_level_code,two_level_name,three_level_code,three_level_name,user_code,medicine_code,regional
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -169,7 +169,7 @@
       regional = #{regional,jdbcType=VARCHAR},
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="findBillList" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
         from bill

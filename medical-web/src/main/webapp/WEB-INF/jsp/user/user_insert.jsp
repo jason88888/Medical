@@ -3,18 +3,21 @@
 
 <div class="pageContent">
     <form method="post" action="user/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
-        <div class="pageFormContent" layoutH="56">
+        <div class="pageFormContent" layoutH="56" autocomplete="off">
+            <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+            <input style="display:none" type="text" name="fakeusernameremembered">
+            <input style="display:none" type="password" name="fakepasswordremembered">
             <p>
                 <label>用户编号：</label>
                 <input name="code" type="text" size="30" value="A000002"/>
             </p>
             <p>
                 <label>用户名：</label>
-                <input name="username" class="required" type="text" size="30" alt="请输入客户名称"/>
+                <input name="username" class="required" type="text" autocomplete="off" size="30" alt="请输入客户名称"/>
             </p>
             <p>
                 <label>密码：</label>
-                <input name="password" class="required" type="password" size="30" alt="请输入密码"/>
+                <input name="password" class="required" type="password" autocomplete="off" size="30" alt="请输入密码"/>
             </p>
             <p>
                 <label>角色：</label>
