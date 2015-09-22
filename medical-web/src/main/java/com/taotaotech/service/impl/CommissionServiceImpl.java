@@ -46,6 +46,9 @@ public class CommissionServiceImpl implements ICommissionService {
             //根据日期生成月份
             Calendar calendar = Calendar.getInstance(Locale.CHINA);
             Date date = DateUtil.getDate(billRich.getDate(), DateUtil.FORMAT_YYYYMMDD);
+            if (null ==calendar || null == date){
+                continue;
+            }
             calendar.setTime(date);
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH) + 1;

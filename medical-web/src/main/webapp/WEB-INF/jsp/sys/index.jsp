@@ -15,6 +15,7 @@
         <div class="headerNav">
             <a class="logo" href="${basePath}index">标志</a>
             <ul class="nav">
+                <li><a href="javascript:">${user.getUsername()}</a></li>
                 <li id="switchEnvBox"><a href="javascript:">（<span>杭州</span>）切换城市</a>
                     <ul>
                         <li><a href="sidebar_1.html">北京</a></li>
@@ -27,7 +28,7 @@
                     </ul>
                 </li>
                 <%--<li><a href="https://me.alipay.com/dwzteam" target="_blank">捐赠</a></li>--%>
-                <li><a href="changepwd.html" target="dialog" width="600">设置</a></li>
+                <li><a href="javascript:" width="600">设置</a></li> <%-- target="dialog"--%>
                 <%--<li><a href="http://www.cnblogs.com/dwzjs" target="_blank">博客</a></li>--%>
                 <%--<li><a href="http://weibo.com/dwzui" target="_blank">微博</a></li>--%>
                 <%--<li><a href="http://bbs.dwzjs.com" target="_blank">论坛</a></li>--%>
