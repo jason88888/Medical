@@ -4,7 +4,7 @@
 <form id="pagerForm" method="post" action="medicine/list">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}" />
-    <input type="hidden" name="pageNum" value="1" />
+    <input type="hidden" name="currentPage" value="1" />
     <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
     <input type="hidden" name="orderField" value="${param.orderField}" />
 </form>
