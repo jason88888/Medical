@@ -72,6 +72,7 @@
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
                         <li><a href="medicine/list" target="navTab" rel="list1">产品目录</a></li>
+                        <li><a href="coming" target="navTab" rel="list1">产品库存</a></li>
                         <li><a href="coming.html" target="navTab" rel="list2">商业配送单位</a></li>
                         <li><a href="client/list" target="navTab" rel="list3">医疗机构管理</a></li>
                         <li><a href="agent/list" target="navTab" rel="list3">代理商管理</a></li>
@@ -94,7 +95,7 @@
                         <li><a href="coming" target="navTab"
                                rel="category_list">厂家发货与结算</a></li>
                         <li><a href="coming" target="navTab"
-                               rel="category_list">采购政策管理</a></li>
+                               rel="category_list">采购客户</a></li>
                         <li><a href="coming" target="navTab"
                                rel="category_list">结算方式匹配</a></li>
                         <li><a href="coming" target="navTab"
