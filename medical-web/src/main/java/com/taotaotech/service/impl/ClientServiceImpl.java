@@ -11,6 +11,7 @@ import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,27 @@ public class ClientServiceImpl implements IClientService{
     }
 
     @Override
+    public Client get(Integer id) {
+        return clientMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int delete(Integer[] ids) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (Integer id : ids) {
+            list.add(id);
+        }
+        return clientMapper.delete(list);
+    }
+
+    @Override
     public int save(Client client) {
-        return clientMapper.insert(client);
+        int result = 0;
+        if (client.getId() != null && client.getId() != 0) {
+            result = clientMapper.updateByPrimaryKey(client);
+        } else {
+            clientMapper.insert(client);
+        }
+        return result;
     }
 }

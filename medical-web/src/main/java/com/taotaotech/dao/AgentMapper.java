@@ -10,6 +10,8 @@ import java.util.List;
 public interface AgentMapper {
     int deleteByPrimaryKey(Integer id);
 
+    int delete(List<Integer> ids);
+
     int insert(Agent record);
 
     int insertSelective(Agent record);

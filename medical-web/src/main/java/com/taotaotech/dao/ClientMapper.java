@@ -10,6 +10,8 @@ import java.util.List;
 public interface ClientMapper {
     int deleteByPrimaryKey(Integer id);
 
+    int delete(List<Integer> ids);
+
     int insert(Client record);
 
     int insertSelective(Client record);

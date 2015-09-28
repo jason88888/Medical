@@ -11,6 +11,7 @@ import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +34,26 @@ public class AgentServiceImpl implements IAgentService{
 
     @Override
     public int save(Agent agent) {
-        return agentMapper.insert(agent);
+        int result = 0;
+        if (agent.getId() != null && agent.getId() != 0) {
+            result = agentMapper.updateByPrimaryKey(agent);
+        } else {
+            agentMapper.insert(agent);
+        }
+        return result;
+    }
+
+    @Override
+    public Agent get(Integer id) {
+        return agentMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int delete(Integer[] ids) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (Integer id : ids) {
+            list.add(id);
+        }
+        return agentMapper.delete(list);
     }
 }

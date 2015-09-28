@@ -14,4 +14,8 @@ public interface IAgentService {
     public Page<Agent> findAgentList(Page<Agent> page);
 
     public int save(Agent agent);
+
+    public Agent get(Integer id);
+
+    public int delete(Integer[] ids);
 }

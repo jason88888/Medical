@@ -11,7 +11,7 @@
     id, code, name, level
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from agent
     where id = #{id,jdbcType=INTEGER}
@@ -84,12 +84,16 @@
     <include refid="Base_Column_List" />
     from agent
   </select>
-  <!-- ccl start-->
   <select id="existByAgentCode" resultType="java.lang.Boolean">
     select
     COUNT(id)
     from agent
     where code = #{code,jdbcType=VARCHAR}
   </select>
-  <!-- ccl end-->
+  <delete id="delete" parameterType="java.util.List">
+    DELETE FROM agent WHERE id IN
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

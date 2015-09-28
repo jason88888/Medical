@@ -45,11 +45,9 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="policy/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
-            <li class="line">line</li>
-            <li><a class="icon" href="policy/upload" target="dialog"><span>导入EXCEL</span></a></li>
+            <li><a class="add" href="agent/insert" target="dialog"><span>添加</span></a></li>
+            <li><a class="delete" href="agent/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="edit" href="agent/edit?id={id}" target="dialog" warn="请选择一个代理商"><span>修改</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
@@ -63,7 +61,7 @@
         </thead>
         <tbody>
         <c:forEach items="${page.list}" var="agent">
-            <tr>
+            <tr target="id" rel="${agent.id}">
                 <td><div><input name="ids" value="${agent.id}" type="checkbox"></div></td>
                 <td>${agent.code}</td>
                 <td>${agent.name}</td>

@@ -7,19 +7,19 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>客户编码：</label>
-                <input name="code" class="required" type="text" autocomplete="off" size="30" alt="请输入客户编码"/>
+                <input name="code" class="required" type="text" value="${client.code}" autocomplete="off" size="30" alt="请输入客户编码"/>
             </p>
             <p>
                 <label>医院名称：</label>
-                <input name="name" class="required" type="text" autocomplete="off" size="30" alt="请输入医院名称"/>
+                <input name="name" class="required" type="text" value="${client.name}" autocomplete="off" size="30" alt="请输入医院名称"/>
             </p>
             <p>
                 <label>区域名称</label>
-                <input name="regional" type="text" autocomplete="off" size="30" alt="请输入区域名称"/>
+                <input name="regional" type="text" value="${client.regional}" autocomplete="off" size="30" alt="请输入区域名称"/>
             </p>
             <p>
                 <label>商业类型：</label>
-                <input name="businessType" type="text" autocomplete="off" size="30" alt="请输入商业类型"/>
+                <input name="businessType" type="text" value="${client.businessType}" autocomplete="off" size="30" alt="请输入商业类型"/>
             </p>
         </div>
         <div class="formBar">

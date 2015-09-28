@@ -101,4 +101,10 @@
     from client
     where code = #{code,jdbcType=VARCHAR}
   </select>
+  <delete id="delete" parameterType="java.util.List">
+    DELETE FROM client WHERE id IN
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

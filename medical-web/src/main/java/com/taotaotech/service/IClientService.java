@@ -14,4 +14,8 @@ public interface IClientService {
     public Page<Client> findClientList(Page<Client> page);
 
     public int save(Client client);
+
+    public Client get(Integer id);
+
+    public int delete(Integer[] ids);
 }
