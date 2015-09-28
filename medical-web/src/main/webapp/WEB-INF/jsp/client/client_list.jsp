@@ -13,26 +13,6 @@
 <div class="pageHeader">
     <form onsubmit="return navTabSearch(this);" action="client/list" method="post">
         <div class="searchBar">
-            <%--<table class="searchContent">--%>
-                <%--<tr>--%>
-                    <%--<td>--%>
-                        <%--我的客户：<input type="text" name="keyword" />--%>
-                    <%--</td>--%>
-                    <%--<td>--%>
-                        <%--<select class="combox" name="province">--%>
-                            <%--<option value="">所有省市</option>--%>
-                            <%--<option value="北京">北京</option>--%>
-                            <%--<option value="上海">上海</option>--%>
-                            <%--<option value="天津">天津</option>--%>
-                            <%--<option value="重庆">重庆</option>--%>
-                            <%--<option value="广东">广东</option>--%>
-                        <%--</select>--%>
-                    <%--</td>--%>
-                    <%--<td>--%>
-                        <%--建档日期：<input type="text" class="date" readonly="true" />--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
-            <%--</table>--%>
             <div class="subBar">
                 <ul>
                     <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
@@ -45,18 +25,16 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" <%--href="user/insert"--%> target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
-            <li class="line">line</li>
-            <li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>
+            <li><a class="add" href="client/insert" target="dialog"><span>添加</span></a></li>
+            <li><a class="delete" href="client/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="edit" href="client/edit?id={id}" target="navTab"><span>修改</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
         <thead>
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
-            <th width="120">客户码</th>
+            <th width="120">客户编码</th>
             <th width="200">医院名称</th>
             <th width="100">区域名称</th>
             <th width="250">商业类型</th>
@@ -64,7 +42,7 @@
         </thead>
         <tbody>
         <c:forEach items="${page.list}" var="client">
-            <tr>
+            <tr target="id" rel="${client.id}">
                 <td><div><input name="ids" value="${client.id}" type="checkbox"></div></td>
                 <td>${client.code}</td>
                 <td>${client.name}</td>

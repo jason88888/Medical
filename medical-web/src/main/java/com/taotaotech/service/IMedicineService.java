@@ -14,4 +14,9 @@ public interface IMedicineService {
     public Page<Medicine> findMedicineList(Page<Medicine> page);
 
     public int save(Medicine medicine);
+
+    public Medicine get(Integer id);
+
+    public int delete(Integer[] ids);
+
 }

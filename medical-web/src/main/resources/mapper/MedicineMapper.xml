@@ -133,7 +133,7 @@
       units = #{units,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
       lot_number = #{lotNumber,jdbcType=VARCHAR},
-      validity_period = #{validityPeriod,jdbcType=VARCHAR},
+      validity_period = #{validityPeriod,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -149,4 +149,11 @@
     from medicine
     where  code = #{code,jdbcType=VARCHAR} AND lot_number = #{lotNumber,jdbcType=VARCHAR}
   </select>
+
+  <delete id="delete" parameterType="java.util.List">
+    DELETE FROM medicine WHERE id IN
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

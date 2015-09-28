@@ -10,6 +10,8 @@ import java.util.List;
 public interface MedicineMapper {
     int deleteByPrimaryKey(Integer id);
 
+    int delete(List<Integer> ids);
+
     int insert(Medicine record);
 
     int insertSelective(Medicine record);
