@@ -72,7 +72,7 @@
                     <div><input name="ids" value="${user.id}" type="checkbox"></div>
                 </td>
                 <td>${user.code}</td>
-                <td>${user.username}</td>
+                <td><a href="user/view?id=${user.id}" target="dialog" title="查看">${user.username}</a></td>
                 <td>${user.password}</td>
                 <c:choose>
                     <c:when test="${user.role == 2}">
