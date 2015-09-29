@@ -4,6 +4,7 @@
 <div class="pageContent">
     <form method="post" action="client/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
+            <input type="hidden" name="id" value="${client.id}"/>
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>客户编码：</label>
