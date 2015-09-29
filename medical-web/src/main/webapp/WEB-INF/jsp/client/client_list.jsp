@@ -35,7 +35,7 @@
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
             <th width="120">客户编码</th>
-            <th width="200">医院名称</th>
+            <th width="200">客户名称</th>
             <th width="100">区域名称</th>
             <th width="250">商业类型</th>
         </tr>
