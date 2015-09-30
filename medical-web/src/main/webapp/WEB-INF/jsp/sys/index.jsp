@@ -119,36 +119,15 @@
                                rel="bill_list">销售流向导入</a></li>
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
-<<<<<<< HEAD
-                        <c:if test="${user.getRole() == 1}">
-                            <li><a href="coming" target="navTab"
-                                   rel="admin_info">费用结算复核</a></li>
-                            <li><a href="coming" target="navTab"
-                                   rel="admin_info">结算规则更改</a></li>
-=======
                         <c:if test="${user.role == 1}">
                         <li><a href="coming" target="navTab"
                                rel="admin_info">费用结算复核</a></li>
                         <li><a href="coming" target="navTab"
                                rel="admin_info">结算规则更改</a></li>
->>>>>>> origin/master
                         </c:if>
                     </ul>
                 </div>
 
-<<<<<<< HEAD
-                <c:if test="${user.getRole() == 1}">
-                    <div class="accordionHeader">
-                        <h2>
-                            <span>Folder</span>财务管理
-                        </h2>
-                    </div>
-                    <div class="accordionContent">
-                        <ul class="tree treeFolder">
-                            <li>尚未开发</li>
-                        </ul>
-                    </div>
-=======
                 <c:if test="${user.role == 1}">
                 <div class="accordionHeader">
                     <h2>
@@ -160,7 +139,6 @@
                         <li>尚未开发</li>
                     </ul>
                 </div>
->>>>>>> origin/master
 
                     <div class="accordionHeader">
                         <h2>
