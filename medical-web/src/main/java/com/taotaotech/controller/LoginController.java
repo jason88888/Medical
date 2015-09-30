@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,47 +28,37 @@ public class LoginController extends BaseController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "index", method = {RequestMethod.GET})
-    public String index() {
-        return "sys/index";
-    }
-
     @RequestMapping(value = "coming", method = {RequestMethod.GET})
     public String coming() {
         return "coming";
     }
 
-    @RequestMapping(value = "login", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public void login(@Param(value = "username") String username,
-                      @Param(value = "password") String password, HttpServletRequest request, HttpServletResponse response,
-                      Model model) {
-
-        User user = userService.login(username, password);
-
-        try {
-            if (user != null) {
-                request.getSession().setAttribute("user", user);
-                response.sendRedirect("index");
-            } else {
-                response.sendRedirect("");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
+    public String login(@Param(value = "username") String username,
+                        @Param(value = "password") String password, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = null;
+        if (username != null || password != null) {
+            user = userService.login(username, password);
+        }
+        if (user != null) {
+            request.getSession().setAttribute("user", user);
+            response.sendRedirect("");
+        }
+        if (request.getMethod().equals("POST")) {
+            request.setAttribute("message", new Message(Message.ERROR, "用户名或密码错误！"));
         }
 
+        return "sys/login";
     }
 
-    @RequestMapping(value = "logout", method = {RequestMethod.GET,RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public void login( HttpServletRequest request, HttpServletResponse response, Model model) {
+    @RequestMapping(value = "logout", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
+    public void login(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
-        HttpSession session=request.getSession(false);
-        try {
-            if (session != null) {
-                session.removeAttribute("user");
-            }
-            response.sendRedirect(request.getContextPath() + "/login");
-        } catch (IOException e) {
-            e.printStackTrace();
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.removeAttribute("user");
         }
+        response.sendRedirect("login");
+
     }
 }

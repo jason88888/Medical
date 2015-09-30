@@ -13,9 +13,9 @@
 <div id="layout">
     <div id="header">
         <div class="headerNav">
-            <a class="logo" href="${basePath}index">标志</a>
+            <a class="logo" href="${basePath}">标志</a>
             <ul class="nav">
-                <li><a href="javascript:">${user.getUsername()}</a></li>
+                <li><a href="javascript:">${user.username}</a></li>
                 <li id="switchEnvBox"><a href="javascript:">（<span>杭州</span>）切换城市</a>
                     <ul>
                         <li><a href="sidebar_1.html">北京</a></li>
@@ -74,11 +74,6 @@
             </div>
 
             <div class="accordion" fillSpace="sidebar">
-                <%--<%--%>
-                <%--User user = (User)session.getAttribute("user");--%>
-                <%--out.write(user.getUsername());--%>
-                <%--out.write(user.getRole());--%>
-                <%--%>--%>
                 <c:if test="${user.getRole() == 1}">
                     <div class="accordionHeader">
                         <h2>
@@ -97,7 +92,6 @@
                             <li><a href="coming.html" target="navTab" rel="list3">产品关联表</a></li>
                         </ul>
                     </div>
-
                     <div class="accordionHeader">
                         <h2>
                             <span>Folder</span>药品采购管理
@@ -125,15 +119,24 @@
                                rel="bill_list">销售流向导入</a></li>
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
+<<<<<<< HEAD
                         <c:if test="${user.getRole() == 1}">
                             <li><a href="coming" target="navTab"
                                    rel="admin_info">费用结算复核</a></li>
                             <li><a href="coming" target="navTab"
                                    rel="admin_info">结算规则更改</a></li>
+=======
+                        <c:if test="${user.role == 1}">
+                        <li><a href="coming" target="navTab"
+                               rel="admin_info">费用结算复核</a></li>
+                        <li><a href="coming" target="navTab"
+                               rel="admin_info">结算规则更改</a></li>
+>>>>>>> origin/master
                         </c:if>
                     </ul>
                 </div>
 
+<<<<<<< HEAD
                 <c:if test="${user.getRole() == 1}">
                     <div class="accordionHeader">
                         <h2>
@@ -145,6 +148,19 @@
                             <li>尚未开发</li>
                         </ul>
                     </div>
+=======
+                <c:if test="${user.role == 1}">
+                <div class="accordionHeader">
+                    <h2>
+                        <span>Folder</span>财务管理
+                    </h2>
+                </div>
+                <div class="accordionContent">
+                    <ul class="tree treeFolder">
+                        <li>尚未开发</li>
+                    </ul>
+                </div>
+>>>>>>> origin/master
 
                     <div class="accordionHeader">
                         <h2>

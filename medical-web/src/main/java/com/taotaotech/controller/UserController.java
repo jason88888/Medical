@@ -64,6 +64,14 @@ public class UserController extends BaseController {
         return "user/user_edit";
     }
 
+    @RequestMapping(value = "view", method = {RequestMethod.GET})
+    public String view(Integer id, Model model) {
+        User user = userService.get(id);
+        model.addAttribute("user", user);
+
+        return "user/user_view";
+    }
+
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(User user) {

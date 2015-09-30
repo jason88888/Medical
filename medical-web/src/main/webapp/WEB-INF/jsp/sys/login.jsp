@@ -11,6 +11,7 @@
 <form id="slick-login" action="${basePath}login" method="post">
     <label for="username">username</label><input type="text" id="username" name="username" class="placeholder" placeholder="账号">
     <label for="password">password</label><input type="password" id="password" name="password" class="placeholder" placeholder="密码">
+    <c:if test="${message != null}"><p class="${message.code}" style="margin: 5px 0; color: red;">${message.content}</p></c:if>
     <input type="submit" value="登录">
 </form>
 </body>
