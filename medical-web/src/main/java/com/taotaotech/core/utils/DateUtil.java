@@ -20,7 +20,7 @@ import java.util.TimeZone;
  */
 public final class DateUtil implements Serializable {
     public static final String FORMAT_YYYYMMDD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
-    public static final String FORMAT_YYYYMMDD = "yyyy-MM-dd"; 
+    public static final String FORMAT_YYYYMMDD = "yyyy-MM-dd";
     /**
      *
      */

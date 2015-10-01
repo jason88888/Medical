@@ -5,6 +5,7 @@ import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Medicine;
+import com.taotaotech.domain.User;
 import com.taotaotech.service.IAgentService;
 import com.taotaotech.service.IMedicineService;
 import com.taotaotech.service.Page;
@@ -47,6 +48,13 @@ public class AgentController extends BaseController {
         Agent agent = agentService.get(id);
         model.addAttribute("agent", agent);
         return "agent/agent_edit";
+    }
+
+    @RequestMapping(value = "view", method = {RequestMethod.GET})
+    public String view(Integer id, Model model) {
+        Agent agent = agentService.get(id);
+        model.addAttribute("agent", agent);
+        return "agent/agent_view";
     }
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})

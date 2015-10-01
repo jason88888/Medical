@@ -50,7 +50,7 @@
             <li><a class="add" href="user/insert" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="user/delete" target="selectedTodo" rel="ids" title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a>
             </li>
-            <li><a class="edit" href="user/edit?id={id}" target="dialog" warn="请选择一个用户"><span>修改</span></a></li>
+            <li><a class="edit" href="user/view?id={id}" target="dialog" warn="请选择一个用户"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
@@ -72,7 +72,7 @@
                     <div><input name="ids" value="${user.id}" type="checkbox"></div>
                 </td>
                 <td>${user.code}</td>
-                <td><a href="user/view?id=${user.id}" target="dialog" title="查看">${user.username}</a></td>
+                <td>${user.username}</td>
                 <td>${user.password}</td>
                 <c:choose>
                     <c:when test="${user.role == 2}">
