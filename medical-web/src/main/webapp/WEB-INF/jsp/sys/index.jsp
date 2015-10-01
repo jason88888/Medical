@@ -103,6 +103,7 @@
                             <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">采购客户</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">库存管理</a></li>
+                            <li><a href="coming" target="navTab" rel="category_list">采购钱税管理</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">采购关联表</a></li>
                         </ul>

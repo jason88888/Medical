@@ -45,7 +45,7 @@
 
             <p>
                 <label>有效期：</label>
-                <input name="validityPeriod" type="text" value="${medicine.validityPeriod}" autocomplete="off" size="30" alt="请输入有效期"/>
+                <input name="validityPeriod" class="date" type="text" value="${medicine.validityPeriod}" autocomplete="off" size="30" alt="请输入有效期"/>
             </p>
 
         </div>

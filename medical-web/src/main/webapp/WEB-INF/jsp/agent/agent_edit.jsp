@@ -5,6 +5,7 @@
     <form method="post" action="agent/save" class="pageForm required-validate"
           onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
+            <input type="hidden" name="id" value="${agent.id}"/>
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>代理商代码：</label>
