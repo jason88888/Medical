@@ -4,6 +4,7 @@ import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.domain.Client;
 import com.taotaotech.domain.Client;
+import com.taotaotech.domain.User;
 import com.taotaotech.service.IClientService;
 import com.taotaotech.service.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,13 @@ public class ClientController extends BaseController {
         Client client = clientService.get(id);
         model.addAttribute("client", client);
         return "client/client_edit";
+    }
+
+    @RequestMapping(value = "view", method = {RequestMethod.GET})
+    public String view(Integer id, Model model) {
+        Client client = clientService.get(id);
+        model.addAttribute("client", client);
+        return "client/client_view";
     }
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})

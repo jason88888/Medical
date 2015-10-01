@@ -49,6 +49,14 @@ public class MedicineController extends BaseController {
         return "medicine/medicine_edit";
     }
 
+    @RequestMapping(value = "view", method = {RequestMethod.GET})
+    public String view(Integer id, Model model) {
+        Medicine medicine = medicineService.get(id);
+        model.addAttribute("medicine", medicine);
+
+        return "medicine/medicine_view";
+    }
+
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Medicine medicine) {

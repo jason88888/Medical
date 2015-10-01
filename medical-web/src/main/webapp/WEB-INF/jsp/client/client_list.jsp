@@ -27,7 +27,7 @@
         <ul class="toolBar">
             <li><a class="add" href="client/insert" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="client/delete" target="selectedTodo" title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="client/edit?id={id}" target="dialog" warn="请选择一个医疗机构"><span>修改</span></a></li>
+            <li><a class="edit" href="client/view?id={id}" target="dialog" warn="请选择一个医疗机构"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
