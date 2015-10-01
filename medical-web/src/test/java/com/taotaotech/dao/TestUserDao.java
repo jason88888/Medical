@@ -4,6 +4,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.utils.JsonUtil;
 import com.taotaotech.domain.User;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.List;
  * @eMail cailin618@sina.com
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:conf/spring-mybatis.xml")
+@ContextConfiguration(locations = { "classpath:conf/spring-mvc.xml", "classpath:conf/spring.xml", "classpath:conf/spring-mybatis.xml" })
 public class TestUserDao {
     private static Logger logger = Logger.getLogger(TestUserDao.class);
 
@@ -31,11 +32,13 @@ public class TestUserDao {
         User user = userMapper.selectByPrimaryKey(1);
         System.out.println(JsonUtil.clazz2Json(user));
         System.out.println(user.toString());
+        Assert.assertNotNull(user);
     }
 
     @Test
     public void findList(){
         List<User> list = userMapper.findList(new HashMap(), new PageBounds());
         System.out.printf(JsonUtil.clazz2Json(list));
+        Assert.assertNotNull(list);
     }
 }
