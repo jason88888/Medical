@@ -5,12 +5,8 @@ public class Bill {
     private Integer id;
 
     private String code;
-
     private String date;//开票日期
-
-
     private String month;
-
     private Integer number;
 
     private String clientCode;
