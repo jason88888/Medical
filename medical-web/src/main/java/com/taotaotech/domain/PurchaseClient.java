@@ -1,21 +1,17 @@
 package com.taotaotech.domain;
 
-/**
- * @author zk
- * @date 2015/10/2 9:55
- * @description é‡‡è´­å®¢æˆ·ç®¡ç†
- */
 public class PurchaseClient {
     //id
     private Integer id;
-    //æˆ‘å¸ä¸Šå®¶é”€è´§å•ä½
+    //ÎÒË¾ÉÏ¼ÒÏú»õµ¥Î»
     private String saleCompany;
-    //æˆ‘å¸æˆ–ä¸‹å®¶è´­è´§å•ä½
+    //ÎÒË¾»òÏÂ¼Ò¹º»õµ¥Î»
     private String buyCompany;
-    //ä¸ºæ‰€å±å®¢æˆ·
+    //ÎªËùÊô¿Í»§
     private String clientName;
-    //é‡‡è´­é”€å”®åŒºåŸŸ
+    //²É¹ºÏúÊÛÇøÓò
     private String saleArea;
+
     public Integer getId() {
         return id;
     }
@@ -24,13 +20,12 @@ public class PurchaseClient {
         this.id = id;
     }
 
-
     public String getSaleCompany() {
         return saleCompany;
     }
 
     public void setSaleCompany(String saleCompany) {
-        this.saleCompany = saleCompany;
+        this.saleCompany = saleCompany == null ? null : saleCompany.trim();
     }
 
     public String getBuyCompany() {
@@ -38,7 +33,7 @@ public class PurchaseClient {
     }
 
     public void setBuyCompany(String buyCompany) {
-        this.buyCompany = buyCompany;
+        this.buyCompany = buyCompany == null ? null : buyCompany.trim();
     }
 
     public String getClientName() {
@@ -46,7 +41,7 @@ public class PurchaseClient {
     }
 
     public void setClientName(String clientName) {
-        this.clientName = clientName;
+        this.clientName = clientName == null ? null : clientName.trim();
     }
 
     public String getSaleArea() {
@@ -54,6 +49,6 @@ public class PurchaseClient {
     }
 
     public void setSaleArea(String saleArea) {
-        this.saleArea = saleArea;
+        this.saleArea = saleArea == null ? null : saleArea.trim();
     }
 }

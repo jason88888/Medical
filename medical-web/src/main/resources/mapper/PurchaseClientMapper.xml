@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotaotech.dao.PurchaseClientMapper" >
+  <resultMap id="BaseResultMap" type="com.taotaotech.domain.PurchaseClient" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sale_company" property="saleCompany" jdbcType="VARCHAR" />
+    <result column="buy_company" property="buyCompany" jdbcType="VARCHAR" />
+    <result column="client_name" property="clientName" jdbcType="VARCHAR" />
+    <result column="sale_area" property="saleArea" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sale_company, buy_company, client_name, sale_area
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_client
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from purchase_client
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.taotaotech.domain.PurchaseClient" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into purchase_client (sale_company, buy_company, client_name, 
+      sale_area)
+    values (#{saleCompany,jdbcType=VARCHAR}, #{buyCompany,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, 
+      #{saleArea,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseClient" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into purchase_client
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="saleCompany != null" >
+        sale_company,
+      </if>
+      <if test="buyCompany != null" >
+        buy_company,
+      </if>
+      <if test="clientName != null" >
+        client_name,
+      </if>
+      <if test="saleArea != null" >
+        sale_area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="saleCompany != null" >
+        #{saleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="buyCompany != null" >
+        #{buyCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null" >
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleArea != null" >
+        #{saleArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.PurchaseClient" >
+    update purchase_client
+    <set >
+      <if test="saleCompany != null" >
+        sale_company = #{saleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="buyCompany != null" >
+        buy_company = #{buyCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null" >
+        client_name = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleArea != null" >
+        sale_area = #{saleArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.PurchaseClient" >
+    update purchase_client
+    set sale_company = #{saleCompany,jdbcType=VARCHAR},
+      buy_company = #{buyCompany,jdbcType=VARCHAR},
+      client_name = #{clientName,jdbcType=VARCHAR},
+      sale_area = #{saleArea,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

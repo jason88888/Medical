@@ -1,42 +1,46 @@
 package com.taotaotech.domain;
 
-/**
- * @author zk
- * @date 2015/10/2 10:04
- * @description é‡‡è´­é’±ç¨ç®¡ç†
- */
-public class PurchaseMoneyTax {
-    //id
+import java.util.Date;
+
+public class PurchaseMoneytax {
     private Integer id;
-    //æ‰“æ¬¾åˆ†ç±»
+    //´ò¿î·ÖÀà
     private String paymentCategory;
-    //ä»˜æ¬¾æ–¹å¼
+    //¸¶¿î·½Ê½
     private String paymentMode;
-    //ä»˜æ¬¾é‡‘é¢
+    //¸¶¿î½ğ¶î
     private String paymentMoney;
-    //ä¸šåŠ¡æµç¨‹åŠä»·
+    //ÒµÎñÁ÷³Ì¼°¼Û
     private String workFlow;
-    //è¿›é¡¹å•ä»·
-    private String purchaseUnitPrice;
-    //è¿›é¡¹é‡‘é¢
+    //½øÏîµ¥¼Û
+    private Long purchaseUnitPrice;
+    //½øÏî½ğ¶î
     private String purchaseMoney;
-    //åº”ä»˜ç¨
+    //Ó¦¸¶Ë°
     private String tax;
-    //ä»˜ç¨æ–¹å¼
+    //¸¶Ë°·½Ê½
     private String taxPayMode;
-    //ä»˜ç¨æ—¥æœŸ
-    private String taxPayDate;
-    //å‘ç¥¨å·ç 
-    private String invoiceNumber;
-    //å¼€ç¥¨æ—¥æœŸ
-    private String invoiceDate;
+    //¸¶Ë°ÈÕÆÚ
+    private Date taxPayDate;
+    //·¢Æ±ºÅÂë
+    private Integer invoiceNumber;
+    //¿ªÆ±ÈÕÆÚ
+    private Date invoiceDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPaymentCategory() {
         return paymentCategory;
     }
 
     public void setPaymentCategory(String paymentCategory) {
-        this.paymentCategory = paymentCategory;
+        this.paymentCategory = paymentCategory == null ? null : paymentCategory.trim();
     }
 
     public String getPaymentMode() {
@@ -44,7 +48,7 @@ public class PurchaseMoneyTax {
     }
 
     public void setPaymentMode(String paymentMode) {
-        this.paymentMode = paymentMode;
+        this.paymentMode = paymentMode == null ? null : paymentMode.trim();
     }
 
     public String getPaymentMoney() {
@@ -52,7 +56,7 @@ public class PurchaseMoneyTax {
     }
 
     public void setPaymentMoney(String paymentMoney) {
-        this.paymentMoney = paymentMoney;
+        this.paymentMoney = paymentMoney == null ? null : paymentMoney.trim();
     }
 
     public String getWorkFlow() {
@@ -60,14 +64,14 @@ public class PurchaseMoneyTax {
     }
 
     public void setWorkFlow(String workFlow) {
-        this.workFlow = workFlow;
+        this.workFlow = workFlow == null ? null : workFlow.trim();
     }
 
-    public String getPurchaseUnitPrice() {
+    public Long getPurchaseUnitPrice() {
         return purchaseUnitPrice;
     }
 
-    public void setPurchaseUnitPrice(String purchaseUnitPrice) {
+    public void setPurchaseUnitPrice(Long purchaseUnitPrice) {
         this.purchaseUnitPrice = purchaseUnitPrice;
     }
 
@@ -76,7 +80,7 @@ public class PurchaseMoneyTax {
     }
 
     public void setPurchaseMoney(String purchaseMoney) {
-        this.purchaseMoney = purchaseMoney;
+        this.purchaseMoney = purchaseMoney == null ? null : purchaseMoney.trim();
     }
 
     public String getTax() {
@@ -84,7 +88,7 @@ public class PurchaseMoneyTax {
     }
 
     public void setTax(String tax) {
-        this.tax = tax;
+        this.tax = tax == null ? null : tax.trim();
     }
 
     public String getTaxPayMode() {
@@ -92,30 +96,30 @@ public class PurchaseMoneyTax {
     }
 
     public void setTaxPayMode(String taxPayMode) {
-        this.taxPayMode = taxPayMode;
+        this.taxPayMode = taxPayMode == null ? null : taxPayMode.trim();
     }
 
-    public String getTaxPayDate() {
+    public Date getTaxPayDate() {
         return taxPayDate;
     }
 
-    public void setTaxPayDate(String taxPayDate) {
+    public void setTaxPayDate(Date taxPayDate) {
         this.taxPayDate = taxPayDate;
     }
 
-    public String getInvoiceNumber() {
+    public Integer getInvoiceNumber() {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(String invoiceNumber) {
+    public void setInvoiceNumber(Integer invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public String getInvoiceDate() {
+    public Date getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(String invoiceDate) {
+    public void setInvoiceDate(Date invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 }
