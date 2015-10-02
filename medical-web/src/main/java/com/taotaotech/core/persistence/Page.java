@@ -1,4 +1,4 @@
-package com.taotaotech.service;
+package com.taotaotech.core.persistence;
 
 import com.github.miemiedev.mybatis.paginator.domain.Order;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;

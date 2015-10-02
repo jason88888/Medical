@@ -1,6 +1,8 @@
 package com.taotaotech.service;
 
 import com.taotaotech.core.dto.ResponseResult;
+import com.taotaotech.core.service.BaseService;
+import com.taotaotech.core.service.IBaseService;
 import com.taotaotech.domain.User;
 import java.util.List;
 
@@ -10,21 +12,9 @@ import java.util.List;
  * @eMail cailin618@sina.com
  */
 
-public interface IUserService {
+public interface IUserService extends IBaseService<User> {
 
     User login(String username,String password);
 
     ResponseResult isValidUser(String username,String password);
-
-    public User get(Integer id);
-
-    public User get(User user);
-
-    public List<User> findList();
-
-    public Page<User> findPage(Page<User> page, User user);
-
-    public int save(User user);
-
-    public int delete(Integer[] ids);
 }

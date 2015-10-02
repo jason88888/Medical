@@ -32,7 +32,7 @@
     delete from medicine_policy
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.MedicinePolicy">
+  <insert id="insert" parameterType="MedicinePolicy">
     insert into medicine_policy (id, regional,
       month, medicine_code, client_code, 
       salesman_policy, clinical_policy, manufacturer_policy,  two_level_policy,
@@ -44,7 +44,7 @@
       #{twoLevelPolicy,jdbcType=REAL},#{threeLevelPolicy,jdbcType=REAL}, #{addPolicy1,jdbcType=REAL},
       #{addPolicy2,jdbcType=REAL}, #{addPolicy3,jdbcType=REAL},#{price,jdbcType=REAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.MedicinePolicy">
+  <insert id="insertSelective" parameterType="MedicinePolicy">
     insert into medicine_policy
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.MedicinePolicy">
+  <update id="updateByPrimaryKeySelective" parameterType="MedicinePolicy">
     update medicine_policy
     <set>
       <if test="regional != null">
@@ -180,7 +180,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.MedicinePolicy">
+  <update id="updateByPrimaryKey" parameterType="MedicinePolicy">
     update medicine_policy
     set regional = #{regional,jdbcType=VARCHAR},
       month = #{month,jdbcType=VARCHAR},

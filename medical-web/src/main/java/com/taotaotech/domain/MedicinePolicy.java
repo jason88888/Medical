@@ -1,6 +1,6 @@
 package com.taotaotech.domain;
 
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.xml.bind.annotation.XmlTransient;

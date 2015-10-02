@@ -1,10 +1,8 @@
 package com.taotaotech.service;
 
-import com.taotaotech.domain.Agent;
-import com.taotaotech.dto.BillRich;
+import com.taotaotech.core.persistence.Page;
+import com.taotaotech.domain.Bill;
 import com.taotaotech.dto.Commission;
-
-import java.util.List;
 
 /**
  * @author zk
@@ -12,7 +10,7 @@ import java.util.List;
  * @description
  */
 public interface ICommissionService {
-    public Page<Commission> findCommissionList(Page page,BillRich billRich);
+    public Page<Commission> findCommissionList(Page page, Bill bill);
 
-    public Commission statisticsCommission(BillRich billRich);
+    public Commission statisticsCommission(Bill bill);
 }

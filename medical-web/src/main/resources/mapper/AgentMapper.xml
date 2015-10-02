@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotaotech.dao.AgentMapper" >
-  <resultMap id="BaseResultMap" type="com.taotaotech.domain.Agent" >
+  <resultMap id="BaseResultMap" type="Agent" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{level,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.Agent" >
+  <insert id="insertSelective" parameterType="Agent" >
     insert into agent
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.Agent" >
+  <update id="updateByPrimaryKey" parameterType="Agent" >
     update agent
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

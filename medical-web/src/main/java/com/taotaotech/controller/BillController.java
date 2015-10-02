@@ -1,9 +1,9 @@
 package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
-import com.taotaotech.dto.BillRich;
+import com.taotaotech.domain.Bill;
 import com.taotaotech.service.IBillService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -33,7 +32,7 @@ public class BillController extends BaseController {
         if(getUser().getRole() != 1){
             map.put("userCode", getUser().getCode());
         }
-        Page<BillRich> page =  billService.findBillList(new Page<BillRich>(request, response),map);
+        Page<Bill> page =  billService.findBillList(new Page<Bill>(request, response),map);
         model.addAttribute("page", page);
         return "bill/bill_list";
     }

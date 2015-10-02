@@ -1,13 +1,10 @@
 package com.taotaotech.service;
 
 import com.taotaotech.core.dto.DWZResponseResult;
-import com.taotaotech.core.dto.ResponseResult;
+import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Bill;
-import com.taotaotech.domain.Client;
-import com.taotaotech.dto.BillRich;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +16,7 @@ import java.util.Map;
 public interface IBillService {
     DWZResponseResult parseBillTable(MultipartFile file);
 
-    public Page<BillRich> findBillList(Page<BillRich> page, Map map);
+    public Page<Bill> findBillList(Page<Bill> page, Map map);
 
     public Page<Bill> findPage(Page<Bill> page, Bill bill);
 }

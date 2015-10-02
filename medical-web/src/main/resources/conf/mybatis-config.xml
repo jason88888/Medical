@@ -6,7 +6,7 @@
 <configuration>
   <!-- 命名空间 -->
   <typeAliases>
-    <typeAlias alias="Page" type="com.taotaotech.service.Page"/>
+    <typeAlias alias="Page" type="com.taotaotech.core.persistence.Page"/>
     <!--分页  -->
   </typeAliases>
 

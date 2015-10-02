@@ -1,9 +1,7 @@
 package com.taotaotech.service;
 
+import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Agent;
-import com.taotaotech.domain.Client;
-
-import java.util.List;
 
 /**
  * @author zk

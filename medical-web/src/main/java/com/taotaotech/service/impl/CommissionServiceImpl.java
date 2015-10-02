@@ -4,11 +4,11 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.dao.*;
+import com.taotaotech.domain.Bill;
 import com.taotaotech.domain.MedicinePolicy;
-import com.taotaotech.dto.BillRich;
 import com.taotaotech.dto.Commission;
 import com.taotaotech.service.ICommissionService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +22,16 @@ import java.util.*;
 @Service
 public class CommissionServiceImpl implements ICommissionService {
     @Autowired
-    private BillRichMapper billRichMapper;
+    private BillMapper billMapper;
 
     @Autowired
     private MedicinePolicyMapper medicinePolicyMapper;
 
     @Override
-    public Page<Commission> findCommissionList(Page page,BillRich billR) {
+    public Page<Commission> findCommissionList(Page page, Bill billR) {
         Map billMap =  MapUtil.bean2Map(billR);
         List<Commission> commissionList = null;
-        List<BillRich> billList =  billRichMapper.findBillList(billMap,page.createPageBounds());
+        List<Bill> billList =  billMapper.findList(billMap,page.createPageBounds());
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }
@@ -40,47 +40,47 @@ public class CommissionServiceImpl implements ICommissionService {
         return page;
     }
 
-    private void calculatePrice(List<BillRich> billList,List<Commission> commissionList){
+    private void calculatePrice(List<Bill> billList,List<Commission> commissionList){
         for (int i = 0; i < billList.size(); i++) {
-            BillRich billRich = billList.get(i);
+            Bill bill = billList.get(i);
             //根据日期生成月份
             Calendar calendar = Calendar.getInstance(Locale.CHINA);
-            Date date = DateUtil.getDate(billRich.getDate(), DateUtil.FORMAT_YYYYMMDD);
+            Date date = DateUtil.getDate(bill.getDate(), DateUtil.FORMAT_YYYYMMDD);
             if (null ==calendar || null == date){
                 continue;
             }
             calendar.setTime(date);
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH) + 1;
-            MedicinePolicy policy = medicinePolicyMapper.getPolicyByMonthAndClientAndMedicine(billRich.getClientCode(),
-                    billRich.getMedicineCode(), year + "/" + month);
+            MedicinePolicy policy = medicinePolicyMapper.getPolicyByMonthAndClientAndMedicine(bill.getClientCode(),
+                    bill.getMedicineCode(), year + "/" + month);
             if (policy == null) {//没找到对应的政策
                 continue;
             }else{
                 //TODO 如何提醒客户该单据没有对应政策
             }
             Commission commission = new Commission();
-            commission.setId(billRich.getId());
-            commission.setMedicineCode(billRich.getMedicineCode());
-            commission.setMedicineName(billRich.getMedicineName());
-            commission.setClientCode(billRich.getClientCode());
-            commission.setClientName(billRich.getClientName());
-            commission.setInvoiceDate(billRich.getDate());
-            commission.setSalesmanName(billRich.getUserName());
+            commission.setId(bill.getId());
+            commission.setMedicineCode(bill.getMedicineCode());
+            commission.setMedicineName(bill.getMedicineName());
+            commission.setClientCode(bill.getClientCode());
+            commission.setClientName(bill.getClientName());
+            commission.setInvoiceDate(bill.getDate());
+            commission.setSalesmanName(bill.getUserName());
             //业务
             /*
         药品编码 药品名称 客户码 终端名称 月份(开票日期) 业务员姓名  业务员费用 二级费用 三级费用
         厂家费用 附加费用1 附加费用2 附加费用3 营业额 总费用
         */
-            if (policy.getPrice() != null && billRich.getNumber() != null) {
-                float salesmanCharge = billRich.getNumber() * policy.getSalesmanPolicy();
-                float twoLevelCharge = billRich.getNumber() * policy.getTwoLevelPolicy();
-                float threeLevelCharge = billRich.getNumber() * policy.getThreeLevelPolicy();
-                float manufacturerCharge = billRich.getNumber() * policy.getManufacturerPolicy();
-                float clinicalCharge = billRich.getNumber() * policy.getClinicalPolicy();
-                float addCharge1 = billRich.getNumber() * policy.getAddPolicy1();
-                float addCharge2 = billRich.getNumber() * policy.getAddPolicy2();
-                float addCharge3 = billRich.getNumber() * policy.getAddPolicy3();
+            if (policy.getPrice() != null && bill.getNumber() != null) {
+                float salesmanCharge = bill.getNumber() * policy.getSalesmanPolicy();
+                float twoLevelCharge = bill.getNumber() * policy.getTwoLevelPolicy();
+                float threeLevelCharge = bill.getNumber() * policy.getThreeLevelPolicy();
+                float manufacturerCharge = bill.getNumber() * policy.getManufacturerPolicy();
+                float clinicalCharge = bill.getNumber() * policy.getClinicalPolicy();
+                float addCharge1 = bill.getNumber() * policy.getAddPolicy1();
+                float addCharge2 = bill.getNumber() * policy.getAddPolicy2();
+                float addCharge3 = bill.getNumber() * policy.getAddPolicy3();
                 commission.setSalesmanCharge("" + salesmanCharge);
                 commission.setTwoLevelCharge("" + twoLevelCharge);
                 commission.setThreeLevelCharge("" + threeLevelCharge);
@@ -89,7 +89,7 @@ public class CommissionServiceImpl implements ICommissionService {
                 commission.setAddCharge1("" + addCharge1);
                 commission.setAddCharge2("" + addCharge2);
                 commission.setAddCharge3("" + addCharge3);
-                commission.setBusinessFee("" + (billRich.getNumber() * policy.getPrice()));
+                commission.setBusinessFee("" + (bill.getNumber() * policy.getPrice()));
                 commission.setTotalCharge("" + (salesmanCharge + twoLevelCharge + threeLevelCharge + manufacturerCharge +
                         clinicalCharge + addCharge1 + addCharge2 + addCharge3));
             } else {
@@ -114,12 +114,14 @@ public class CommissionServiceImpl implements ICommissionService {
         commission.setTotalCharge("0");
         return commission;
     }
-    @Override
-    public Commission statisticsCommission(BillRich billRich) {
 
-        Map billMap =  MapUtil.bean2Map(billRich);
+    // TODO
+    @Override
+    public Commission statisticsCommission(Bill bill) {
+
+        Map billMap =  MapUtil.bean2Map(bill);
         List<Commission> commissionList = null;
-        List<BillRich> billList =  billRichMapper.findBillList(billMap,new PageBounds());
+        List<Bill> billList =  billMapper.findList(billMap, new PageBounds());
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }

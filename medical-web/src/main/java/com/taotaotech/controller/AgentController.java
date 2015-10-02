@@ -3,12 +3,8 @@ package com.taotaotech.controller;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.domain.Agent;
-import com.taotaotech.domain.Agent;
-import com.taotaotech.domain.Medicine;
-import com.taotaotech.domain.User;
 import com.taotaotech.service.IAgentService;
-import com.taotaotech.service.IMedicineService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author zk

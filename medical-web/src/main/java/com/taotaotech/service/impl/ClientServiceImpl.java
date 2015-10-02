@@ -2,12 +2,9 @@ package com.taotaotech.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.dao.ClientMapper;
-import com.taotaotech.dao.MedicineMapper;
 import com.taotaotech.domain.Client;
-import com.taotaotech.domain.Medicine;
 import com.taotaotech.service.IClientService;
-import com.taotaotech.service.IMedicineService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

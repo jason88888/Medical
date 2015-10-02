@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotaotech.dao.MedicineMapper" >
-  <resultMap id="BaseResultMap" type="com.taotaotech.domain.Medicine" >
+  <resultMap id="BaseResultMap" type="Medicine" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -25,7 +25,7 @@
     delete from medicine
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.Medicine" >
+  <insert id="insert" parameterType="Medicine" >
     insert into medicine (id, code, name, 
       specification, manufacturer_name, units, 
       price, lot_number, validity_period)
@@ -33,7 +33,7 @@
       #{specification,jdbcType=VARCHAR}, #{manufacturerName,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, 
       #{price,jdbcType=REAL}, #{lotNumber,jdbcType=VARCHAR}, #{validityPeriod,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.Medicine" >
+  <insert id="insertSelective" parameterType="Medicine" >
     insert into medicine
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -94,7 +94,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.Medicine" >
+  <update id="updateByPrimaryKeySelective" parameterType="Medicine" >
     update medicine
     <set >
       <if test="code != null" >
@@ -124,7 +124,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.Medicine" >
+  <update id="updateByPrimaryKey" parameterType="Medicine" >
     update medicine
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

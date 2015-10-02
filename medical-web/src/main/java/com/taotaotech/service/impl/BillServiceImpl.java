@@ -1,17 +1,14 @@
 package com.taotaotech.service.impl;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.dto.DWZResponseResult;
-import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.core.utils.ProcessBillUtil;
 import com.taotaotech.dao.*;
 import com.taotaotech.domain.*;
-import com.taotaotech.dto.BillRich;
 import com.taotaotech.dto.ImportBill;
 import com.taotaotech.service.IBillService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +31,6 @@ public class BillServiceImpl implements IBillService {
 
     @Autowired
     private BillMapper billMapper;
-
-    @Autowired
-    private BillRichMapper billRichMapper;
 
     @Autowired
     private ClientMapper clientMapper;
@@ -79,8 +72,6 @@ public class BillServiceImpl implements IBillService {
                         generateSalesman(ib);
                         generateTwoLevelAgent(ib);
                         generateThreeLevelAgent(ib);
-                        //方便bill计算佣金，减少数据库查询使用
-                        generateBillRich(ib);
                     }
                     break;
                 }
@@ -101,8 +92,8 @@ public class BillServiceImpl implements IBillService {
     }
 
     @Override
-    public Page<BillRich> findBillList(Page<BillRich>page,Map map) {
-         PageList<BillRich> list = (PageList)billRichMapper.findBillList(map, page.createPageBounds());
+    public Page<Bill> findBillList(Page<Bill>page,Map map) {
+         PageList<Bill> list = (PageList)billMapper.findList(map, page.createPageBounds());
         page.setList(list);
         return page;
     }
@@ -130,27 +121,6 @@ public class BillServiceImpl implements IBillService {
 
         page.setList(bills);
         return page;
-    }
-
-    private Integer generateBill(ImportBill ib) {
-        if (ib.getBillCode() == null || ib.getBillCode().equals("")) {
-            return null;
-        }
-        if (!billMapper.existByBillCode(ib.getBillCode())) {
-            Bill bill = new Bill();
-            bill.setCode(ib.getBillCode());
-            if (!ib.getNumber().equals("")) {
-                bill.setNumber(Integer.parseInt(ib.getNumber()));
-            }
-            bill.setClientCode(ib.getClientCode());
-            bill.setUserCode(ib.getSalesmanCode());
-            bill.setDate(ib.getInvoiceDate());
-            bill.setTwoLevelCode(ib.getTwoLevelCode());
-            bill.setThreeLevelCode(ib.getThreeLevelCode());
-            bill.setMedicineCode(ib.getMedicineCode());
-            return billMapper.insertSelective(bill);
-        }
-        return null;
     }
 
     private Integer generateMedicine(ImportBill ib) {
@@ -194,12 +164,12 @@ public class BillServiceImpl implements IBillService {
     }
 
 
-    private Integer generateBillRich(ImportBill ib) {
+    private Integer generateBill(ImportBill ib) {
         if (ib.getBillCode() == null || ib.getBillCode().equals("")) {
             return null;
         }
-        if (!billRichMapper.existByBillCode(ib.getBillCode())) {
-            BillRich bill = new BillRich();
+        if (!billMapper.existByBillCode(ib.getBillCode())) {
+            Bill bill = new Bill();
             bill.setCode(ib.getBillCode());
             if (!ib.getNumber().equals("")) {
                 bill.setNumber(Integer.parseInt(ib.getNumber()));
@@ -213,7 +183,7 @@ public class BillServiceImpl implements IBillService {
             bill.setUserName(ib.getSalesmanName());
             bill.setMedicineName(ib.getMedicineName());
             bill.setClientName(ib.getClientName());
-            return billRichMapper.insertSelective(bill);
+            return billMapper.insertSelective(bill);
         }
         return null;
     }

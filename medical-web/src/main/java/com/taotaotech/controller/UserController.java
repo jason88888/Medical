@@ -5,7 +5,7 @@ import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.domain.User;
 import com.taotaotech.service.IUserService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,7 +75,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(User user) {
-        int count = userService.save(user);
+        userService.save(user);
 
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
@@ -89,7 +89,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Integer[] ids) {
-        int count = userService.delete(ids);
+        userService.delete(ids);
 
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");

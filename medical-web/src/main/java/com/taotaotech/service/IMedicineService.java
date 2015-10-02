@@ -1,9 +1,7 @@
 package com.taotaotech.service;
 
+import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Medicine;
-import com.taotaotech.domain.User;
-
-import java.util.List;
 
 /**
  * @author zk

@@ -3,15 +3,99 @@
 
 <mapper namespace="com.taotaotech.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="code" property="code" jdbcType="VARCHAR" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="role" property="role" jdbcType="TINYINT" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role" jdbcType="TINYINT" property="role" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, username, password, role
+    id, code, username, password, role, create_date, update_date, del_flag
   </sql>
+
+  <select id="get" resultMap="BaseResultMap" parameterType="User">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sys_user
+    where id = #{id}
+  </select>
+
+  <select id="findList" parameterType="User" resultType="User">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user t
+    <where>
+      del_flag = #{DEL_FLAG_NORMAL}
+      <if test="code != null and code != ''">
+        AND code like '%${code}%'
+      </if>
+      <if test="username != null and username != ''">
+        AND username like '%${username}%'
+      </if>
+      <if test="role != null and role != ''">
+        AND role = #{role}
+      </if>
+      <if test="createDate != null and createDate != ''">
+        AND create_date = #{createDate}
+      </if>
+      <if test="updateDate != null and updateDate != ''">
+        AND update_date = #{updateDate}
+      </if>
+    </where>
+    <choose>
+      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+        ORDER BY ${page.orderBy}
+      </when>
+      <otherwise>
+        ORDER BY t.id DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="findAllList" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sys_user
+    WHERE del_flag = #{DEL_FLAG_NORMAL}
+    ORDER BY create_date DESC
+  </select>
+
+  <insert id="insert" parameterType="User" >
+    INSERT INTO sys_user
+    (<include refid="Base_Column_List" />)
+    VALUES (
+    #{id},
+    #{code},
+    #{username},
+    #{password},
+    #{role},
+    #{createDate},
+    #{updateDate},
+    #{delFlag}
+    )
+  </insert>
+
+  <update id="update" parameterType="User" >
+    UPDATE sys_user SET
+    code = #{code},
+    username = #{username},
+    password = #{password},
+    role = #{role},
+    update_date = #{updateDate}
+    WHERE id = #{id}
+  </update>
+
+  <!-- 逻辑删除用户 -->
+  <update id="delete">
+    UPDATE sys_user SET
+    del_flag = TRUE
+    WHERE id = #{id}
+  </update>
+
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
@@ -23,12 +107,6 @@
     delete from sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="User" >
-    insert into sys_user (id, code, username,
-      password, role)
-    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-      #{password,jdbcType=VARCHAR}, #{role,jdbcType=TINYINT})
-  </insert>
   <insert id="insertSelective" parameterType="User" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -81,6 +159,9 @@
       <if test="role != null" >
         role = #{role,jdbcType=TINYINT},
       </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -106,43 +187,5 @@
     from sys_user
     where code = #{code,jdbcType=INTEGER}
   </select>
-
-  <select id="findAllList" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-  </select>
-
-  <select id="findList" parameterType="User" resultType="User">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user t
-    <where>
-      <if test="code != null and code != ''">
-        code like '%${code}%'
-      </if>
-      <if test="username != null and username != ''">
-        AND username like '%${username}%'
-      </if>
-      <if test="role != null and role != ''">
-        AND role = #{role}
-      </if>
-    </where>
-    <choose>
-      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
-        ORDER BY ${page.orderBy}
-      </when>
-      <otherwise>
-        ORDER BY t.id DESC
-      </otherwise>
-    </choose>
-  </select>
-
-  <delete id="delete" parameterType="java.util.List">
-    DELETE FROM sys_user WHERE id IN
-    <foreach collection="list" item="item" separator="," open="(" close=")">
-      #{item}
-    </foreach>
-  </delete>
 
 </mapper>

@@ -3,7 +3,7 @@ package com.taotaotech.controller;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.domain.MedicinePolicy;
 import com.taotaotech.service.IPolicyService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @Controller
 @RequestMapping("policy")

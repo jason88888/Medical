@@ -74,7 +74,7 @@
             </div>
 
             <div class="accordion" fillSpace="sidebar">
-                <c:if test="${user.getRole() == 1}">
+                <c:if test="${user.role == 1}">
                     <div class="accordionHeader">
                         <h2>
                             <span>Folder</span>基础数据管理

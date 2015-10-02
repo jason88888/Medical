@@ -4,51 +4,27 @@ package com.taotaotech.domain;
 public class Bill {
     private Integer id;
 
-    private String code;
-    private String date;//开票日期
-    private String month;
-    private Integer number;
+    private String code; // 单据编号
+    private String date; // 开票日期
+    private String month; // 单据月份
+    private Integer number; // 数量
 
     private String clientCode;
+    private String clientName;
+
     private String userCode;
+    private String userName;
+
     private String twoLevelCode;
     private String twoLevelName;
+
     private String threeLevelCode;
     private String threeLevelName;
+
     private String medicineCode;
-    private String regional;//地级市(区域)
+    private String medicineName;
 
-    public String getMedicineCode() {
-        return medicineCode;
-    }
-
-    public void setMedicineCode(String medicineCode) {
-        this.medicineCode = medicineCode;
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode == null ? null : userCode.trim();
-    }
-
-    public String getTwoLevelCode() {
-        return twoLevelCode;
-    }
-
-    public void setTwoLevelCode(String twoLevelCode) {
-        this.twoLevelCode = twoLevelCode == null ? null : twoLevelCode.trim();
-    }
-
-    public String getThreeLevelCode() {
-        return threeLevelCode;
-    }
-
-    public void setThreeLevelCode(String threeLevelCode) {
-        this.threeLevelCode = threeLevelCode == null ? null : threeLevelCode.trim();
-    }
+    private String regional;
 
     public Integer getId() {
         return id;
@@ -63,7 +39,7 @@ public class Bill {
     }
 
     public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+        this.code = code;
     }
 
     public String getDate() {
@@ -72,6 +48,14 @@ public class Bill {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     public Integer getNumber() {
@@ -90,12 +74,36 @@ public class Bill {
         this.clientCode = clientCode;
     }
 
-    public String getMonth() {
-        return month;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getTwoLevelCode() {
+        return twoLevelCode;
+    }
+
+    public void setTwoLevelCode(String twoLevelCode) {
+        this.twoLevelCode = twoLevelCode;
     }
 
     public String getTwoLevelName() {
@@ -106,6 +114,14 @@ public class Bill {
         this.twoLevelName = twoLevelName;
     }
 
+    public String getThreeLevelCode() {
+        return threeLevelCode;
+    }
+
+    public void setThreeLevelCode(String threeLevelCode) {
+        this.threeLevelCode = threeLevelCode;
+    }
+
     public String getThreeLevelName() {
         return threeLevelName;
     }
@@ -114,11 +130,28 @@ public class Bill {
         this.threeLevelName = threeLevelName;
     }
 
+    public String getMedicineCode() {
+        return medicineCode;
+    }
+
+    public void setMedicineCode(String medicineCode) {
+        this.medicineCode = medicineCode;
+    }
+
+    public String getMedicineName() {
+        return medicineName;
+    }
+
+    public void setMedicineName(String medicineName) {
+        this.medicineName = medicineName;
+    }
+
     public String getRegional() {
         return regional;
     }
 
     public void setRegional(String regional) {
-        this.regional = regional;
+        this.regional =  regional;
     }
+
 }

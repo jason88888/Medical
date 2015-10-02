@@ -1,12 +1,10 @@
 package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
-import com.taotaotech.domain.Agent;
-import com.taotaotech.dto.BillRich;
+import com.taotaotech.domain.Bill;
 import com.taotaotech.dto.Commission;
-import com.taotaotech.service.IAgentService;
 import com.taotaotech.service.ICommissionService;
-import com.taotaotech.service.Page;
+import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author zk
@@ -29,26 +26,26 @@ public class CommissionController extends BaseController {
     private ICommissionService commissionService;
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
     public String list(String province,String keyword,HttpServletRequest request, HttpServletResponse response,ModelMap model) {
-        BillRich billRich = new BillRich();
+        Bill bill = new Bill();
         if (null !=province && null != keyword){
             if (province.equals("medicineCode")){
-                billRich.setMedicineCode(keyword);
+                bill.setMedicineCode(keyword);
             }else if (province.equals("userCode")){
-                billRich.setUserCode(keyword);
+                bill.setUserCode(keyword);
             }else if (province.equals("twoLevelCode")){
-                billRich.setTwoLevelCode(keyword);
+                bill.setTwoLevelCode(keyword);
             }else if (province.equals("threeLevelCode")){
-                billRich.setThreeLevelCode(keyword);
+                bill.setThreeLevelCode(keyword);
             }else if (province.equals("clientCode")){
-                billRich.setClientCode(keyword);
+                bill.setClientCode(keyword);
             }
         }
         if (1 != getUser().getRole()){
-            billRich.setUserCode(getUser().getCode());
+            bill.setUserCode(getUser().getCode());
         }
 
-        Page<Commission> page = commissionService.findCommissionList(new Page<Commission>(request, response),billRich);
-        Commission countCommission = commissionService.statisticsCommission(billRich);
+        Page<Commission> page = commissionService.findCommissionList(new Page<Commission>(request, response), bill);
+        Commission countCommission = commissionService.statisticsCommission(bill);
         model.addAttribute("page", page);
         model.addAttribute("countCommission", countCommission);
 
