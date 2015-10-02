@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2015-10-02 12:06:53
+Date: 2015-10-02 14:05:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -152,6 +152,48 @@ CREATE TABLE `purchasement` (
   `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
   `invoice_date` datetime DEFAULT NULL COMMENT '开票日期',
   `if_check` varchar(255) DEFAULT NULL COMMENT '采购条目生成是否已核对',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for purchase_client
+-- ----------------------------
+DROP TABLE IF EXISTS `purchase_client`;
+CREATE TABLE `purchase_client` (
+  `id` int(11) NOT NULL COMMENT 'id',
+  `sale_company` varchar(255) DEFAULT NULL COMMENT '我司上家销货单位',
+  `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
+  `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
+  `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for purchase_moneytax
+-- ----------------------------
+DROP TABLE IF EXISTS `purchase_moneytax`;
+CREATE TABLE `purchase_moneytax` (
+  `id` int(11) NOT NULL COMMENT 'id',
+  `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
+  `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
+  `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
+  `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
+  `purchase_unit_price` decimal(10,0) DEFAULT NULL COMMENT '进项单价',
+  `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
+  `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
+  `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
+  `tax_pay_date` datetime DEFAULT NULL COMMENT '付税日期',
+  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
+  `invoice_date` datetime DEFAULT NULL COMMENT '开票日期',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
