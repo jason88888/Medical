@@ -31,7 +31,7 @@
         <div class="formBar">
             <ul>
                 <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
-                <li><div class="buttonActive"><div class="buttonContent"><a href="user/edit?id=${user.id}" target="dialog">编辑</a></div></div></li>
+                <li><div class="buttonActive"><div class="buttonContent"><a href="user/form?id=${user.id}" target="dialog">编辑</a></div></div></li>
                 <li>
                     <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
                 </li>

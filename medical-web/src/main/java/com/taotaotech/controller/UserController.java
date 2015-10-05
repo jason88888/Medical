@@ -49,18 +49,14 @@ public class UserController extends BaseController {
         return "user/user_list";
     }
 
-    @RequestMapping(value = "insert", method = {RequestMethod.GET})
-    public String add() {
-
-        return "user/user_insert";
-    }
-
-    @RequestMapping(value = "edit", method = {RequestMethod.GET})
+    @RequestMapping(value = "form", method = {RequestMethod.GET})
     public String edit(Integer id, Model model) {
-        User user = userService.get(id);
-        model.addAttribute("user", user);
+        if (id != null) {
+            User user = userService.get(id);
+            model.addAttribute("mser", user);
+        }
 
-        return "user/user_edit";
+        return "user/user_form";
     }
 
     @RequestMapping(value = "view", method = {RequestMethod.GET})

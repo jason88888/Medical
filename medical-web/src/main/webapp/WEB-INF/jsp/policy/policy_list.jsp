@@ -45,7 +45,7 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="policy/insert" target="dialog"><span>添加</span></a></li>
+            <li><a class="add" href="policy/form" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="policy/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a></li>
             <li><a class="edit" href="policy/view?id={id}" target="dialog" warn="请选择一条政策"><span>详情</span></a></li>
             <li class="line">line</li>

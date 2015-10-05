@@ -45,18 +45,14 @@ public class PolicyController extends BaseController {
         return "policy/policy_list";
     }
 
-    @RequestMapping(value = "insert", method = {RequestMethod.GET})
-    public String add() {
-
-        return "policy/policy_insert";
-    }
-
-    @RequestMapping(value = "edit", method = {RequestMethod.GET})
+    @RequestMapping(value = "form", method = {RequestMethod.GET})
     public String edit(Integer id, Model model) {
-        Policy policy = policyService.get(id);
-        model.addAttribute("policy", policy);
+        if (id != null) {
+            Policy policy = policyService.get(id);
+            model.addAttribute("policy", policy);
+        }
 
-        return "policy/policy_edit";
+        return "policy/policy_form";
     }
 
     @RequestMapping(value = "view", method = {RequestMethod.GET})
