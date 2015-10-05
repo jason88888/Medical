@@ -1,6 +1,7 @@
 package com.taotaotech.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.dao.*;
@@ -28,15 +29,16 @@ public class CommissionServiceImpl implements ICommissionService {
     private PolicyMapper policyMapper;
 
     @Override
-    public Page<Commission> findCommissionList(Page page, Bill billR) {
-        Map billMap =  MapUtil.bean2Map(billR);
+    public Page<Commission> findCommissionList(Page page, Bill bill) {
+        Map billMap =  MapUtil.bean2Map(bill);
         List<Commission> commissionList = null;
-        List<Bill> billList =  billMapper.findList(billMap,page.createPageBounds());
+        PageList<Bill> billList = (PageList)billMapper.findList(billMap, page.createPageBounds());
         if (billList.size() != 0) {
             commissionList = new ArrayList<>();
         }
-        calculatePrice(billList,commissionList);
-         page.setList(commissionList);
+        calculatePrice(billList, commissionList);
+        page.setList(commissionList);
+        page.setTotalCount(billList.getPaginator().getTotalCount());
         return page;
     }
 
@@ -46,7 +48,7 @@ public class CommissionServiceImpl implements ICommissionService {
             //根据日期生成月份
             Calendar calendar = Calendar.getInstance(Locale.CHINA);
             Date date = DateUtil.getDate(bill.getDate(), DateUtil.FORMAT_YYYYMMDD);
-            if (null ==calendar || null == date){
+            if (null == calendar || null == date){
                 continue;
             }
             calendar.setTime(date);

@@ -3,12 +3,14 @@ package com.taotaotech.dao;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.dto.Commission;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * 这个好像用不到
  */
+@Repository
 public interface CommissionMapper {
     int deleteByPrimaryKey(Integer id);
 

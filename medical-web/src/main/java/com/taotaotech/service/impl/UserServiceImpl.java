@@ -1,6 +1,7 @@
 package com.taotaotech.service.impl;
 
 import com.taotaotech.core.dto.ResponseResult;
+import com.taotaotech.core.persistence.Page;
 import com.taotaotech.core.service.CrudService;
 import com.taotaotech.dao.UserMapper;
 import com.taotaotech.domain.User;

@@ -46,8 +46,8 @@
     <div class="panelBar">
         <ul class="toolBar">
             <li><a class="add" href="policy/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
+            <li><a class="delete" href="policy/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="edit" href="policy/view?id={id}" target="dialog" warn="请选择一条政策"><span>详情</span></a></li>
             <li class="line">line</li>
             <li><a class="icon" href="policy/upload" target="dialog"><span>导入EXCEL</span></a></li>
         </ul>
@@ -55,7 +55,9 @@
     <table class="table" width="100%" layoutH="112">
         <thead>
         <tr>
-            <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
+            <th style="width: 18px; cursor: col-resize;">
+                <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
+            </th>
             <th>所属区域</th>
             <%--<th>业务员编码</th>--%>
             <th>月份</th>
@@ -76,8 +78,10 @@
         </thead>
         <tbody>
         <c:forEach items="${page.list}" var="policy">
-            <tr>
-                <td><div><input name="ids" value="${policy.id}" type="checkbox"></div></td>
+            <tr target="id" rel="${policy.id}">
+                <td>
+                    <div><input name="ids" value="${policy.id}" type="checkbox"></div>
+                </td>
                 <td>${policy.regional}</td>
                 <%--<td>${policy.userCode}</td>--%>
                 <td>${policy.month}</td>

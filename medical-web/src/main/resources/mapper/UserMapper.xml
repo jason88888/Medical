@@ -23,7 +23,7 @@
     where id = #{id}
   </select>
 
-  <select id="findList" parameterType="User" resultType="User">
+  <select id="findList" parameterType="java.util.Map" resultType="User">
     select
     <include refid="Base_Column_List" />
     from sys_user t

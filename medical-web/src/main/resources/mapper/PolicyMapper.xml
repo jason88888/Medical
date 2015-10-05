@@ -32,7 +32,7 @@
     where id = #{id}
   </select>
 
-  <select id="findList" parameterType="java.util.Map" resultType="Policy">
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from medicine_policy t
@@ -103,20 +103,20 @@
     #{id},
     #{regional},
     #{month},
-    #{medicine_code},
-    #{client_code},
-    #{salesman_policy},
-    #{clinical_policy},
-    #{manufacturer_policy},
-    #{two_level_policy},
-    #{three_level_policy},
-    #{add_policy1},
-    #{add_policy2},
-    #{add_policy3},
+    #{medicineCode},
+    #{clientCode},
+    #{salesmanPolicy},
+    #{clinicalPolicy},
+    #{manufacturerPolicy},
+    #{twoLevelPolicy},
+    #{threeLevelPolicy},
+    #{addPolicy1},
+    #{addPolicy2},
+    #{addPolicy3},
     #{price},
-    #{create_date},
-    #{update_date},
-    #{del_flag}
+    #{createDate},
+    #{updateDate},
+    #{delFlag}
     )
   </insert>
 
@@ -124,18 +124,18 @@
     UPDATE medicine_policy SET
     regional = #{regional},
     month = #{month},
-    medicine_code = #{medicine_code},
-    client_code = #{client_code},
-    salesman_policy = #{salesman_policy},
-    clinical_policy = #{clinical_policy},
-    manufacturer_policy = #{manufacturer_policy},
-    two_level_policy = #{two_level_policy},
-    three_level_policy = #{three_level_policy},
-    add_policy1 = #{add_policy1},
-    add_policy2 = #{add_policy2},
-    add_policy3 = #{add_policy3},
+    medicine_code = #{medicineCode},
+    client_code = #{clientCode},
+    salesman_policy = #{salesmanPolicy},
+    clinical_policy = #{clinicalPolicy},
+    manufacturer_policy = #{manufacturerPolicy},
+    two_level_policy = #{twoLevelPolicy},
+    three_level_policy = #{threeLevelPolicy},
+    add_policy1 = #{addPolicy1},
+    add_policy2 = #{addPolicy2},
+    add_policy3 = #{addPolicy3},
     price = #{price},
-    update_date = #{update_date}
+    update_date = #{updateDate}
     WHERE id = #{id}
   </update>
 

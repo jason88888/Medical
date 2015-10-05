@@ -18,10 +18,9 @@ import java.util.List;
  * @description
  */
 @Service
-public class AgentServiceImpl extends CrudService<AgentMapper, Agent> implements IAgentService{
+public class AgentServiceImpl extends CrudService<AgentMapper, Agent> implements IAgentService {
     @Autowired
     private AgentMapper agentMapper;
-
 
     @Override
     public Page<Agent> findAgentList(Page<Agent> page) {

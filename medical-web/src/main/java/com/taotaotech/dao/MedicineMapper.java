@@ -3,11 +3,12 @@ package com.taotaotech.dao;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.domain.Medicine;
-import com.taotaotech.domain.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MedicineMapper  extends CrudMapper<Medicine> {
     int deleteByPrimaryKey(Integer id);
 
