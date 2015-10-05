@@ -5,61 +5,61 @@ import java.util.Date;
 public class Purchasement {
     //id
     private Integer id;
-    //²É¹ºÏúÊÛÀà±ğ
+    //é‡‡è´­é”€å”®ç±»åˆ«
     private String purchaseSaleType;
-    //²É¹º¸¶¿îÈÕÆÚ
+    //é‡‡è´­ä»˜æ¬¾æ—¥æœŸ
     private Date purchasePayDate;
-    //²É¹ºÈë¿âÈÕÆÚ
+    //é‡‡è´­å…¥åº“æ—¥æœŸ
     private Date purchaseStoreDate;
-    //Êµ¼ÊÈë¿âµØµã
+    //å®é™…å…¥åº“åœ°ç‚¹
     private String actualStorePlace;
-    //²É¹ºÉêÇëµ¥ºÅ
+    //é‡‡è´­ç”³è¯·å•å·
     private String purchaseSaleCode;
-    //Ò©Æ·Ãû³Æ
+    //è¯å“åç§°
     private String medicineName;
-    //Éú²ú³§¼Ò
+    //ç”Ÿäº§å‚å®¶
     private String manufacturerName;
-    //¹æ¸ñ
+    //è§„æ ¼
     private String specification;
-    //µ¥Î»
+    //å•ä½
     private String units;
-    //×°ÏäÁ¿
+    //è£…ç®±é‡
     private Integer packageNumber;
-    //ÎÒË¾ÉÏ¼ÒÏú»õµ¥Î»
+    //æˆ‘å¸ä¸Šå®¶é”€è´§å•ä½
     private String saleCompany;
-    //ÎÒË¾»òÏÂ¼Ò¹º»õµ¥Î»
+    //æˆ‘å¸æˆ–ä¸‹å®¶è´­è´§å•ä½
     private String buyCompany;
-    //´ò¿î·ÖÀà
+    //æ‰“æ¬¾åˆ†ç±»
     private String paymentCategory;
-    //¸¶¿î·½Ê½
+    //ä»˜æ¬¾æ–¹å¼
     private String paymentMode;
-    //¹º½øÊıÁ¿
+    //è´­è¿›æ•°é‡
     private Integer purchaseNumber;
-    //²É¹ºµ¥¼Û
+    //é‡‡è´­å•ä»·
     private Long purchasePrice;
-    //¸¶¿î½ğ¶î
+    //ä»˜æ¬¾é‡‘é¢
     private String paymentMoney;
-    //ÒµÎñÁ÷³Ì¼°¼Û
+    //ä¸šåŠ¡æµç¨‹åŠä»·
     private String workFlow;
-    //ÎªËùÊô¿Í»§
+    //ä¸ºæ‰€å±å®¢æˆ·
     private String clientName;
-    //²É¹ºÏúÊÛÇøÓò
+    //é‡‡è´­é”€å”®åŒºåŸŸ
     private String saleArea;
-    //½øÏîµ¥¼Û
+    //è¿›é¡¹å•ä»·
     private Long purchaseUnitPrice;
-    //½øÏî½ğ¶î
+    //è¿›é¡¹é‡‘é¢
     private String purchaseMoney;
-    //Ó¦¸¶Ë°
+    //åº”ä»˜ç¨
     private String tax;
-    //¸¶Ë°·½Ê½
+    //ä»˜ç¨æ–¹å¼
     private String taxPayMode;
-    //¸¶Ë°ÈÕÆÚ
+    //ä»˜ç¨æ—¥æœŸ
     private Date taxPayDate;
-    //·¢Æ±ºÅÂë
+    //å‘ç¥¨å·ç 
     private Integer invoiceNumber;
-    //¿ªÆ±ÈÕÆÚ
+    //å¼€ç¥¨æ—¥æœŸ
     private Date invoiceDate;
-    //²É¹ºÌõÄ¿Éú³ÉÊÇ·ñÒÑºË¶Ô
+    //é‡‡è´­æ¡ç›®ç”Ÿæˆæ˜¯å¦å·²æ ¸å¯¹
     private String ifCheck;
 
     public Integer getId() {

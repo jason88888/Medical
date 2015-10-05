@@ -3,13 +3,13 @@ package com.taotaotech.domain;
 public class PurchaseClient {
     //id
     private Integer id;
-    //ÎÒË¾ÉÏ¼ÒÏú»õµ¥Î»
+    //æˆ‘å¸ä¸Šå®¶é”€è´§å•ä½
     private String saleCompany;
-    //ÎÒË¾»òÏÂ¼Ò¹º»õµ¥Î»
+    //æˆ‘å¸æˆ–ä¸‹å®¶è´­è´§å•ä½
     private String buyCompany;
-    //ÎªËùÊô¿Í»§
+    //ä¸ºæ‰€å±å®¢æˆ·
     private String clientName;
-    //²É¹ºÏúÊÛÇøÓò
+    //é‡‡è´­é”€å”®åŒºåŸŸ
     private String saleArea;
 
     public Integer getId() {

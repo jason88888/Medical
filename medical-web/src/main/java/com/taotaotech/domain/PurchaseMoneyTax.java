@@ -4,27 +4,27 @@ import java.util.Date;
 
 public class PurchaseMoneytax {
     private Integer id;
-    //´ò¿î·ÖÀà
+    //æ‰“æ¬¾åˆ†ç±»
     private String paymentCategory;
-    //¸¶¿î·½Ê½
+    //ä»˜æ¬¾æ–¹å¼
     private String paymentMode;
-    //¸¶¿î½ğ¶î
+    //ä»˜æ¬¾é‡‘é¢
     private String paymentMoney;
-    //ÒµÎñÁ÷³Ì¼°¼Û
+    //ä¸šåŠ¡æµç¨‹åŠä»·
     private String workFlow;
-    //½øÏîµ¥¼Û
+    //è¿›é¡¹å•ä»·
     private Long purchaseUnitPrice;
-    //½øÏî½ğ¶î
+    //è¿›é¡¹é‡‘é¢
     private String purchaseMoney;
-    //Ó¦¸¶Ë°
+    //åº”ä»˜ç¨
     private String tax;
-    //¸¶Ë°·½Ê½
+    //ä»˜ç¨æ–¹å¼
     private String taxPayMode;
-    //¸¶Ë°ÈÕÆÚ
+    //ä»˜ç¨æ—¥æœŸ
     private Date taxPayDate;
-    //·¢Æ±ºÅÂë
+    //å‘ç¥¨å·ç 
     private Integer invoiceNumber;
-    //¿ªÆ±ÈÕÆÚ
+    //å¼€ç¥¨æ—¥æœŸ
     private Date invoiceDate;
 
     public Integer getId() {
