@@ -1,11 +1,13 @@
 package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
-import com.taotaotech.domain.MedicinePolicy;
+import com.taotaotech.core.dto.DWZResponseResult;
+import com.taotaotech.domain.Policy;
 import com.taotaotech.service.IPolicyService;
 import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,14 +25,6 @@ public class PolicyController extends BaseController {
     @Autowired
     private IPolicyService policyService;
 
-    @RequestMapping(value = {"list", ""}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String list(MedicinePolicy medicinePolicy, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-        Page<MedicinePolicy> page = policyService.findPage(new Page<MedicinePolicy>(request, response), medicinePolicy);
-        model.addAttribute("page", page);
-
-        return "policy/policy_list";
-    }
-
     @RequestMapping(value = "upload", method = {RequestMethod.GET})
     public String upload() {
 
@@ -41,5 +35,62 @@ public class PolicyController extends BaseController {
     @ResponseBody
     public Object uploadSave(@RequestParam("file") MultipartFile file) {
         return policyService.parsePolicyTable(file);
+    }
+
+    @RequestMapping(value = {"list", ""}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String list(Policy policy, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+        Page<Policy> page = policyService.findPage(new Page<Policy>(request, response), policy);
+        model.addAttribute("page", page);
+
+        return "policy/policy_list";
+    }
+
+    @RequestMapping(value = "insert", method = {RequestMethod.GET})
+    public String add() {
+
+        return "policy/policy_insert";
+    }
+
+    @RequestMapping(value = "edit", method = {RequestMethod.GET})
+    public String edit(Integer id, Model model) {
+        Policy policy = policyService.get(id);
+        model.addAttribute("policy", policy);
+
+        return "policy/policy_edit";
+    }
+
+    @RequestMapping(value = "view", method = {RequestMethod.GET})
+    public String view(Integer id, Model model) {
+        Policy policy = policyService.get(id);
+        model.addAttribute("policy", policy);
+
+        return "policy/policy_view";
+    }
+
+    @RequestMapping(value = "save", method = {RequestMethod.POST})
+    @ResponseBody
+    public Object save(Policy policy) {
+        policyService.save(policy);
+
+        DWZResponseResult result = new DWZResponseResult();
+        result.setMessage("保存成功");
+        result.setCallbackType("closeCurrent");
+        result.setForwardUrl("policy/list");
+        result.setNavTabId("policy_list");
+
+        return result;
+    }
+
+    @RequestMapping(value = "delete", method = {RequestMethod.POST})
+    @ResponseBody
+    public Object save(Integer[] ids) {
+        policyService.delete(ids);
+
+        DWZResponseResult result = new DWZResponseResult();
+        result.setMessage("删除成功");
+        result.setForwardUrl("policy/list");
+        result.setNavTabId("policy_list");
+
+        return result;
     }
 }

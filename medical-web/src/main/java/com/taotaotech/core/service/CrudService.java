@@ -4,11 +4,13 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.domain.DataEntity;
 import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.core.persistence.Page;
+import com.taotaotech.core.utils.MapUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service基类
@@ -57,7 +59,8 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
      */
     public Page<T> findPage(Page<T> page, T entity) {
         entity.setPage(page);
-        page.setList((PageList)mapper.findList(entity, page.createPageBounds()));
+        Map map = MapUtil.bean2Map(entity);
+        page.setList((PageList)mapper.findList(map, page.createPageBounds()));
         return page;
     }
 

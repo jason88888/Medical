@@ -1,14 +1,12 @@
 package com.taotaotech.domain;
 
+import com.taotaotech.core.domain.DataEntity;
 import com.taotaotech.core.persistence.Page;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-public class MedicinePolicy {
-    private static final long serialVersionUID = 1L;
-
-    private Integer id;
+public class Policy extends DataEntity<Policy> {
 
     private String regional;
 
@@ -42,21 +40,7 @@ public class MedicinePolicy {
 
     private Float price;
 
-    protected Page<MedicinePolicy> page;
-
-    @JsonIgnore
-    @XmlTransient
-    public Page<MedicinePolicy> getPage() {
-        if (page == null){
-            page = new Page<MedicinePolicy>();
-        }
-        return page;
-    }
-
-    public Page<MedicinePolicy> setPage(Page<MedicinePolicy> page) {
-        this.page = page;
-        return page;
-    }
+    protected Page<Policy> page;
 
     public Float getPrice() {
         return price;
@@ -64,14 +48,6 @@ public class MedicinePolicy {
 
     public void setPrice(Float price) {
         this.price = price;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getRegional() {

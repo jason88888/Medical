@@ -2,7 +2,8 @@ package com.taotaotech.service;
 
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
-import com.taotaotech.domain.MedicinePolicy;
+import com.taotaotech.core.service.IBaseService;
+import com.taotaotech.domain.Policy;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -13,10 +14,6 @@ import java.util.List;
  * @eMail cailin618@sina.com
  */
 
-public interface IPolicyService {
+public interface IPolicyService extends IBaseService<Policy> {
     DWZResponseResult parsePolicyTable(MultipartFile file);
-
-    public List<MedicinePolicy> findMedicinePolicyList();
-
-    public Page<MedicinePolicy> findPage(Page<MedicinePolicy> page, MedicinePolicy medicinePolicy);
 }

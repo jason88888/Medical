@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.taotaotech.dao.MedicinePolicyMapper">
-  <resultMap id="BaseResultMap" type="MedicinePolicy">
+<mapper namespace="com.taotaotech.dao.PolicyMapper">
+  <resultMap id="BaseResultMap" type="Policy">
     <id column="id" property="id" jdbcType="INTEGER"/>
     <result column="regional" property="regional" jdbcType="VARCHAR"/>
     <result column="month" property="month" jdbcType="VARCHAR"/>
@@ -16,12 +16,136 @@
     <result column="add_policy2" property="addPolicy2" jdbcType="REAL"/>
     <result column="add_policy3" property="addPolicy3" jdbcType="REAL"/>
     <result column="price" property="price" jdbcType="REAL"/>
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
   </resultMap>
   <sql id="Base_Column_List">
     id, regional, month, medicine_code, client_code, salesman_policy, clinical_policy,
     manufacturer_policy, two_level_policy, three_level_policy,
-    add_policy1, add_policy2, add_policy3,price
+    add_policy1, add_policy2, add_policy3, price, create_date, update_date, del_flag
   </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="Policy">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM medicine_policy
+    where id = #{id}
+  </select>
+
+  <select id="findList" parameterType="java.util.Map" resultType="Policy">
+    select
+    <include refid="Base_Column_List" />
+    from medicine_policy t
+    <where>
+      del_flag = 0
+      <if test="regional != null and regional != ''">
+        AND regional = #{regional}
+      </if>
+      <if test="month != null and month != ''">
+        AND month = #{month}
+      </if>
+      <if test="medicineCode != null and medicineCode != ''">
+        AND medicine_code LIKE '%' #{medicineCode} '%'
+      </if>
+      <if test="clientCode != null and clientCode != ''">
+        AND client_code LIKE '%' #{clientCode} '%'
+      </if>
+      <if test="salesmanPolicy != null and salesmanPolicy != ''">
+        AND salesman_policy = #{salesmanPolicy}
+      </if>
+      <if test="clinicalPolicy != null and clinicalPolicy != ''">
+        AND clinical_policy = #{clinicalPolicy}
+      </if>
+      <if test="manufacturerPolicy != null and manufacturerPolicy != ''">
+        AND manufacturer_policy = #{manufacturerPolicy}
+      </if>
+      <if test="twoLevelPolicy != null and twoLevelPolicy != ''">
+        AND two_level_policy = #{twoLevelPolicy}
+      </if>
+      <if test="threeLevelPolicy != null and threeLevelPolicy != ''">
+        AND three_level_policy = #{threeLevelPolicy}
+      </if>
+      <if test="addPolicy1 != null and addPolicy1 != ''">
+        AND add_policy1 = #{addPolicy1}
+      </if>
+      <if test="addPolicy2 != null and addPolicy2 != ''">
+        AND add_policy2 = #{addPolicy2}
+      </if>
+      <if test="addPolicy3 != null and addPolicy3 != ''">
+        AND add_policy3 = #{addPolicy3}
+      </if>
+      <if test="price != null and price != ''">
+        AND price = #{price}
+      </if>
+    </where>
+    <choose>
+      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+        ORDER BY ${page.orderBy}
+      </when>
+      <otherwise>
+        ORDER BY t.id DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="findAllList" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM medicine_policy
+    WHERE del_flag = #{DEL_FLAG_NORMAL}
+    ORDER BY create_date DESC
+  </select>
+
+  <insert id="insert" parameterType="Policy" >
+    INSERT INTO medicine_policy
+    (<include refid="Base_Column_List" />)
+    VALUES (
+    #{id},
+    #{regional},
+    #{month},
+    #{medicine_code},
+    #{client_code},
+    #{salesman_policy},
+    #{clinical_policy},
+    #{manufacturer_policy},
+    #{two_level_policy},
+    #{three_level_policy},
+    #{add_policy1},
+    #{add_policy2},
+    #{add_policy3},
+    #{price},
+    #{create_date},
+    #{update_date},
+    #{del_flag}
+    )
+  </insert>
+
+  <update id="update" parameterType="Policy" >
+    UPDATE medicine_policy SET
+    regional = #{regional},
+    month = #{month},
+    medicine_code = #{medicine_code},
+    client_code = #{client_code},
+    salesman_policy = #{salesman_policy},
+    clinical_policy = #{clinical_policy},
+    manufacturer_policy = #{manufacturer_policy},
+    two_level_policy = #{two_level_policy},
+    three_level_policy = #{three_level_policy},
+    add_policy1 = #{add_policy1},
+    add_policy2 = #{add_policy2},
+    add_policy3 = #{add_policy3},
+    price = #{price},
+    update_date = #{update_date}
+    WHERE id = #{id}
+  </update>
+
+  <!-- 逻辑删除用户 -->
+  <update id="delete">
+    UPDATE medicine_policy SET
+    del_flag = TRUE
+    WHERE id = #{id}
+  </update>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
     <include refid="Base_Column_List"/>
@@ -32,19 +156,7 @@
     delete from medicine_policy
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="MedicinePolicy">
-    insert into medicine_policy (id, regional,
-      month, medicine_code, client_code, 
-      salesman_policy, clinical_policy, manufacturer_policy,  two_level_policy,
-      three_level_policy, add_policy1, add_policy2, 
-      add_policy3,price)
-    values (#{id,jdbcType=INTEGER}, #{regional,jdbcType=VARCHAR},
-      #{month,jdbcType=VARCHAR}, #{medicineCode,jdbcType=VARCHAR}, #{clientCode,jdbcType=VARCHAR}, 
-      #{salesmanPolicy,jdbcType=REAL}, #{clinicalPolicy,jdbcType=REAL}, #{manufacturerPolicy,jdbcType=REAL}, 
-      #{twoLevelPolicy,jdbcType=REAL},#{threeLevelPolicy,jdbcType=REAL}, #{addPolicy1,jdbcType=REAL},
-      #{addPolicy2,jdbcType=REAL}, #{addPolicy3,jdbcType=REAL},#{price,jdbcType=REAL})
-  </insert>
-  <insert id="insertSelective" parameterType="MedicinePolicy">
+  <insert id="insertSelective" parameterType="Policy">
     insert into medicine_policy
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -135,7 +247,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="MedicinePolicy">
+  <update id="updateByPrimaryKeySelective" parameterType="Policy">
     update medicine_policy
     <set>
       <if test="regional != null">
@@ -180,7 +292,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="MedicinePolicy">
+  <update id="updateByPrimaryKey" parameterType="Policy">
     update medicine_policy
     set regional = #{regional,jdbcType=VARCHAR},
       month = #{month,jdbcType=VARCHAR},
@@ -197,11 +309,6 @@
       price = #{price,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="findMedicinePolicyList" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select
-    <include refid="Base_Column_List"/>
-    from medicine_policy
-  </select>
   <select id="existByMonthAndClientAndMedicine" resultType="java.lang.Boolean">
     select
     COUNT(id)
@@ -217,60 +324,6 @@
     where month = #{month,jdbcType=VARCHAR}
     AND medicine_code = #{medicineCode,jdbcType=VARCHAR}
     AND client_code = #{clientCode,jdbcType=VARCHAR}
-  </select>
-  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM medicine_policy t
-    <where>
-      <if test="regional != null and regional != ''">
-        regional = #{regional}
-      </if>
-      <if test="month != null and month != ''">
-        AND month = #{month}
-      </if>
-      <if test="medicineCode != null and medicineCode != ''">
-        AND medicineCode LIKE '%' #{medicineCode} '%'
-      </if>
-      <if test="clientCode != null and clientCode != ''">
-        AND clientCode LIKE '%' #{clientCode} '%'
-      </if>
-      <if test="salesmanPolicy != null and salesmanPolicy != ''">
-        AND salesmanPolicy = #{salesmanPolicy}
-      </if>
-      <if test="clinicalPolicy != null and clinicalPolicy != ''">
-        AND clinicalPolicy = #{clinicalPolicy}
-      </if>
-      <if test="manufacturerPolicy != null and manufacturerPolicy != ''">
-        AND manufacturerPolicy = #{manufacturerPolicy}
-      </if>
-      <if test="twoLevelPolicy != null and twoLevelPolicy != ''">
-        AND twoLevelPolicy = #{twoLevelPolicy}
-      </if>
-      <if test="threeLevelPolicy != null and threeLevelPolicy != ''">
-        AND threeLevelPolicy = #{threeLevelPolicy}
-      </if>
-      <if test="addPolicy1 != null and addPolicy1 != ''">
-        AND addPolicy1 = #{addPolicy1}
-      </if>
-      <if test="addPolicy2 != null and addPolicy2 != ''">
-        AND addPolicy2 = #{addPolicy2}
-      </if>
-      <if test="addPolicy3 != null and addPolicy3 != ''">
-        AND addPolicy3 = #{addPolicy3}
-      </if>
-      <if test="price != null and price != ''">
-        AND price = #{price}
-      </if>
-    </where>
-    <choose>
-      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
-        ORDER BY ${page.orderBy}
-      </when>
-      <otherwise>
-        ORDER BY t.id DESC
-      </otherwise>
-    </choose>
   </select>
 
 </mapper>

@@ -13,10 +13,6 @@ import java.util.Map;
 public interface UserMapper extends CrudMapper<User> {
     int deleteByPrimaryKey(Integer id);
 
-    int delete(List<Integer> ids);
-
-    int insert(User record);
-
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer id);
@@ -28,8 +24,4 @@ public interface UserMapper extends CrudMapper<User> {
     int updateByPrimaryKey(User record);
 
     Boolean existBySalesmanCode(@Param("code")String code);
-
-    List<User> findAllList();
-
-    List<User> findList(Map user, PageBounds pageBounds);
 }

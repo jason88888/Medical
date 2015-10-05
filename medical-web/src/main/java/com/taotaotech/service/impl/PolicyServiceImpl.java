@@ -2,12 +2,13 @@ package com.taotaotech.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.dto.DWZResponseResult;
+import com.taotaotech.core.service.CrudService;
 import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.core.utils.ProcessPolicylUtil;
 import com.taotaotech.dao.AgentMapper;
-import com.taotaotech.dao.MedicinePolicyMapper;
+import com.taotaotech.dao.PolicyMapper;
 import com.taotaotech.dao.UserMapper;
-import com.taotaotech.domain.MedicinePolicy;
+import com.taotaotech.domain.Policy;
 import com.taotaotech.dto.ImportPolicy;
 import com.taotaotech.service.IPolicyService;
 import com.taotaotech.core.persistence.Page;
@@ -28,10 +29,10 @@ import java.util.Map;
  * @eMail cailin618@sina.com
  */
 @Service
-public class PolicyServiceImpl implements IPolicyService {
+public class PolicyServiceImpl extends CrudService<PolicyMapper, Policy> implements IPolicyService {
 
     @Autowired
-    MedicinePolicyMapper policyMapper;
+    PolicyMapper policyMapper;
 
     @Autowired
     UserMapper userMapper;
@@ -62,7 +63,7 @@ public class PolicyServiceImpl implements IPolicyService {
                     List<ImportPolicy> importPolicies = ProcessPolicylUtil.getImportPolicys(hssfSheet);
                     for (int index = 0; index < importPolicies.size(); index++) {
                         ImportPolicy ip = importPolicies.get(index);
-                        generateMedicinePolicy(ip);
+                        generatePolicy(ip);
                     }
                     break;
                 }
@@ -82,22 +83,7 @@ public class PolicyServiceImpl implements IPolicyService {
         return result;
     }
 
-    @Override
-    public List<MedicinePolicy> findMedicinePolicyList() {
-        return policyMapper.findMedicinePolicyList();
-    }
-
-    @Override
-    public Page<MedicinePolicy> findPage(Page<MedicinePolicy> page, MedicinePolicy medicinePolicy) {
-        Map map = MapUtil.bean2Map(medicinePolicy);
-        PageList<MedicinePolicy> medicinePolicies = (PageList)policyMapper.findList(map, page.createPageBounds());
-
-        page.setList(medicinePolicies);
-        return page;
-    }
-
-
-    private Boolean generateMedicinePolicy( ImportPolicy ip ){
+    private Boolean generatePolicy(ImportPolicy ip){
         if (ip.getClientCode()==null || ip.getClientCode().equals("") ||
             ip.getMedicineCode()==null || ip.getMedicineCode().equals("") ||
             ip.getMonth()==null || ip.getMonth().equals("") ){
@@ -105,7 +91,7 @@ public class PolicyServiceImpl implements IPolicyService {
         }
         if (!policyMapper.existByMonthAndClientAndMedicine(ip.getClientCode(), ip.getMedicineCode(), ip.getMonth())){
 
-            MedicinePolicy policy = new MedicinePolicy();
+            Policy policy = new Policy();
             policy.setRegional(ip.getRegionalName());
             policy.setMonth(ip.getMonth());
             policy.setMedicineCode(ip.getMedicineCode());

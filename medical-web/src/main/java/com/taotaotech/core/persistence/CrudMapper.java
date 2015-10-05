@@ -6,6 +6,7 @@ package com.taotaotech.core.persistence;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * DAO支持类实现
@@ -26,20 +27,31 @@ public interface CrudMapper<T> extends BaseMapper {
 	 * @return
 	 */
 	public T get(T entity);
-	
-	/**
-	 * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(entity);
-	 * @param entity
-	 * @return
-	 */
-	public List<T> findList(T entity);
 
     /**
      * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(entity, page.createPageBounds());
      * @param entity
      * @return
      */
+    @Deprecated
+	public List<T> findList(T entity);
+
+    /**
+     * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(entity, page.createPageBounds());
+     * @param entity
+     * @param pageBounds
+     * @return
+     */
+    @Deprecated
 	public List<T> findList(T entity, PageBounds pageBounds);
+
+    /**
+     * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(map, page.createPageBounds());
+     * @param map
+     * @param pageBounds
+     * @return
+     */
+	public List<T> findList(Map map, PageBounds pageBounds);
 
 	/**
 	 * 查询所有数据列表

@@ -38,12 +38,6 @@
       <if test="role != null and role != ''">
         AND role = #{role}
       </if>
-      <if test="createDate != null and createDate != ''">
-        AND create_date = #{createDate}
-      </if>
-      <if test="updateDate != null and updateDate != ''">
-        AND update_date = #{updateDate}
-      </if>
     </where>
     <choose>
       <when test="page !=null and page.orderBy != null and page.orderBy != ''">

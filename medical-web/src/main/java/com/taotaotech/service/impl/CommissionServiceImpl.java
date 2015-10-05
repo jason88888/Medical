@@ -5,7 +5,7 @@ import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.MapUtil;
 import com.taotaotech.dao.*;
 import com.taotaotech.domain.Bill;
-import com.taotaotech.domain.MedicinePolicy;
+import com.taotaotech.domain.Policy;
 import com.taotaotech.dto.Commission;
 import com.taotaotech.service.ICommissionService;
 import com.taotaotech.core.persistence.Page;
@@ -25,7 +25,7 @@ public class CommissionServiceImpl implements ICommissionService {
     private BillMapper billMapper;
 
     @Autowired
-    private MedicinePolicyMapper medicinePolicyMapper;
+    private PolicyMapper policyMapper;
 
     @Override
     public Page<Commission> findCommissionList(Page page, Bill billR) {
@@ -52,7 +52,7 @@ public class CommissionServiceImpl implements ICommissionService {
             calendar.setTime(date);
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH) + 1;
-            MedicinePolicy policy = medicinePolicyMapper.getPolicyByMonthAndClientAndMedicine(bill.getClientCode(),
+            Policy policy = policyMapper.getPolicyByMonthAndClientAndMedicine(bill.getClientCode(),
                     bill.getMedicineCode(), year + "/" + month);
             if (policy == null) {//没找到对应的政策
                 continue;
