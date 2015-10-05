@@ -1,8 +1,8 @@
 package com.taotaotech.service;
 
+import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Medicine;
 import com.taotaotech.domain.Purchasement;
-import com.taotaotech.service.Page;
 
 /**
  * @author zk

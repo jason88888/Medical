@@ -1,9 +1,9 @@
 package com.taotaotech.service.impl;
 
+import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Purchasement;
 import com.taotaotech.service.IBillService;
 import com.taotaotech.service.IPurchaseService;
-import com.taotaotech.service.Page;
 import org.springframework.stereotype.Service;
 
 /**
