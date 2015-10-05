@@ -1,6 +1,8 @@
 package com.taotaotech.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.taotaotech.core.service.CrudService;
 import com.taotaotech.dao.MedicineMapper;
 import com.taotaotech.domain.Medicine;
 import com.taotaotech.service.IMedicineService;
@@ -17,39 +19,17 @@ import java.util.List;
  * @description
  */
 @Service
-public class MedicineServiceImpl implements IMedicineService {
+public class MedicineServiceImpl  extends CrudService<MedicineMapper,Medicine> implements IMedicineService {
     @Autowired
     private MedicineMapper medicineMapper;
 
     @Override
-    public Page<Medicine> findMedicineList(Page<Medicine> page) {
-        PageList<Medicine> list = (PageList) medicineMapper.findMedicineList(page.createPageBounds());
-        page.setList(list);
-        return page;
+    public List<Medicine> findMedicineList() {
+        return medicineMapper.findMedicineList(new PageBounds());
     }
 
     @Override
-    public Medicine get(Integer id) {
-        return medicineMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public int delete(Integer[] ids) {
-        List<Integer> list = new ArrayList<Integer>();
-        for (Integer id : ids) {
-            list.add(id);
-        }
-        return medicineMapper.delete(list);
-    }
-
-    @Override
-    public int save(Medicine medicine) {
-        int result = 0;
-        if (medicine.getId() != null && medicine.getId() != 0) {
-            result = medicineMapper.updateByPrimaryKey(medicine);
-        } else {
-            medicineMapper.insert(medicine);
-        }
-        return result;
+    public Boolean existByMedicineCodeAndLotNumber(String code, String lotNumber) {
+        return medicineMapper.existByMedicineCodeAndLotNumber(code,lotNumber);
     }
 }

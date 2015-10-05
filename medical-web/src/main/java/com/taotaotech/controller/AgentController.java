@@ -55,7 +55,7 @@ public class AgentController extends BaseController {
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Agent agent) {
-        int count = agentService.save(agent);
+        agentService.save(agent);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
@@ -67,7 +67,7 @@ public class AgentController extends BaseController {
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Integer[] ids) {
-        int count = agentService.delete(ids);
+        agentService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
         result.setForwardUrl("agent/list");

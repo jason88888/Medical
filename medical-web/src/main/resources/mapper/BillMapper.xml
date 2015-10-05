@@ -21,7 +21,7 @@
     <sql id="Base_Column_List">
     id, code, date, number,client_code,client_name,two_level_code,two_level_name,three_level_code,three_level_name,user_code,user_name,medicine_name,medicine_code,regional
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
         from bill
@@ -87,6 +87,12 @@
             <if test="regional != null">
                 regional,
             </if>
+            <if test="createDate != null" >
+                create_date,
+            </if>
+            <if test="updateDate != null" >
+                update_date,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -134,9 +140,15 @@
             <if test="regional != null">
                 #{regional,jdbcType=VARCHAR},
             </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=DATE},
+            </if>
+            <if test="updateDate != null" >
+                #{updateDate,jdbcType=DATE},
+            </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="Bill">
+    <update id="update" parameterType="Bill">
         update bill
         <set>
             <if test="code != null">
@@ -181,6 +193,9 @@
             <if test="regional != null">
                 regional = #{regional,jdbcType=VARCHAR},
             </if>
+            <if test="updateDate != null" >
+                update_date = #{updateDate,jdbcType=DATE},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -205,10 +220,11 @@
     <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        from bill
+        from bill b
         <where>
+            del_flag = 0
             <if test="clientCode != null">
-                client_code LIKE '%${clientCode}%'
+               AND client_code LIKE '%${clientCode}%'
             </if>
             <if test="clientName != null">
                 AND client_name LIKE  '%${clientName}%'
@@ -241,8 +257,16 @@
                AND user_code = #{userCode,jdbcType=VARCHAR}
             </if>
         </where>
+        ORDER BY b.date DESC
     </select>
 
+    <select id="isNotCurrentMonthData" resultType="java.lang.Boolean" parameterType="java.util.List">
+        select  COUNT(b.id)  FROM bill b WHERE id IN
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        AND month(b.date)!=month(SYSDATE())
+    </select>
 
     <select id="existByBillCode" resultType="java.lang.Boolean">
     select
@@ -250,4 +274,9 @@
     from bill
     where code = #{code,jdbcType=VARCHAR}
   </select>
+
+    <update id="delete" parameterType="java.lang.Integer">
+        update bill set del_flag = 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

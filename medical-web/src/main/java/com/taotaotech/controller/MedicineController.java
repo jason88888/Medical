@@ -30,7 +30,7 @@ public class MedicineController extends BaseController {
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public String list(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
-        Page<Medicine> page = medicineService.findMedicineList(new Page<Medicine>(request, response));
+        Page<Medicine> page = medicineService.findPage(new Page<Medicine>(request, response), new Medicine());
         model.addAttribute("page", page);
         return "medicine/medicine_list";
     }
@@ -58,7 +58,7 @@ public class MedicineController extends BaseController {
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Medicine medicine) {
-        int count = medicineService.save(medicine);
+        medicineService.save(medicine);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
@@ -70,7 +70,7 @@ public class MedicineController extends BaseController {
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Integer[] ids) {
-        int count = medicineService.delete(ids);
+        medicineService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
         result.setForwardUrl("medicine/list");

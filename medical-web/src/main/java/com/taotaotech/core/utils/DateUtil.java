@@ -1050,4 +1050,16 @@ public final class DateUtil implements Serializable {
         return result;
     }
 
+
+    public static boolean isCurrentMonth(String sDate,String format){
+        Date date = getDate(sDate,format);
+        Date currentDate = new Date();
+        int year = date.getYear() - currentDate.getYear();
+        int month = date.getMonth() - currentDate.getMonth();
+        boolean currentMonth = false;
+        if (0 == year && 0 == month){
+            currentMonth = true;
+        }
+        return currentMonth;
+    }
 }

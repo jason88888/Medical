@@ -1,6 +1,7 @@
 package com.taotaotech.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.taotaotech.core.service.CrudService;
 import com.taotaotech.dao.AgentMapper;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.service.IAgentService;
@@ -17,7 +18,7 @@ import java.util.List;
  * @description
  */
 @Service
-public class AgentServiceImpl implements IAgentService{
+public class AgentServiceImpl extends CrudService<AgentMapper, Agent> implements IAgentService{
     @Autowired
     private AgentMapper agentMapper;
 
@@ -29,28 +30,8 @@ public class AgentServiceImpl implements IAgentService{
         return page;
     }
 
-    @Override
-    public int save(Agent agent) {
-        int result = 0;
-        if (agent.getId() != null && agent.getId() != 0) {
-            result = agentMapper.updateByPrimaryKey(agent);
-        } else {
-            agentMapper.insert(agent);
-        }
-        return result;
+    public Boolean existByAgentCode(String code){
+        return agentMapper.existByAgentCode(code);
     }
 
-    @Override
-    public Agent get(Integer id) {
-        return agentMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public int delete(Integer[] ids) {
-        List<Integer> list = new ArrayList<Integer>();
-        for (Integer id : ids) {
-            list.add(id);
-        }
-        return agentMapper.delete(list);
-    }
 }

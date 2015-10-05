@@ -1,7 +1,9 @@
 package com.taotaotech.domain;
 
 
-public class Bill {
+import com.taotaotech.core.domain.DataEntity;
+
+public class Bill extends DataEntity<Bill>{
     private Integer id;
 
     private String code; // 单据编号

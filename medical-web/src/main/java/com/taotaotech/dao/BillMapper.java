@@ -1,6 +1,7 @@
 package com.taotaotech.dao;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Bill;
 import org.apache.ibatis.annotations.Param;
@@ -8,14 +9,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-public interface BillMapper {
+public interface BillMapper extends CrudMapper<Bill> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Bill record);
 
     int insertSelective(Bill record);
-
-    Bill selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Bill record);
 
@@ -24,4 +23,6 @@ public interface BillMapper {
     List<Bill> findList(Map bill, PageBounds pageBounds);
 
     Boolean existByBillCode(@Param("code") String code);
+
+    Boolean isNotCurrentMonthData(List<Integer> ids);
 }

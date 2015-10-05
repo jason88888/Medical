@@ -74,6 +74,13 @@ public interface CrudMapper<T> extends BaseMapper {
 	 * @return
 	 */
 	public int insert(T entity);
+
+	/**
+	 * 插入数据
+	 * @param entity
+	 * @return
+	 */
+	public int insertSelective(T entity);
 	
 	/**
 	 * 更新数据

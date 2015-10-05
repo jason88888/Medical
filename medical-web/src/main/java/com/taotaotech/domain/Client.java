@@ -1,9 +1,11 @@
 package com.taotaotech.domain;
 
+import com.taotaotech.core.domain.DataEntity;
+
 /**
  * 客户，包括医院等
  */
-public class Client {
+public class Client  extends DataEntity<Client> {
     private Integer id;
 
     private String code;

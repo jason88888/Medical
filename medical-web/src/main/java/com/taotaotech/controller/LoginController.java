@@ -42,7 +42,7 @@ public class LoginController extends BaseController {
         }
         if (user != null) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("");
+            return "sys/index";
         }
         if (request.getMethod().equals("POST")) {
             request.setAttribute("message", new Message(Message.ERROR, "用户名或密码错误！"));

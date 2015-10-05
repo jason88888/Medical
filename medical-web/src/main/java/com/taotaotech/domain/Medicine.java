@@ -1,6 +1,8 @@
 package com.taotaotech.domain;
 
-public class Medicine {
+import com.taotaotech.core.domain.DataEntity;
+
+public class Medicine  extends DataEntity<Medicine> {
     private Integer id;
 
     private String code;

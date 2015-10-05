@@ -59,7 +59,7 @@ public class LoingInterceptor implements HandlerInterceptor {
         //这里可以根据session的用户来判断角色的权限，根据权限来重定向不同的页面，简单起见，这里只是做了一个重定向
         if (null ==user) {
             //被拦截，重定向到login界面
-            response.sendRedirect("/");
+            response.sendRedirect("");
             return false;
         }
         return true;

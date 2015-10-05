@@ -75,7 +75,7 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
             mapper.update(entity);
         } else {
             entity.preInsert();
-            mapper.insert(entity);
+            mapper.insertSelective(entity);
         }
     }
 
@@ -90,7 +90,7 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
 
     /**
      * 批量删除数据
-     * @param entity
+     * @param ids
      */
     @Transactional(readOnly = false)
     public void delete(Integer[] ids) {

@@ -17,4 +17,6 @@ public interface IUserService extends IBaseService<User> {
     User login(String username,String password);
 
     ResponseResult isValidUser(String username,String password);
+
+    public Boolean existBySalesmanCode(String coder);
 }

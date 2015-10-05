@@ -29,7 +29,7 @@ public class ClientController extends BaseController {
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
     public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
 
-        Page<Client> page = clientService.findClientList(new Page<Client>(request, response));
+        Page<Client> page = clientService.findPage(new Page<Client>(request, response), new Client());
         model.addAttribute("page", page);
         return "client/client_list";
     }
@@ -56,7 +56,7 @@ public class ClientController extends BaseController {
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Client client) {
-        int count = clientService.save(client);
+        clientService.save(client);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
@@ -68,7 +68,7 @@ public class ClientController extends BaseController {
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Integer[] ids) {
-        int count = clientService.delete(ids);
+        clientService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
         result.setForwardUrl("client/list");

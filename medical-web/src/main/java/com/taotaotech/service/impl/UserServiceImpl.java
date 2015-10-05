@@ -41,4 +41,9 @@ public class UserServiceImpl extends CrudService<UserMapper, User> implements IU
         }
         return result;
     }
+
+    public Boolean existBySalesmanCode(String coder){
+       return userMapper.existBySalesmanCode(coder);
+    }
+
 }

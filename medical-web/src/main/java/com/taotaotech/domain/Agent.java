@@ -1,6 +1,8 @@
 package com.taotaotech.domain;
 
-public class Agent {
+import com.taotaotech.core.domain.DataEntity;
+
+public class Agent extends DataEntity<Agent>{
     private Integer id;
 
     private String code;
