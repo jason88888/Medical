@@ -57,7 +57,7 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
      */
     public Page<T> findPage(Page<T> page, T entity) {
         entity.setPage(page);
-        page.setList((PageList)mapper.findList(entity));
+        page.setList((PageList)mapper.findList(entity, page.createPageBounds()));
         return page;
     }
 

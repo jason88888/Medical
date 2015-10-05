@@ -28,7 +28,7 @@
     <include refid="Base_Column_List" />
     from sys_user t
     <where>
-      del_flag = #{DEL_FLAG_NORMAL}
+      del_flag = 0
       <if test="code != null and code != ''">
         AND code like '%${code}%'
       </if>

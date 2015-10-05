@@ -3,6 +3,8 @@
  */
 package com.taotaotech.core.persistence;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+
 import java.util.List;
 
 /**
@@ -26,12 +28,19 @@ public interface CrudMapper<T> extends BaseMapper {
 	public T get(T entity);
 	
 	/**
-	 * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(new Page<T>());
+	 * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(entity);
 	 * @param entity
 	 * @return
 	 */
 	public List<T> findList(T entity);
-	
+
+    /**
+     * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(entity, page.createPageBounds());
+     * @param entity
+     * @return
+     */
+	public List<T> findList(T entity, PageBounds pageBounds);
+
 	/**
 	 * 查询所有数据列表
 	 * @param entity
