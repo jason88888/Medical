@@ -1,17 +1,17 @@
 package com.taotaotech.dao;
 
-import com.taotaotech.domain.PurchaseMoneytax;
+import com.taotaotech.domain.PurchaseMoneytax2;
 
 public interface PurchaseMoneytaxMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(PurchaseMoneytax record);
+    int insert(PurchaseMoneytax2 record);
 
-    int insertSelective(PurchaseMoneytax record);
+    int insertSelective(PurchaseMoneytax2 record);
 
-    PurchaseMoneytax selectByPrimaryKey(Integer id);
+    PurchaseMoneytax2 selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(PurchaseMoneytax record);
+    int updateByPrimaryKeySelective(PurchaseMoneytax2 record);
 
-    int updateByPrimaryKey(PurchaseMoneytax record);
+    int updateByPrimaryKey(PurchaseMoneytax2 record);
 }

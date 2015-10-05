@@ -2,7 +2,7 @@ package com.taotaotech.domain;
 
 import java.util.Date;
 
-public class PurchaseMoneytax {
+public class PurchaseMoneytax2 {
     private Integer id;
     //打款分类
     private String paymentCategory;
