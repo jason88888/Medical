@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotaotech.dao.PurchaseMoneytaxMapper" >
-  <resultMap id="BaseResultMap" type="com.taotaotech.domain.PurchaseMoneytax2" >
+  <resultMap id="BaseResultMap" type="com.taotaotech.domain.PurchaseMoneytax" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="payment_category" property="paymentCategory" jdbcType="VARCHAR" />
     <result column="payment_mode" property="paymentMode" jdbcType="VARCHAR" />
@@ -29,7 +29,7 @@
     delete from purchase_moneytax
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.PurchaseMoneytax2" >
+  <insert id="insert" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -42,7 +42,7 @@
       #{tax,jdbcType=VARCHAR}, #{taxPayMode,jdbcType=VARCHAR}, #{taxPayDate,jdbcType=TIMESTAMP}, 
       #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseMoneytax2" >
+  <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -118,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.PurchaseMoneytax2" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
     update purchase_moneytax
     <set >
       <if test="paymentCategory != null" >
@@ -157,7 +157,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.PurchaseMoneytax2" >
+  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
     update purchase_moneytax
     set payment_category = #{paymentCategory,jdbcType=VARCHAR},
       payment_mode = #{paymentMode,jdbcType=VARCHAR},
