@@ -1,16 +1,13 @@
 package com.taotaotech.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.service.CrudService;
 import com.taotaotech.dao.MedicineMapper;
 import com.taotaotech.domain.Medicine;
 import com.taotaotech.service.IMedicineService;
-import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

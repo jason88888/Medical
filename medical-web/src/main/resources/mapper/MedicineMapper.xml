@@ -154,6 +154,11 @@
     <include refid="Base_Column_List" />
     from medicine
   </select>
+  <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from medicine
+  </select>
 
   <select id="existByMedicineCodeAndLotNumber" resultType="java.lang.Boolean">
     select

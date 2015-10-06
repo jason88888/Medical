@@ -118,7 +118,6 @@ public class BillServiceImpl extends CrudService<BillMapper,Bill> implements IBi
     public Page<Bill> findPage(Page<Bill> page, Bill bill) {
         Map map = MapUtil.bean2Map(bill);
         PageList<Bill> bills = (PageList)billMapper.findList(map, page.createPageBounds());
-
         page.setList(bills);
         return page;
     }

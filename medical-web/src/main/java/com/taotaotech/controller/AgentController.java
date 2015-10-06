@@ -3,6 +3,7 @@ package com.taotaotech.controller;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.domain.Agent;
+import com.taotaotech.domain.Medicine;
 import com.taotaotech.service.IAgentService;
 import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class AgentController extends BaseController {
     private IAgentService agentService;
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
     public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
-        Page<Agent> page = agentService.findAgentList(new Page<Agent>(request,response));
+        Page<Agent> page = agentService.findPage(new Page<Agent>(request, response), new Agent());
         model.addAttribute("page", page);
         return "agent/agent_list";
     }

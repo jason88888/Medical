@@ -46,7 +46,6 @@ public class UserController extends BaseController {
     public String list(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
         Page<User> page = userService.findPage(new Page<User>(request, response), user);
         model.addAttribute("page", page);
-
         return "user/user_list";
     }
 
