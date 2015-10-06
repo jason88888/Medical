@@ -108,13 +108,18 @@ public class PolicyServiceImpl extends CrudService<PolicyMapper, Policy> impleme
             policy.setAddPolicy2(Float.parseFloat(ip.getAddPolicy2()));
             policy.setAddPolicy3(Float.parseFloat(ip.getAddPolicy3()));
             policy.setPrice(Float.parseFloat(ip.getPrice()));
-            policyMapper.insertSelective(policy);
+            save(policy);
             return true;
         }
         return false;
     }
 
-//    private Boolean generateSalesman(ImportPolicy ip){
+    @Override
+    public boolean existByMonthAndClientAndMedicine(String clientCode, String medicineCode, String month) {
+        return policyMapper.existByMonthAndClientAndMedicine(clientCode,medicineCode,month);
+    }
+
+    //    private Boolean generateSalesman(ImportPolicy ip){
 //        if (ip.getSalesmanName()==null || ip.getSalesmanName().equals("") ||
 //            ip.getSalesmanCode()==null || ip.getSalesmanCode().equals("") ){
 //            return false;

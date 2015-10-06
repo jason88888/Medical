@@ -16,4 +16,5 @@ import java.util.List;
 
 public interface IPolicyService extends IBaseService<Policy> {
     DWZResponseResult parsePolicyTable(MultipartFile file);
+    boolean existByMonthAndClientAndMedicine(String clientCode,String medicineCode,String month);
 }
