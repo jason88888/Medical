@@ -11,36 +11,101 @@
     <result column="price" property="price" jdbcType="REAL" />
     <result column="lot_number" property="lotNumber" jdbcType="VARCHAR" />
     <result column="validity_period" property="validityPeriod" jdbcType="VARCHAR" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, name, specification, manufacturer_name, units, price, lot_number, validity_period
+    id, code, name, specification, manufacturer_name, units, price, lot_number, validity_period, create_date, update_date, del_flag
   </sql>
 
-  <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="get" resultMap="BaseResultMap" parameterType="Medicine" >
     select
     <include refid="Base_Column_List" />
     from medicine
-    WHERE del_flag = FALSE
+    where id = #{id}
   </select>
 
-  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from medicine
-    where id = #{id,jdbcType=INTEGER}
+    from medicine t
+    <where>
+      del_flag = 0
+      <if test="code != null and code != ''">
+        and code LIKE '%' #{code} '%'
+      </if>
+      <if test="name != null and name != ''">
+        and name LIKE '%' #{name} '%'
+      </if>
+      <if test="specification != null and specification != ''">
+        and specification = #{specification}
+      </if>
+      <if test="manufacturer_name != null and manufacturer_name != ''">
+        and manufacturer_name = #{manufacturer_name}
+      </if>
+      <if test="units != null and units != ''">
+        and units = #{units}
+      </if>
+      <if test="price != null and price != ''">
+        and price = #{price}
+      </if>
+      <if test="lot_number != null and lot_number != ''">
+        and lot_number = #{lot_number}
+      </if>
+      <if test="validity_period != null and validity_period != ''">
+        and validity_period = #{validity_period}
+      </if>
+    </where>
+    <choose>
+      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+        ORDER BY ${page.orderBy}
+      </when>
+      <otherwise>
+        ORDER BY t.id DESC
+      </otherwise>
+    </choose>
   </select>
+
+  <select id="findAllList" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM medicine
+    WHERE del_flag = FALSE
+    ORDER BY create_date DESC
+  </select>
+
+  <insert id="insert" parameterType="Medicine" >
+    INSERT INTO medicine
+    (<include refid="Base_Column_List" />)
+    VALUES (
+    #{id},
+    #{code},
+    #{name},
+    #{specification},
+    #{manufacturer_name},
+    #{units},
+    #{price},
+    #{lot_number},
+    #{validity_period},
+    #{create_date},
+    #{update_date},
+    #{del_flag}
+    )
+  </insert>
 
   <update id="update" parameterType="Medicine" >
-    update medicine
-    set code = #{code,jdbcType=VARCHAR},
-    name = #{name,jdbcType=VARCHAR},
-    specification = #{specification,jdbcType=VARCHAR},
-    manufacturer_name = #{manufacturerName,jdbcType=VARCHAR},
-    units = #{units,jdbcType=VARCHAR},
-    price = #{price,jdbcType=REAL},
-    lot_number = #{lotNumber,jdbcType=VARCHAR},
-    validity_period = #{validityPeriod,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    UPDATE medicine
+    code = #{code},
+    name = #{name},
+    specification = #{specification},
+    manufacturer_name = #{manufacturer_name},
+    units = #{units},
+    price = #{price},
+    lot_number = #{lot_number},
+    validity_period = #{validity_period},
+    update_date = #{update_date},
+    WHERE id = #{id}
   </update>
 
   <update id="delete">
@@ -60,14 +125,6 @@
     delete from medicine
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="Medicine" >
-    insert into medicine (id, code, name, 
-      specification, manufacturer_name, units, 
-      price, lot_number, validity_period)
-    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{specification,jdbcType=VARCHAR}, #{manufacturerName,jdbcType=VARCHAR}, #{units,jdbcType=VARCHAR}, 
-      #{price,jdbcType=REAL}, #{lotNumber,jdbcType=VARCHAR}, #{validityPeriod,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="Medicine" >
     insert into medicine
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -184,24 +241,10 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="findMedicineList" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from medicine
-  </select>
-
-
   <select id="existByMedicineCodeAndLotNumber" resultType="java.lang.Boolean">
     select
     COUNT(id)
     from medicine
     where  code = #{code,jdbcType=VARCHAR} AND lot_number = #{lotNumber,jdbcType=VARCHAR}
   </select>
-
-  <!--<delete id="delete" parameterType="java.util.List">-->
-    <!--DELETE FROM medicine WHERE id IN-->
-    <!--<foreach collection="list" item="item" separator="," open="(" close=")">-->
-      <!--#{item}-->
-    <!--</foreach>-->
-  <!--</delete>-->
 </mapper>

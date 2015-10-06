@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="user/list" method="post" rel="pagerForm">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="user/list" method="post">
         <div class="searchBar">
             <table class="searchContent">
                 <tr>

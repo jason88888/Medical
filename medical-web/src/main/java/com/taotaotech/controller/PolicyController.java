@@ -65,7 +65,12 @@ public class PolicyController extends BaseController {
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
-    public Object save(Policy policy) {
+    public Object save(Policy policy, HttpServletRequest request) {
+        String medicineCode = request.getParameter("medicine.code");
+        String clientCode = request.getParameter("client.code");
+        policy.setMedicineCode(medicineCode);
+        policy.setClientCode(clientCode);
+
         policyService.save(policy);
 
         DWZResponseResult result = new DWZResponseResult();

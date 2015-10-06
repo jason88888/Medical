@@ -44,7 +44,7 @@
         ORDER BY ${page.orderBy}
       </when>
       <otherwise>
-        ORDER BY t.id DESC
+        ORDER BY create_date DESC
       </otherwise>
     </choose>
   </select>

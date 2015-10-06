@@ -83,7 +83,7 @@
         ORDER BY ${page.orderBy}
       </when>
       <otherwise>
-        ORDER BY t.id DESC
+        ORDER BY create_date DESC
       </otherwise>
     </choose>
   </select>
@@ -92,7 +92,7 @@
     SELECT
     <include refid="Base_Column_List" />
     FROM medicine_policy
-    WHERE del_flag = #{DEL_FLAG_NORMAL}
+    WHERE del_flag = FALSE
     ORDER BY create_date DESC
   </select>
 

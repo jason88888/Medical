@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author zk
@@ -74,5 +75,25 @@ public class ClientController extends BaseController {
         result.setForwardUrl("client/list");
         result.setNavTabId("client_list");
         return result;
+    }
+
+    @RequestMapping(value = "lookup_suggest")
+    @ResponseBody
+    public List<Client> lookupSuggest(String name) {
+        Page<Client> page = new Page<>(0, 10);
+        Client client = new Client();
+        client.setName(name);
+        page = clientService.findPage(page, client);
+
+        return page.getList();
+    }
+
+    @RequestMapping(value = "lookup")
+    public String lookup(Client client, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        Page<Client> page = clientService.findPage(new Page<Client>(request, response), client);
+        model.addAttribute("page", page);
+
+        return "client/client_lookup";
     }
 }

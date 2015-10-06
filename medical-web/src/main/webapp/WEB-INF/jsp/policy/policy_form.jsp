@@ -19,11 +19,17 @@
             </p>
             <p>
                 <label>所属药品：</label>
-                <input name="medicineCode" type="text" value="${policy.medicineCode}"/>
+                <input name="medicineCode" type="hidden" value="${policy.medicineCode}"/>
+                <input name="medicine.code" type="hidden" value="${policy.medicineCode}"/>
+                <input type="text" class="required" name="medicine.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine" />
+                <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
             </p>
             <p>
                 <label>客户代码：</label>
-                <input name="clientCode" type="text" value="${policy.clientCode}"/>
+                <input name="clientCode" type="hidden" value="${policy.clientCode}"/>
+                <input name="client.code" type="hidden" value="${policy.clientCode}"/>
+                <input type="text" class="required" name="client.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="client/lookup_suggest" lookupGroup="client" />
+                <a class="btnLook" href="client/lookup" lookupGroup="client">查找带回</a>
             </p>
             <p>
                 <label>单价：</label>

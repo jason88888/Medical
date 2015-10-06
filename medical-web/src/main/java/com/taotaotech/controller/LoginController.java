@@ -1,7 +1,6 @@
 package com.taotaotech.controller;
 
 import com.taotaotech.core.controller.BaseController;
-import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.domain.User;
 import com.taotaotech.service.IUserService;
 import org.apache.ibatis.annotations.Param;
@@ -42,7 +41,7 @@ public class LoginController extends BaseController {
         }
         if (user != null) {
             request.getSession().setAttribute("user", user);
-            return "sys/index";
+            return "redirect:/";
         }
         if (request.getMethod().equals("POST")) {
             request.setAttribute("message", new Message(Message.ERROR, "用户名或密码错误！"));
@@ -52,13 +51,12 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = "logout", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public void login(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+    public String login(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.removeAttribute("user");
         }
-        response.sendRedirect("login");
-
+        return "redirect:/login";
     }
 }

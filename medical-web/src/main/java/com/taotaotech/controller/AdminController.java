@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class AdminController extends BaseController {
 
-    @RequestMapping("")
+    @RequestMapping({"", "/"})
     public String index(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            response.sendRedirect("login");
+            return "redirect:/login";
         }
 
         return "sys/index";

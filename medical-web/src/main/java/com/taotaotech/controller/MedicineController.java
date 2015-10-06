@@ -8,13 +8,13 @@ import com.taotaotech.core.persistence.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author zk
@@ -28,9 +28,9 @@ public class MedicineController extends BaseController {
     private IMedicineService medicineService;
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
-    public String list(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+    public String list(Medicine medicine, HttpServletRequest request, HttpServletResponse response, Model model) {
 
-        Page<Medicine> page = medicineService.findPage(new Page<Medicine>(request, response), new Medicine());
+        Page<Medicine> page = medicineService.findPage(new Page<Medicine>(request, response), medicine);
         model.addAttribute("page", page);
         return "medicine/medicine_list";
     }
@@ -76,5 +76,25 @@ public class MedicineController extends BaseController {
         result.setForwardUrl("medicine/list");
         result.setNavTabId("medicine_list");
         return result;
+    }
+
+    @RequestMapping(value = "lookup_suggest")
+    @ResponseBody
+    public List<Medicine> lookupSuggest(String name) {
+        Page<Medicine> page = new Page<>(1, 10);
+        Medicine medicine = new Medicine();
+        medicine.setName(name);
+        page = medicineService.findPage(page, medicine);
+
+        return page.getList();
+    }
+
+    @RequestMapping(value = "lookup")
+    public String lookup(Medicine medicine, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        Page<Medicine> page = medicineService.findPage(new Page<Medicine>(request, response), medicine);
+        model.addAttribute("page", page);
+
+        return "medicine/medicine_lookup";
     }
 }
