@@ -19,15 +19,11 @@
             </p>
             <p>
                 <label>生产厂商名称：</label>
-                <input name="manufacturer_name"  type="text" autocomplete="off" size="30" alt="请输入生产厂商名称"/>
-                <%--<select name="role">--%>
-                    <%--<option value="2" selected>业务员</option>--%>
-                    <%--<option value="1">管理员</option>--%>
-                <%--</select>--%>
+                <input name="manufacturerName"  type="text" autocomplete="off" size="30" alt="请输入生产厂商名称"/>
             </p>
             <p>
                 <label>单位：</label>
-                <input name="password"  type="text" autocomplete="off" size="30" alt="请输入单位"/>
+                <input name="units"  type="text" autocomplete="off" size="30" alt="请输入单位"/>
             </p>
             <p>
                 <label>单价：</label>
@@ -35,11 +31,11 @@
             </p>
             <p>
                 <label>药品批号：</label>
-                <input name="lot_number" class="required" type="text" autocomplete="off" size="30" alt="请输入药品批号"/>
+                <input name="lotNumber" class="required" type="text" autocomplete="off" size="30" alt="请输入药品批号"/>
             </p>
             <p>
                 <label>有效期：</label>
-                <input name="validity_period" class="date" type="text" readonly="true"/>
+                <input name="validityPeriod" class="date" type="text" readonly="true"/>
                 <a class="inputDateButton" href="javascript:;">选择</a>
                 <span class="info">yyyy-MM-dd</span>
             </p>

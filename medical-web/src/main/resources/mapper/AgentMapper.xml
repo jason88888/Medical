@@ -10,12 +10,42 @@
   <sql id="Base_Column_List" >
     id, code, name, level
   </sql>
+
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from agent
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from agent
+    WHERE del_flag = FALSE
+  </select>
+
+  <update id="update" parameterType="Agent" >
+    update agent
+    set code = #{code,jdbcType=VARCHAR},
+    name = #{name,jdbcType=VARCHAR},
+    level = #{level,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="delete">
+    UPDATE agent SET
+    del_flag = TRUE
+    WHERE id = #{id}
+  </update>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from agent
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from agent
     where id = #{id,jdbcType=INTEGER}
@@ -102,10 +132,10 @@
     from agent
     where code = #{code,jdbcType=VARCHAR}
   </select>
-  <delete id="delete" parameterType="java.util.List">
-    DELETE FROM agent WHERE id IN
-    <foreach collection="list" item="item" separator="," open="(" close=")">
-      #{item}
-    </foreach>
-  </delete>
+  <!--<delete id="delete" parameterType="java.util.List">-->
+    <!--DELETE FROM agent WHERE id IN-->
+    <!--<foreach collection="list" item="item" separator="," open="(" close=")">-->
+      <!--#{item}-->
+    <!--</foreach>-->
+  <!--</delete>-->
 </mapper>

@@ -11,6 +11,36 @@
   <sql id="Base_Column_List" >
     id, code, name, regional, business_type
   </sql>
+
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from client
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from client
+    WHERE del_flag = FALSE
+  </select>
+
+  <update id="update" parameterType="Client" >
+    update client
+    set code = #{code,jdbcType=VARCHAR},
+    name = #{name,jdbcType=VARCHAR},
+    regional = #{regional,jdbcType=VARCHAR},
+    business_type = #{businessType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="delete">
+    UPDATE client SET
+    del_flag = TRUE
+    WHERE id = #{id}
+  </update>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -108,22 +138,16 @@
     from client
   </select>
 
-  <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from client
-  </select>
-
   <select id="existByClientCode" resultType="java.lang.Boolean">
     select
     COUNT(id)
     from client
     where code = #{code,jdbcType=VARCHAR}
   </select>
-  <delete id="delete" parameterType="java.util.List">
-    DELETE FROM client WHERE id IN
-    <foreach collection="list" item="item" separator="," open="(" close=")">
-      #{item}
-    </foreach>
-  </delete>
+  <!--<delete id="delete" parameterType="java.util.List">-->
+    <!--DELETE FROM client WHERE id IN-->
+    <!--<foreach collection="list" item="item" separator="," open="(" close=")">-->
+      <!--#{item}-->
+    <!--</foreach>-->
+  <!--</delete>-->
 </mapper>
