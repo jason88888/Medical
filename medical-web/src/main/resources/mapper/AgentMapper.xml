@@ -18,11 +18,31 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from agent
-    WHERE del_flag = FALSE
+    from agent t
+    <where>
+      del_flag = 0
+      <if test="code != null and code != ''">
+        and code LIKE '%' #{code} '%'
+      </if>
+      <if test="name != null and name != ''">
+        and name LIKE '%' #{name} '%'
+      </if>
+      <if test="level != null and level != ''">
+        and level = #{level}
+      </if>
+
+    </where>
+    <choose>
+      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+        ORDER BY ${page.orderBy}
+      </when>
+      <otherwise>
+        ORDER BY t.id DESC
+      </otherwise>
+    </choose>
   </select>
 
   <update id="update" parameterType="Agent" >

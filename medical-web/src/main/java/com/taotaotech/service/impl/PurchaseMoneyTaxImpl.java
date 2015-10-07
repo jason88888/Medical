@@ -1,6 +1,10 @@
 package com.taotaotech.service.impl;
 
 import com.taotaotech.core.persistence.Page;
+import com.taotaotech.core.service.CrudService;
+import com.taotaotech.dao.MedicineMapper;
+import com.taotaotech.dao.PurchaseMoneytaxMapper;
+import com.taotaotech.domain.Medicine;
 import com.taotaotech.domain.PurchaseClient;
 import com.taotaotech.domain.PurchaseMoneytax;
 import com.taotaotech.domain.Purchasement;
@@ -14,24 +18,10 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class PurchaseMoneyTaxImpl implements IPurchaseMoneyTaxService {
+public class PurchaseMoneyTaxImpl extends CrudService<PurchaseMoneytaxMapper,PurchaseMoneytax> implements IPurchaseMoneyTaxService {
     @Override
     public Page<PurchaseMoneytax> findPurchaseMoneytaxList(Page<PurchaseMoneytax> page) {
         return null;
     }
 
-    @Override
-    public int save(PurchaseMoneytax purchaseMoneytax) {
-        return 0;
-    }
-
-    @Override
-    public PurchaseClient get(Integer id) {
-        return null;
-    }
-
-    @Override
-    public int delete(Integer[] ids) {
-        return 0;
-    }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @description 产品目录
  */
 @Controller
-@RequestMapping("purchaseClient")
+@RequestMapping("purchase/client")
 public class PurchaseClientController extends BaseController {
 
 }

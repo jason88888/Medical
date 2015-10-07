@@ -1,10 +1,11 @@
 package com.taotaotech.dao;
 
+import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.domain.PurchaseMoneytax;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PurchaseMoneytaxMapper {
+public interface PurchaseMoneytaxMapper extends CrudMapper<PurchaseMoneytax> {
     int deleteByPrimaryKey(Integer id);
 
     int insert(PurchaseMoneytax record);
