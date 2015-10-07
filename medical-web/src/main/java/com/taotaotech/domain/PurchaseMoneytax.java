@@ -1,8 +1,10 @@
 package com.taotaotech.domain;
 
+import com.taotaotech.core.domain.DataEntity;
+
 import java.util.Date;
 
-public class PurchaseMoneytax {
+public class PurchaseMoneytax extends DataEntity<PurchaseMoneytax> {
     private Integer id;
     //打款分类
     private String paymentCategory;

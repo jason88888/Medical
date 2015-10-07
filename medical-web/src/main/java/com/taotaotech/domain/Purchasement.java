@@ -1,8 +1,10 @@
 package com.taotaotech.domain;
 
+import com.taotaotech.core.domain.DataEntity;
+
 import java.util.Date;
 
-public class Purchasement {
+public class Purchasement extends DataEntity<Purchasement> {
     //id
     private Integer id;
     //采购销售类别

@@ -1,6 +1,8 @@
 package com.taotaotech.domain;
 
-public class PurchaseClient {
+import com.taotaotech.core.domain.DataEntity;
+
+public class PurchaseClient extends DataEntity<PurchaseClient> {
     //id
     private Integer id;
     //我司上家销货单位
