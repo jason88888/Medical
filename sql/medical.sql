@@ -28,7 +28,7 @@ CREATE TABLE `agent` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='代理商表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代理商表';
 
 -- ----------------------------
 -- Table structure for bill
@@ -55,7 +55,7 @@ CREATE TABLE `bill` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2810 DEFAULT CHARSET=utf8 COMMENT='单据表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='单据表';
 
 -- ----------------------------
 -- Table structure for client
@@ -71,7 +71,7 @@ CREATE TABLE `client` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='客户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户表';
 
 -- ----------------------------
 -- Table structure for medicine
@@ -91,7 +91,7 @@ CREATE TABLE `medicine` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for medicine_policy
@@ -116,7 +116,7 @@ CREATE TABLE `medicine_policy` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for purchasement
@@ -211,4 +211,4 @@ CREATE TABLE `sys_user` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
