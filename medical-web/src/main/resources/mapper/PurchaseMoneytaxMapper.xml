@@ -14,11 +14,105 @@
     <result column="tax_pay_date" property="taxPayDate" jdbcType="TIMESTAMP" />
     <result column="invoice_number" property="invoiceNumber" jdbcType="INTEGER" />
     <result column="invoice_date" property="invoiceDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, payment_category, payment_mode, payment_money, work_flow, purchase_unit_price, 
-    purchase_money, tax, tax_pay_mode, tax_pay_date, invoice_number, invoice_date
+    purchase_money, tax, tax_pay_mode, tax_pay_date, invoice_number, invoice_date, create_date, 
+    update_date, del_flag
   </sql>
+   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from purchase_moneytax
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <update id="update" parameterType="com.taotaotech.domain.PurchaseMoneytax">
+    update purchase_moneytax
+    set payment_category = #{paymentCategory,jdbcType=VARCHAR},
+      payment_mode = #{paymentMode,jdbcType=VARCHAR},
+      payment_money = #{paymentMoney,jdbcType=VARCHAR},
+      work_flow = #{workFlow,jdbcType=VARCHAR},
+      purchase_unit_price = #{purchaseUnitPrice,jdbcType=DECIMAL},
+      purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+      tax = #{tax,jdbcType=VARCHAR},
+      tax_pay_mode = #{taxPayMode,jdbcType=VARCHAR},
+      tax_pay_date = #{taxPayDate,jdbcType=TIMESTAMP},
+      invoice_number = #{invoiceNumber,jdbcType=INTEGER},
+      invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from purchase_moneytax t
+        <where>
+            del_flag = 0
+            <if test="payment_category != null and payment_category != ''">
+                and payment_category LIKE '%' #{code} '%'
+            </if>
+            <if test="payment_mode != null and payment_mode != ''">
+                and payment_mode LIKE '%' #{name} '%'
+            </if>
+            <if test="payment_money != null and payment_money != ''">
+                and payment_money = #{payment_money}
+            </if>
+            <if test="work_flow != null and work_flow != ''">
+                and work_flow = #{work_flow}
+            </if>
+            <if test="purchase_unit_price != null and purchase_unit_price != ''">
+                and purchase_unit_price = #{purchase_unit_price}
+            </if>
+            <if test="purchase_money != null and purchase_money != ''">
+                and purchase_money = #{purchase_money}
+            </if>
+            <if test="tax != null and tax != ''">
+                and tax = #{tax}
+            </if>
+            <if test="tax_pay_mode != null and tax_pay_mode != ''">
+                and tax_pay_mode = #{tax_pay_mode}
+            </if>
+            <if test="tax_pay_date != null and tax_pay_date != ''">
+                and tax_pay_date = #{tax_pay_date}
+            </if>
+            <if test="invoice_number != null and invoice_number != ''">
+                and invoice_number = #{invoice_number}
+            </if>
+            <if test="invoice_date != null and invoice_date != ''">
+                and invoice_date = #{invoice_date}
+            </if>
+            <if test="create_date != null and create_date != ''">
+                and create_date = #{create_date}
+            </if>
+            <if test="update_date != null and update_date != ''">
+                and update_date = #{update_date}
+            </if>
+            <if test="del_flag != null and del_flag != ''">
+                and del_flag = #{del_flag}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY t.id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="delete">
+    UPDATE purchase_moneytax SET
+    del_flag = TRUE
+    WHERE id = #{id}
+  </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -36,11 +130,13 @@
     insert into purchase_moneytax (payment_category, payment_mode, payment_money, 
       work_flow, purchase_unit_price, purchase_money, 
       tax, tax_pay_mode, tax_pay_date, 
-      invoice_number, invoice_date)
+      invoice_number, invoice_date, create_date, 
+      update_date, del_flag)
     values (#{paymentCategory,jdbcType=VARCHAR}, #{paymentMode,jdbcType=VARCHAR}, #{paymentMoney,jdbcType=VARCHAR}, 
       #{workFlow,jdbcType=VARCHAR}, #{purchaseUnitPrice,jdbcType=DECIMAL}, #{purchaseMoney,jdbcType=VARCHAR}, 
       #{tax,jdbcType=VARCHAR}, #{taxPayMode,jdbcType=VARCHAR}, #{taxPayDate,jdbcType=TIMESTAMP}, 
-      #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=TIMESTAMP})
+      #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -81,6 +177,15 @@
       <if test="invoiceDate != null" >
         invoice_date,
       </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paymentCategory != null" >
@@ -115,6 +220,15 @@
       </if>
       <if test="invoiceDate != null" >
         #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -154,6 +268,15 @@
       <if test="invoiceDate != null" >
         invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -169,7 +292,10 @@
       tax_pay_mode = #{taxPayMode,jdbcType=VARCHAR},
       tax_pay_date = #{taxPayDate,jdbcType=TIMESTAMP},
       invoice_number = #{invoiceNumber,jdbcType=INTEGER},
-      invoice_date = #{invoiceDate,jdbcType=TIMESTAMP}
+      invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
