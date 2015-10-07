@@ -28,11 +28,7 @@ CREATE TABLE `agent` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代理商表';
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='代理商表';
->>>>>>> be8b4c57cded1c65772e6d11dbb26e1074e05891
 
 -- ----------------------------
 -- Table structure for bill
