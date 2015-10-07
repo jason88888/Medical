@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2015-10-06 16:45:58
+Date: 2015-10-07 15:56:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `agent` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='代理商表';
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='代理商表';
 
 -- ----------------------------
 -- Table structure for bill
@@ -123,7 +123,7 @@ CREATE TABLE `medicine_policy` (
 -- ----------------------------
 DROP TABLE IF EXISTS `purchasement`;
 CREATE TABLE `purchasement` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `purchase_sale_type` varchar(60) DEFAULT NULL COMMENT '采购销售类别',
   `purchase_pay_date` datetime DEFAULT NULL COMMENT '采购付款日期',
   `purchase_store_date` datetime DEFAULT NULL COMMENT '采购入库日期',
@@ -163,7 +163,7 @@ CREATE TABLE `purchasement` (
 -- ----------------------------
 DROP TABLE IF EXISTS `purchase_client`;
 CREATE TABLE `purchase_client` (
-  `id` int(11) NOT NULL COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `sale_company` varchar(255) DEFAULT NULL COMMENT '我司上家销货单位',
   `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
   `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
@@ -179,7 +179,7 @@ CREATE TABLE `purchase_client` (
 -- ----------------------------
 DROP TABLE IF EXISTS `purchase_moneytax`;
 CREATE TABLE `purchase_moneytax` (
-  `id` int(11) NOT NULL COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
   `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
   `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',

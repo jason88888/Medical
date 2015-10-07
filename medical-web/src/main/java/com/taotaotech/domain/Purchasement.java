@@ -63,6 +63,39 @@ public class Purchasement extends DataEntity<Purchasement> {
     private Date invoiceDate;
     //采购条目生成是否已核对
     private String ifCheck;
+    private Date createDate;
+
+    private Date updateDate;
+
+    private Boolean delFlag;
+
+    @Override
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    @Override
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @Override
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    @Override
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public Boolean getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Boolean delFlag) {
+        this.delFlag = delFlag;
+    }
 
     public Integer getId() {
         return id;

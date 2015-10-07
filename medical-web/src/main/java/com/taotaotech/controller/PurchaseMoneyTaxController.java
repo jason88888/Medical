@@ -24,7 +24,7 @@ import java.util.List;
  * @description 产品目录
  */
 @Controller
-@RequestMapping("purchaseMoneytax")
+@RequestMapping("purchase/moneytax")
 public class PurchaseMoneyTaxController extends BaseController {
     @Autowired
     private IPurchaseMoneyTaxService purchaseMoneyTaxService;
@@ -34,27 +34,26 @@ public class PurchaseMoneyTaxController extends BaseController {
 
         Page<PurchaseMoneytax> page = purchaseMoneyTaxService.findPage(new Page<PurchaseMoneytax>(request, response), purchaseMoneytax);
         model.addAttribute("page", page);
-        return "purchaseMoneytax/purchaseMoneytax_list";
+        return "purchase/moneytax/moneytax_list";
     }
 
     @RequestMapping(value = "insert", method = {RequestMethod.GET})
     public String add() {
-        return "purchaseMoneytax/purchaseMoneytax_insert";
+        return "purchase/moneytax/moneytax_insert";
     }
 
     @RequestMapping(value = "edit", method = {RequestMethod.GET})
     public String edit(Integer id, Model model) {
         PurchaseMoneytax purchaseMoneytax = purchaseMoneyTaxService.get(id);
         model.addAttribute("purchaseMoneytax", purchaseMoneytax);
-        return "purchaseMoneytax/purchaseMoneytaxs_edit";
+        return "purchase/moneytax/moneytax_edit";
     }
 
     @RequestMapping(value = "view", method = {RequestMethod.GET})
     public String view(Integer id, Model model) {
         PurchaseMoneytax purchaseMoneytax = purchaseMoneyTaxService.get(id);
         model.addAttribute("purchaseMoneytax", purchaseMoneytax);
-
-        return "purchaseMoneytax/purchaseMoneytax_view";
+        return "purchase/moneytax/moneytax_view";
     }
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})
@@ -64,8 +63,8 @@ public class PurchaseMoneyTaxController extends BaseController {
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
-        result.setForwardUrl("purchaseMoneytax/list");
-        result.setNavTabId("purchaseMoneytax_list");
+        result.setForwardUrl("purchase/moneytax/list");
+        result.setNavTabId("moneytax_list");
         return result;
     }
 
@@ -75,8 +74,8 @@ public class PurchaseMoneyTaxController extends BaseController {
         purchaseMoneyTaxService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
-        result.setForwardUrl("purchaseMoneytax/list");
-        result.setNavTabId("purchaseMoneytax_list");
+        result.setForwardUrl("purchase/moneytax/list");
+        result.setNavTabId("moneytax_list");
         return result;
     }
 
