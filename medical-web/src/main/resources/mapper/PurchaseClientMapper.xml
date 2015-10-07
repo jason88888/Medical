@@ -15,6 +15,60 @@
     id, sale_company, buy_company, client_name, sale_area, create_date, update_date, 
     del_flag
   </sql>
+
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from purchase_client
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <update id="update" parameterType="com.taotaotech.domain.PurchaseClient" >
+    update purchase_client
+    set sale_company = #{saleCompany,jdbcType=VARCHAR},
+    buy_company = #{buyCompany,jdbcType=VARCHAR},
+    client_name = #{clientName,jdbcType=VARCHAR},
+    sale_area = #{saleArea,jdbcType=VARCHAR},
+    create_date = #{createDate,jdbcType=TIMESTAMP},
+    update_date = #{updateDate,jdbcType=TIMESTAMP},
+    del_flag = #{delFlag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from purchase_client t
+    <where>
+      del_flag = 0
+      <if test="sale_company != null and sale_company != ''">
+        and sale_company LIKE '%' #{sale_company} '%'
+      </if>
+      <if test="buy_company != null and buy_company != ''">
+        and buy_company LIKE '%' #{buy_company} '%'
+      </if>
+      <if test="client_name != null and client_name != ''">
+        and client_name = #{client_name}
+      </if>
+      <if test="sale_area != null and sale_area != ''">
+        and sale_area = #{sale_area}
+      </if>
+    </where>
+    <choose>
+      <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+        ORDER BY ${page.orderBy}
+      </when>
+      <otherwise>
+        ORDER BY t.id DESC
+      </otherwise>
+    </choose>
+  </select>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        delete from purchase_client
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

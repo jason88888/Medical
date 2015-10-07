@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<form id="pagerForm" method="post" action="purchaseMoneytax/list">
+<form id="pagerForm" method="post" action="purchase/moneytax/list">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}"/>
     <input type="hidden" name="currentPage" value="1"/>
@@ -71,7 +71,6 @@
                 <td>${purchaseMoneytax.tax}</td>
                 <td>${purchaseMoneytax.taxPayMode}</td>
                 <td>${purchaseMoneytax.taxPayDate}</td>
-                <td>${purchaseMoneytax.taxPayMonth}</td>
                 <td>${purchaseMoneytax.invoiceNumber}</td>
                 <td>${purchaseMoneytax.invoiceDate}</td>
             </tr>

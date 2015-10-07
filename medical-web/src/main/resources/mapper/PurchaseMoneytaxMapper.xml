@@ -56,10 +56,10 @@
         <where>
             del_flag = 0
             <if test="payment_category != null and payment_category != ''">
-                and payment_category LIKE '%' #{code} '%'
+                and payment_category LIKE '%' #{payment_category} '%'
             </if>
             <if test="payment_mode != null and payment_mode != ''">
-                and payment_mode LIKE '%' #{name} '%'
+                and payment_mode LIKE '%' #{payment_mode} '%'
             </if>
             <if test="payment_money != null and payment_money != ''">
                 and payment_money = #{payment_money}
