@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="pageContent">
-    <form method="post" action="medicine/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" action="purchase/moneytax/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
             <input type="hidden" name="id" value="${purchaseMoneytax.id}"/>
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
@@ -57,7 +57,7 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="medicine/edit?id=${medicine.id}" target="dialog">编辑</a></button>
+                            <button type="submit"><a href="purchase/moneytax/edit?id=${medicine.id}" target="dialog">编辑</a></button>
                         </div>
                     </div>
                 </li>

@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author zk
  * @date 2015/9/4 10:36
- * @description 产品目录
+ * @description 采购-钱税管理
  */
 @Controller
 @RequestMapping("purchase/moneytax")
@@ -31,7 +31,6 @@ public class PurchaseMoneyTaxController extends BaseController {
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public String list(PurchaseMoneytax purchaseMoneytax, HttpServletRequest request, HttpServletResponse response, Model model) {
-
         Page<PurchaseMoneytax> page = purchaseMoneyTaxService.findPage(new Page<PurchaseMoneytax>(request, response), purchaseMoneytax);
         model.addAttribute("page", page);
         return "purchase/moneytax/moneytax_list";

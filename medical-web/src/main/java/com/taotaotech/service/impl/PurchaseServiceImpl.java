@@ -1,6 +1,11 @@
 package com.taotaotech.service.impl;
 
 import com.taotaotech.core.persistence.Page;
+import com.taotaotech.core.service.CrudService;
+import com.taotaotech.dao.PurchaseClientMapper;
+import com.taotaotech.dao.PurchaseMoneytaxMapper;
+import com.taotaotech.dao.PurchasementMapper;
+import com.taotaotech.domain.PurchaseMoneytax;
 import com.taotaotech.domain.Purchasement;
 import com.taotaotech.service.IBillService;
 import com.taotaotech.service.IPurchaseService;
@@ -12,24 +17,10 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class PurchaseServiceImpl implements IPurchaseService {
+public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchasement> implements IPurchaseService {
     @Override
     public Page<Purchasement> findPurchasementList(Page<Purchasement> page) {
         return null;
     }
 
-    @Override
-    public int save(Purchasement purchasement) {
-        return 0;
-    }
-
-    @Override
-    public Purchasement get(Integer id) {
-        return null;
-    }
-
-    @Override
-    public int delete(Integer[] ids) {
-        return 0;
-    }
 }
