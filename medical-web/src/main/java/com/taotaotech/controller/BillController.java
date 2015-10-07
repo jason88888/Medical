@@ -82,10 +82,10 @@ public class BillController extends BaseController {
     @RequestMapping(value = "edit", method = {RequestMethod.GET})
     public String edit(Integer id, Model model) {
         Bill bill = billService.get(id);
-        if (!DateUtil.isCurrentMonth(bill.getDate(), "yyyy-MM-dd")){
-            model.addAttribute("msg","非当月数据不能修改");
-            return "error/error";
-        }
+//        if (!DateUtil.isCurrentMonth(bill.getDate(), "yyyy-MM-dd")){
+//            model.addAttribute("msg","非当月数据不能修改");
+//            return "error/error";
+//        }
 
         List<Client> clients = clientService.findClientList();
         List<Medicine> medicines = medicineService.findMedicineList();
@@ -96,6 +96,25 @@ public class BillController extends BaseController {
         model.addAttribute("salesmen", salesmen);
 
         return "bill/bill_edit";
+    }
+
+    @RequestMapping(value = "view", method = {RequestMethod.GET})
+    public String view(Integer id, Model model) {
+        Bill bill = billService.get(id);
+//        if (!DateUtil.isCurrentMonth(bill.getDate(), "yyyy-MM-dd")){
+//            model.addAttribute("msg","非当月数据不能修改");
+//            return "error/error";
+//        }
+
+        List<Client> clients = clientService.findClientList();
+        List<Medicine> medicines = medicineService.findMedicineList();
+        List<User> salesmen = userService.findList(new User());
+        model.addAttribute("bill", bill);
+        model.addAttribute("clients", clients);
+        model.addAttribute("medicines", medicines);
+        model.addAttribute("salesmen", salesmen);
+
+        return "bill/bill_view";
     }
 
 

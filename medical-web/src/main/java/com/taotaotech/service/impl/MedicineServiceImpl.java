@@ -8,6 +8,7 @@ import com.taotaotech.service.IMedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class MedicineServiceImpl  extends CrudService<MedicineMapper,Medicine> i
 
     @Override
     public List<Medicine> findMedicineList() {
-        return medicineMapper.findMedicineList(new PageBounds());
+        return medicineMapper.findList(new HashMap(),new PageBounds());
     }
 
     @Override

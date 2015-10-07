@@ -54,7 +54,7 @@
         <ul class="toolBar">
             <li><a class="add" href="bill/insert" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="bill/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="bill/edit?id={id}" target="dialog" warn="请选择要修改的数据"><span>修改</span></a></li>
+            <li><a class="edit" href="bill/view?id={id}" target="dialog" warn="请选择要修改的数据"><span>详情</span></a></li>
             <li><a class="icon" href="bill/upload" target="dialog"><span>导入EXCEL</span></a></li>
         </ul>
     </div>
