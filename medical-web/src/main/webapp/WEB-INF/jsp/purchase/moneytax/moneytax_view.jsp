@@ -57,7 +57,7 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="purchase/moneytax/edit?id=${medicine.id}" target="dialog">编辑</a></button>
+                            <button type="submit"><a href="purchase/moneytax/edit?id=${purchaseMoneytax.id}" target="dialog">编辑</a></button>
                         </div>
                     </div>
                 </li>

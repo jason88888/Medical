@@ -95,17 +95,16 @@
   </insert>
 
   <update id="update" parameterType="Medicine" >
-    UPDATE medicine
-    code = #{code},
-    name = #{name},
-    specification = #{specification},
-    manufacturer_name = #{manufacturer_name},
-    units = #{units},
-    price = #{price},
-    lot_number = #{lot_number},
-    validity_period = #{validity_period},
-    update_date = #{update_date},
-    WHERE id = #{id}
+    update medicine
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      specification = #{specification,jdbcType=VARCHAR},
+      manufacturer_name = #{manufacturerName,jdbcType=VARCHAR},
+      units = #{units,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      lot_number = #{lotNumber,jdbcType=VARCHAR},
+      validity_period = #{validityPeriod,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <update id="delete">
