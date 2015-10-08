@@ -10,14 +10,22 @@ public class ImportPurchasement {
     private String purchaseSaleType;
     //采购付款日期
     private String purchasePayDate;
+    //采购付款年月
+    private String purchasePayYearAndMonth;
     //采购入库日期
     private String purchaseStoreDate;
+    //采购入库年月
+    private String purchaseStoreYearAndMonth;
     //实际入库地点
     private String actualStorePlace;
     //采购申请单号
     private String purchaseSaleCode;
     //药品名称
     private String medicineName;
+    //药品唯一代码
+    private String medicineUniqueCode;
+    //药品代码
+    private String medicineCode;
     //生产厂家
     private String manufacturerName;
     //规格
@@ -25,7 +33,7 @@ public class ImportPurchasement {
     //单位
     private String units;
     //装箱量
-    private String packageNumber;
+    private Integer packageNumber;
     //我司上家销货单位
     private String saleCompany;
     //我司或下家购货单位
@@ -58,14 +66,18 @@ public class ImportPurchasement {
     private String tax;
     //付税方式
     private String taxPayMode;
-    //付税日期
+    //付税日期（年月日）
     private String taxPayDate;
+    //付税年月
+    private String taxPayYearAndMonth;
     //发票号码
     private String invoiceNumber;
-    //开票日期
+    //开票日期（年月日）
     private String invoiceDate;
+    //开票年月
+    private String invoiceYearAndMonth;
     //采购条目生成是否已核对
-    private String ifCheck;
+    private String check;
 
     public String getPurchaseSaleType() {
         return purchaseSaleType;
@@ -139,11 +151,11 @@ public class ImportPurchasement {
         this.units = units;
     }
 
-    public String getPackageNumber() {
+    public Integer getPackageNumber() {
         return packageNumber;
     }
 
-    public void setPackageNumber(String packageNumber) {
+    public void setPackageNumber(Integer packageNumber) {
         this.packageNumber = packageNumber;
     }
 
@@ -299,11 +311,59 @@ public class ImportPurchasement {
         this.invoiceDate = invoiceDate;
     }
 
-    public String getIfCheck() {
-        return ifCheck;
+    public String getCheck() {
+        return check;
     }
 
-    public void setIfCheck(String ifCheck) {
-        this.ifCheck = ifCheck;
+    public void setCheck(String ifCheck) {
+        this.check = ifCheck;
+    }
+
+    public String getPurchasePayYearAndMonth() {
+        return purchasePayYearAndMonth;
+    }
+
+    public void setPurchasePayYearAndMonth(String purchasePayYearAndMonth) {
+        this.purchasePayYearAndMonth = purchasePayYearAndMonth;
+    }
+
+    public String getPurchaseStoreYearAndMonth() {
+        return purchaseStoreYearAndMonth;
+    }
+
+    public void setPurchaseStoreYearAndMonth(String purchaseStoreYearAndMonth) {
+        this.purchaseStoreYearAndMonth = purchaseStoreYearAndMonth;
+    }
+
+    public String getMedicineUniqueCode() {
+        return medicineUniqueCode;
+    }
+
+    public void setMedicineUniqueCode(String medicineUniqueCode) {
+        this.medicineUniqueCode = medicineUniqueCode;
+    }
+
+    public String getMedicineCode() {
+        return medicineCode;
+    }
+
+    public void setMedicineCode(String medicineCode) {
+        this.medicineCode = medicineCode;
+    }
+
+    public String getTaxPayYearAndMonth() {
+        return taxPayYearAndMonth;
+    }
+
+    public void setTaxPayYearAndMonth(String taxPayYearAndMonth) {
+        this.taxPayYearAndMonth = taxPayYearAndMonth;
+    }
+
+    public String getInvoiceYearAndMonth() {
+        return invoiceYearAndMonth;
+    }
+
+    public void setInvoiceYearAndMonth(String invoiceYearAndMonth) {
+        this.invoiceYearAndMonth = invoiceYearAndMonth;
     }
 }

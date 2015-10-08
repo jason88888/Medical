@@ -99,7 +99,7 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="coming" target="navTab" rel="category_list">采购数据导入</a></li>
+                            <li><a href="purchase/list" target="navTab" rel="purchase_list">采购数据导入</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>
                             <li><a href="purchase/client/list" target="navTab" rel="client_list">采购客户</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">库存管理</a></li>

@@ -10,15 +10,17 @@ public class Purchasement extends DataEntity<Purchasement> {
     //采购销售类别
     private String purchaseSaleType;
     //采购付款日期
-    private Date purchasePayDate;
+    private String purchasePayDate;
     //采购入库日期
-    private Date purchaseStoreDate;
+    private String purchaseStoreDate;
     //实际入库地点
     private String actualStorePlace;
     //采购申请单号
     private String purchaseSaleCode;
     //药品名称
     private String medicineName;
+    //药品唯一代码
+    private String medicineUniqueCode;
     //生产厂家
     private String manufacturerName;
     //规格
@@ -56,11 +58,11 @@ public class Purchasement extends DataEntity<Purchasement> {
     //付税方式
     private String taxPayMode;
     //付税日期
-    private Date taxPayDate;
+    private String taxPayDate;
     //发票号码
     private Integer invoiceNumber;
     //开票日期
-    private Date invoiceDate;
+    private String invoiceDate;
     //采购条目生成是否已核对
     private String ifCheck;
 
@@ -80,19 +82,19 @@ public class Purchasement extends DataEntity<Purchasement> {
         this.purchaseSaleType = purchaseSaleType == null ? null : purchaseSaleType.trim();
     }
 
-    public Date getPurchasePayDate() {
+    public String getPurchasePayDate() {
         return purchasePayDate;
     }
 
-    public void setPurchasePayDate(Date purchasePayDate) {
+    public void setPurchasePayDate(String purchasePayDate) {
         this.purchasePayDate = purchasePayDate;
     }
 
-    public Date getPurchaseStoreDate() {
+    public String getPurchaseStoreDate() {
         return purchaseStoreDate;
     }
 
-    public void setPurchaseStoreDate(Date purchaseStoreDate) {
+    public void setPurchaseStoreDate(String purchaseStoreDate) {
         this.purchaseStoreDate = purchaseStoreDate;
     }
 
@@ -264,11 +266,11 @@ public class Purchasement extends DataEntity<Purchasement> {
         this.taxPayMode = taxPayMode == null ? null : taxPayMode.trim();
     }
 
-    public Date getTaxPayDate() {
+    public String getTaxPayDate() {
         return taxPayDate;
     }
 
-    public void setTaxPayDate(Date taxPayDate) {
+    public void setTaxPayDate(String taxPayDate) {
         this.taxPayDate = taxPayDate;
     }
 
@@ -280,11 +282,11 @@ public class Purchasement extends DataEntity<Purchasement> {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public Date getInvoiceDate() {
+    public String getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
+    public void setInvoiceDate(String invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 
@@ -294,5 +296,13 @@ public class Purchasement extends DataEntity<Purchasement> {
 
     public void setIfCheck(String ifCheck) {
         this.ifCheck = ifCheck == null ? null : ifCheck.trim();
+    }
+
+    public String getMedicineUniqueCode() {
+        return medicineUniqueCode;
+    }
+
+    public void setMedicineUniqueCode(String medicineUniqueCode) {
+        this.medicineUniqueCode = medicineUniqueCode;
     }
 }

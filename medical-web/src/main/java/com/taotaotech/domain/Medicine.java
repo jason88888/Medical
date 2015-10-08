@@ -7,6 +7,8 @@ public class Medicine  extends DataEntity<Medicine> {
 
     private String code;
 
+    private String uniqueCode;
+
     private String name;
 
     private String specification;
@@ -22,6 +24,10 @@ public class Medicine  extends DataEntity<Medicine> {
     private String validityPeriod;
 
     private Integer number;
+
+    private Integer packageNumber;
+
+    private Integer purchaseNumber;
 
     public Integer getId() {
         return id;
@@ -101,5 +107,29 @@ public class Medicine  extends DataEntity<Medicine> {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Integer getPackageNumber() {
+        return packageNumber;
+    }
+
+    public void setPackageNumber(Integer packageNumber) {
+        this.packageNumber = packageNumber;
+    }
+
+    public Integer getPurchaseNumber() {
+        return purchaseNumber;
+    }
+
+    public void setPurchaseNumber(Integer purchaseNumber) {
+        this.purchaseNumber = purchaseNumber;
+    }
+
+    public String getUniqueCode() {
+        return uniqueCode;
+    }
+
+    public void setUniqueCode(String uniqueCode) {
+        this.uniqueCode = uniqueCode;
     }
 }

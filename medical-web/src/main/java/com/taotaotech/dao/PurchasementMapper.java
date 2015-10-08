@@ -2,6 +2,7 @@ package com.taotaotech.dao;
 
 import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.domain.Purchasement;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -53,4 +54,6 @@ public interface PurchasementMapper extends CrudMapper<Purchasement> {
      * @mbggenerated Fri Oct 02 12:08:59 CST 2015
      */
     int updateByPrimaryKey(Purchasement record);
+
+    boolean existByPurchaseSaleCode(@Param("purchaseSaleCode")String purchaseSaleCode);
 }

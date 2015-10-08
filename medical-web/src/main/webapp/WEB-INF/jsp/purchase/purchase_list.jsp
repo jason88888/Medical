@@ -27,7 +27,8 @@
         <ul class="toolBar">
             <li><a class="add" href="purchase/insert" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="purchase/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit"  target="dialog"><span>查看</span></a></li>
+            <li><a class="edit" href="purchase/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
+            <li><a class="icon" href="purchase/upload" target="dialog"><span>导入EXCEL</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
@@ -43,9 +44,9 @@
         <c:forEach items="${page.list}" var="purchasement">
             <tr target="id" rel="${purchasement.id}">
                 <td><div><input name="ids" value="${purchasement.id}" type="checkbox"></div></td>
-                <%--<td>${purchasement.code}</td>--%>
-                <%--<td>${purchasement.name}</td>--%>
-                <%--<td>${purchasement.level}级代理</td>--%>
+                <td>${purchasement.purchaseSaleType}</td>
+                <td>${purchasement.purchasePayDate}</td>
+                <td>${purchasement.purchaseStoreDate}</td>
             </tr>
         </c:forEach>
         </tbody>

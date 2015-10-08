@@ -67,7 +67,7 @@ public class BillServiceImpl extends CrudService<BillMapper,Bill> implements IBi
                     List<ImportBill> importBills = ProcessBillUtil.getImportBills(hssfSheet);
                     for (int index = 0; index < importBills.size(); index++) {
                         ImportBill ib = importBills.get(index);
-                        generateMedicine(ib);
+//                        generateMedicine(ib);//药品有采购表生成
                         generateBill(ib);
                         generateCilent(ib);
                         generateSalesman(ib);

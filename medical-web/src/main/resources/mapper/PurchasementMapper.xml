@@ -37,13 +37,13 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, purchase_sale_type, purchase_pay_date, purchase_store_date, actual_store_place, 
-    purchase_sale_code, medicine_name, manufacturer_name, specification, units, package_number, 
+    purchase_sale_code, medicine_name, medicine_unique_code, manufacturer_name, specification, units, package_number,
     sale_company, buy_company, payment_category, payment_mode, purchase_number, purchase_price, 
     payment_money, work_flow, client_name, sale_area, purchase_unit_price, purchase_money, 
     tax, tax_pay_mode, tax_pay_date, invoice_number, invoice_date, if_check, create_date, 
     update_date, del_flag
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from purchasement
@@ -53,7 +53,7 @@
     delete from purchasement
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.Purchasement" >
+  <insert id="insert" parameterType="java.util.Map"  >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -82,7 +82,7 @@
       #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.Purchasement" >
+  <insert id="insertSelective" parameterType="java.util.Map"  >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -105,6 +105,9 @@
       </if>
       <if test="medicineName != null" >
         medicine_name,
+      </if>
+      <if test="medicineUniqueCode != null" >
+        medicine_unique_code,
       </if>
       <if test="manufacturerName != null" >
         manufacturer_name,
@@ -201,6 +204,9 @@
       <if test="medicineName != null" >
         #{medicineName,jdbcType=VARCHAR},
       </if>
+      <if test="medicineUniqueCode != null" >
+        #{medicineUniqueCode,jdbcType=VARCHAR},
+      </if>
       <if test="manufacturerName != null" >
         #{manufacturerName,jdbcType=VARCHAR},
       </if>
@@ -278,7 +284,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.Purchasement" >
+  <update id="updateByPrimaryKeySelective" parameterType="java.util.Map" >
     update purchasement
     <set >
       <if test="purchaseSaleType != null" >
@@ -298,6 +304,9 @@
       </if>
       <if test="medicineName != null" >
         medicine_name = #{medicineName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineUniqueCode != null" >
+        medicine_unique_code = #{medicineUniqueCode,jdbcType=VARCHAR},
       </if>
       <if test="manufacturerName != null" >
         manufacturer_name = #{manufacturerName,jdbcType=VARCHAR},
@@ -377,7 +386,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.Purchasement" >
+  <update id="updateByPrimaryKey" parameterType="java.util.Map"  >
     update purchasement
     set purchase_sale_type = #{purchaseSaleType,jdbcType=VARCHAR},
       purchase_pay_date = #{purchasePayDate,jdbcType=TIMESTAMP},
@@ -410,6 +419,119 @@
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from purchasement
+    <where>
+        del_flag = 0
+      <if test="purchaseSaleType != null" >
+        AND purchase_sale_type = #{purchaseSaleType,jdbcType=VARCHAR}
+      </if>
+      <if test="purchasePayDate != null" >
+        AND purchase_pay_date = #{purchasePayDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="purchaseStoreDate != null" >
+        AND purchase_store_date = #{purchaseStoreDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="actualStorePlace != null" >
+        AND actual_store_place = #{actualStorePlace,jdbcType=VARCHAR}
+      </if>
+      <if test="purchaseSaleCode != null" >
+        AND purchase_sale_code = #{purchaseSaleCode,jdbcType=VARCHAR}
+      </if>
+      <if test="medicineName != null" >
+        AND medicine_name = #{medicineName,jdbcType=VARCHAR}
+      </if>
+      <if test="medicineUniqueCode != null" >
+        AND medicine_unique_code = #{medicineUniqueCode,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturerName != null" >
+        AND manufacturer_name = #{manufacturerName,jdbcType=VARCHAR}
+      </if>
+      <if test="specification != null" >
+        AND specification = #{specification,jdbcType=VARCHAR}
+      </if>
+      <if test="units != null" >
+        AND units = #{units,jdbcType=VARCHAR}
+      </if>
+      <if test="packageNumber != null" >
+        AND package_number = #{packageNumber,jdbcType=INTEGER}
+      </if>
+      <if test="saleCompany != null" >
+        AND sale_company = #{saleCompany,jdbcType=VARCHAR}
+      </if>
+      <if test="buyCompany != null" >
+        AND buy_company = #{buyCompany,jdbcType=VARCHAR}
+      </if>
+      <if test="paymentCategory != null" >
+        AND payment_category = #{paymentCategory,jdbcType=VARCHAR}
+      </if>
+      <if test="paymentMode != null" >
+        AND payment_mode = #{paymentMode,jdbcType=VARCHAR}
+      </if>
+      <if test="purchaseNumber != null" >
+        AND purchase_number = #{purchaseNumber,jdbcType=INTEGER}
+      </if>
+      <if test="purchasePrice != null" >
+        AND purchase_price = #{purchasePrice,jdbcType=DECIMAL}
+      </if>
+      <if test="paymentMoney != null" >
+        AND payment_money = #{paymentMoney,jdbcType=VARCHAR}
+      </if>
+      <if test="workFlow != null" >
+        AND work_flow = #{workFlow,jdbcType=VARCHAR}
+      </if>
+      <if test="clientName != null" >
+        AND client_name = #{clientName,jdbcType=VARCHAR}
+      </if>
+      <if test="saleArea != null" >
+        AND sale_area = #{saleArea,jdbcType=VARCHAR}
+      </if>
+      <if test="purchaseUnitPrice != null" >
+        AND purchase_unit_price = #{purchaseUnitPrice,jdbcType=DECIMAL}
+      </if>
+      <if test="purchaseMoney != null" >
+        AND purchase_money = #{purchaseMoney,jdbcType=VARCHAR}
+      </if>
+      <if test="tax != null" >
+        AND tax = #{tax,jdbcType=VARCHAR}
+      </if>
+      <if test="taxPayMode != null" >
+        AND tax_pay_mode = #{taxPayMode,jdbcType=VARCHAR}
+      </if>
+      <if test="taxPayDate != null" >
+        AND tax_pay_date = #{taxPayDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="invoiceNumber != null" >
+        AND invoice_number = #{invoiceNumber,jdbcType=INTEGER}
+      </if>
+      <if test="invoiceDate != null" >
+        AND invoice_date = #{invoiceDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="ifCheck != null" >
+        AND if_check = #{ifCheck,jdbcType=VARCHAR}
+      </if>
+      <if test="createDate != null" >
+        AND create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateDate != null" >
+        AND update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  <select id="existByPurchaseSaleCode" parameterType="java.lang.String" resultType="java.lang.Boolean">
+    SELECT COUNT(id)
+    FROM purchasement
+    WHERE purchase_sale_code = #{purchaseSaleCode,jdbcType=VARCHAR} AND del_flag = 0
+  </select>
+
+
+  <update id="delete" parameterType="java.lang.Integer">
+    update purchasement set del_flag = 1
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
