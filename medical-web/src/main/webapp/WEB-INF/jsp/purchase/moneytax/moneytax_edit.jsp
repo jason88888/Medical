@@ -48,7 +48,7 @@
             </p>
             <p>
                 <label>开票日期：</label>
-                <input name="invoiceDate" type="text" autocomplete="off" size="30" value="${purchaseMoneytax.invoiceDate}"/>
+                <input name="invoiceDate" class="date"  type="text" autocomplete="off" size="30" value="${purchaseMoneytax.invoiceDate}"/>
             </p>
         </div>
         <div class="formBar">
