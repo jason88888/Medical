@@ -29,6 +29,8 @@ public class PurchaseMoneytax extends DataEntity<PurchaseMoneytax> {
     //开票日期
     private Date invoiceDate;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -123,5 +125,13 @@ public class PurchaseMoneytax extends DataEntity<PurchaseMoneytax> {
 
     public void setInvoiceDate(Date invoiceDate) {
         this.invoiceDate = invoiceDate;
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }

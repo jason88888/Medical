@@ -11,9 +11,10 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
     <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, username, password, role, create_date, update_date, del_flag
+    id, code, username, password, role, create_date, update_date, del_flag,descript
   </sql>
 
   <select id="get" resultMap="BaseResultMap" parameterType="User">
@@ -68,7 +69,8 @@
     #{role},
     #{createDate},
     #{updateDate},
-    #{delFlag}
+    #{delFlag},
+    #{descript}
     )
   </insert>
 
@@ -78,6 +80,7 @@
     username = #{username},
     password = #{password},
     role = #{role},
+    descript = #{descript},
     update_date = #{updateDate}
     WHERE id = #{id}
   </update>
@@ -125,6 +128,9 @@
       <if test="updateDate != null" >
         update_date,
       </if>
+      <if test="descript != null" >
+        descript,
+      </if>
 
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -149,6 +155,9 @@
       <if test="updateDate != null" >
         #{updateDate,jdbcType=DATE},
       </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=DATE},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="User" >
@@ -169,6 +178,9 @@
       <if test="updateDate != null" >
         update_date = #{updateDate,jdbcType=DATE},
       </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=DATE},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -177,7 +189,8 @@
     set code = #{code,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      role = #{role,jdbcType=TINYINT}
+      role = #{role,jdbcType=TINYINT},
+      descript = #{descript,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

@@ -11,6 +11,8 @@ public class Agent extends DataEntity<Agent>{
 
     private String level;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class Agent extends DataEntity<Agent>{
 
     public void setLevel(String level) {
         this.level = level == null ? null : level.trim();
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }

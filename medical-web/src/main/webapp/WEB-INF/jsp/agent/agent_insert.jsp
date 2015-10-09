@@ -20,6 +20,10 @@
                 <label>代理级别</label>
                 <input name="level" class="required" type="text" autocomplete="off" size="30" alt="请输入代理级别"/>
             </p>
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注"/>
+            </p>
         </div>
         <div class="formBar">
             <ul>

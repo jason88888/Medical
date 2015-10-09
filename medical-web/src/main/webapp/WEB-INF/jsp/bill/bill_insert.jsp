@@ -72,6 +72,10 @@
           </c:forEach>
         </select>
       </p>
+      <p>
+        <label>备注</label>
+        <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注"/>
+      </p>
 
     </div>
     <div class="formBar">

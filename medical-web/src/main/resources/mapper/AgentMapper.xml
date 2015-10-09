@@ -6,9 +6,10 @@
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, name, level
+    id, code, name, level,descript
   </sql>
 
   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -49,6 +50,7 @@
     update agent
     set code = #{code,jdbcType=VARCHAR},
     name = #{name,jdbcType=VARCHAR},
+    descript = #{descript,jdbcType=VARCHAR},
     level = #{level,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -72,9 +74,9 @@
   </delete>
   <insert id="insert" parameterType="com.taotaotech.domain.Agent" >
     insert into agent (id, code, name, 
-      level)
+      level,descript)
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{level,jdbcType=VARCHAR})
+      #{level,jdbcType=VARCHAR},#{descript,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="Agent" >
     insert into agent
@@ -97,6 +99,9 @@
       <if test="updateDate != null" >
         update_date ,
       </if>
+      <if test="descript != null" >
+        descript ,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -117,6 +122,9 @@
       <if test="updateDate != null" >
         #{updateDate,jdbcType=DATE},
       </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=DATE},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.Agent" >
@@ -131,6 +139,9 @@
       <if test="level != null" >
         level = #{level,jdbcType=VARCHAR},
       </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -138,6 +149,7 @@
     update agent
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
+      descript = #{descript,jdbcType=VARCHAR},
       level = #{level,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

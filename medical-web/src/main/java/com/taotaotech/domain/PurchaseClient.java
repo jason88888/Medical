@@ -16,6 +16,8 @@ public class PurchaseClient extends DataEntity<PurchaseClient> {
     //采购销售区域
     private String saleArea;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -54,5 +56,13 @@ public class PurchaseClient extends DataEntity<PurchaseClient> {
 
     public void setSaleArea(String saleArea) {
         this.saleArea = saleArea == null ? null : saleArea.trim();
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }

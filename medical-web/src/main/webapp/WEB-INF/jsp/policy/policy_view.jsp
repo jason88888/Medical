@@ -64,6 +64,11 @@
                 <label>附加政策3：</label>
                 <input name="addPolicy3" class="" type="text" value="${policy.addPolicy3}" readonly/>
             </p>
+
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" readonly>${policy.descript}</textarea>
+            </p>
         </div>
         <div class="formBar">
             <ul>

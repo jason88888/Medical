@@ -19,11 +19,12 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
     <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
     id, regional, month, medicine_code, client_code, salesman_policy, clinical_policy,
     manufacturer_policy, two_level_policy, three_level_policy,
-    add_policy1, add_policy2, add_policy3, price, create_date, update_date, del_flag
+    add_policy1, add_policy2, add_policy3, price, create_date, update_date, del_flag,descript
   </sql>
   <select id="get" resultMap="BaseResultMap" parameterType="Policy">
     SELECT
@@ -116,7 +117,8 @@
     #{price},
     #{createDate},
     #{updateDate},
-    #{delFlag}
+    #{delFlag},
+    #{descript}
     )
   </insert>
 
@@ -135,6 +137,7 @@
     add_policy2 = #{addPolicy2},
     add_policy3 = #{addPolicy3},
     price = #{price},
+    descript = #{descript},
     update_date = #{updateDate}
     WHERE id = #{id}
   </update>
@@ -207,6 +210,9 @@
       <if test="updateDate != null" >
         update_date,
       </if>
+      <if test="descript != null" >
+        descript,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -257,6 +263,9 @@
       <if test="updateDate != null" >
         #{updateDate,jdbcType=DATE},
       </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=DATE},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="Policy">
@@ -301,6 +310,9 @@
       <if test="price != null">
         price = #{price,jdbcType=REAL},
       </if>
+      <if test="descript != null">
+        descript = #{descript,jdbcType=REAL},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -317,7 +329,8 @@
       three_level_policy = #{threeLevelPolicy,jdbcType=REAL},
       add_policy1 = #{addPolicy1,jdbcType=REAL},
       add_policy2 = #{addPolicy2,jdbcType=REAL},
-      add_policy3 = #{addPolicy3,jdbcType=REAL}
+      add_policy3 = #{addPolicy3,jdbcType=REAL},
+      descript = #{descript,jdbcType=REAL},
       price = #{price,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>

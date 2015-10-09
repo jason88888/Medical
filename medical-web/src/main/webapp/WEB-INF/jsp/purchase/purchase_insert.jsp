@@ -56,6 +56,20 @@
                     </c:forEach>
                 </select>
             </p>
+            <p>
+                <%--<input id="saleCompany" name="medicineName" type="hidden" value="${medicines.size()>0?medicines[0].name:""}"/>--%>
+                <label>供货商：</label>
+                <select id="saleCompany" name="saleCompany" class="required" onchange="medicineChange()">
+                    <c:forEach items="${clients}" var="client">
+                        <option value="${client.saleCompany}">${medicine.saleCompany}</option>
+                    </c:forEach>
+                </select>
+            </p>
+
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注"></textarea>
+            </p>
 
         </div>
         <div class="formBar">

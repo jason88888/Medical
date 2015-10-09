@@ -6,6 +6,10 @@
         <div class="pageFormContent" layoutH="56" autocomplete="off">
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
+                <label>药品代码：</label>
+                <input name="uniqueCode" class="required" type="text" autocomplete="off" size="30" alt="请输入药品代码"/>
+            </p>
+            <p>
                 <label>药品编码：</label>
                 <input name="code" class="required" type="text" autocomplete="off" size="30" alt="请输入药品编码"/>
             </p>
@@ -40,6 +44,10 @@
                 <span class="info">yyyy-MM-dd</span>
             </p>
 
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注"/>
+            </p>
         </div>
         <div class="formBar">
             <ul>

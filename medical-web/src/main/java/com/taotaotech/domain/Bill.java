@@ -28,6 +28,8 @@ public class Bill extends DataEntity<Bill>{
 
     private String regional;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -156,4 +158,11 @@ public class Bill extends DataEntity<Bill>{
         this.regional =  regional;
     }
 
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
+    }
 }

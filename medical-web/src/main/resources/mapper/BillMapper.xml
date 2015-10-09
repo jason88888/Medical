@@ -17,9 +17,10 @@
         <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
         <result column="medicine_code" property="medicineCode" jdbcType="VARCHAR"/>
         <result column="regional" property="regional" jdbcType="VARCHAR"/>
+        <result column="descript" property="descript" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
-    id, code, date, number,client_code,client_name,two_level_code,two_level_name,three_level_code,three_level_name,user_code,user_name,medicine_name,medicine_code,regional
+    id, code, date, number,client_code,client_name,two_level_code,two_level_name,three_level_code,three_level_name,user_code,user_name,medicine_name,medicine_code,regional,descript
   </sql>
     <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -33,11 +34,11 @@
   </delete>
     <insert id="insert" parameterType="Bill">
     insert into bill (id, code, date,client_code,client_name,user_code,two_level_code,three_level_code,
-      number,user_name,medicine_name,medicine_code,two_level_name,three_level_name,regional)
+      number,user_name,medicine_name,medicine_code,two_level_name,three_level_name,regional,descript)
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{clientCode,jdbcType=VARCHAR},
     #{clientName,jdbcType=VARCHAR},#{userCode,jdbcType=VARCHAR}, #{twoLevelCode,jdbcType=VARCHAR},
     #{threeLevelCode,jdbcType=VARCHAR},#{number,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{medicineName,jdbcType=VARCHAR}
-     ,#{medicineCode,jdbcType=VARCHAR},#{twoLevelName,jdbcType=VARCHAR},#{threeLevelName,jdbcType=VARCHAR},#{regional,jdbcType=VARCHAR})
+     ,#{medicineCode,jdbcType=VARCHAR},#{twoLevelName,jdbcType=VARCHAR},#{threeLevelName,jdbcType=VARCHAR},#{regional,jdbcType=VARCHAR},#{descript,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="Bill">
         insert into bill
@@ -93,6 +94,9 @@
             <if test="updateDate != null" >
                 update_date,
             </if>
+            <if test="descript != null" >
+                descript,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -146,6 +150,9 @@
             <if test="updateDate != null" >
                 #{updateDate,jdbcType=DATE},
             </if>
+            <if test="descript != null" >
+                #{descript,jdbcType=DATE},
+            </if>
         </trim>
     </insert>
     <update id="update" parameterType="Bill">
@@ -196,6 +203,9 @@
             <if test="updateDate != null" >
                 update_date = #{updateDate,jdbcType=DATE},
             </if>
+            <if test="descript != null" >
+                descript = #{descript,jdbcType=DATE},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -214,6 +224,7 @@
       user_name = #{userName,jdbcType=VARCHAR},
       medicine_name = #{medicineName,jdbcType=VARCHAR},
       medicine_code = #{medicineCode,jdbcType=VARCHAR},
+      descript = #{descript,jdbcType=VARCHAR},
       regional = #{regional,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -29,6 +29,8 @@ public class Medicine  extends DataEntity<Medicine> {
 
     private Integer purchaseNumber;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class Medicine  extends DataEntity<Medicine> {
 
     public void setUniqueCode(String uniqueCode) {
         this.uniqueCode = uniqueCode;
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }

@@ -22,6 +22,10 @@
                 <label>商业类型：</label>
                 <input name="businessType" type="text" value="${client.businessType}" autocomplete="off" size="30" alt="请输入商业类型"/>
             </p>
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注">${client.descript}</textarea>
+            </p>
         </div>
         <div class="formBar">
             <ul>

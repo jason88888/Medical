@@ -42,6 +42,8 @@ public class Policy extends DataEntity<Policy> {
 
     protected Page<Policy> page;
 
+    private String descript;
+
     public Float getPrice() {
         return price;
     }
@@ -168,5 +170,13 @@ public class Policy extends DataEntity<Policy> {
 
     public void setAddPolicy3(Float addPolicy3) {
         this.addPolicy3 = addPolicy3;
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }

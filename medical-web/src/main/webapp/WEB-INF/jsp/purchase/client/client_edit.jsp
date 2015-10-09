@@ -22,6 +22,11 @@
                 <label>采购销售区域：</label>
                 <input name="saleArea"  type="text" autocomplete="off" size="30" value="${purchaseClient.saleArea}" />
             </p>
+
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" >${purchaseClient.descript}</textarea>
+            </p>
         </div>
         <div class="formBar">
             <ul>

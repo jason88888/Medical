@@ -17,11 +17,12 @@
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="BIT" />
+      <result column="descript" property="descript" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, payment_category, payment_mode, payment_money, work_flow, purchase_unit_price, 
     purchase_money, tax, tax_pay_mode, tax_pay_date, invoice_number, invoice_date, create_date, 
-    update_date, del_flag
+    update_date, del_flag,descript
   </sql>
    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -45,7 +46,8 @@
       invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=BIT}
+      del_flag = #{delFlag,jdbcType=BIT},
+      descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -55,47 +57,47 @@
         from purchase_moneytax t
         <where>
             del_flag = 0
-            <if test="payment_category != null and payment_category != ''">
-                and payment_category LIKE '%' #{payment_category} '%'
+            <if test="paymentCategory != null and paymentCategory != ''">
+                and payment_category LIKE '%' #{paymentCategory} '%'
             </if>
-            <if test="payment_mode != null and payment_mode != ''">
-                and payment_mode LIKE '%' #{payment_mode} '%'
+            <if test="paymentMode != null and paymentMode != ''">
+                and payment_mode LIKE '%' #{paymentMode} '%'
             </if>
-            <if test="payment_money != null and payment_money != ''">
-                and payment_money = #{payment_money}
+            <if test="paymentMoney != null and paymentMoney != ''">
+                and payment_money = #{paymentMoney}
             </if>
-            <if test="work_flow != null and work_flow != ''">
-                and work_flow = #{work_flow}
+            <if test="workFlow != null and workFlow != ''">
+                and work_flow = #{workFlow}
             </if>
-            <if test="purchase_unit_price != null and purchase_unit_price != ''">
-                and purchase_unit_price = #{purchase_unit_price}
+            <if test="purchaseUnitPrice != null and purchaseUnitPrice != ''">
+                and purchase_unit_price = #{purchaseUnitPrice}
             </if>
-            <if test="purchase_money != null and purchase_money != ''">
-                and purchase_money = #{purchase_money}
+            <if test="purchaseMoney != null and purchaseMoney != ''">
+                and purchase_money = #{purchaseMoney}
             </if>
             <if test="tax != null and tax != ''">
                 and tax = #{tax}
             </if>
-            <if test="tax_pay_mode != null and tax_pay_mode != ''">
-                and tax_pay_mode = #{tax_pay_mode}
+            <if test="taxPayMode != null and taxPayMode != ''">
+                and tax_pay_mode = #{taxPayMode}
             </if>
-            <if test="tax_pay_date != null and tax_pay_date != ''">
-                and tax_pay_date = #{tax_pay_date}
+            <if test="taxPayDate != null and taxPayDate != ''">
+                and tax_pay_date = #{taxPayDate}
             </if>
-            <if test="invoice_number != null and invoice_number != ''">
-                and invoice_number = #{invoice_number}
+            <if test="invoiceNumber != null and invoiceNumber != ''">
+                and invoice_number = #{invoiceNumber}
             </if>
-            <if test="invoice_date != null and invoice_date != ''">
-                and invoice_date = #{invoice_date}
+            <if test="invoiceDate != null and invoiceDate != ''">
+                and invoice_date = #{invoiceDate}
             </if>
-            <if test="create_date != null and create_date != ''">
-                and create_date = #{create_date}
+            <if test="createDate != null and createDate != ''">
+                and create_date = #{createDate}
             </if>
-            <if test="update_date != null and update_date != ''">
-                and update_date = #{update_date}
+            <if test="updateDate != null and updateDate != ''">
+                and update_date = #{updateDate}
             </if>
-            <if test="del_flag != null and del_flag != ''">
-                and del_flag = #{del_flag}
+            <if test="delFlag != null and delFlag != ''">
+                and del_flag = #{delFlag}
             </if>
         </where>
         <choose>
@@ -131,12 +133,12 @@
       work_flow, purchase_unit_price, purchase_money, 
       tax, tax_pay_mode, tax_pay_date, 
       invoice_number, invoice_date, create_date, 
-      update_date, del_flag)
+      update_date, del_flag,descript)
     values (#{paymentCategory,jdbcType=VARCHAR}, #{paymentMode,jdbcType=VARCHAR}, #{paymentMoney,jdbcType=VARCHAR}, 
       #{workFlow,jdbcType=VARCHAR}, #{purchaseUnitPrice,jdbcType=DECIMAL}, #{purchaseMoney,jdbcType=VARCHAR}, 
       #{tax,jdbcType=VARCHAR}, #{taxPayMode,jdbcType=VARCHAR}, #{taxPayDate,jdbcType=TIMESTAMP}, 
       #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT})
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}, #{descript,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -186,6 +188,9 @@
       <if test="delFlag != null" >
         del_flag,
       </if>
+      <if test="descript != null" >
+          descript,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paymentCategory != null" >
@@ -229,6 +234,9 @@
       </if>
       <if test="delFlag != null" >
         #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -277,6 +285,9 @@
       <if test="delFlag != null" >
         del_flag = #{delFlag,jdbcType=BIT},
       </if>
+      <if test="descript != null" >
+          descript = #{descript,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -295,7 +306,8 @@
       invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=BIT}
+      del_flag = #{delFlag,jdbcType=BIT},
+      descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

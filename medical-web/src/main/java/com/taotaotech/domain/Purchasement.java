@@ -66,6 +66,8 @@ public class Purchasement extends DataEntity<Purchasement> {
     //采购条目生成是否已核对
     private String ifCheck;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -304,5 +306,13 @@ public class Purchasement extends DataEntity<Purchasement> {
 
     public void setMedicineUniqueCode(String medicineUniqueCode) {
         this.medicineUniqueCode = medicineUniqueCode;
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }

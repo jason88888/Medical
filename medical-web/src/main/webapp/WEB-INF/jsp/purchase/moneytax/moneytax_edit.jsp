@@ -50,6 +50,10 @@
                 <label>开票日期：</label>
                 <input name="invoiceDate" class="date"  type="text" autocomplete="off" size="30" value="${purchaseMoneytax.invoiceDate}"/>
             </p>
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注">${purchaseMoneytax.descript}</textarea>
+            </p>
         </div>
         <div class="formBar">
             <ul>

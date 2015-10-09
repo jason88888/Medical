@@ -54,6 +54,10 @@
                 <a class="inputDateButton" href="javascript:;">选择</a>
                 <%--<input name="invoiceDate" type="text" autocomplete="off" size="30" alt="请输入开票日期"/>--%>
             </p>
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注"/>
+            </p>
         </div>
         <div class="formBar">
             <ul>

@@ -34,6 +34,7 @@
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
         <result column="del_flag" property="delFlag" jdbcType="BIT"/>
+        <result column="descript" property="descript" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
     id, purchase_sale_type, purchase_pay_date, purchase_store_date, actual_store_place, 
@@ -41,7 +42,7 @@
     sale_company, buy_company, payment_category, payment_mode, purchase_number, purchase_price, 
     payment_money, work_flow, client_name, sale_area, purchase_unit_price, purchase_money, 
     tax, tax_pay_mode, tax_pay_date, invoice_number, invoice_date, if_check, create_date, 
-    update_date, del_flag
+    update_date, del_flag,descript
   </sql>
     <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -82,7 +83,8 @@
     if_check = #{ifCheck,jdbcType=VARCHAR},
     create_date = #{createDate,jdbcType=TIMESTAMP},
     update_date = #{updateDate,jdbcType=TIMESTAMP},
-    del_flag = #{delFlag,jdbcType=BIT}
+    del_flag = #{delFlag,jdbcType=BIT},
+    descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -105,7 +107,7 @@
         sale_area, purchase_unit_price, purchase_money,
         tax, tax_pay_mode, tax_pay_date,
         invoice_number, invoice_date, if_check,
-        create_date, update_date, del_flag
+        create_date, update_date, del_flag, descript
         )
         values (#{purchaseSaleType,jdbcType=VARCHAR}, #{purchasePayDate,jdbcType=TIMESTAMP},
         #{purchaseStoreDate,jdbcType=TIMESTAMP}, #{actualStorePlace,jdbcType=VARCHAR},
@@ -117,7 +119,7 @@
         #{saleArea,jdbcType=VARCHAR}, #{purchaseUnitPrice,jdbcType=DECIMAL}, #{purchaseMoney,jdbcType=VARCHAR},
         #{tax,jdbcType=VARCHAR}, #{taxPayMode,jdbcType=VARCHAR}, #{taxPayDate,jdbcType=TIMESTAMP},
         #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=TIMESTAMP}, #{ifCheck,jdbcType=VARCHAR},
-        #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
+        #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}, #{descript,jdbcType=BIT}
         )
     </insert>
     <insert id="insertSelective" parameterType="java.util.Map">
@@ -222,6 +224,9 @@
             <if test="delFlag != null">
                 del_flag,
             </if>
+            <if test="descript != null">
+                descript,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="purchaseSaleType != null">
@@ -319,6 +324,9 @@
             </if>
             <if test="delFlag != null">
                 #{delFlag,jdbcType=BIT},
+            </if>
+            <if test="descript != null">
+                #{descript,jdbcType=BIT},
             </if>
         </trim>
     </insert>
@@ -421,6 +429,9 @@
             <if test="delFlag != null">
                 del_flag = #{delFlag,jdbcType=BIT},
             </if>
+            <if test="descript != null">
+                descript = #{descript,jdbcType=BIT},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -456,7 +467,8 @@
       if_check = #{ifCheck,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=BIT}
+      del_flag = #{delFlag,jdbcType=BIT},
+      descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

@@ -10,10 +10,11 @@
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="BIT" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, sale_company, buy_company, client_name, sale_area, create_date, update_date, 
-    del_flag
+    del_flag,descript
   </sql>
 
   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -41,17 +42,17 @@
     from purchase_client t
     <where>
       del_flag = 0
-      <if test="sale_company != null and sale_company != ''">
-        and sale_company LIKE '%' #{sale_company} '%'
+      <if test="saleCompany != null and saleCompany != ''">
+        and sale_company LIKE '%' #{saleCompany} '%'
       </if>
-      <if test="buy_company != null and buy_company != ''">
-        and buy_company LIKE '%' #{buy_company} '%'
+      <if test="buyCompany != null and buyCompany != ''">
+        and buy_company LIKE '%' #{buyCompany} '%'
       </if>
-      <if test="client_name != null and client_name != ''">
-        and client_name = #{client_name}
+      <if test="clientName != null and clientName != ''">
+        and client_name = #{clientName}
       </if>
-      <if test="sale_area != null and sale_area != ''">
-        and sale_area = #{sale_area}
+      <if test="saleArea != null and saleArea != ''">
+        and sale_area = #{saleArea}
       </if>
     </where>
     <choose>
@@ -83,10 +84,10 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into purchase_client (sale_company, buy_company, client_name, 
-      sale_area, create_date, update_date, 
+    insert into purchase_client (sale_company, buy_company, client_name,descript,
+      sale_area, create_date, update_date,
       del_flag)
-    values (#{saleCompany,jdbcType=VARCHAR}, #{buyCompany,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, 
+    values (#{saleCompany,jdbcType=VARCHAR}, #{buyCompany,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR},  #{descript,jdbcType=VARCHAR},
       #{saleArea,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
       #{delFlag,jdbcType=BIT})
   </insert>
@@ -117,6 +118,9 @@
       <if test="delFlag != null" >
         del_flag,
       </if>
+      <if test="descript != null" >
+        descript,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="saleCompany != null" >
@@ -139,6 +143,9 @@
       </if>
       <if test="delFlag != null" >
         #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -166,6 +173,9 @@
       <if test="delFlag != null" >
         del_flag = #{delFlag,jdbcType=BIT},
       </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -175,6 +185,7 @@
       buy_company = #{buyCompany,jdbcType=VARCHAR},
       client_name = #{clientName,jdbcType=VARCHAR},
       sale_area = #{saleArea,jdbcType=VARCHAR},
+      descript = #{descript,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=BIT}

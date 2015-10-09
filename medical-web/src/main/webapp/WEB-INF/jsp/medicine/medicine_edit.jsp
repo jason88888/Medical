@@ -7,6 +7,10 @@
             <input type="hidden" name="id" value="${medicine.id}"/>
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
+                <label>药品代码：</label>
+                <input name="uniqueCode" class="required" type="text" autocomplete="off" size="30" value="${medicine.uniqueCode}"/>
+            </p>
+            <p>
                 <label>药品编码：</label>
                 <input name="code" class="required" type="text" size="30" value="${medicine.code}"/>
             </p>
@@ -48,6 +52,10 @@
                 <input name="validityPeriod" class="date" type="text" value="${medicine.validityPeriod}" autocomplete="off" size="30" alt="请输入有效期"/>
             </p>
 
+            <p>
+                <label>备注</label>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" >${medicine.descript}</textarea>
+            </p>
         </div>
         <div class="formBar">
             <ul>

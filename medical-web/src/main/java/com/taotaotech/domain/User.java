@@ -11,6 +11,8 @@ public class User extends DataEntity<User> {
 
     private Byte role;
 
+    private String descript;
+
     public String getCode() {
         return code;
     }
@@ -43,6 +45,13 @@ public class User extends DataEntity<User> {
         this.role = role;
     }
 
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
+    }
 
     @Override
     public String toString() {

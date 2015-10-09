@@ -16,6 +16,8 @@ public class Client  extends DataEntity<Client> {
 
     private String businessType;
 
+    private String descript;
+
     public Integer getId() {
         return id;
     }
@@ -54,5 +56,13 @@ public class Client  extends DataEntity<Client> {
 
     public void setBusinessType(String businessType) {
         this.businessType = businessType == null ? null : businessType.trim();
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 }
