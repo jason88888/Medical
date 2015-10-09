@@ -9,7 +9,7 @@
  Target Server Version : 50542
  File Encoding         : utf-8
 
- Date: 10/09/2015 09:00:14 AM
+ Date: 10/09/2015 09:27:26 AM
 */
 
 SET NAMES utf8;
@@ -131,8 +131,8 @@ CREATE TABLE `purchase_client` (
   `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
   `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
   `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `create_date` varchar(50) NOT NULL COMMENT '创建时间',
+  `update_date` varchar(50) NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -147,13 +147,13 @@ CREATE TABLE `purchase_moneytax` (
   `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
   `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
   `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
-  `purchase_unit_price` decimal(10,0) DEFAULT NULL COMMENT '进项单价',
+  `purchase_unit_price` decimal(10,3) DEFAULT NULL COMMENT '进项单价',
   `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
   `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
   `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
-  `tax_pay_date` datetime DEFAULT NULL COMMENT '付税日期',
+  `tax_pay_date` varchar(50) DEFAULT NULL COMMENT '付税日期',
   `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
-  `invoice_date` datetime DEFAULT NULL COMMENT '开票日期',
+  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
@@ -167,8 +167,8 @@ DROP TABLE IF EXISTS `purchasement`;
 CREATE TABLE `purchasement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `purchase_sale_type` varchar(60) DEFAULT NULL COMMENT '采购销售类别',
-  `purchase_pay_date` datetime DEFAULT NULL COMMENT '采购付款日期',
-  `purchase_store_date` datetime DEFAULT NULL COMMENT '采购入库日期',
+  `purchase_pay_date` varchar(50) DEFAULT NULL COMMENT '采购付款日期',
+  `purchase_store_date` varchar(50) DEFAULT NULL COMMENT '采购入库日期',
   `actual_store_place` varchar(255) DEFAULT NULL COMMENT '实际入库地点',
   `purchase_sale_code` varchar(255) NOT NULL COMMENT '采购申请单号',
   `medicine_name` varchar(255) DEFAULT NULL COMMENT '药品名称',
@@ -181,18 +181,18 @@ CREATE TABLE `purchasement` (
   `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
   `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
   `purchase_number` int(11) DEFAULT NULL COMMENT '购进数量',
-  `purchase_price` decimal(10,0) DEFAULT NULL COMMENT '采购单价',
+  `purchase_price` decimal(10,3) DEFAULT NULL COMMENT '采购单价',
   `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
   `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
   `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
   `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
-  `purchase_unit_price` decimal(10,0) DEFAULT NULL COMMENT '进项单价',
+  `purchase_unit_price` decimal(10,3) DEFAULT NULL COMMENT '进项单价',
   `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
   `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
   `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
-  `tax_pay_date` datetime DEFAULT NULL COMMENT '付税日期',
+  `tax_pay_date` varchar(50) DEFAULT NULL COMMENT '付税日期',
   `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
-  `invoice_date` datetime DEFAULT NULL COMMENT '开票日期',
+  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
   `if_check` varchar(255) DEFAULT NULL COMMENT '采购条目生成是否已核对',
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_date` datetime NOT NULL COMMENT '更新时间',
@@ -218,3 +218,6 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO `sys_user` (`id`, `code`, `username`, `password`, `role`, `create_date`, `update_date`, `del_flag`) VALUES
+	(1, 'A000001', 'admin', '111111', 1, '1970-01-01 00:00:00', '1970-01-01 00:00:00', b'0')
