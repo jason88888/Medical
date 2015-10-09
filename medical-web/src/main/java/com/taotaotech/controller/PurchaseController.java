@@ -23,11 +23,11 @@ import java.util.List;
 /**
  * @author zk
  * @date 2015/9/4 10:36
- * @description 采购列表
+ * @description 产品目录
  */
 @Controller
 @RequestMapping("purchase")
-public class PurchasementController extends BaseController {
+public class PurchaseController extends BaseController {
     @Autowired
     private IPurchaseService purchaseService;
     @Autowired
@@ -89,7 +89,6 @@ public class PurchasementController extends BaseController {
         return result;
     }
 
-
     @RequestMapping(value = "upload", method = {RequestMethod.GET})
     public String upload() {
         return "purchase/purchase_upload";
@@ -100,5 +99,4 @@ public class PurchasementController extends BaseController {
     public Object uploadSave(@RequestParam("file") MultipartFile file) {
         return purchaseService.parsePurchaseTable(file);
     }
-
 }

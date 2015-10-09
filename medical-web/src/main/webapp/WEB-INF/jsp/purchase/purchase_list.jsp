@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="agent/list" method="post">
+    <form onsubmit="return navTabSearch(this);" action="purchase/list" method="post">
         <div class="searchBar">
             <div class="subBar">
                 <ul>

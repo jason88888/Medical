@@ -27,7 +27,8 @@
       </p>
       <p>
         <label>开票日期：</label>
-        <input name="date" class="required" type="date" autocomplete="off" size="30" alt="请选择开票日期"/>
+        <input name="date" class="date" type="text" readonly="true"/>
+        <a class="inputDateButton" href="javascript:;">选择</a>
       </p>
       <p>
         <label>数量：</label>

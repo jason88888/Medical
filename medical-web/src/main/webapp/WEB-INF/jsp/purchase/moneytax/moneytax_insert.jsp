@@ -39,9 +39,9 @@
             </p>
             <p>
                 <label>付税日期：</label>
-                <input name="validityPeriod" class="date" type="text" readonly="true"/>
+                <input name="taxPayDate" class="date" type="text" readonly="true"/>
                 <a class="inputDateButton" href="javascript:;">选择</a>
-                <span class="info">yyyy-MM-dd</span>
+                <%--<span class="info">yyyy-MM-dd</span>--%>
                 <%--<input name="taxPayDate" type="text" autocomplete="off" size="30" alt="请输入付税日期"/>--%>
             </p>
             <p>
@@ -50,9 +50,8 @@
             </p>
             <p>
                 <label>开票日期：</label>
-                <input name="validityPeriod" class="date" type="text" readonly="true"/>
+                <input name="invoiceDate" class="date" type="text" readonly="true"/>
                 <a class="inputDateButton" href="javascript:;">选择</a>
-                <span class="info">yyyy-MM-dd</span>
                 <%--<input name="invoiceDate" type="text" autocomplete="off" size="30" alt="请输入开票日期"/>--%>
             </p>
         </div>
