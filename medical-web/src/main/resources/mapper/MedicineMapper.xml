@@ -109,6 +109,7 @@
       price = #{price,jdbcType=REAL},
       lot_number = #{lotNumber,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=VARCHAR},
       validity_period = #{validityPeriod,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

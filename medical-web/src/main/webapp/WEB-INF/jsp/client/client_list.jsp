@@ -38,6 +38,7 @@
             <th width="200">客户名称</th>
             <th width="100">区域名称</th>
             <th width="250">商业类型</th>
+            <th width="100">备注</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
                 <td>${client.name}</td>
                 <td>${client.regional}</td>
                 <td>${client.businessType}</td>
+                <td>${client.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

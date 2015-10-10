@@ -74,7 +74,6 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
                     break;
                 }
                 list.size();
-
                 result.setMessage("导入成功！");
                 result.setCallbackType("closeCurrent");
                 result.setNavTabId("purchase_list");
@@ -133,8 +132,16 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         if (!purchasementMapper.existByPurchaseSaleCode(ip.getPurchaseSaleCode())) {
             Purchasement purchasement = new Purchasement();
             purchasement.setPurchaseSaleType(ip.getPurchaseSaleType());
-            purchasement.setPurchasePayDate(DateUtil.dateFormat(ip.getPurchasePayDate(), DateUtil.FORMAT_YYYYMMDD));
-            purchasement.setPurchaseStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
+            try {
+                purchasement.setPurchasePayDate(DateUtil.dateFormat(ip.getPurchasePayDate(), DateUtil.FORMAT_YYYYMMDD));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                purchasement.setPurchaseStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             purchasement.setActualStorePlace(ip.getActualStorePlace());
             purchasement.setPurchaseSaleCode(ip.getPurchaseSaleCode());
             purchasement.setMedicineName(ip.getMedicineName());

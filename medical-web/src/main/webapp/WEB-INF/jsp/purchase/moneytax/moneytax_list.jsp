@@ -54,6 +54,7 @@
             <th width="150">付税日期</th>
             <th width="150">发票号码</th>
             <th width="150">开票日期</th>
+            <th width="150">备注</th>
         </tr>
         </thead>
         <tbody>
@@ -73,6 +74,7 @@
                 <td>${purchaseMoneytax.taxPayDate}</td>
                 <td>${purchaseMoneytax.invoiceNumber}</td>
                 <td>${purchaseMoneytax.invoiceDate}</td>
+                <td>${purchaseMoneytax.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

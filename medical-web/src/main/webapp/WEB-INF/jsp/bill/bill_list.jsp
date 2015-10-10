@@ -70,6 +70,7 @@
             <th>客户名称</th>
             <th>业务员名称</th>
             <th>药品名称</th>
+            <th>备注</th>
         </tr>
         </thead>
         <tbody>
@@ -84,6 +85,7 @@
                 <td>${bill.clientName}</td>
                 <td>${bill.userName}</td>
                 <td>${bill.medicineName}</td>
+                <td>${bill.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

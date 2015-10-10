@@ -465,9 +465,7 @@
       invoice_number = #{invoiceNumber,jdbcType=INTEGER},
       invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
       if_check = #{ifCheck,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=BIT},
+      update_date = #{updateDate}
       descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

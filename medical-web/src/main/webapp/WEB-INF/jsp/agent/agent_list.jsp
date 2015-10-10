@@ -57,6 +57,7 @@
             <th>代理商代码</th>
             <th>代理商姓名</th>
             <th>代理级别</th>
+            <th>备注</th>
         </tr>
         </thead>
         <tbody>
@@ -66,6 +67,7 @@
                 <td>${agent.code}</td>
                 <td>${agent.name}</td>
                 <td>${agent.level}级代理</td>
+                <th>${agent.descript}</th>
             </tr>
         </c:forEach>
         </tbody>

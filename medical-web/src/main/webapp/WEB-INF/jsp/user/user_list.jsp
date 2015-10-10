@@ -63,6 +63,7 @@
             <th width="120">用户名</th>
             <th width="100">密码</th>
             <th width="150">角色</th>
+            <th width="150">备注</th>
         </tr>
         </thead>
         <tbody>
@@ -85,6 +86,7 @@
                         <td></td>
                     </c:otherwise>
                 </c:choose>
+                <td>${user.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

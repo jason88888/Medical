@@ -78,14 +78,14 @@
   </insert>
 
   <update id="update" parameterType="Client" >
-    UPDATE client SET
-    code = #{code},
-    name = #{name},
-    regional = #{regional},
-    business_type = #{businessType},
-    update_date = #{updateDate}
-    descript = #{descript}
-    WHERE id = #{id}
+    update client
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      regional = #{regional,jdbcType=VARCHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <update id="delete">

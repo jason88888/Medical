@@ -50,6 +50,7 @@
     update agent
     set code = #{code,jdbcType=VARCHAR},
     name = #{name,jdbcType=VARCHAR},
+    update_date = #{updateDate,jdbcType=VARCHAR},
     descript = #{descript,jdbcType=VARCHAR},
     level = #{level,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

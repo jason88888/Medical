@@ -30,9 +30,8 @@
     buy_company = #{buyCompany,jdbcType=VARCHAR},
     client_name = #{clientName,jdbcType=VARCHAR},
     sale_area = #{saleArea,jdbcType=VARCHAR},
-    create_date = #{createDate,jdbcType=TIMESTAMP},
-    update_date = #{updateDate,jdbcType=TIMESTAMP},
-    del_flag = #{delFlag,jdbcType=BIT}
+    update_date = #{updateDate,jdbcType=VARCHAR},
+    descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

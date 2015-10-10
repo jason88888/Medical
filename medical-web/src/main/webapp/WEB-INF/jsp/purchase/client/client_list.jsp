@@ -47,6 +47,7 @@
             <th width="200">我司下家购货单位</th>
             <th width="100">为所属客户</th>
             <th width="250">采购销售区域</th>
+            <th width="100">备注</th>
         </tr>
         </thead>
         <tbody>
@@ -59,6 +60,7 @@
                 <td>${purchaseClient.buyCompany}</td>
                 <td>${purchaseClient.clientName}</td>
                 <td>${purchaseClient.saleArea}</td>
+                <td>${purchaseClient.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

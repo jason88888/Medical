@@ -44,9 +44,7 @@
       tax_pay_date = #{taxPayDate,jdbcType=TIMESTAMP},
       invoice_number = #{invoiceNumber,jdbcType=INTEGER},
       invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=BIT},
+      update_date = #{updateDate,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

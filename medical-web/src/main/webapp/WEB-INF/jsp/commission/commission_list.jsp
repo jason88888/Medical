@@ -24,6 +24,7 @@
                 <th>附加费用3</th>
                 <th>总营业额</th>
                 <th>总费用</th>
+                <th>备注</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@
                 <td>${countCommission.addCharge3}</td>
                 <td>${countCommission.businessFee}</td>
                 <td>${countCommission.totalCharge}</td>
+                <td>${countCommission.descript}</td>
             </tr>
             </tbody>
         </table>

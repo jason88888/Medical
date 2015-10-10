@@ -224,6 +224,7 @@
       user_name = #{userName,jdbcType=VARCHAR},
       medicine_name = #{medicineName,jdbcType=VARCHAR},
       medicine_code = #{medicineCode,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
       regional = #{regional,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
