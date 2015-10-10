@@ -161,11 +161,19 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
             purchasement.setPurchaseMoney(ip.getPurchaseMoney());
             purchasement.setTax(ip.getTax());
             purchasement.setTaxPayMode(ip.getTaxPayMode());
-            purchasement.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
+            try {
+                purchasement.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if (!TextUtils.isEmpty(ip.getInvoiceNumber())) {
                 purchasement.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
             }
-            purchasement.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
+            try {
+                purchasement.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             purchasement.setIfCheck(ip.getCheck());
             save(purchasement);
         }
