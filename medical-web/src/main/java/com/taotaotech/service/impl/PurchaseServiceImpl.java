@@ -5,6 +5,7 @@ import com.taotaotech.core.persistence.Page;
 import com.taotaotech.core.service.CrudService;
 import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.ProcessPurchaseUtil;
+import com.taotaotech.core.utils.TextUtils;
 import com.taotaotech.dao.PurchaseClientMapper;
 import com.taotaotech.dao.PurchaseMoneytaxMapper;
 import com.taotaotech.dao.PurchasementMapper;
@@ -31,7 +32,7 @@ import java.util.List;
  * @description
  */
 @Service
-public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchasement> implements IPurchaseService {
+public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchasement> implements IPurchaseService {
 
     @Autowired
     PurchasementMapper purchasementMapper;
@@ -94,17 +95,25 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchase
         moneyTax.setPaymentMode(ip.getPaymentMode());
         moneyTax.setPaymentMoney(ip.getPaymentMoney());
         moneyTax.setWorkFlow(ip.getWorkFlow());
-        if (null != ip.getPurchaseUnitPrice() && ip.getPurchaseUnitPrice().equals("")){
+        if (!TextUtils.isEmpty(ip.getPurchaseUnitPrice())) {
             moneyTax.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
         }
         moneyTax.setPurchaseMoney(ip.getPurchaseMoney());
         moneyTax.setTax(ip.getTax());
         moneyTax.setTaxPayMode(ip.getTaxPayMode());
-        moneyTax.setTaxPayDate(DateUtil.getDate(ip.getTaxPayDate(), "yyyy-MM-dd"));
-        if (null != ip.getInvoiceNumber() && ip.getInvoiceNumber().equals("")){
+        if (!TextUtils.isEmpty(ip.getInvoiceNumber())) {
             moneyTax.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
         }
-        moneyTax.setInvoiceDate(DateUtil.getDate(ip.getInvoiceDate(),"yyyy-MM-dd"));
+        try {
+            moneyTax.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            moneyTax.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         moneyTaxService.save(moneyTax);
     }
 
@@ -118,14 +127,14 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchase
     }
 
     private void generatePurchasement(ImportPurchasement ip) {
-        if(ip.getPurchaseSaleCode() == null || ip.getPurchaseSaleCode().equals("")){
+        if (ip.getPurchaseSaleCode() == null || ip.getPurchaseSaleCode().equals("")) {
             return;
         }
         if (!purchasementMapper.existByPurchaseSaleCode(ip.getPurchaseSaleCode())) {
             Purchasement purchasement = new Purchasement();
             purchasement.setPurchaseSaleType(ip.getPurchaseSaleType());
-            purchasement.setPurchasePayDate(ip.getPurchasePayDate());
-            purchasement.setPurchaseStoreDate(ip.getPurchaseStoreDate());
+            purchasement.setPurchasePayDate(DateUtil.dateFormat(ip.getPurchasePayDate(), DateUtil.FORMAT_YYYYMMDD));
+            purchasement.setPurchaseStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
             purchasement.setActualStorePlace(ip.getActualStorePlace());
             purchasement.setPurchaseSaleCode(ip.getPurchaseSaleCode());
             purchasement.setMedicineName(ip.getMedicineName());
@@ -139,24 +148,24 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchase
             purchasement.setPaymentCategory(ip.getPaymentCategory());
             purchasement.setPaymentMode(ip.getPaymentMode());
             purchasement.setPurchaseNumber(ip.getPurchaseNumber());
-            if (null != ip.getPurchasePrice() && ip.getPurchasePrice().equals("")) {
+            if (!TextUtils.isEmpty(ip.getPurchasePrice())) {
                 purchasement.setPurchasePrice(Long.parseLong(ip.getPurchasePrice()));
             }
             purchasement.setPaymentMoney(ip.getPaymentMoney());
             purchasement.setWorkFlow(ip.getWorkFlow());
             purchasement.setClientName(ip.getClientName());
             purchasement.setSaleArea(ip.getSaleArea());
-            if (null != ip.getPurchaseUnitPrice() && ip.getPurchaseUnitPrice().equals("")) {
+            if (!TextUtils.isEmpty(ip.getPurchaseUnitPrice())) {
                 purchasement.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
             }
             purchasement.setPurchaseMoney(ip.getPurchaseMoney());
             purchasement.setTax(ip.getTax());
             purchasement.setTaxPayMode(ip.getTaxPayMode());
-            purchasement.setTaxPayDate(ip.getTaxPayDate());
-            if (null != ip.getInvoiceNumber() && ip.getInvoiceNumber().equals("")) {
+            purchasement.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
+            if (!TextUtils.isEmpty(ip.getInvoiceNumber())) {
                 purchasement.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
             }
-            purchasement.setInvoiceDate(ip.getInvoiceDate());
+            purchasement.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
             purchasement.setIfCheck(ip.getCheck());
             save(purchasement);
         }
@@ -164,9 +173,8 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchase
 
 
     private void generateMedicine(ImportPurchasement ip) {
-        if (ip.getLotNumber() == null || ip.getLotNumber().equals("") ||
-                ip.getMedicineUniqueCode() == null || ip.getMedicineUniqueCode().equals("")) {
-            return ;
+        if (TextUtils.isEmpty(ip.getLotNumber()) || TextUtils.isEmpty(ip.getMedicineUniqueCode())) {
+            return;
         }
         if (!medicineService.existByMedicineCodeAndLotNumber(ip.getMedicineCode(), ip.getLotNumber())) {
             Medicine medicine = new Medicine();
@@ -176,7 +184,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper,Purchase
             medicine.setLotNumber(ip.getLotNumber());
             medicine.setSpecification(ip.getSpecification());
             medicine.setManufacturerName(ip.getManufacturerName());
-            if (!ip.getPurchasePrice().equals("")) {
+            if (!TextUtils.isEmpty(ip.getPurchasePrice())) {
                 medicine.setPrice(Float.parseFloat(ip.getPurchasePrice()));
             }
             medicine.setUnits(ip.getUnits());

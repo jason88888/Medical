@@ -23,11 +23,11 @@ public class PurchaseMoneytax extends DataEntity<PurchaseMoneytax> {
     //付税方式
     private String taxPayMode;
     //付税日期
-    private Date taxPayDate;
+    private String taxPayDate;
     //发票号码
     private Integer invoiceNumber;
     //开票日期
-    private Date invoiceDate;
+    private String invoiceDate;
 
     private String descript;
 
@@ -103,11 +103,11 @@ public class PurchaseMoneytax extends DataEntity<PurchaseMoneytax> {
         this.taxPayMode = taxPayMode == null ? null : taxPayMode.trim();
     }
 
-    public Date getTaxPayDate() {
+    public String getTaxPayDate() {
         return taxPayDate;
     }
 
-    public void setTaxPayDate(Date taxPayDate) {
+    public void setTaxPayDate(String taxPayDate) {
         this.taxPayDate = taxPayDate;
     }
 
@@ -119,11 +119,11 @@ public class PurchaseMoneytax extends DataEntity<PurchaseMoneytax> {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public Date getInvoiceDate() {
+    public String getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
+    public void setInvoiceDate(String invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 

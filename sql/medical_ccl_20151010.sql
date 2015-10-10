@@ -227,3 +227,6 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO `sys_user` (`id`, `code`, `username`, `password`, `role`, `create_date`, `update_date`, `del_flag`) VALUES
+	(1, 'A000001', 'admin', '111111', 1, '1970-01-01 00:00:00', '1970-01-01 00:00:00', b'0')
