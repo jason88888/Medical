@@ -130,7 +130,18 @@
                 </div>
 
                 <c:if test="${user.role == 1}">
-                <div class="accordionHeader">
+                    <div class="accordionHeader">
+                        <h2>
+                            <span>Folder</span>库存相关管理
+                        </h2>
+                    </div>
+                    <div class="accordionContent">
+                        <ul class="tree treeFolder">
+                            <li><a href="medicine/list" target="navTab" rel="medicine_list">仓库管理</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="accordionHeader">
                     <h2>
                         <span>Folder</span>财务管理
                     </h2>
