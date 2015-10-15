@@ -1,22 +1,22 @@
 /*
- Navicat MySQL Data Transfer
+Navicat MySQL Data Transfer
 
- Source Server         : localDB
- Source Server Version : 50542
- Source Host           : localhost
- Source Database       : medical
+Source Server         : medical
+Source Server Version : 50626
+Source Host           : localhost:3306
+Source Database       : medical
 
- Target Server Version : 50542
- File Encoding         : utf-8
+Target Server Type    : MYSQL
+Target Server Version : 50626
+File Encoding         : 65001
 
- Date: 10/10/2015 09:20:17 AM
+Date: 2015-10-15 15:32:16
 */
 
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
---  Table structure for `agent`
+-- Table structure for agent
 -- ----------------------------
 DROP TABLE IF EXISTS `agent`;
 CREATE TABLE `agent` (
@@ -29,10 +29,33 @@ CREATE TABLE `agent` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='代理商表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代理商表';
 
 -- ----------------------------
---  Table structure for `bill`
+-- Table structure for agent_client
+-- ----------------------------
+DROP TABLE IF EXISTS `agent_client`;
+CREATE TABLE `agent_client` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL COMMENT '客户名称',
+  `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
+  `attribution` varchar(20) DEFAULT NULL,
+  `area_name` varchar(20) DEFAULT NULL COMMENT '地区',
+  `chief_name` varchar(20) DEFAULT NULL COMMENT '负责人',
+  `fax_no` varchar(20) DEFAULT NULL COMMENT '传真',
+  `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  `level` varchar(3) DEFAULT '2' COMMENT '代理级别2或者3',
+  `whose_client` varchar(20) DEFAULT NULL COMMENT '为所属客户',
+  `sale_area` varchar(20) DEFAULT NULL COMMENT '采购销售区域',
+  `descript` varchar(20) DEFAULT NULL COMMENT '备注',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for bill
 -- ----------------------------
 DROP TABLE IF EXISTS `bill`;
 CREATE TABLE `bill` (
@@ -57,10 +80,10 @@ CREATE TABLE `bill` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='单据表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='单据表';
 
 -- ----------------------------
---  Table structure for `client`
+-- Table structure for client
 -- ----------------------------
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
@@ -74,10 +97,10 @@ CREATE TABLE `client` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='客户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户表';
 
 -- ----------------------------
---  Table structure for `medicine`
+-- Table structure for medicine
 -- ----------------------------
 DROP TABLE IF EXISTS `medicine`;
 CREATE TABLE `medicine` (
@@ -97,11 +120,11 @@ CREATE TABLE `medicine` (
   `purchase_number` int(11) NOT NULL DEFAULT '0' COMMENT '购进数',
   `unique_code` varchar(20) NOT NULL COMMENT '药品代码（药品的唯一性）',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`,`descript`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `medicine_policy`
+-- Table structure for medicine_policy
 -- ----------------------------
 DROP TABLE IF EXISTS `medicine_policy`;
 CREATE TABLE `medicine_policy` (
@@ -124,51 +147,30 @@ CREATE TABLE `medicine_policy` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `purchase_client`
+-- Table structure for provider
 -- ----------------------------
-DROP TABLE IF EXISTS `purchase_client`;
-CREATE TABLE `purchase_client` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `sale_company` varchar(255) DEFAULT NULL COMMENT '我司上家销货单位',
-  `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
-  `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
-  `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
-  `create_date` varchar(50) NOT NULL COMMENT '创建时间',
-  `update_date` varchar(50) NOT NULL COMMENT '更新时间',
-  `del_flag` bit(1) DEFAULT b'0',
-  `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Table structure for `purchase_moneytax`
--- ----------------------------
-DROP TABLE IF EXISTS `purchase_moneytax`;
-CREATE TABLE `purchase_moneytax` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
-  `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
-  `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
-  `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
-  `purchase_unit_price` decimal(10,3) DEFAULT NULL COMMENT '进项单价',
-  `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
-  `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
-  `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
-  `tax_pay_date` varchar(50) DEFAULT NULL COMMENT '付税日期',
-  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
-  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
+DROP TABLE IF EXISTS `provider`;
+CREATE TABLE `provider` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '供应商编号',
+  `name` varchar(20) NOT NULL COMMENT '供应商名称',
+  `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
+  `attribution` varchar(20) DEFAULT NULL COMMENT '账款归属',
+  `area_name` varchar(20) DEFAULT NULL COMMENT '地区',
+  `chief_name` varchar(20) DEFAULT NULL COMMENT '负责人',
+  `fax_no` varchar(20) DEFAULT NULL COMMENT '传真',
+  `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  `descript` varchar(200) DEFAULT NULL COMMENT '备注',
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
-  `descript` varchar(200) DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `purchasement`
+-- Table structure for purchasement
 -- ----------------------------
 DROP TABLE IF EXISTS `purchasement`;
 CREATE TABLE `purchasement` (
@@ -207,10 +209,102 @@ CREATE TABLE `purchasement` (
   `medicine_unique_code` varchar(20) NOT NULL COMMENT '药品唯一代码',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Table structure for `sys_user`
+-- Table structure for purchase_client
+-- ----------------------------
+DROP TABLE IF EXISTS `purchase_client`;
+CREATE TABLE `purchase_client` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `sale_company` varchar(255) DEFAULT NULL COMMENT '我司上家销货单位',
+  `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
+  `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
+  `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
+  `create_date` varchar(50) NOT NULL COMMENT '创建时间',
+  `update_date` varchar(50) NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for purchase_moneytax
+-- ----------------------------
+DROP TABLE IF EXISTS `purchase_moneytax`;
+CREATE TABLE `purchase_moneytax` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
+  `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
+  `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
+  `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
+  `purchase_unit_price` decimal(10,3) DEFAULT NULL COMMENT '进项单价',
+  `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
+  `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
+  `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
+  `tax_pay_date` varchar(50) DEFAULT NULL COMMENT '付税日期',
+  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
+  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  `descript` varchar(200) DEFAULT '' COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for rk_order
+-- ----------------------------
+DROP TABLE IF EXISTS `rk_order`;
+CREATE TABLE `rk_order` (
+  `id` int(11) NOT NULL COMMENT '入库单id',
+  `bill_date` varchar(50) DEFAULT NULL COMMENT '单据日期',
+  `c_storage_id` int(11) NOT NULL COMMENT '仓库id',
+  `medicine_id` int(11) NOT NULL COMMENT '药品id',
+  `sys_user_id` int(11) NOT NULL COMMENT '操作人id',
+  `d_client_id` int(11) NOT NULL COMMENT '代理商id',
+  `p_delivery_id` int(11) NOT NULL COMMENT '配送商id',
+  `unit_price` decimal(10,0) DEFAULT NULL COMMENT '实际单价',
+  `high_unit_price` decimal(10,0) DEFAULT NULL COMMENT '高开单价',
+  `pay_date` varchar(50) DEFAULT NULL COMMENT '采购付款日期',
+  `store_date` varchar(50) DEFAULT NULL COMMENT '采购入库日期',
+  `order_code` varchar(50) DEFAULT NULL COMMENT '采购申请单号',
+  `purchase_price` varchar(255) DEFAULT NULL COMMENT '采购单价',
+  `purchase_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
+  `sale_price` varchar(255) DEFAULT NULL COMMENT '进项单价(卖给代理商的单价)',
+  `sale_money` varchar(255) DEFAULT NULL COMMENT '进项金额(卖给代理商的金额)',
+  `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
+  `taxpay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
+  `taxpay_date` varchar(255) DEFAULT NULL COMMENT '付税日期',
+  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
+  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
+  `descript` varchar(200) DEFAULT NULL COMMENT '备注',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for stock
+-- ----------------------------
+DROP TABLE IF EXISTS `stock`;
+CREATE TABLE `stock` (
+  `id` int(11) NOT NULL COMMENT '关联表id',
+  `medicine_id` int(11) NOT NULL COMMENT '药品id',
+  `c_store_id` int(11) NOT NULL COMMENT '仓库id',
+  `start_quantity` varchar(50) DEFAULT NULL COMMENT '开始数量',
+  `now_quantity` varchar(50) DEFAULT NULL COMMENT '现有数量',
+  `fax_no` varchar(20) DEFAULT NULL,
+  `descript` varchar(200) DEFAULT NULL COMMENT '备注',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
@@ -224,9 +318,21 @@ CREATE TABLE `sys_user` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-SET FOREIGN_KEY_CHECKS = 1;
-
-INSERT INTO `sys_user` (`id`, `code`, `username`, `password`, `role`, `create_date`, `update_date`, `del_flag`) VALUES
-	(1, 'A000001', 'admin', '111111', 1, '1970-01-01 00:00:00', '1970-01-01 00:00:00', b'0')
+-- ----------------------------
+-- Table structure for warehouse
+-- ----------------------------
+DROP TABLE IF EXISTS `warehouse`;
+CREATE TABLE `warehouse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '传真',
+  `name` varchar(255) DEFAULT NULL COMMENT '仓库名称',
+  `link_man` varchar(20) DEFAULT NULL COMMENT '联系人员',
+  `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  `address` varchar(255) DEFAULT NULL COMMENT '仓库地址',
+  `descript` varchar(200) DEFAULT NULL COMMENT '备注',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `del_flag` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
