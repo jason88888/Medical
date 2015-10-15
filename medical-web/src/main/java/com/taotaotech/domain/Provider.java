@@ -8,22 +8,23 @@ import java.util.Date;
  * 供应商
  */
 public class Provider extends DataEntity<Provider> {
+    //供应商编号
     private Integer id;
-
+    //供应商名称
     private String name;
-
+    //英文名
     private String engName;
-
+    //账款归属
     private String attribution;
-
+    //地区
     private String areaName;
-
+    //负责人
     private String chiefName;
-
+    //传真
     private String faxNo;
-
+    //联系电话
     private String telephone;
-
+    //备注
     private String descript;
 
     public Integer getId() {

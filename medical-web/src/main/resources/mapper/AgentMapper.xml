@@ -34,7 +34,6 @@
       <if test="level != null and level != ''">
         and level = #{level}
       </if>
-
     </where>
     <choose>
       <when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -48,11 +47,29 @@
 
   <update id="update" parameterType="Agent" >
     update agent
-    set code = #{code,jdbcType=VARCHAR},
-    name = #{name,jdbcType=VARCHAR},
-    update_date = #{updateDate,jdbcType=VARCHAR},
-    descript = #{descript,jdbcType=VARCHAR},
-    level = #{level,jdbcType=VARCHAR}
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -142,6 +159,15 @@
       </if>
       <if test="descript != null" >
         descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

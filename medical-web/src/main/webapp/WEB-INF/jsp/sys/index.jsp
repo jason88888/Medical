@@ -84,6 +84,7 @@
                         <ul class="tree treeFolder">
                             <li><a href="medicine/list" target="navTab" rel="medicine_list">产品目录</a></li>
                             <li><a href="coming.html" target="navTab" rel="list2">商业配送单位</a></li>
+                            <li><a href="provider/list" target="navTab" rel="list2">供应商管理</a></li>
                             <li><a href="client/list" target="navTab" rel="client_list">医疗机构管理</a></li>
                             <li><a href="agent/list" target="navTab" rel="agent_list">代理商管理</a></li>
                             <li><a href="policy/list" target="navTab" rel="policy_list">销售政策管理</a></li>

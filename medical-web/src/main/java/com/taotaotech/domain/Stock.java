@@ -12,11 +12,14 @@ public class Stock extends DataEntity<Stock> {
 
     private Integer medicineId;
 
-    private Integer cStoreId;
+    private Integer warehouseId;
 
     private String startQuantity;
 
     private String nowQuantity;
+
+    private String faxNo;
+
     private String descript;
 
     public Integer getId() {
@@ -35,12 +38,12 @@ public class Stock extends DataEntity<Stock> {
         this.medicineId = medicineId;
     }
 
-    public Integer getcStoreId() {
-        return cStoreId;
+    public Integer getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setcStoreId(Integer cStoreId) {
-        this.cStoreId = cStoreId;
+    public void setWarehouseId(Integer warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public String getStartQuantity() {
@@ -59,11 +62,19 @@ public class Stock extends DataEntity<Stock> {
         this.nowQuantity = nowQuantity == null ? null : nowQuantity.trim();
     }
 
+    public String getFaxNo() {
+        return faxNo;
+    }
+
+    public void setFaxNo(String faxNo) {
+        this.faxNo = faxNo == null ? null : faxNo.trim();
+    }
+
     public String getDescript() {
         return descript;
     }
 
     public void setDescript(String descript) {
-        this.descript = descript;
+        this.descript = descript == null ? null : descript.trim();
     }
 }

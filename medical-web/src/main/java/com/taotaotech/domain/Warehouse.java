@@ -8,17 +8,17 @@ import java.util.Date;
  * 仓库
  */
 public class Warehouse extends DataEntity<Warehouse> {
+    //仓库id
     private Integer id;
-
+    //仓库名称
     private String name;
-
+    //联系人员
     private String linkMan;
-
+    //联系电话
     private String telephone;
-
+    //仓库地址
     private String address;
-
-
+    //备注
     private String descript;
 
     public Integer getId() {

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2015-10-15 15:32:16
+Date: 2015-10-15 19:51:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,7 +97,7 @@ CREATE TABLE `client` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='客户表';
 
 -- ----------------------------
 -- Table structure for medicine
@@ -259,11 +259,11 @@ DROP TABLE IF EXISTS `rk_order`;
 CREATE TABLE `rk_order` (
   `id` int(11) NOT NULL COMMENT '入库单id',
   `bill_date` varchar(50) DEFAULT NULL COMMENT '单据日期',
-  `c_storage_id` int(11) NOT NULL COMMENT '仓库id',
+  `warehouse_id` int(11) NOT NULL COMMENT '仓库id',
   `medicine_id` int(11) NOT NULL COMMENT '药品id',
   `sys_user_id` int(11) NOT NULL COMMENT '操作人id',
-  `d_client_id` int(11) NOT NULL COMMENT '代理商id',
-  `p_delivery_id` int(11) NOT NULL COMMENT '配送商id',
+  `agent_client_id` int(11) NOT NULL COMMENT '代理商id',
+  `stock_id` int(11) NOT NULL COMMENT '配送商id',
   `unit_price` decimal(10,0) DEFAULT NULL COMMENT '实际单价',
   `high_unit_price` decimal(10,0) DEFAULT NULL COMMENT '高开单价',
   `pay_date` varchar(50) DEFAULT NULL COMMENT '采购付款日期',
@@ -292,7 +292,7 @@ DROP TABLE IF EXISTS `stock`;
 CREATE TABLE `stock` (
   `id` int(11) NOT NULL COMMENT '关联表id',
   `medicine_id` int(11) NOT NULL COMMENT '药品id',
-  `c_store_id` int(11) NOT NULL COMMENT '仓库id',
+  `warehouse_id` int(11) NOT NULL COMMENT '仓库id',
   `start_quantity` varchar(50) DEFAULT NULL COMMENT '开始数量',
   `now_quantity` varchar(50) DEFAULT NULL COMMENT '现有数量',
   `fax_no` varchar(20) DEFAULT NULL,
@@ -318,14 +318,14 @@ CREATE TABLE `sys_user` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for warehouse
 -- ----------------------------
 DROP TABLE IF EXISTS `warehouse`;
 CREATE TABLE `warehouse` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '传真',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '仓库id',
   `name` varchar(255) DEFAULT NULL COMMENT '仓库名称',
   `link_man` varchar(20) DEFAULT NULL COMMENT '联系人员',
   `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话',

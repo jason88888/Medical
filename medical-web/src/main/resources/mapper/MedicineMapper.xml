@@ -100,17 +100,45 @@
   </insert>
 
   <update id="update" parameterType="Medicine" >
-    UPDATE medicine
-    set code = #{code,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      specification = #{specification,jdbcType=VARCHAR},
-      manufacturer_name = #{manufacturerName,jdbcType=VARCHAR},
-      units = #{units,jdbcType=VARCHAR},
-      price = #{price,jdbcType=REAL},
-      lot_number = #{lotNumber,jdbcType=VARCHAR},
-      descript = #{descript,jdbcType=VARCHAR},
-      update_date = #{updateDate,jdbcType=VARCHAR},
-      validity_period = #{validityPeriod,jdbcType=VARCHAR}
+    update medicine
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueCode != null" >
+        unique_code = #{uniqueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerName != null" >
+        manufacturer_name = #{manufacturerName,jdbcType=VARCHAR},
+      </if>
+      <if test="units != null" >
+        units = #{units,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="lotNumber != null" >
+        lot_number = #{lotNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="validityPeriod != null" >
+        validity_period = #{validityPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="packageNumber != null" >
+        package_number = #{packageNumber,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseNumber != null" >
+        purchase_number = #{purchaseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=INTEGER},
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
 

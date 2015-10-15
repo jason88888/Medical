@@ -79,12 +79,23 @@
 
   <update id="update" parameterType="Client" >
     update client
-    set code = #{code,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      regional = #{regional,jdbcType=VARCHAR},
-      descript = #{descript,jdbcType=VARCHAR},
-      update_date = #{updateDate,jdbcType=VARCHAR},
-      business_type = #{businessType,jdbcType=VARCHAR}
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="regional != null" >
+        regional = #{regional,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
 

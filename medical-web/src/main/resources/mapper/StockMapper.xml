@@ -1,145 +1,236 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.taotaotech.dao.StockMapper">
-  <resultMap id="BaseResultMap" type="com.taotaotech.domain.Stock">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="medicine_id" jdbcType="INTEGER" property="medicineId" />
-    <result column="c_store_id" jdbcType="INTEGER" property="cStoreId" />
-    <result column="start_quantity" jdbcType="VARCHAR" property="startQuantity" />
-    <result column="now_quantity" jdbcType="VARCHAR" property="nowQuantity" />
-    <result column="fax_no" jdbcType="VARCHAR" property="faxNo" />
-    <result column="descript" jdbcType="VARCHAR" property="descript" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="del_flag" jdbcType="BIT" property="delFlag" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, medicine_id, c_store_id, start_quantity, now_quantity, fax_no, descript, create_date, 
-    update_date, del_flag
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from stock
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="com.taotaotech.domain.Stock">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="medicine_id" property="medicineId" jdbcType="INTEGER"/>
+        <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER"/>
+        <result column="start_quantity" property="startQuantity" jdbcType="VARCHAR"/>
+        <result column="now_quantity" property="nowQuantity" jdbcType="VARCHAR"/>
+        <result column="fax_no" property="faxNo" jdbcType="VARCHAR"/>
+        <result column="descript" property="descript" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="del_flag" property="delFlag" jdbcType="BIT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, medicine_id, warehouse_id, start_quantity, now_quantity, fax_no, descript, create_date,
+        update_date, del_flag
+    </sql>
+
+    <select id="select" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from stock
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stock t
+        <where>
+            del_flag = 0
+            <if test="medicineId != null">
+                medicine_id = #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="startQuantity != null">
+                start_quantity = #{startQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="nowQuantity != null">
+                now_quantity = #{nowQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="faxNo != null">
+                fax_no = #{faxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                descript = #{descript,jdbcType=VARCHAR},
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY t.id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="update" parameterType="com.taotaotech.domain.Stock">
+        update stock
+        <set>
+            <if test="medicineId != null">
+                medicine_id = #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="startQuantity != null">
+                start_quantity = #{startQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="nowQuantity != null">
+                now_quantity = #{nowQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="faxNo != null">
+                fax_no = #{faxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                descript = #{descript,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from stock
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from stock
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from stock
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.Stock">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into stock (medicine_id, c_store_id, start_quantity, 
-      now_quantity, fax_no, descript, 
-      create_date, update_date, del_flag
-      )
-    values (#{medicineId,jdbcType=INTEGER}, #{cStoreId,jdbcType=INTEGER}, #{startQuantity,jdbcType=VARCHAR}, 
-      #{nowQuantity,jdbcType=VARCHAR}, #{faxNo,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.Stock">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into stock
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="medicineId != null">
-        medicine_id,
-      </if>
-      <if test="cStoreId != null">
-        c_store_id,
-      </if>
-      <if test="startQuantity != null">
-        start_quantity,
-      </if>
-      <if test="nowQuantity != null">
-        now_quantity,
-      </if>
-      <if test="faxNo != null">
-        fax_no,
-      </if>
-      <if test="descript != null">
-        descript,
-      </if>
-      <if test="createDate != null">
-        create_date,
-      </if>
-      <if test="updateDate != null">
-        update_date,
-      </if>
-      <if test="delFlag != null">
-        del_flag,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="medicineId != null">
-        #{medicineId,jdbcType=INTEGER},
-      </if>
-      <if test="cStoreId != null">
-        #{cStoreId,jdbcType=INTEGER},
-      </if>
-      <if test="startQuantity != null">
-        #{startQuantity,jdbcType=VARCHAR},
-      </if>
-      <if test="nowQuantity != null">
-        #{nowQuantity,jdbcType=VARCHAR},
-      </if>
-      <if test="faxNo != null">
-        #{faxNo,jdbcType=VARCHAR},
-      </if>
-      <if test="descript != null">
-        #{descript,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateDate != null">
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="delFlag != null">
-        #{delFlag,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.Stock">
-    update stock
-    <set>
-      <if test="medicineId != null">
-        medicine_id = #{medicineId,jdbcType=INTEGER},
-      </if>
-      <if test="cStoreId != null">
-        c_store_id = #{cStoreId,jdbcType=INTEGER},
-      </if>
-      <if test="startQuantity != null">
-        start_quantity = #{startQuantity,jdbcType=VARCHAR},
-      </if>
-      <if test="nowQuantity != null">
-        now_quantity = #{nowQuantity,jdbcType=VARCHAR},
-      </if>
-      <if test="faxNo != null">
-        fax_no = #{faxNo,jdbcType=VARCHAR},
-      </if>
-      <if test="descript != null">
-        descript = #{descript,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null">
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.Stock">
+    <insert id="insert" parameterType="com.taotaotech.domain.Stock">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into stock (medicine_id, warehouse_id, start_quantity,
+        now_quantity, fax_no, descript,
+        create_date, update_date, del_flag
+        )
+        values (#{medicineId,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{startQuantity,jdbcType=VARCHAR},
+        #{nowQuantity,jdbcType=VARCHAR}, #{faxNo,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
+        #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.Stock">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into stock
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="medicineId != null">
+                medicine_id,
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id,
+            </if>
+            <if test="startQuantity != null">
+                start_quantity,
+            </if>
+            <if test="nowQuantity != null">
+                now_quantity,
+            </if>
+            <if test="faxNo != null">
+                fax_no,
+            </if>
+            <if test="descript != null">
+                descript,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="medicineId != null">
+                #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="warehouseId != null">
+                #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="startQuantity != null">
+                #{startQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="nowQuantity != null">
+                #{nowQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="faxNo != null">
+                #{faxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                #{descript,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.Stock">
+        update stock
+        <set>
+            <if test="medicineId != null">
+                medicine_id = #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="startQuantity != null">
+                start_quantity = #{startQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="nowQuantity != null">
+                now_quantity = #{nowQuantity,jdbcType=VARCHAR},
+            </if>
+            <if test="faxNo != null">
+                fax_no = #{faxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                descript = #{descript,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.Stock">
     update stock
     set medicine_id = #{medicineId,jdbcType=INTEGER},
-      c_store_id = #{cStoreId,jdbcType=INTEGER},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
       start_quantity = #{startQuantity,jdbcType=VARCHAR},
       now_quantity = #{nowQuantity,jdbcType=VARCHAR},
       fax_no = #{faxNo,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
-      update_date = #{updateDate,jdbcType=TIMESTAMP}
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -12,15 +12,15 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     private String billDate;
 
-    private Integer cStorageId;
+    private Integer warehouseId;
 
     private Integer medicineId;
 
     private Integer sysUserId;
 
-    private Integer dClientId;
+    private Integer agentClientId;
 
-    private Integer pDeliveryId;
+    private Integer stockId;
 
     private Long unitPrice;
 
@@ -49,6 +49,7 @@ public class RkOrder extends DataEntity<RkOrder> {
     private Integer invoiceNumber;
 
     private String invoiceDate;
+
     private String descript;
 
     public Integer getId() {
@@ -67,12 +68,12 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.billDate = billDate == null ? null : billDate.trim();
     }
 
-    public Integer getcStorageId() {
-        return cStorageId;
+    public Integer getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setcStorageId(Integer cStorageId) {
-        this.cStorageId = cStorageId;
+    public void setWarehouseId(Integer warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public Integer getMedicineId() {
@@ -91,20 +92,20 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.sysUserId = sysUserId;
     }
 
-    public Integer getdClientId() {
-        return dClientId;
+    public Integer getAgentClientId() {
+        return agentClientId;
     }
 
-    public void setdClientId(Integer dClientId) {
-        this.dClientId = dClientId;
+    public void setAgentClientId(Integer agentClientId) {
+        this.agentClientId = agentClientId;
     }
 
-    public Integer getpDeliveryId() {
-        return pDeliveryId;
+    public Integer getStockId() {
+        return stockId;
     }
 
-    public void setpDeliveryId(Integer pDeliveryId) {
-        this.pDeliveryId = pDeliveryId;
+    public void setStockId(Integer stockId) {
+        this.stockId = stockId;
     }
 
     public Long getUnitPrice() {
@@ -224,6 +225,7 @@ public class RkOrder extends DataEntity<RkOrder> {
     }
 
     public void setDescript(String descript) {
-        this.descript = descript;
+        this.descript = descript == null ? null : descript.trim();
     }
+
 }
