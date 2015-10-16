@@ -35,7 +35,7 @@
             <li><a class="add" href="warehouse/insert" target="dialog"><span>添加</span></a></li>
             <li><a class="delete" href="warehouse/delete" target="selectedTodo"
                    title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="warehouse/view?id={id}" target="dialog" warn="请选择一个医疗机构"><span>详情</span></a></li>
+            <li><a class="edit" href="warehouse/view?id={id}" target="dialog" warn="请选择一个仓库"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">
@@ -44,13 +44,12 @@
             <th style="width: 18px; cursor: col-resize;">
                 <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
             </th>
-            <th width="120">供应商编号</th>
-            <th width="200">供应商名称</th>
-            <th width="100">地区</th>
-            <th width="250">负责人</th>
-            <th width="250">传真</th>
+            <th width="120">仓库编号</th>
+            <th width="200">仓库名称</th>
+            <th width="100">联系人员</th>
             <th width="250">联系电话</th>
-            <th width="100">备注</th>
+            <th width="250">仓库地址</th>
+            <th width="250">备注</th>
         </tr>
         </thead>
         <tbody>
@@ -61,10 +60,9 @@
                 </td>
                 <td>${warehouse.id}</td>
                 <td>${warehouse.name}</td>
-                <td>${warehouse.areaName}</td>
-                <td>${warehouse.chiefName}</td>
-                <td>${warehouse.faxNo}</td>
+                <td>${warehouse.linkMan}</td>
                 <td>${warehouse.telephone}</td>
+                <td>${warehouse.address}</td>
                 <td>${warehouse.descript}</td>
             </tr>
         </c:forEach>

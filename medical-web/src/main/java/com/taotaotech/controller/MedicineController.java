@@ -29,7 +29,6 @@ public class MedicineController extends BaseController {
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public String list(Medicine medicine, HttpServletRequest request, HttpServletResponse response, Model model) {
-
         Page<Medicine> page = medicineService.findPage(new Page<Medicine>(request, response), medicine);
         model.addAttribute("page", page);
         return "medicine/medicine_list";

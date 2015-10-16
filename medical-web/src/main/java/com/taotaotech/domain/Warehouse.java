@@ -8,8 +8,10 @@ import java.util.Date;
  * 仓库
  */
 public class Warehouse extends DataEntity<Warehouse> {
-    //仓库id
+    //仓库编号
     private Integer id;
+    //仓库编码
+    private String code;
     //仓库名称
     private String name;
     //联系人员
@@ -27,6 +29,14 @@ public class Warehouse extends DataEntity<Warehouse> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {

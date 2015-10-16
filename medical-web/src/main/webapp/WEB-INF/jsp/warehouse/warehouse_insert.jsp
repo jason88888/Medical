@@ -2,43 +2,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="pageContent">
-    <form method="post" action="provider/save" class="pageForm required-validate"
+    <form method="post" action="warehouse/save" class="pageForm required-validate"
           onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
-                <label>供应商编号：</label>
-                <input name="code" class="required" type="text" autocomplete="off" size="30" alt="请输入供应商编号"/>
+                <label>仓库编号：</label>
+                <input name="code" class="required" type="text" autocomplete=" off" size="30" alt="请输入仓库编号"/>
             </p>
 
             <p>
-                <label>供应商名称：</label>
-                <input name="name" class="required" type="text" autocomplete="off" size="30" alt="请输入供应商名称"/>
+                <label>仓库名称：</label>
+                <input name="name" class="required" type="text" autocomplete=" off" size="30" alt="请输入仓库名称"/>
             </p>
 
             <p>
-                <label>地区</label>
-                <input name="areaName" type="text" autocomplete="off" size="30" alt="请输入地区"/>
+                <label>联系人员</label>
+                <input name="areaName" type="text" autocomplete=" off" size="30" alt="请输入联系人员"/>
             </p>
 
             <p>
-                <label>负责人：</label>
-                <input name="chiefName" type="text" autocomplete="off" size="30" alt="请输入负责人"/>
+                <label>联系电话：</label>
+                <input name="chiefName" type="text" autocomplete=" off" size="30" alt="请输入联系电话"/>
             </p>
 
             <p>
-                <label>传真</label>
-                <textarea name="faxNo" type="text" autocomplete="off" cols="28" alt="请输入传真"/>
-            </p>
-
-            <p>
-                <label>联系电话</label>
-                <textarea name="telephone" type="text" autocomplete="off" cols="28" alt="请输入联系电话"/>
+                <label>仓库地址</label>
+                <textarea name="faxNo" type="text" autocomplete=" off" cols="28" alt="请输入仓库地址"/>
             </p>
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" autocomplete="off" cols="28" alt="请输入备注"/>
+                <textarea name="descript" type="text" value="${warehouse.descript}" autocomplete=" off" cols="28"
+                          alt="请输入备注"/>
             </p>
         </div>
         <div class="formBar">

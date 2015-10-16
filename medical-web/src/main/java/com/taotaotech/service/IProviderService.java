@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface IProviderService extends IBaseService<Provider> {
     public List<Provider> findProviderList();
+
 }

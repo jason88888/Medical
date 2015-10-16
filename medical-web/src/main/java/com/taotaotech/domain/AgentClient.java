@@ -6,28 +6,31 @@ import com.taotaotech.core.domain.DataEntity;
  * 代理商
  */
 public class AgentClient extends DataEntity<AgentClient> {
+    //代理商代码
     private Integer id;
-
+    //代理商编码
+    private String code;
+    //代理商名称
     private String name;
-
+    //英文名
     private String engName;
-
+    //账款归属
     private String attribution;
-
+    //地区
     private String areaName;
-
+    //负责人
     private String chiefName;
-
+    //传真
     private String faxNo;
-
+    //联系电话
     private String telephone;
-
+    //代理级别2或者3
     private String level;
-
+    //为所属客户
     private String whoseClient;
-
+    //采购销售区域
     private String saleArea;
-
+    //备注
     private String descript;
 
     public Integer getId() {
@@ -36,6 +39,14 @@ public class AgentClient extends DataEntity<AgentClient> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {

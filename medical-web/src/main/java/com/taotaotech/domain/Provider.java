@@ -10,6 +10,8 @@ import java.util.Date;
 public class Provider extends DataEntity<Provider> {
     //供应商编号
     private Integer id;
+    //仓库编码
+    private String code;
     //供应商名称
     private String name;
     //英文名
@@ -33,6 +35,14 @@ public class Provider extends DataEntity<Provider> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {

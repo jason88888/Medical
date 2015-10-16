@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2015-10-15 19:51:21
+Date: 2015-10-16 13:42:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,9 +37,10 @@ CREATE TABLE `agent` (
 DROP TABLE IF EXISTS `agent_client`;
 CREATE TABLE `agent_client` (
   `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL COMMENT '客户名称',
+  `code` varchar(20) DEFAULT NULL COMMENT '代理商代码',
+  `name` varchar(20) NOT NULL COMMENT '代理商名称',
   `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
-  `attribution` varchar(20) DEFAULT NULL,
+  `attribution` varchar(20) DEFAULT NULL COMMENT '账款归属',
   `area_name` varchar(20) DEFAULT NULL COMMENT '地区',
   `chief_name` varchar(20) DEFAULT NULL COMMENT '负责人',
   `fax_no` varchar(20) DEFAULT NULL COMMENT '传真',
@@ -154,7 +155,8 @@ CREATE TABLE `medicine_policy` (
 -- ----------------------------
 DROP TABLE IF EXISTS `provider`;
 CREATE TABLE `provider` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '供应商编号',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) DEFAULT NULL COMMENT '供应商编号',
   `name` varchar(20) NOT NULL COMMENT '供应商名称',
   `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
   `attribution` varchar(20) DEFAULT NULL COMMENT '账款归属',
@@ -257,7 +259,8 @@ CREATE TABLE `purchase_moneytax` (
 -- ----------------------------
 DROP TABLE IF EXISTS `rk_order`;
 CREATE TABLE `rk_order` (
-  `id` int(11) NOT NULL COMMENT '入库单id',
+  `id` int(11) NOT NULL,
+  `code` varchar(20) DEFAULT NULL COMMENT '入库单编号',
   `bill_date` varchar(50) DEFAULT NULL COMMENT '单据日期',
   `warehouse_id` int(11) NOT NULL COMMENT '仓库id',
   `medicine_id` int(11) NOT NULL COMMENT '药品id',
@@ -326,6 +329,7 @@ CREATE TABLE `sys_user` (
 DROP TABLE IF EXISTS `warehouse`;
 CREATE TABLE `warehouse` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '仓库id',
+  `code` varchar(20) DEFAULT NULL COMMENT '仓库code',
   `name` varchar(255) DEFAULT NULL COMMENT '仓库名称',
   `link_man` varchar(20) DEFAULT NULL COMMENT '联系人员',
   `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话',
