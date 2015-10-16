@@ -6,9 +6,9 @@ import com.taotaotech.core.domain.DataEntity;
  * 代理商
  */
 public class AgentClient extends DataEntity<AgentClient> {
-    //代理商代码
+    //代理商id
     private Integer id;
-    //代理商编码
+    //代理商代码
     private String code;
     //代理商名称
     private String name;

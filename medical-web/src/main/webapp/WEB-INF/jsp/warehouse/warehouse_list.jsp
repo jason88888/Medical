@@ -58,7 +58,7 @@
                 <td>
                     <div><input name="ids" value="${warehouse.id}" type="checkbox"></div>
                 </td>
-                <td>${warehouse.id}</td>
+                <td>${warehouse.code}</td>
                 <td>${warehouse.name}</td>
                 <td>${warehouse.linkMan}</td>
                 <td>${warehouse.telephone}</td>
