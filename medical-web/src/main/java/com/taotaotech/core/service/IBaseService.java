@@ -10,6 +10,8 @@ public interface IBaseService<T extends DataEntity<T>> {
 
     public T get(T entity);
 
+    T find(T entity);
+
     public List<T> findList(T entity);
 
     public Page<T> findPage(Page<T> page, T entity);

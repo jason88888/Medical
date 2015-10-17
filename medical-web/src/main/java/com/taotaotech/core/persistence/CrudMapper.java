@@ -28,6 +28,13 @@ public interface CrudMapper<T> extends BaseMapper {
 	 */
 	public T get(T entity);
 
+	/**
+	 * 根据条件获取单条数据
+	 * @param map
+	 * @return
+	 */
+	public T find(Map map);
+
     /**
      * 查询数据列表，如果需要分页，请设置分页对象，如：entity.setPage(entity, page.createPageBounds());
      * @param entity

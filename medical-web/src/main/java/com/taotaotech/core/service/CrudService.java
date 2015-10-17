@@ -43,6 +43,17 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
     }
 
     /**
+     * 根据条件获取单条数据
+     * @param entity
+     * @return
+     */
+    public T find(T entity) {
+        Map map = MapUtil.bean2Map(entity);
+        return mapper.find(map);
+    }
+
+
+    /**
      * 查询列表数据
      * @param entity
      * @return
