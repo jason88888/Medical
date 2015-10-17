@@ -28,12 +28,12 @@
 
             <p>
                 <label>传真</label>
-                <textarea name="faxNo" type="text" autocomplete="off" cols="28" alt="请输入传真"/>
+                <input name="faxNo" type="text" autocomplete="off" cols="28" alt="请输入传真"/>
             </p>
 
             <p>
                 <label>联系电话</label>
-                <textarea name="telephone" type="text" autocomplete="off" cols="28" alt="请输入联系电话"/>
+                <input name="telephone" type="text" autocomplete="off" cols="28" alt="请输入联系电话"/>
             </p>
 
             <p>

@@ -1,11 +1,10 @@
-package com.taotaotech.service.impl;
+package com.taotaotech.backcode.java.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.core.service.CrudService;
-import com.taotaotech.dao.PurchaseClientMapper;
-import com.taotaotech.domain.PurchaseClient;
-import com.taotaotech.service.IPurchaseClientService;
+import com.taotaotech.backcode.java.dao.PurchaseClientMapper;
+import com.taotaotech.backcode.java.domain.PurchaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

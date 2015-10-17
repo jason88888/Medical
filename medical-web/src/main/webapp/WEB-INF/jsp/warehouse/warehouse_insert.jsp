@@ -18,17 +18,17 @@
 
             <p>
                 <label>联系人员</label>
-                <input name="areaName" type="text" autocomplete=" off" size="30" alt="请输入联系人员"/>
+                <input name="linkMan" type="text" autocomplete=" off" size="30" alt="请输入联系人员"/>
             </p>
 
             <p>
                 <label>联系电话：</label>
-                <input name="chiefName" type="text" autocomplete=" off" size="30" alt="请输入联系电话"/>
+                <input name="telephone" type="text" autocomplete=" off" size="30" alt="请输入联系电话"/>
             </p>
 
             <p>
                 <label>仓库地址</label>
-                <textarea name="faxNo" type="text" autocomplete=" off" cols="28" alt="请输入仓库地址"/>
+                <input name="address" type="text" autocomplete=" off" cols="30" alt="请输入仓库地址"/>
             </p>
 
             <p>

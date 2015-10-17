@@ -1,5 +1,7 @@
 package com.taotaotech.service.impl;
 
+import com.taotaotech.backcode.java.domain.PurchaseClient;
+import com.taotaotech.backcode.java.domain.PurchaseMoneytax;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.service.CrudService;
 import com.taotaotech.core.utils.DateUtil;
@@ -31,10 +33,6 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     PurchasementMapper purchasementMapper;
     @Autowired
     IMedicineService medicineService;
-    @Autowired
-    IPurchaseClientService clientService;
-    @Autowired
-    IPurchaseMoneyTaxService moneyTaxService;
     @Autowired
     IProviderService providerService;
     @Autowired
@@ -163,42 +161,6 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         stockService.save(stock);
     }
 
-    private void generatePurchaseTaxMoney(ImportPurchasement ip) {
-        PurchaseMoneytax moneyTax = new PurchaseMoneytax();
-        moneyTax.setPaymentCategory(ip.getPaymentCategory());
-        moneyTax.setPaymentMode(ip.getPaymentMode());
-        moneyTax.setPaymentMoney(ip.getPaymentMoney());
-        moneyTax.setWorkFlow(ip.getWorkFlow());
-        if (!StringUtils.isEmpty(ip.getPurchaseUnitPrice())) {
-            moneyTax.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
-        }
-        moneyTax.setPurchaseMoney(ip.getPurchaseMoney());
-        moneyTax.setTax(ip.getTax());
-        moneyTax.setTaxPayMode(ip.getTaxPayMode());
-        if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
-            moneyTax.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
-        }
-        try {
-            moneyTax.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            moneyTax.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        moneyTaxService.save(moneyTax);
-    }
-
-    private void generatePurchaseCilent(ImportPurchasement ip) {
-        PurchaseClient client = new PurchaseClient();
-        client.setSaleCompany(ip.getSaleCompany());
-        client.setBuyCompany(ip.getBuyCompany());
-        client.setClientName(ip.getClientName());
-        client.setSaleArea(ip.getSaleArea());
-        clientService.save(client);
-    }
 
     private void generatePurchasement(ImportPurchasement ip) {
         if (ip.getPurchaseSaleCode() == null || ip.getPurchaseSaleCode().equals("")) {

@@ -4,12 +4,8 @@ import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Medicine;
-import com.taotaotech.domain.PurchaseClient;
-import com.taotaotech.domain.PurchaseMoneytax;
 import com.taotaotech.domain.Purchasement;
 import com.taotaotech.service.IMedicineService;
-import com.taotaotech.service.IPurchaseClientService;
-import com.taotaotech.service.IPurchaseMoneyTaxService;
 import com.taotaotech.service.IPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,12 +33,6 @@ public class PurchaseController extends BaseController {
     @Autowired
     private IMedicineService medicineService;
 
-    @Autowired
-    private IPurchaseClientService clientService;
-
-    @Autowired
-    private IPurchaseMoneyTaxService taxService;
-
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public String list(Purchasement purchasement, HttpServletRequest request, HttpServletResponse response, Model model) {
         Page<Purchasement> page = purchaseService.findPage(new Page<Purchasement>(request, response), purchasement);
@@ -53,12 +43,10 @@ public class PurchaseController extends BaseController {
     @RequestMapping(value = "insert", method = {RequestMethod.GET})
     public String add(Model model) {
         List<Medicine> medicines = medicineService.findMedicineList();
-        List<PurchaseClient> clients = clientService.findList(new PurchaseClient());
-        List<PurchaseMoneytax> taxes = taxService.findList(new PurchaseMoneytax());
 
         model.addAttribute("medicines", medicines);
-        model.addAttribute("clients", clients);
-        model.addAttribute("taxes", taxes);
+//        model.addAttribute("clients", clients);
+//        model.addAttribute("taxes", taxes);
         return "purchase/purchase_insert";
     }
 

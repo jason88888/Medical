@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.taotaotech.dao.PurchaseMoneytaxMapper" >
-  <resultMap id="BaseResultMap" type="com.taotaotech.domain.PurchaseMoneytax" >
+<mapper namespace="com.taotaotech.backcode.java.dao.PurchaseMoneytaxMapper" >
+  <resultMap id="BaseResultMap" type="com.taotaotech.backcode.java.domain.PurchaseMoneytax" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="payment_category" property="paymentCategory" jdbcType="VARCHAR" />
     <result column="payment_mode" property="paymentMode" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <update id="update" parameterType="com.taotaotech.domain.PurchaseMoneytax">
+    <update id="update" parameterType="com.taotaotech.backcode.java.domain.PurchaseMoneytax">
     update purchase_moneytax
     set payment_category = #{paymentCategory,jdbcType=VARCHAR},
       payment_mode = #{paymentMode,jdbcType=VARCHAR},
@@ -123,7 +123,7 @@
     delete from purchase_moneytax
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
+  <insert id="insert" parameterType="com.taotaotech.backcode.java.domain.PurchaseMoneytax" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -138,7 +138,7 @@
       #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}, #{descript,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
+  <insert id="insertSelective" parameterType="com.taotaotech.backcode.java.domain.PurchaseMoneytax" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -238,7 +238,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.backcode.java.domain.PurchaseMoneytax" >
     update purchase_moneytax
     <set >
       <if test="paymentCategory != null" >
@@ -289,7 +289,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.PurchaseMoneytax" >
+  <update id="updateByPrimaryKey" parameterType="com.taotaotech.backcode.java.domain.PurchaseMoneytax" >
     update purchase_moneytax
     set payment_category = #{paymentCategory,jdbcType=VARCHAR},
       payment_mode = #{paymentMode,jdbcType=VARCHAR},

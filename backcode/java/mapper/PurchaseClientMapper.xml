@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.taotaotech.dao.PurchaseClientMapper" >
-  <resultMap id="BaseResultMap" type="com.taotaotech.domain.PurchaseClient" >
+<mapper namespace="com.taotaotech.backcode.java.dao.PurchaseClientMapper" >
+  <resultMap id="BaseResultMap" type="com.taotaotech.backcode.java.domain.PurchaseClient" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="sale_company" property="saleCompany" jdbcType="VARCHAR" />
     <result column="buy_company" property="buyCompany" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <update id="update" parameterType="com.taotaotech.domain.PurchaseClient" >
+  <update id="update" parameterType="com.taotaotech.backcode.java.domain.PurchaseClient" >
     update purchase_client
     set sale_company = #{saleCompany,jdbcType=VARCHAR},
     buy_company = #{buyCompany,jdbcType=VARCHAR},
@@ -79,7 +79,7 @@
     delete from purchase_client
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.PurchaseClient" >
+  <insert id="insert" parameterType="com.taotaotech.backcode.java.domain.PurchaseClient" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -90,7 +90,7 @@
       #{saleArea,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
       #{delFlag,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotaotech.domain.PurchaseClient" >
+  <insert id="insertSelective" parameterType="com.taotaotech.backcode.java.domain.PurchaseClient" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -148,7 +148,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.PurchaseClient" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.backcode.java.domain.PurchaseClient" >
     update purchase_client
     <set >
       <if test="saleCompany != null" >
@@ -178,7 +178,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.PurchaseClient" >
+  <update id="updateByPrimaryKey" parameterType="com.taotaotech.backcode.java.domain.PurchaseClient" >
     update purchase_client
     set sale_company = #{saleCompany,jdbcType=VARCHAR},
       buy_company = #{buyCompany,jdbcType=VARCHAR},

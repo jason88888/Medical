@@ -1,11 +1,10 @@
-package com.taotaotech.controller;
+package com.taotaotech.backcode.java.controller;
 
+import com.taotaotech.backcode.java.service.IPurchaseClientService;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
-import com.taotaotech.domain.PurchaseClient;
-import com.taotaotech.service.IPurchaseClientService;
-import com.taotaotech.service.IPurchaseClientService;
+import com.taotaotech.backcode.java.domain.PurchaseClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -10,37 +10,37 @@
             <p>
                 <label>仓库编号：</label>
                 <input name="code" class="required" type="text" value="${warehouse.code}" autocomplete=" off" size="30"
-                alt="请输入仓库编号"/>
+                       alt="请输入仓库编号" readonly/>
             </p>
 
             <p>
                 <label>仓库名称：</label>
                 <input name="name" class="required" type="text" value="${warehouse.name}" autocomplete=" off" size="30"
-                alt="请输入仓库名称"/>
+                       alt="请输入仓库名称" readonly/>
             </p>
 
             <p>
                 <label>联系人员</label>
                 <input name="areaName" type="text" value="${warehouse.linkMan}" autocomplete=" off" size="30"
-                alt="请输入联系人员"/>
+                       alt="请输入联系人员" readonly/>
             </p>
 
             <p>
                 <label>联系电话：</label>
                 <input name="chiefName" type="text" value="${warehouse.telephone}" autocomplete=" off" size="30"
-                alt="请输入联系电话"/>
+                       alt="请输入联系电话" readonly/>
             </p>
 
             <p>
                 <label>仓库地址</label>
-                <textarea name="faxNo" type="text" value="${warehouse.address}" autocomplete=" off" cols="28"
-                alt="请输入仓库地址"/>
+                <input name="faxNo" type="text" value="${warehouse.address}" autocomplete=" off" cols="28"
+                       alt="请输入仓库地址" readonly/>
             </p>
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" value="${warehouse.descript}" autocomplete=" off" cols="28"
-                alt="请输入备注"/>
+                <textarea name="descript" type="text" autocomplete=" off" cols="28"
+                          alt="请输入备注" readonly>${warehouse.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

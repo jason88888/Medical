@@ -1,10 +1,8 @@
-package com.taotaotech.service;
+package com.taotaotech.backcode.java.service;
 
+import com.taotaotech.backcode.java.domain.PurchaseClient;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.core.service.IBaseService;
-import com.taotaotech.domain.PurchaseClient;
-import com.taotaotech.domain.PurchaseMoneytax;
-import com.taotaotech.domain.Purchasement;
 
 /**
  * @author zk

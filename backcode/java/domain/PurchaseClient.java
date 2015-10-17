@@ -1,8 +1,6 @@
-package com.taotaotech.domain;
+package com.taotaotech.backcode.java.domain;
 
 import com.taotaotech.core.domain.DataEntity;
-
-import java.util.Date;
 
 public class PurchaseClient extends DataEntity<PurchaseClient> {
     //id

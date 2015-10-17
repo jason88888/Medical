@@ -1,14 +1,10 @@
-package com.taotaotech.service.impl;
+package com.taotaotech.backcode.java.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.taotaotech.backcode.java.domain.PurchaseMoneytax;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.core.service.CrudService;
-import com.taotaotech.dao.ClientMapper;
-import com.taotaotech.dao.MedicineMapper;
-import com.taotaotech.dao.PurchaseMoneytaxMapper;
-import com.taotaotech.domain.*;
-import com.taotaotech.service.IPurchaseClientService;
-import com.taotaotech.service.IPurchaseMoneyTaxService;
+import com.taotaotech.backcode.java.dao.PurchaseMoneytaxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

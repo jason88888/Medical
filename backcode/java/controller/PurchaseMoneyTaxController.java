@@ -1,12 +1,10 @@
-package com.taotaotech.controller;
+package com.taotaotech.backcode.java.controller;
 
+import com.taotaotech.backcode.java.service.IPurchaseMoneyTaxService;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
-import com.taotaotech.domain.Medicine;
-import com.taotaotech.domain.PurchaseMoneytax;
-import com.taotaotech.service.IClientService;
-import com.taotaotech.service.IPurchaseMoneyTaxService;
+import com.taotaotech.backcode.java.domain.PurchaseMoneytax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author zk

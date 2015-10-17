@@ -24,15 +24,15 @@
             </p>
             <p>
                 <label>传真</label>
-                <textarea name="faxNo"  type="text" value="${provider.faxNo}" autocomplete="off" cols="28" alt="请输入传真" readonly/>
+                <input name="faxNo"  type="text" value="${provider.faxNo}" autocomplete="off" cols="28" alt="请输入传真" readonly/>
             </p>
             <p>
                 <label>联系电话</label>
-                <textarea name="telephone"  type="text" value="${provider.telephone}" autocomplete="off" cols="28" alt="请输入联系电话" readonly/>
+                <input name="telephone"  type="text" value="${provider.telephone}" autocomplete="off" cols="28" alt="请输入联系电话" readonly/>
             </p>
             <p>
                 <label>备注</label>
-                <textarea name="descript"  type="text" value="${provider.descript}" autocomplete="off" cols="28" alt="请输入备注" readonly/>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" readonly>${provider.descript}</textarea>
             </p>
         </div>
         <div class="formBar">
