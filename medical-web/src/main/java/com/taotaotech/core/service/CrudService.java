@@ -69,13 +69,38 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
      * @param entity
      */
     @Transactional(readOnly = false)
-    public void save(T entity) {
+    public int save(T entity) {
         if (entity.getId() != null) {
             entity.preUpdate();
-            mapper.update(entity);
+            return mapper.update(entity);
         } else {
             entity.preInsert();
-            mapper.insertSelective(entity);
+            return mapper.insertSelective(entity);
+        }
+    }
+
+    /**
+     * 插入数据
+     * @param entity
+     */
+    @Transactional(readOnly = false)
+    public int create(T entity) {
+        entity.preInsert();
+        return mapper.insertSelective(entity);
+    }
+
+    /**
+     * 更新数据
+     * @param entity
+     * @return 当返回值为-1时表示ID不存在
+     */
+    @Transactional(readOnly = false)
+    public int update(T entity) {
+        if (entity.getId() != null) {
+            entity.preUpdate();
+            return mapper.update(entity);
+        } else {
+            return -1;
         }
     }
 

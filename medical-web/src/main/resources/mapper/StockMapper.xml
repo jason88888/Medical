@@ -233,4 +233,11 @@
       del_flag = #{delFlag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <select id="getStockByMedicineIdAndWarehouseId" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from stock
+        where medicine_id = #{medicineId,jdbcType=INTEGER} AND warehouse_id = #{warehouseId,jdbcType=INTEGER}
+    </select>
 </mapper>

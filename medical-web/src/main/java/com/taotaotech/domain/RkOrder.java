@@ -50,6 +50,10 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     private String invoiceDate;
 
+    private Integer quantity;//入库数量
+
+    private String units;
+
     private String descript;
 
     public Integer getId() {
@@ -228,4 +232,19 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.descript = descript == null ? null : descript.trim();
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
 }

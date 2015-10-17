@@ -5,6 +5,7 @@ import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.domain.Medicine;
 import com.taotaotech.domain.RkOrder;
 import com.taotaotech.domain.Stock;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface StockMapper extends CrudMapper<Stock> {
     List<Stock> findStockList(PageBounds pageBounds);
 
     int updateByPrimaryKey(Stock record);
+
+    Stock getStockByMedicineIdAndWarehouseId(@Param("medicineId")Integer medicineId, @Param("warehouseId")Integer warehouseId);
 }

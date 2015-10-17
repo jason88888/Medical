@@ -1,19 +1,11 @@
 package com.taotaotech.service.impl;
 
 import com.taotaotech.core.dto.DWZResponseResult;
-import com.taotaotech.core.persistence.Page;
 import com.taotaotech.core.service.CrudService;
 import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.ProcessPurchaseUtil;
-import com.taotaotech.core.utils.TextUtils;
-import com.taotaotech.dao.PurchaseClientMapper;
-import com.taotaotech.dao.PurchaseMoneytaxMapper;
 import com.taotaotech.dao.PurchasementMapper;
-import com.taotaotech.domain.Medicine;
-import com.taotaotech.domain.PurchaseClient;
-import com.taotaotech.domain.PurchaseMoneytax;
-import com.taotaotech.domain.Purchasement;
-import com.taotaotech.dto.ImportBill;
+import com.taotaotech.domain.*;
 import com.taotaotech.dto.ImportPurchasement;
 import com.taotaotech.service.*;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -21,6 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -42,6 +35,17 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     IPurchaseClientService clientService;
     @Autowired
     IPurchaseMoneyTaxService moneyTaxService;
+    @Autowired
+    IProviderService providerService;
+    @Autowired
+    IAgentClientService agentClientService;
+    @Autowired
+    IWarehouseService warehouseService;
+    @Autowired
+    IRkOrderService rkOrderService;
+
+    @Autowired
+    IStockService stockService ;
 
     @Override
     @Transactional
@@ -66,10 +70,15 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
                     List<ImportPurchasement> importPurchases = ProcessPurchaseUtil.getImportPurchases(hssfSheet);
                     for (int index = 0; index < importPurchases.size(); index++) {
                         ImportPurchasement ip = importPurchases.get(index);
-                        generateMedicine(ip);
-                        generatePurchasement(ip);
-                        generatePurchaseCilent(ip);
-                        generatePurchaseTaxMoney(ip);
+                        Integer medicineId = generateMedicine(ip);
+                        generateProvider(ip);
+                        Integer agentClientId = generateAgentClient(ip);
+                        Integer warehouseId = generateWarehouse(ip);
+                        generateRkOrder(ip,agentClientId,medicineId,warehouseId);
+                        generateStock(ip,medicineId,warehouseId);
+//                        generatePurchasement(ip);
+//                        generatePurchaseCilent(ip);
+//                        generatePurchaseTaxMoney(ip);
                     }
                     break;
                 }
@@ -88,19 +97,85 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         return result;
     }
 
+    private int generateProvider(ImportPurchasement ip){
+        Provider provider = new Provider();
+        provider.setName(ip.getSaleCompany());
+        provider.setAreaName(ip.getSaleArea());
+        return providerService.create(provider);
+    }
+
+    private int generateAgentClient(ImportPurchasement ip){
+        AgentClient agentClient = new AgentClient();
+        if (ip.getPurchaseSaleType().equals("底价销售")){
+            agentClient.setName(ip.getSaleCompany());
+        }else if (ip.getPurchaseSaleType().equals("铺货")){
+            agentClient.setName(ip.getBuyCompany());
+        }
+        AgentClient ac = agentClientService.get(agentClient);
+        if (null == ac){
+            return agentClientService.create(agentClient);
+        }
+        return ac.getId();
+    }
+
+    private int generateWarehouse(ImportPurchasement ip){
+        Warehouse warehouse = new Warehouse();
+        warehouse.setName(ip.getActualStorePlace());
+        return warehouseService.create(warehouse);
+    }
+
+    private int generateRkOrder(ImportPurchasement ip,Integer agentClientId,Integer medicineId,Integer warehouseId){
+        RkOrder order = new RkOrder();
+        if (!StringUtils.isEmpty(ip.getInvoiceNumber())){
+            order.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
+        }
+        order.setAgentClientId(agentClientId);
+        order.setOrderCode(ip.getPurchaseSaleCode());
+        order.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
+        order.setMedicineId(medicineId);
+        order.setPayDate(ip.getPurchasePayDate());
+        order.setPurchasePrice(ip.getPurchasePrice());
+        order.setPurchaseMoney(ip.getPurchaseMoney());
+        order.setStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
+        order.setWarehouseId(warehouseId);
+        order.setTax(ip.getTax());
+        order.setQuantity(ip.getPurchaseNumber());
+        order.setUnits(ip.getUnits());
+        order.setTaxpayMode(ip.getTaxPayMode());
+        order.setTaxpayDate(ip.getTaxPayDate());
+        return rkOrderService.create(order);
+    }
+
+
+
+    private void generateStock(ImportPurchasement ip,Integer medicineId,Integer warehouseId){
+        Stock stock = stockService.getStockByMedicineIdAndWarehouseId(medicineId,warehouseId);
+        if (null != stock){
+            Integer quantity = Integer.parseInt(stock.getNowQuantity()) + ip.getPurchaseNumber();
+            stock.setNowQuantity(quantity.toString());
+        }else {
+            stock = new Stock();
+            stock.setNowQuantity(ip.getPurchaseNumber().toString());
+            stock.setWarehouseId(warehouseId);
+            stock.setMedicineId(medicineId);
+            stock.setStartQuantity(ip.getPurchaseNumber().toString());
+        }
+        stockService.save(stock);
+    }
+
     private void generatePurchaseTaxMoney(ImportPurchasement ip) {
         PurchaseMoneytax moneyTax = new PurchaseMoneytax();
         moneyTax.setPaymentCategory(ip.getPaymentCategory());
         moneyTax.setPaymentMode(ip.getPaymentMode());
         moneyTax.setPaymentMoney(ip.getPaymentMoney());
         moneyTax.setWorkFlow(ip.getWorkFlow());
-        if (!TextUtils.isEmpty(ip.getPurchaseUnitPrice())) {
+        if (!StringUtils.isEmpty(ip.getPurchaseUnitPrice())) {
             moneyTax.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
         }
         moneyTax.setPurchaseMoney(ip.getPurchaseMoney());
         moneyTax.setTax(ip.getTax());
         moneyTax.setTaxPayMode(ip.getTaxPayMode());
-        if (!TextUtils.isEmpty(ip.getInvoiceNumber())) {
+        if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
             moneyTax.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
         }
         try {
@@ -155,14 +230,14 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
             purchasement.setPaymentCategory(ip.getPaymentCategory());
             purchasement.setPaymentMode(ip.getPaymentMode());
             purchasement.setPurchaseNumber(ip.getPurchaseNumber());
-            if (!TextUtils.isEmpty(ip.getPurchasePrice())) {
+            if (!StringUtils.isEmpty(ip.getPurchasePrice())) {
                 purchasement.setPurchasePrice(Long.parseLong(ip.getPurchasePrice()));
             }
             purchasement.setPaymentMoney(ip.getPaymentMoney());
             purchasement.setWorkFlow(ip.getWorkFlow());
             purchasement.setClientName(ip.getClientName());
             purchasement.setSaleArea(ip.getSaleArea());
-            if (!TextUtils.isEmpty(ip.getPurchaseUnitPrice())) {
+            if (!StringUtils.isEmpty(ip.getPurchaseUnitPrice())) {
                 purchasement.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
             }
             purchasement.setPurchaseMoney(ip.getPurchaseMoney());
@@ -173,7 +248,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (!TextUtils.isEmpty(ip.getInvoiceNumber())) {
+            if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
                 purchasement.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
             }
             try {
@@ -187,11 +262,12 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     }
 
 
-    private void generateMedicine(ImportPurchasement ip) {
-        if (TextUtils.isEmpty(ip.getLotNumber()) || TextUtils.isEmpty(ip.getMedicineUniqueCode())) {
-            return;
-        }
-        if (!medicineService.existByMedicineCodeAndLotNumber(ip.getMedicineCode(), ip.getLotNumber())) {
+    private int generateMedicine(ImportPurchasement ip) {
+//        if (StringUtils.isEmpty(ip.getLotNumber()) || StringUtils.isEmpty(ip.getMedicineUniqueCode())) {
+//            return -1;
+//        }
+        Medicine m = medicineService.getMedicineByMedicineCodeAndLotNumber(ip.getMedicineCode(), ip.getLotNumber());
+        if (null == m) {
             Medicine medicine = new Medicine();
             medicine.setUniqueCode(ip.getMedicineUniqueCode());
             medicine.setCode(ip.getMedicineCode());
@@ -199,14 +275,16 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
             medicine.setLotNumber(ip.getLotNumber());
             medicine.setSpecification(ip.getSpecification());
             medicine.setManufacturerName(ip.getManufacturerName());
-            if (!TextUtils.isEmpty(ip.getPurchasePrice())) {
+            if (!StringUtils.isEmpty(ip.getPurchasePrice())) {
                 medicine.setPrice(Float.parseFloat(ip.getPurchasePrice()));
             }
             medicine.setUnits(ip.getUnits());
             medicine.setValidityPeriod(ip.getValidityPeriod());
             medicine.setPurchaseNumber(ip.getPurchaseNumber());
             medicine.setPackageNumber(ip.getPackageNumber());
-            medicineService.save(medicine);
+           return medicineService.create(medicine);
+        }else {
+            return m.getId();
         }
     }
 

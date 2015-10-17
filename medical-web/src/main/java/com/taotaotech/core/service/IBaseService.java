@@ -14,7 +14,11 @@ public interface IBaseService<T extends DataEntity<T>> {
 
     public Page<T> findPage(Page<T> page, T entity);
 
-    public void save(T entity);
+    public int save(T entity);
+
+    public int create(T entity);
+
+    public int update(T entity);
 
     public void delete(T entity);
 

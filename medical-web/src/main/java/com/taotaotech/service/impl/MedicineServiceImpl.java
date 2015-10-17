@@ -23,11 +23,16 @@ public class MedicineServiceImpl  extends CrudService<MedicineMapper,Medicine> i
 
     @Override
     public List<Medicine> findMedicineList() {
-        return medicineMapper.findList(new HashMap(),new PageBounds());
+        return medicineMapper.findList(new HashMap(), new PageBounds());
     }
 
     @Override
     public Boolean existByMedicineCodeAndLotNumber(String code, String lotNumber) {
         return medicineMapper.existByMedicineCodeAndLotNumber(code,lotNumber);
+    }
+
+    @Override
+    public Medicine getMedicineByMedicineCodeAndLotNumber(String code, String lotNumber) {
+        return medicineMapper.getMedicineByMedicineCodeAndLotNumber(code,lotNumber);
     }
 }

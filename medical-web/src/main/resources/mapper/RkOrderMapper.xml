@@ -24,6 +24,8 @@
         <result column="invoice_number" property="invoiceNumber" jdbcType="INTEGER"/>
         <result column="invoice_date" property="invoiceDate" jdbcType="VARCHAR"/>
         <result column="descript" property="descript" jdbcType="VARCHAR"/>
+        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
+        <result column="units" property="units" jdbcType="VARCHAR"/>
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
         <result column="del_flag" property="delFlag" jdbcType="BIT"/>
@@ -32,7 +34,7 @@
     id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_client_id, stock_id, 
     unit_price, high_unit_price, pay_date, store_date, order_code, purchase_price, purchase_money, 
     sale_price, sale_money, tax, taxpay_mode, taxpay_date, invoice_number, invoice_date, 
-    descript, create_date, update_date, del_flag
+    descript, create_date, update_date, del_flag,quantity,units
   </sql>
 
     <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -197,6 +199,12 @@
             <if test="delFlag != null">
                 del_flag = #{delFlag,jdbcType=BIT},
             </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=BIT},
+            </if>
+            <if test="units != null">
+                units = #{units,jdbcType=BIT},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -227,7 +235,7 @@
         purchase_money, sale_price, sale_money,
         tax, taxpay_mode, taxpay_date,
         invoice_number, invoice_date, descript,
-        create_date, update_date, del_flag
+        create_date, update_date, del_flag,quantity,units
         )
         values (#{billDate,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, #{medicineId,jdbcType=INTEGER},
         #{sysUserId,jdbcType=INTEGER}, #{agentClientId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER},
@@ -236,7 +244,8 @@
         #{purchaseMoney,jdbcType=VARCHAR}, #{salePrice,jdbcType=VARCHAR}, #{saleMoney,jdbcType=VARCHAR},
         #{tax,jdbcType=VARCHAR}, #{taxpayMode,jdbcType=VARCHAR}, #{taxpayDate,jdbcType=VARCHAR},
         #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
-        #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
+        #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT},
+        #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.taotaotech.domain.RkOrder">
@@ -317,6 +326,12 @@
             <if test="delFlag != null">
                 del_flag,
             </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="units != null">
+                units,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="billDate != null">
@@ -390,6 +405,12 @@
             </if>
             <if test="delFlag != null">
                 #{delFlag,jdbcType=BIT},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="units != null">
+                #{units,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -468,6 +489,12 @@
             <if test="delFlag != null">
                 del_flag = #{delFlag,jdbcType=BIT},
             </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=BIT},
+            </if>
+            <if test="units != null">
+                units = #{units,jdbcType=BIT},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -496,6 +523,8 @@
       descript = #{descript,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
+      quantity = #{quantity,jdbcType=INTEGER},
+      units = #{units,jdbcType=VARCHAR},
       del_flag = #{delFlag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -27,4 +27,6 @@ public interface MedicineMapper  extends CrudMapper<Medicine> {
     List<Medicine> findMedicineList(PageBounds pageBounds);
 
     Boolean existByMedicineCodeAndLotNumber(@Param("code")String code,@Param("lotNumber")String lotNumber);
+
+    Medicine getMedicineByMedicineCodeAndLotNumber(@Param("code")String code,@Param("lotNumber")String lotNumber);
 }

@@ -318,4 +318,10 @@
     from medicine
     where  code = #{code,jdbcType=VARCHAR} AND lot_number = #{lotNumber,jdbcType=VARCHAR}
   </select>
+  <select id="getMedicineByMedicineCodeAndLotNumber" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from medicine
+    where  code = #{code,jdbcType=VARCHAR} AND lot_number = #{lotNumber,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -16,4 +16,6 @@ public interface IMedicineService extends IBaseService<Medicine> {
 
     public Boolean existByMedicineCodeAndLotNumber(String code, String lotNumber);
 
+    public Medicine getMedicineByMedicineCodeAndLotNumber(String code, String lotNumber);
+
 }
