@@ -55,8 +55,17 @@
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
             <th>代理商代码</th>
-            <th>代理商姓名</th>
+            <th>代理商编码</th>
+            <th>代理商名称</th>
+            <th>英文名</th>
+            <th>账款归属</th>
+            <th>地区</th>
+            <th>负责人</th>
+            <th>传真</th>
+            <th>联系电话</th>
             <th>代理级别</th>
+            <th>谁的客户</th>
+            <th>采购销售区域</th>
             <th>备注</th>
         </tr>
         </thead>
@@ -64,9 +73,18 @@
         <c:forEach items="${page.list}" var="agentclient">
             <tr target="id" rel="${agentclient.id}">
                 <td><div><input name="ids" value="${agentclient.id}" type="checkbox"></div></td>
+                <td>${agentclient.id}</td>
                 <td>${agentclient.code}</td>
                 <td>${agentclient.name}</td>
+                <th>${agentclient.engName}</th>
+                <td>${agentclient.attribution}</td>
+                <td>${agentclient.areaName}</td>
+                <td>${agentclient.chiefName}</td>
+                <th>${agentclient.faxNo}</th>
+                <td>${agentclient.telephone}</td>
                 <td>${agentclient.level}级代理</td>
+                <th>${agentclient.whoseClient}</th>
+                <th>${agentclient.saleArea}</th>
                 <th>${agentclient.descript}</th>
             </tr>
         </c:forEach>

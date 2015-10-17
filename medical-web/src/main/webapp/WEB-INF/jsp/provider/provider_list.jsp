@@ -59,7 +59,7 @@
                 <td>
                     <div><input name="ids" value="${provider.id}" type="checkbox"></div>
                 </td>
-                <td>${provider.id}</td>
+                <td>${provider.code}</td>
                 <td>${provider.name}</td>
                 <td>${provider.areaName}</td>
                 <td>${provider.chiefName}</td>

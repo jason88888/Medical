@@ -12,5 +12,5 @@ import org.springframework.stereotype.Service;
  * @eMail cailin618@sina.com
  */
 @Service
-public class RkOrderService extends CrudService<RkOrderMapper,RkOrder> implements IRkOrderService {
+public class RkOrderServiceImpl extends CrudService<RkOrderMapper,RkOrder> implements IRkOrderService {
 }

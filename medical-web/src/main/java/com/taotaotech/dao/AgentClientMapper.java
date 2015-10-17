@@ -5,6 +5,7 @@ import com.taotaotech.core.persistence.CrudMapper;
 import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.AgentClient;
 import com.taotaotech.domain.RkOrder;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface AgentClientMapper extends CrudMapper<AgentClient> {
     List<AgentClient> findAgentClientList(PageBounds pageBounds);
 
     int updateByPrimaryKey(AgentClient record);
+
+    Boolean existByAgentClientCode(@Param("code")String code);
 }

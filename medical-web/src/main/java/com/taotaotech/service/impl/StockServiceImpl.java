@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @eMail cailin618@sina.com
  */
 @Service
-public class StockService extends CrudService<StockMapper,Stock> implements IStockService{
+public class StockServiceImpl extends CrudService<StockMapper,Stock> implements IStockService{
     @Autowired
     private StockMapper stockMapper;
     @Override
