@@ -4,6 +4,7 @@ import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.dto.ResponseResult;
 import com.taotaotech.domain.User;
+import com.taotaotech.domain.User;
 import com.taotaotech.service.IUserService;
 import com.taotaotech.core.persistence.Page;
 import org.apache.ibatis.annotations.Param;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author Cailin.Chen
@@ -92,5 +94,22 @@ public class UserController extends BaseController {
         result.setNavTabId("user_list");
 
         return result;
+    }
+
+    @RequestMapping(value = "lookup_suggest")
+    @ResponseBody
+    public List<User> lookupSuggest(String name) {
+        Page<User> page = new Page<>(0, 10);
+        User user = new User();
+        user.setUsername(name);
+        page = userService.findPage(page, user);
+        return page.getList();
+    }
+
+    @RequestMapping(value = "lookup")
+    public String lookup(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<User> page = userService.findPage(new Page<User>(request, response), user);
+        model.addAttribute("page", page);
+        return "user/user_lookup";
     }
 }

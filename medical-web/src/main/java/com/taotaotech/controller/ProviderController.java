@@ -4,6 +4,7 @@ import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Provider;
+import com.taotaotech.domain.Provider;
 import com.taotaotech.service.IProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author zk
@@ -73,5 +75,22 @@ public class ProviderController extends BaseController {
         result.setForwardUrl("provider/list");
         result.setNavTabId("provider_list");
         return result;
+    }
+
+    @RequestMapping(value = "lookup_suggest")
+    @ResponseBody
+    public List<Provider> lookupSuggest(String name) {
+        Page<Provider> page = new Page<>(0, 10);
+        Provider provider = new Provider();
+        provider.setName(name);
+        page = providerService.findPage(page, provider);
+        return page.getList();
+    }
+
+    @RequestMapping(value = "lookup")
+    public String lookup(Provider provider, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<Provider> page = providerService.findPage(new Page<Provider>(request, response), provider);
+        model.addAttribute("page", page);
+        return "provider/provider_lookup";
     }
 }

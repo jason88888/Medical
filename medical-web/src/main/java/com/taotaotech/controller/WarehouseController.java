@@ -4,6 +4,7 @@ import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.Warehouse;
+import com.taotaotech.domain.Warehouse;
 import com.taotaotech.service.IWarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author zk
@@ -73,5 +75,22 @@ public class WarehouseController extends BaseController {
         result.setForwardUrl("warehouse/list");
         result.setNavTabId("warehouse_list");
         return result;
+    }
+
+    @RequestMapping(value = "lookup_suggest")
+    @ResponseBody
+    public List<Warehouse> lookupSuggest(String name) {
+        Page<Warehouse> page = new Page<>(0, 10);
+        Warehouse warehouse = new Warehouse();
+        warehouse.setName(name);
+        page = warehouseService.findPage(page, warehouse);
+        return page.getList();
+    }
+
+    @RequestMapping(value = "lookup")
+    public String lookup(Warehouse warehouse, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<Warehouse> page = warehouseService.findPage(new Page<Warehouse>(request, response), warehouse);
+        model.addAttribute("page", page);
+        return "warehouse/warehouse_lookup";
     }
 }

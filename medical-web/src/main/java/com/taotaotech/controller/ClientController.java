@@ -84,16 +84,13 @@ public class ClientController extends BaseController {
         Client client = new Client();
         client.setName(name);
         page = clientService.findPage(page, client);
-
         return page.getList();
     }
 
     @RequestMapping(value = "lookup")
     public String lookup(Client client, HttpServletRequest request, HttpServletResponse response, Model model) {
-
         Page<Client> page = clientService.findPage(new Page<Client>(request, response), client);
         model.addAttribute("page", page);
-
         return "client/client_lookup";
     }
 }

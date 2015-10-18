@@ -4,6 +4,7 @@ import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.domain.AgentClient;
+import com.taotaotech.domain.Client;
 import com.taotaotech.service.IAgentClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author zk
@@ -73,5 +75,22 @@ public class AgentClientController extends BaseController {
         result.setForwardUrl("agentclient/list");
         result.setNavTabId("agentclient_list");
         return result;
+    }
+
+    @RequestMapping(value = "lookup_suggest")
+    @ResponseBody
+    public List<AgentClient> lookupSuggest(String name) {
+        Page<AgentClient> page = new Page<>(0, 10);
+        AgentClient agentclient = new AgentClient();
+        agentclient.setName(name);
+        page = agentclientService.findPage(page, agentclient);
+        return page.getList();
+    }
+
+    @RequestMapping(value = "lookup")
+    public String lookup(AgentClient agentclient, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<AgentClient> page = agentclientService.findPage(new Page<AgentClient>(request, response), agentclient);
+        model.addAttribute("page", page);
+        return "agentclient/client_lookup";
     }
 }
