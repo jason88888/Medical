@@ -25,7 +25,7 @@
                 <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
             </p>
             <p>
-                <label>客户代码：</label>
+                <label>客户名称：</label>
                 <input name="clientCode" type="hidden" value="${policy.clientCode}"/>
                 <input name="client.code" type="hidden" value="${policy.clientCode}"/>
                 <input type="text" class="required" name="client.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="client/lookup_suggest" lookupGroup="client" />

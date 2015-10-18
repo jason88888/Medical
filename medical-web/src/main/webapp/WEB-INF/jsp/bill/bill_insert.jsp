@@ -34,15 +34,13 @@
         <label>数量：</label>
         <input name="number" class="required" type="number" min="0"  autocomplete="off" size="30" alt="请输入药品数量"/>
       </p>
-      <p>
-        <label>客户名称：</label>
-        <input id="clientName" name="clientName" type="hidden" value="${clients.size()>0?clients[0].name:""}"/>
-        <select id="clientCode" name="clientCode" class="required" style="width: 220px" onchange="clientChange()">
-          <c:forEach items="${clients}" var="client">
-            <option value="${client.code}">${client.name}</option>
-          </c:forEach>
-        </select>
-      </p>
+        <p>
+            <label>客户名称：</label>
+            <input name="clientCode" type="hidden" value="${bill.clientCode}"/>
+            <input name="client.code" type="hidden" value="${bill.clientCode}"/>
+            <input type="text" class="required" name="client.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="client/lookup_suggest" lookupGroup="client" />
+            <a class="btnLook" href="client/lookup" lookupGroup="client">查找带回</a>
+        </p>
 
       <c:choose>
         <c:when test="${user.getRole() == 1}">

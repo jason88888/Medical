@@ -8,46 +8,49 @@ import java.util.Date;
  * 入库单
  */
 public class RkOrder extends DataEntity<RkOrder> {
+    //id
     private Integer id;
-
+    //入库单编号
+    private String code;
+    //单据日期
     private String billDate;
-
+    //仓库id
     private Integer warehouseId;
-
+    //药品id
     private Integer medicineId;
-
+    //操作人id
     private Integer sysUserId;
-
+    //代理商id
     private Integer agentClientId;
-
+    //配送商id
     private Integer stockId;
-
+    //实际单价
     private Long unitPrice;
-
+    //高开单价
     private Long highUnitPrice;
-
+    //采购付款日期
     private String payDate;
-
+    //采购入库日期
     private String storeDate;
-
+    //采购申请单号
     private String orderCode;
-
+    //采购单价
     private String purchasePrice;
-
+    //付款金额
     private String purchaseMoney;
-
+    //进项单价(卖给代理商的单价)
     private String salePrice;
-
+    //进项金额(卖给代理商的金额)
     private String saleMoney;
-
+    //应付税
     private String tax;
-
+    //付税方式
     private String taxpayMode;
-
+    //付税日期
     private String taxpayDate;
-
+    //发票号码
     private Integer invoiceNumber;
-
+    //开票日期
     private String invoiceDate;
 
     private Integer quantity;//入库数量
@@ -62,6 +65,14 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getBillDate() {

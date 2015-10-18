@@ -7,10 +7,7 @@
         <div class="pageFormContent" layoutH="56" autocomplete="off">
             <p>
                 <label>所属区域：</label>
-                <select name="regional">
-                    <option value="杭州市" <c:if test='${policy.regional == "杭州市"}'>selected="selected"</c:if>>杭州市</option>
-                    <option value="湖州市" <c:if test='${policy.regional == "湖州市"}'>selected="selected"</c:if>>湖州市</option>
-                </select>
+                <input name="regional" type="text" value="${policy.regional}" readonly/>
             </p>
             <p>
                 <label>月份：</label>
