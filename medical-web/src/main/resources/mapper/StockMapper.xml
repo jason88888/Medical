@@ -7,7 +7,6 @@
         <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER"/>
         <result column="start_quantity" property="startQuantity" jdbcType="VARCHAR"/>
         <result column="now_quantity" property="nowQuantity" jdbcType="VARCHAR"/>
-        <result column="fax_no" property="faxNo" jdbcType="VARCHAR"/>
         <result column="descript" property="descript" jdbcType="VARCHAR"/>
         <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
@@ -15,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, medicine_id, warehouse_id, start_quantity, now_quantity, fax_no, descript, create_date,
+        id, medicine_id, warehouse_id, start_quantity, now_quantity, descript, create_date,
         update_date, del_flag
     </sql>
 
@@ -43,9 +42,6 @@
             </if>
             <if test="nowQuantity != null">
                 now_quantity = #{nowQuantity,jdbcType=VARCHAR},
-            </if>
-            <if test="faxNo != null">
-                fax_no = #{faxNo,jdbcType=VARCHAR},
             </if>
             <if test="descript != null">
                 descript = #{descript,jdbcType=VARCHAR},
@@ -75,9 +71,6 @@
             </if>
             <if test="nowQuantity != null">
                 now_quantity = #{nowQuantity,jdbcType=VARCHAR},
-            </if>
-            <if test="faxNo != null">
-                fax_no = #{faxNo,jdbcType=VARCHAR},
             </if>
             <if test="descript != null">
                 descript = #{descript,jdbcType=VARCHAR},
@@ -115,11 +108,11 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into stock (medicine_id, warehouse_id, start_quantity,
-        now_quantity, fax_no, descript,
+        now_quantity, descript,
         create_date, update_date, del_flag
         )
         values (#{medicineId,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{startQuantity,jdbcType=VARCHAR},
-        #{nowQuantity,jdbcType=VARCHAR}, #{faxNo,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
+        #{nowQuantity,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
         #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
         )
     </insert>
@@ -140,9 +133,6 @@
             </if>
             <if test="nowQuantity != null">
                 now_quantity,
-            </if>
-            <if test="faxNo != null">
-                fax_no,
             </if>
             <if test="descript != null">
                 descript,
@@ -169,9 +159,6 @@
             </if>
             <if test="nowQuantity != null">
                 #{nowQuantity,jdbcType=VARCHAR},
-            </if>
-            <if test="faxNo != null">
-                #{faxNo,jdbcType=VARCHAR},
             </if>
             <if test="descript != null">
                 #{descript,jdbcType=VARCHAR},
@@ -202,9 +189,6 @@
             <if test="nowQuantity != null">
                 now_quantity = #{nowQuantity,jdbcType=VARCHAR},
             </if>
-            <if test="faxNo != null">
-                fax_no = #{faxNo,jdbcType=VARCHAR},
-            </if>
             <if test="descript != null">
                 descript = #{descript,jdbcType=VARCHAR},
             </if>
@@ -226,7 +210,6 @@
       warehouse_id = #{warehouseId,jdbcType=INTEGER},
       start_quantity = #{startQuantity,jdbcType=VARCHAR},
       now_quantity = #{nowQuantity,jdbcType=VARCHAR},
-      fax_no = #{faxNo,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},

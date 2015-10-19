@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form id="pagerForm" method="post" action="purchase/list">
+<form id="pagerForm" method="post" action="rkorder/list">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}" />
     <input type="hidden" name="currentPage" value="1" />
@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="purchase/list" method="post">
+    <form onsubmit="return navTabSearch(this);" action="rkorder/list" method="post">
         <div class="searchBar">
             <div class="subBar">
                 <ul>
@@ -25,28 +25,64 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="purchase/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="purchase/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="purchase/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
-            <li><a class="icon" href="purchase/upload" target="dialog"><span>导入EXCEL</span></a></li>
+            <li><a class="add" href="rkorder/insert" target="dialog"><span>添加</span></a></li>
+            <li><a class="delete" href="rkorder/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="edit" href="rkorder/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
+            <li><a class="icon" href="rkorder/upload" target="dialog"><span>导入EXCEL</span></a></li>
         </ul>
     </div>
-    <table class="table" width="100%" layoutH="138">
+    <table class="table" width="150%" layoutH="138">
         <thead>
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
-            <th>采购销售类别</th>
+            <th>入库单编号</th>
+            <th>单据日期</th>
+            <th>仓库名称</th>
+            <th>药品名称</th>
+            <th>操作人名称</th>
+            <th>代理商名称</th>
+            <th>配送商名称</th>
+            <th>实际单价</th>
+            <th>高开单价</th>
             <th>采购付款日期</th>
             <th>采购入库日期</th>
+            <th>采购申请单号</th>
+            <th>采购单价</th>
+            <th>付款金额</th>
+            <th>应付税</th>
+            <th>付税方式</th>
+            <th>付税日期</th>
+            <th>发票号码</th>
+            <th>开票日期</th>
+            <th>数量</th>
+            <th>备注</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${page.list}" var="purchasement">
-            <tr target="id" rel="${purchasement.id}">
-                <td><div><input name="ids" value="${purchasement.id}" type="checkbox"></div></td>
-                <td>${purchasement.purchaseSaleType}</td>
-                <td>${purchasement.purchasePayDate}</td>
-                <td>${purchasement.purchaseStoreDate}</td>
+        <c:forEach items="${page.list}" var="rkorder">
+            <tr target="id" rel="${rkorder.id}">
+                <td><div><input name="ids" value="${rkorder.id}" type="checkbox"></div></td>
+                <td>${rkorder.code}</td>
+                <td>${rkorder.billDate}</td>
+                <td>${rkorder.warehouseId}</td>
+                <td>${rkorder.medicineId}</td>
+                <td>${rkorder.sysUserId}</td>
+                <td>${rkorder.agentClientId}</td>
+                <td>${rkorder.providerId}</td>
+                <td>${rkorder.unitPrice}</td>
+                <td>${rkorder.highUnitPrice}</td>
+                <td>${rkorder.payDate}</td>
+                <td>${rkorder.storeDate}</td>
+                <td>${rkorder.orderCode}</td>
+                <td>${rkorder.purchasePrice}</td>
+                <td>${rkorder.purchaseMoney}</td>
+                <td>${rkorder.tax}</td>
+                <td>${rkorder.taxpayMode}</td>
+                <td>${rkorder.taxpayDate}</td>
+                <td>${rkorder.invoiceNumber}</td>
+                <td>${rkorder.invoiceDate}</td>
+                <td>${rkorder.quantity}</td>
+                <td>${rkorder.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

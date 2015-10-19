@@ -8,7 +8,7 @@
         <result column="medicine_id" property="medicineId" jdbcType="INTEGER"/>
         <result column="sys_user_id" property="sysUserId" jdbcType="INTEGER"/>
         <result column="agent_client_id" property="agentClientId" jdbcType="INTEGER"/>
-        <result column="stock_id" property="stockId" jdbcType="INTEGER"/>
+        <result column="provider_id" property="providerId" jdbcType="INTEGER"/>
         <result column="unit_price" property="unitPrice" jdbcType="DECIMAL"/>
         <result column="high_unit_price" property="highUnitPrice" jdbcType="DECIMAL"/>
         <result column="pay_date" property="payDate" jdbcType="VARCHAR"/>
@@ -16,8 +16,6 @@
         <result column="order_code" property="orderCode" jdbcType="VARCHAR"/>
         <result column="purchase_price" property="purchasePrice" jdbcType="VARCHAR"/>
         <result column="purchase_money" property="purchaseMoney" jdbcType="VARCHAR"/>
-        <result column="sale_price" property="salePrice" jdbcType="VARCHAR"/>
-        <result column="sale_money" property="saleMoney" jdbcType="VARCHAR"/>
         <result column="tax" property="tax" jdbcType="VARCHAR"/>
         <result column="taxpay_mode" property="taxpayMode" jdbcType="VARCHAR"/>
         <result column="taxpay_date" property="taxpayDate" jdbcType="VARCHAR"/>
@@ -31,9 +29,9 @@
         <result column="del_flag" property="delFlag" jdbcType="BIT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_client_id, stock_id, 
+    id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_client_id, provider_id, 
     unit_price, high_unit_price, pay_date, store_date, order_code, purchase_price, purchase_money, 
-    sale_price, sale_money, tax, taxpay_mode, taxpay_date, invoice_number, invoice_date, 
+    tax, taxpay_mode, taxpay_date, invoice_number, invoice_date,
     descript, create_date, update_date, del_flag,quantity,units
   </sql>
 
@@ -65,8 +63,8 @@
             <if test="agentClientId != null">
                 agent_client_id = #{agentClientId,jdbcType=INTEGER},
             </if>
-            <if test="stockId != null">
-                stock_id = #{stockId,jdbcType=INTEGER},
+            <if test="providerId != null">
+                provider_id = #{providerId,jdbcType=INTEGER},
             </if>
             <if test="unitPrice != null">
                 unit_price = #{unitPrice,jdbcType=DECIMAL},
@@ -88,12 +86,6 @@
             </if>
             <if test="purchaseMoney != null">
                 purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
-            </if>
-            <if test="salePrice != null">
-                sale_price = #{salePrice,jdbcType=VARCHAR},
-            </if>
-            <if test="saleMoney != null">
-                sale_money = #{saleMoney,jdbcType=VARCHAR},
             </if>
             <if test="tax != null">
                 tax = #{tax,jdbcType=VARCHAR},
@@ -142,8 +134,8 @@
             <if test="agentClientId != null">
                 agent_client_id = #{agentClientId,jdbcType=INTEGER},
             </if>
-            <if test="stockId != null">
-                stock_id = #{stockId,jdbcType=INTEGER},
+            <if test="providerId != null">
+                provider_id = #{providerId,jdbcType=INTEGER},
             </if>
             <if test="unitPrice != null">
                 unit_price = #{unitPrice,jdbcType=DECIMAL},
@@ -165,12 +157,6 @@
             </if>
             <if test="purchaseMoney != null">
                 purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
-            </if>
-            <if test="salePrice != null">
-                sale_price = #{salePrice,jdbcType=VARCHAR},
-            </if>
-            <if test="saleMoney != null">
-                sale_money = #{saleMoney,jdbcType=VARCHAR},
             </if>
             <if test="tax != null">
                 tax = #{tax,jdbcType=VARCHAR},
@@ -229,16 +215,16 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into rk_order (bill_date, warehouse_id, medicine_id,
-        sys_user_id, agent_client_id, stock_id,
+        sys_user_id, agent_client_id, provider_id,
         unit_price, high_unit_price, pay_date,
         store_date, order_code, purchase_price,
-        purchase_money, sale_price, sale_money,
+        purchase_money,
         tax, taxpay_mode, taxpay_date,
         invoice_number, invoice_date, descript,
         create_date, update_date, del_flag,quantity,units
         )
         values (#{billDate,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, #{medicineId,jdbcType=INTEGER},
-        #{sysUserId,jdbcType=INTEGER}, #{agentClientId,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER},
+        #{sysUserId,jdbcType=INTEGER}, #{agentClientId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER},
         #{unitPrice,jdbcType=DECIMAL}, #{highUnitPrice,jdbcType=DECIMAL}, #{payDate,jdbcType=VARCHAR},
         #{storeDate,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=VARCHAR},
         #{purchaseMoney,jdbcType=VARCHAR}, #{salePrice,jdbcType=VARCHAR}, #{saleMoney,jdbcType=VARCHAR},
@@ -269,8 +255,8 @@
             <if test="agentClientId != null">
                 agent_client_id,
             </if>
-            <if test="stockId != null">
-                stock_id,
+            <if test="providerId != null">
+                provider_id,
             </if>
             <if test="unitPrice != null">
                 unit_price,
@@ -292,12 +278,6 @@
             </if>
             <if test="purchaseMoney != null">
                 purchase_money,
-            </if>
-            <if test="salePrice != null">
-                sale_price,
-            </if>
-            <if test="saleMoney != null">
-                sale_money,
             </if>
             <if test="tax != null">
                 tax,
@@ -349,8 +329,8 @@
             <if test="agentClientId != null">
                 #{agentClientId,jdbcType=INTEGER},
             </if>
-            <if test="stockId != null">
-                #{stockId,jdbcType=INTEGER},
+            <if test="providerId != null">
+                #{providerId,jdbcType=INTEGER},
             </if>
             <if test="unitPrice != null">
                 #{unitPrice,jdbcType=DECIMAL},
@@ -432,8 +412,8 @@
             <if test="agentClientId != null">
                 agent_client_id = #{agentClientId,jdbcType=INTEGER},
             </if>
-            <if test="stockId != null">
-                stock_id = #{stockId,jdbcType=INTEGER},
+            <if test="providerId != null">
+                provider_id = #{providerId,jdbcType=INTEGER},
             </if>
             <if test="unitPrice != null">
                 unit_price = #{unitPrice,jdbcType=DECIMAL},
@@ -455,12 +435,6 @@
             </if>
             <if test="purchaseMoney != null">
                 purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
-            </if>
-            <if test="salePrice != null">
-                sale_price = #{salePrice,jdbcType=VARCHAR},
-            </if>
-            <if test="saleMoney != null">
-                sale_money = #{saleMoney,jdbcType=VARCHAR},
             </if>
             <if test="tax != null">
                 tax = #{tax,jdbcType=VARCHAR},
@@ -505,7 +479,7 @@
       medicine_id = #{medicineId,jdbcType=INTEGER},
       sys_user_id = #{sysUserId,jdbcType=INTEGER},
       agent_client_id = #{agentClientId,jdbcType=INTEGER},
-      stock_id = #{stockId,jdbcType=INTEGER},
+      provider_id = #{providerId,jdbcType=INTEGER},
       unit_price = #{unitPrice,jdbcType=DECIMAL},
       high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
       pay_date = #{payDate,jdbcType=VARCHAR},
@@ -513,8 +487,6 @@
       order_code = #{orderCode,jdbcType=VARCHAR},
       purchase_price = #{purchasePrice,jdbcType=VARCHAR},
       purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
-      sale_price = #{salePrice,jdbcType=VARCHAR},
-      sale_money = #{saleMoney,jdbcType=VARCHAR},
       tax = #{tax,jdbcType=VARCHAR},
       taxpay_mode = #{taxpayMode,jdbcType=VARCHAR},
       taxpay_date = #{taxpayDate,jdbcType=VARCHAR},

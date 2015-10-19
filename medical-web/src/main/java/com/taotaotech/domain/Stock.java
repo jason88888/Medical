@@ -8,18 +8,17 @@ import java.util.Date;
  * 库存信息，某个仓库，某个产品的库存
  */
 public class Stock extends DataEntity<Stock> {
+    //id
     private Integer id;
-
+    //药品id
     private Integer medicineId;
-
+    //仓库id
     private Integer warehouseId;
-
+    //开始数量
     private String startQuantity;
-
+    //现有数量
     private String nowQuantity;
-
-    private String faxNo;
-
+    //备注
     private String descript;
 
     public Integer getId() {
@@ -60,14 +59,6 @@ public class Stock extends DataEntity<Stock> {
 
     public void setNowQuantity(String nowQuantity) {
         this.nowQuantity = nowQuantity == null ? null : nowQuantity.trim();
-    }
-
-    public String getFaxNo() {
-        return faxNo;
-    }
-
-    public void setFaxNo(String faxNo) {
-        this.faxNo = faxNo == null ? null : faxNo.trim();
     }
 
     public String getDescript() {

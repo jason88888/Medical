@@ -100,6 +100,7 @@
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
                             <li><a href="purchase/list" target="navTab" rel="purchase_list">采购数据导入</a></li>
+                            <li><a href="rkorder/list" target="navTab" rel="rkorder_list">入库单管理</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">采购关联表</a></li>
@@ -135,6 +136,8 @@
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
                             <li><a href="warehouse/list" target="navTab" rel="warehouse_list">仓库管理</a></li>
+                            <li><a href="stock/list" target="navTab" rel="warehouse_list">库存管理</a></li>
+
                         </ul>
                     </div>
 

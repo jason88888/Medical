@@ -1,7 +1,5 @@
 package com.taotaotech.service.impl;
 
-import com.taotaotech.backcode.java.domain.PurchaseClient;
-import com.taotaotech.backcode.java.domain.PurchaseMoneytax;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.service.CrudService;
 import com.taotaotech.core.utils.DateUtil;
@@ -69,10 +67,10 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
                     for (int index = 0; index < importPurchases.size(); index++) {
                         ImportPurchasement ip = importPurchases.get(index);
                         Integer medicineId = generateMedicine(ip);
-                        generateProvider(ip);
+                        Integer providerId = generateProvider(ip);
                         Integer agentClientId = generateAgentClient(ip);
                         Integer warehouseId = generateWarehouse(ip);
-                        generateRkOrder(ip,agentClientId,medicineId,warehouseId);
+                        generateRkOrder(ip,agentClientId,medicineId,warehouseId,providerId);
                         generateStock(ip,medicineId,warehouseId);
 //                        generatePurchasement(ip);
 //                        generatePurchaseCilent(ip);
@@ -122,13 +120,14 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         return warehouseService.create(warehouse);
     }
 
-    private int generateRkOrder(ImportPurchasement ip,Integer agentClientId,Integer medicineId,Integer warehouseId){
+    private int generateRkOrder(ImportPurchasement ip,Integer agentClientId,Integer medicineId,Integer warehouseId,Integer providerId){
         RkOrder order = new RkOrder();
         if (!StringUtils.isEmpty(ip.getInvoiceNumber())){
             order.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
         }
         order.setAgentClientId(agentClientId);
         order.setOrderCode(ip.getPurchaseSaleCode());
+        order.setProviderId(providerId);
         order.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
         order.setMedicineId(medicineId);
         order.setPayDate(ip.getPurchasePayDate());

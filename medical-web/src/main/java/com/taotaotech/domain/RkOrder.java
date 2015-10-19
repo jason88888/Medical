@@ -2,8 +2,6 @@ package com.taotaotech.domain;
 
 import com.taotaotech.core.domain.DataEntity;
 
-import java.util.Date;
-
 /**
  * 入库单
  */
@@ -23,7 +21,7 @@ public class RkOrder extends DataEntity<RkOrder> {
     //代理商id
     private Integer agentClientId;
     //配送商id
-    private Integer stockId;
+    private Integer providerId;
     //实际单价
     private Long unitPrice;
     //高开单价
@@ -38,10 +36,10 @@ public class RkOrder extends DataEntity<RkOrder> {
     private String purchasePrice;
     //付款金额
     private String purchaseMoney;
-    //进项单价(卖给代理商的单价)
-    private String salePrice;
-    //进项金额(卖给代理商的金额)
-    private String saleMoney;
+    //    //进项单价(卖给代理商的单价)
+//    private String salePrice;
+//    //进项金额(卖给代理商的金额)
+//    private String saleMoney;
     //应付税
     private String tax;
     //付税方式
@@ -52,11 +50,11 @@ public class RkOrder extends DataEntity<RkOrder> {
     private Integer invoiceNumber;
     //开票日期
     private String invoiceDate;
-
-    private Integer quantity;//入库数量
-
+    //入库数量
+    private Integer quantity;
+    //单位
     private String units;
-
+    //备注
     private String descript;
 
     public Integer getId() {
@@ -115,12 +113,12 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.agentClientId = agentClientId;
     }
 
-    public Integer getStockId() {
-        return stockId;
+    public Integer getProviderId() {
+        return providerId;
     }
 
-    public void setStockId(Integer stockId) {
-        this.stockId = stockId;
+    public void setProviderId(Integer providerId) {
+        this.providerId = providerId;
     }
 
     public Long getUnitPrice() {
@@ -179,21 +177,21 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.purchaseMoney = purchaseMoney == null ? null : purchaseMoney.trim();
     }
 
-    public String getSalePrice() {
-        return salePrice;
-    }
-
-    public void setSalePrice(String salePrice) {
-        this.salePrice = salePrice == null ? null : salePrice.trim();
-    }
-
-    public String getSaleMoney() {
-        return saleMoney;
-    }
-
-    public void setSaleMoney(String saleMoney) {
-        this.saleMoney = saleMoney == null ? null : saleMoney.trim();
-    }
+//    public String getSalePrice() {
+//        return salePrice;
+//    }
+//
+//    public void setSalePrice(String salePrice) {
+//        this.salePrice = salePrice == null ? null : salePrice.trim();
+//    }
+//
+//    public String getSaleMoney() {
+//        return saleMoney;
+//    }
+//
+//    public void setSaleMoney(String saleMoney) {
+//        this.saleMoney = saleMoney == null ? null : saleMoney.trim();
+//    }
 
     public String getTax() {
         return tax;
