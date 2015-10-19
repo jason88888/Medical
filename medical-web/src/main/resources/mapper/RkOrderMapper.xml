@@ -49,61 +49,61 @@
         <where>
             del_flag = 0
             <if test="billDate != null">
-                bill_date = #{billDate,jdbcType=VARCHAR},
+               AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
             <if test="warehouseId != null">
-                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+                AND  warehouse_id = #{warehouseId,jdbcType=INTEGER}
             </if>
             <if test="medicineId != null">
-                medicine_id = #{medicineId,jdbcType=INTEGER},
+                AND  medicine_id = #{medicineId,jdbcType=INTEGER}
             </if>
             <if test="sysUserId != null">
-                sys_user_id = #{sysUserId,jdbcType=INTEGER},
+                AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
             </if>
             <if test="agentClientId != null">
-                agent_client_id = #{agentClientId,jdbcType=INTEGER},
+                AND agent_client_id = #{agentClientId,jdbcType=INTEGER}
             </if>
             <if test="providerId != null">
-                provider_id = #{providerId,jdbcType=INTEGER},
+                AND provider_id = #{providerId,jdbcType=INTEGER}
             </if>
             <if test="unitPrice != null">
-                unit_price = #{unitPrice,jdbcType=DECIMAL},
+                AND unit_price = #{unitPrice,jdbcType=DECIMAL}
             </if>
             <if test="highUnitPrice != null">
-                high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
+                AND high_unit_price = #{highUnitPrice,jdbcType=DECIMAL}
             </if>
             <if test="payDate != null">
-                pay_date = #{payDate,jdbcType=VARCHAR},
+                AND pay_date = #{payDate,jdbcType=VARCHAR}
             </if>
             <if test="storeDate != null">
-                store_date = #{storeDate,jdbcType=VARCHAR},
+                AND store_date = #{storeDate,jdbcType=VARCHAR}
             </if>
             <if test="orderCode != null">
-                order_code = #{orderCode,jdbcType=VARCHAR},
+                AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
             <if test="purchasePrice != null">
-                purchase_price = #{purchasePrice,jdbcType=VARCHAR},
+                AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
             </if>
             <if test="purchaseMoney != null">
-                purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+                AND purchase_money = #{purchaseMoney,jdbcType=VARCHAR}
             </if>
             <if test="tax != null">
-                tax = #{tax,jdbcType=VARCHAR},
+                AND tax = #{tax,jdbcType=VARCHAR}
             </if>
             <if test="taxpayMode != null">
-                taxpay_mode = #{taxpayMode,jdbcType=VARCHAR},
+                AND taxpay_mode = #{taxpayMode,jdbcType=VARCHAR}
             </if>
             <if test="taxpayDate != null">
-                taxpay_date = #{taxpayDate,jdbcType=VARCHAR},
+                AND taxpay_date = #{taxpayDate,jdbcType=VARCHAR}
             </if>
             <if test="invoiceNumber != null">
-                invoice_number = #{invoiceNumber,jdbcType=INTEGER},
+                AND invoice_number = #{invoiceNumber,jdbcType=INTEGER}
             </if>
             <if test="invoiceDate != null">
-                invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+                AND invoice_date = #{invoiceDate,jdbcType=VARCHAR}
             </if>
             <if test="descript != null">
-                descript = #{descript,jdbcType=VARCHAR},
+                AND descript = #{descript,jdbcType=VARCHAR}
             </if>
         </where>
         <choose>
@@ -227,7 +227,7 @@
         #{sysUserId,jdbcType=INTEGER}, #{agentClientId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER},
         #{unitPrice,jdbcType=DECIMAL}, #{highUnitPrice,jdbcType=DECIMAL}, #{payDate,jdbcType=VARCHAR},
         #{storeDate,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=VARCHAR},
-        #{purchaseMoney,jdbcType=VARCHAR}, #{salePrice,jdbcType=VARCHAR}, #{saleMoney,jdbcType=VARCHAR},
+        #{purchaseMoney,jdbcType=VARCHAR},
         #{tax,jdbcType=VARCHAR}, #{taxpayMode,jdbcType=VARCHAR}, #{taxpayDate,jdbcType=VARCHAR},
         #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
         #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT},
@@ -353,12 +353,7 @@
             <if test="purchaseMoney != null">
                 #{purchaseMoney,jdbcType=VARCHAR},
             </if>
-            <if test="salePrice != null">
-                #{salePrice,jdbcType=VARCHAR},
-            </if>
-            <if test="saleMoney != null">
-                #{saleMoney,jdbcType=VARCHAR},
-            </if>
+
             <if test="tax != null">
                 #{tax,jdbcType=VARCHAR},
             </if>
