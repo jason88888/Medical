@@ -91,6 +91,6 @@ public class AgentClientController extends BaseController {
     public String lookup(AgentClient agentclient, HttpServletRequest request, HttpServletResponse response, Model model) {
         Page<AgentClient> page = agentclientService.findPage(new Page<AgentClient>(request, response), agentclient);
         model.addAttribute("page", page);
-        return "agentclient/client_lookup";
+        return "agentclient/agentclient_lookup";
     }
 }

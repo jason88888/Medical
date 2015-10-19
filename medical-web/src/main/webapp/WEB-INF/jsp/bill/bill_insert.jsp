@@ -33,8 +33,8 @@
 
             <p>
                 <label>业务员姓名：</label>
-                <input name="userCode" type="hidden" value="${user.code}"/>
-                <input name="user.code" type="hidden" value="${user.code}"/>
+                <input name="userCode" type="hidden" value="${bill.userCode}"/>
+                <input name="user.code" type="hidden" value="${bill.userCode}"/>
                 <input type="text" class="required" name="user.username" rel="lookup" value="" postField="username" suggestFields="username,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
                 <a class="btnLook" href="user/lookup" lookupGroup="medicine">查找带回</a>
             </p>
