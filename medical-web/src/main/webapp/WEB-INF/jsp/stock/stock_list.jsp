@@ -25,8 +25,8 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="stock/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="stock/delete" target="selectedTodo" title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>
+            <%--<li><a class="add" href="stock/insert" target="dialog"><span>添加</span></a></li>--%>
+            <%--<li><a class="delete" href="stock/delete" target="selectedTodo" title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>--%>
             <li><a class="edit" href="stock/view?id={id}" target="dialog" warn="请选择一个医疗机构"><span>详情</span></a></li>
         </ul>
     </div>

@@ -47,6 +47,7 @@
             <th>谁的客户</th>
             <th>采购销售区域</th>
             <th>备注</th>
+            <th width="150">查找带回</th>
         </tr>
         </thead>
         <tbody>

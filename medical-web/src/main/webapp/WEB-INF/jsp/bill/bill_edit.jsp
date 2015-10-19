@@ -2,22 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<script>
-  function clientChange(){
-    var value = $("#clientCode").find("option:selected").text();
-    $("#clientName").val(value);
-  }
-  function salesmanChange(){
-    var value = $("#userCode").find("option:selected").text();
-    $("#userName").val(value);
-  }
-  function medicineChange(){
-    var value = $("#medicineCode").find("option:selected").text();
-    $("#medicineName").val(value);
-  }
-
-</script>
-
 <div class="pageContent">
   <form method="post" action="bill/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);" autocomplete="off">
     <input type="hidden" name="id" value="${bill.id}"/>
@@ -39,42 +23,27 @@
 
       <p>
         <label>客户名称：</label>
-        <input id="clientName" name="clientName" type="hidden"  value="${bill.clientName}" />
-        <select id="clientCode" name="clientCode" class="required" style="width: 220px" onchange="clientChange()">
-          <c:forEach items="${clients}" var="client">
-            <option value="${client.code}" <c:if test="${bill.clientCode == client.code}">selected</c:if>>${client.name}</option>
-          </c:forEach>
-        </select>
+        <input name="clientCode" type="hidden" value="${bill.clientCode}"/>
+        <input name="client.code" type="hidden" value="${bill.clientCode}"/>
+        <input type="text" class="required" value="${bill.clientName}" name="client.name" rel="lookup" value="" postField="name"
+               suggestFields="name,code" suggestUrl="client/lookup_suggest" lookupGroup="client"/>
+        <a class="btnLook" href="client/lookup" lookupGroup="client">查找带回</a>
       </p>
 
-      <c:choose>
-        <c:when test="${user.getRole() == 1}">
-          <p>
-            <input id="userName" name="userName" type="hidden" value="${bill.userName}"/>
-            <label>业务员姓名：</label>
-            <select id="userCode" name="userCode" class="required" onchange="salesmanChange()">
-              <c:forEach items="${salesmen}" var="salesman">
-                <option value="${salesman.code}"  <c:if test="${bill.userCode == salesman.code}">selected</c:if>>${salesman.username}</option>
-              </c:forEach>
-            </select>
-          </p>
-        </c:when>
-        <c:otherwise>
-          <input name="userName" type="hidden" value="${bill.userName}" />
-          <input name="userCode" type="hidden" value="${bill.userCode}" />
-        </c:otherwise>
-
-      </c:choose>
-
+      <p>
+        <label>业务员姓名：</label>
+        <input name="userCode" type="hidden" value="${user.code}"/>
+        <input name="user.code" type="hidden" value="${user.code}"/>
+        <input type="text" class="required" value="${bill.userName}" name="user.username" rel="lookup" value="" postField="username" suggestFields="username,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
+        <a class="btnLook" href="user/lookup" lookupGroup="medicine">查找带回</a>
+      </p>
 
       <p>
-        <input id="medicineName" name="medicineName" type="hidden" value="${bill.medicineName}"/>
-        <label>药品名称：</label>
-        <select id="medicineCode" name="medicineCode" class="required" onchange="medicineChange()">
-          <c:forEach items="${medicines}" var="medicine">
-            <option value="${medicine.code}" <c:if test="${bill.medicineCode == medicine.code}">selected</c:if>>${medicine.name}</option>
-          </c:forEach>
-        </select>
+        <label>所属药品：</label>
+        <input name="medicineCode" type="hidden" value="${bill.medicineCode}"/>
+        <input name="medicine.code" type="hidden" value="${bill.medicineCode}"/>
+        <input type="text" class="required" value="${bill.medicineName}" name="medicine.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine" />
+        <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
       </p>
 
       <p>

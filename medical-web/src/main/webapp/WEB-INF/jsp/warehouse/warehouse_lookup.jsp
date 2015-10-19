@@ -42,6 +42,7 @@
             <th width="250">联系电话</th>
             <th width="250">仓库地址</th>
             <th width="250">备注</th>
+            <th width="150">查找带回</th>
         </tr>
         </thead>
         <tbody>
@@ -57,7 +58,7 @@
                 <td>${warehouse.address}</td>
                 <td>${warehouse.descript}</td>
                 <td>
-                    <a class="btnSelect" href="javascript:$.bringBack({id:'${warehouse.id}', name:'${warehouse.name}'})" title="查找带回">选择</a>
+                    <a class="btnSelect" href="javascript:$.bringBack({id:'${warehouse.id}', code:'${warehouse.code}, name:'${warehouse.name}'})" title="查找带回">选择</a>
                 </td>
             </tr>
         </c:forEach>

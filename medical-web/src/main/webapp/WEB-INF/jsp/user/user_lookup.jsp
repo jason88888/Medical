@@ -41,6 +41,7 @@
             <th width="100">密码</th>
             <th width="150">角色</th>
             <th width="150">备注</th>
+            <th width="150">查找带回</th>
         </tr>
         </thead>
         <tbody>
@@ -65,7 +66,7 @@
                 </c:choose>
                 <td>${user.descript}</td>
                 <td>
-                    <a class="btnSelect" href="javascript:$.bringBack({id:'${user.id}', name:'${user.name}'})" title="查找带回">选择</a>
+                    <a class="btnSelect" href="javascript:$.bringBack({code:'${user.code}', name:'${user.username}'})" title="查找带回">选择</a>
                 </td>
             </tr>
         </c:forEach>

@@ -43,6 +43,7 @@
             <th width="250">传真</th>
             <th width="250">联系电话</th>
             <th width="100">备注</th>
+            <th width="150">查找带回</th>
         </tr>
         </thead>
         <tbody>
