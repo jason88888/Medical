@@ -12,17 +12,19 @@
 <div class="pageHeader">
     <form onsubmit="return navTabSearch(this);" action="medicine/list" method="post" rel="pagerForm">
         <div class="searchBar">
+            <ul class="searchContent">
+                <li>
+                    <label>药品编号:</label>
+                    <input class="textInput" name="code" value="${param.code}" type="text">
+                </li>
+                <li>
+                    <label>药品名称:</label>
+                    <input class="textInput" name="name" value="${param.name}" type="text">
+                </li>
+            </ul>
             <div class="subBar">
                 <ul>
-                    <li>
-                        <div class="buttonActive">
-                            <div class="buttonContent">
-                                <button type="submit">检索</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a class="button" href="demo_page6.html" target="dialog" mask="true"
-                           title="查询框"><span>高级检索</span></a></li>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
                 </ul>
             </div>
         </div>
@@ -43,6 +45,7 @@
             <th style="width: 18px; cursor: col-resize;">
                 <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
             </th>
+            <th width="120">药品代码</th>
             <th width="120">药品编码</th>
             <th width="200">药品名称</th>
             <th width="100">药品规格</th>
@@ -60,6 +63,7 @@
                 <td>
                     <div><input name="ids" value="${medicine.id}" type="checkbox"></div>
                 </td>
+                <td>${medicine.uniqueCode}</td>
                 <td>${medicine.code}</td>
                 <td>${medicine.name}</td>
                 <td>${medicine.specification}</td>

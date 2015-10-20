@@ -106,7 +106,7 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="rkorder/edit?id=${bill.id}" target="dialog" rel="form">编辑</a></button>
+                            <button type="submit"><a href="rkorder/edit?id=${rkorder.id}" target="dialog" rel="form">编辑</a></button>
                         </div>
                     </div>
                 </li>

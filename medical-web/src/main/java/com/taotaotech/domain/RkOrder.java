@@ -20,7 +20,7 @@ public class RkOrder extends DataEntity<RkOrder> {
     private Integer sysUserId;
     //代理商id
     private Integer agentClientId;
-    //配送商id
+    //供应商id
     private Integer providerId;
     //实际单价
     private Long unitPrice;
@@ -36,10 +36,6 @@ public class RkOrder extends DataEntity<RkOrder> {
     private String purchasePrice;
     //付款金额
     private String purchaseMoney;
-    //    //进项单价(卖给代理商的单价)
-//    private String salePrice;
-//    //进项金额(卖给代理商的金额)
-//    private String saleMoney;
     //应付税
     private String tax;
     //付税方式
@@ -176,22 +172,6 @@ public class RkOrder extends DataEntity<RkOrder> {
     public void setPurchaseMoney(String purchaseMoney) {
         this.purchaseMoney = purchaseMoney == null ? null : purchaseMoney.trim();
     }
-
-//    public String getSalePrice() {
-//        return salePrice;
-//    }
-//
-//    public void setSalePrice(String salePrice) {
-//        this.salePrice = salePrice == null ? null : salePrice.trim();
-//    }
-//
-//    public String getSaleMoney() {
-//        return saleMoney;
-//    }
-//
-//    public void setSaleMoney(String saleMoney) {
-//        this.saleMoney = saleMoney == null ? null : saleMoney.trim();
-//    }
 
     public String getTax() {
         return tax;

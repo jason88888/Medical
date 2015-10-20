@@ -30,10 +30,10 @@
         from warehouse t
         <where>
             del_flag = 0
-            <if test="name != null">
+            <if test="name != null and name != ''">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="linkMan != null">
+            <if test="linkMan != null and linkMan != ''">
                 link_man = #{linkMan,jdbcType=VARCHAR},
             </if>
             <if test="telephone != null">

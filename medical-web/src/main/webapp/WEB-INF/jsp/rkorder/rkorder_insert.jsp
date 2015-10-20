@@ -20,9 +20,8 @@
                 <label>仓库名称：</label>
                 <input name="warehouseId" type="hidden" value="${rkorder.warehouseId}"/>
                 <input name="warehouse.code" type="hidden" value="${rkorder.warehouseId}"/>
-                <input type="text" class="required" name="client.name" rel="lookup" value="" postField="name"
-                       suggestFields="name,code" suggestUrl="warehouse/lookup_suggest" lookupGroup="warehouse"/>
-                <a class="btnLook" href="warehouse/lookup" lookupGroup="client">查找带回</a>
+                <input type="text" class="required" name="warehouse.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="warehouse/lookup_suggest" lookupGroup="warehouse"/>
+                <a class="btnLook" href="warehouse/lookup" lookupGroup="warehouse">查找带回</a>
             </p>
 
             <p>
@@ -37,24 +36,24 @@
                 <label>操作人名称：</label>
                 <input name="sysUserId" type="hidden" value="${rkorder.sysUserId}"/>
                 <input name="user.code" type="hidden" value="${rkorder.sysUserId}"/>
-                <input type="text" class="required" name="user.username" rel="lookup" value="" postField="username" suggestFields="username,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
+                <input type="text" class="required" name="user.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>
 
             <p>
                 <label>代理商名称：</label>
                 <input name="agentClientId" type="hidden" value="${agentclient.code}"/>
-                <input name="user.code" type="hidden" value="${agentclient.code}"/>
-                <input type="text" class="required" name="user.username" rel="lookup" value="" postField="name" suggestFields="username,code" suggestUrl="agentclient/lookup_suggest" lookupGroup="agentclient" />
-                <a class="btnLook" href="agentclient/lookup" lookupGroup="user">查找带回</a>
+                <input name="agentclient.code" type="hidden" value="${agentclient.code}"/>
+                <input type="text" class="required" name="agentclient.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="agentclient/lookup_suggest" lookupGroup="agentclient" />
+                <a class="btnLook" href="agentclient/lookup" lookupGroup="agentclient">查找带回</a>
             </p>
 
             <p>
-                <label>配送商名称：</label>
-                <input name="providerId" type="hidden" value="${provider.code}"/>
-                <input name="provider.code" type="hidden" value="${provider.code}"/>
-                <input type="text" class="required" name="user.username" rel="lookup" value="" postField="name" suggestFields="username,code" suggestUrl="provider/lookup_suggest" lookupGroup="provider" />
-                <a class="btnLook" href="provider/lookup" lookupGroup="user">查找带回</a>
+                <label>供应商名称：</label>
+                <input name="providerId" type="hidden" value="${provider.id}"/>
+                <input name="provider.id" type="hidden" value="${provider.id}"/>
+                <input type="text" class="required" name="provider.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="provider/lookup_suggest" lookupGroup="provider" />
+                <a class="btnLook" href="provider/lookup" lookupGroup="provider">查找带回</a>
             </p>
 
             <p>
@@ -69,7 +68,7 @@
 
             <p>
                 <label>采购付款日期：</label>
-                <input name="payDate" class="date" type="text" readonly="true"/>
+                <input name="payDate" class="date textInput readonly valid" type="text" readonly="true"/>
                 <a class="inputDateButton" href="javascript:;">选择</a>
             </p>
 
@@ -87,6 +86,11 @@
             <p>
                 <label>采购单价：</label>
                 <input name="purchasePrice" class="required" type="text" autocomplete="off" size="30" alt="请输入采购单价"/>
+            </p>
+
+            <p>
+                <label>付款金额：</label>
+                <input name="purchasePrice" class="required" type="text" autocomplete="off" size="30" alt="请输入付款金额"/>
             </p>
 
             <p>

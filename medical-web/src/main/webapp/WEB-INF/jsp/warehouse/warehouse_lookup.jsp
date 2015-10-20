@@ -58,7 +58,7 @@
                 <td>${warehouse.address}</td>
                 <td>${warehouse.descript}</td>
                 <td>
-                    <a class="btnSelect" href="javascript:$.bringBack({id:'${warehouse.id}', code:'${warehouse.code}, name:'${warehouse.name}'})" title="查找带回">选择</a>
+                    <a class="btnSelect" href="javascript:$.bringBack({id:'${warehouse.id}', code:'${warehouse.code}', name:'${warehouse.name}'})" title="查找带回">选择</a>
                 </td>
             </tr>
         </c:forEach>

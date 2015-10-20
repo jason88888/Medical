@@ -115,7 +115,7 @@
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
                         <li><a href="bill/list" target="navTab"
-                               rel="bill_list">销售流向导入</a></li>
+                               rel="bill_list">销售流向</a></li>
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
                         <c:if test="${user.role == 1}">

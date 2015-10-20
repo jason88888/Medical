@@ -66,7 +66,7 @@
                 </c:choose>
                 <td>${user.descript}</td>
                 <td>
-                    <a class="btnSelect" href="javascript:$.bringBack({code:'${user.code}', name:'${user.username}'})" title="查找带回">选择</a>
+                    <a class="btnSelect" href="javascript:$.bringBack({id:'${user.id}',code:'${user.code}', name:'${user.username}'})" title="查找带回">选择</a>
                 </td>
             </tr>
         </c:forEach>

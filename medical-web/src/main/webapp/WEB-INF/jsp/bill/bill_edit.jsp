@@ -13,7 +13,7 @@
       </p>
       <p>
         <label>开票日期：</label>
-        <input name="date" class="date" type="text"/>
+        <input name="date" class="date" type="text" readonly="true" value="${bill.date}"/>
         <a class="inputDateButton" href="javascript:;">选择</a>
       </p>
       <p>
@@ -34,8 +34,8 @@
         <label>业务员姓名：</label>
         <input name="userCode" type="hidden" value="${user.code}"/>
         <input name="user.code" type="hidden" value="${user.code}"/>
-        <input type="text" class="required" value="${bill.userName}" name="user.username" rel="lookup" value="" postField="username" suggestFields="username,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
-        <a class="btnLook" href="user/lookup" lookupGroup="medicine">查找带回</a>
+        <input type="text" class="required" value="${bill.userName}" name="user.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
+        <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
       </p>
 
       <p>

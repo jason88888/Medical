@@ -3,6 +3,8 @@ package com.taotaotech.domain;
 import com.taotaotech.core.domain.DataEntity;
 
 public class User extends DataEntity<User> {
+    private Integer id;
+
     private String code;
 
     private String username;
@@ -12,6 +14,16 @@ public class User extends DataEntity<User> {
     private Byte role;
 
     private String descript;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getCode() {
         return code;
