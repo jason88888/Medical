@@ -43,7 +43,6 @@ public class BillController extends BaseController {
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
     public String list(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-
         Map map = new HashMap();
         if(getUser().getRole() != 1){
             map.put("userCode", getUser().getCode());

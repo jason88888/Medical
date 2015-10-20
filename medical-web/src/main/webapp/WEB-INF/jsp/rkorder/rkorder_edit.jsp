@@ -28,7 +28,7 @@
             <p>
                 <label>仓库名称：</label>
                 <input name="warehouseId" type="hidden" value="${rkorder.warehouseId}"/>
-                <input name="warehouse.code" type="hidden" value="${rkorder.warehouseId}"/>
+                <input name="warehouse.id" type="hidden" value="${rkorder.warehouseId}"/>
                 <input type="text" class="required" value="${warehouse.warehouseId}" name="warehouse.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="warehouse/lookup_suggest" lookupGroup="warehouse"/>
                 <a class="btnLook" href="warehouse/lookup" lookupGroup="warehouse">查找带回</a>
             </p>
@@ -36,7 +36,7 @@
             <p>
                 <label>药品名称：</label>
                 <input name="medicineId" type="hidden" value="${rkorder.medicineId}"/>
-                <input name="medicine.code" type="hidden" value="${rkorder.medicineId}"/>
+                <input name="medicine.id" type="hidden" value="${rkorder.medicineId}"/>
                 <input type="text" class="required"  value="${rkorder.medicineId}" name="medicine.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine" />
                 <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
             </p>
@@ -44,7 +44,7 @@
             <p>
                 <label>操作人名称：</label>
                 <input name="sysUserId" type="hidden" value="${rkorder.sysUserId}"/>
-                <input name="user.code" type="hidden" value="${rkorder.sysUserId}"/>
+                <input name="user.id" type="hidden" value="${rkorder.sysUserId}"/>
                 <input type="text" class="required" value="${rkorder.sysUserId}" name="user.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>
@@ -52,7 +52,7 @@
             <p>
                 <label>代理商名称：</label>
                 <input name="agentClientId" type="hidden" value="${rkorder.agentClientId}"/>
-                <input name="agentclient.code" type="hidden" value="${rkorder.agentClientId}"/>
+                <input name="agentclient.id" type="hidden" value="${rkorder.agentClientId}"/>
                 <input type="text" class="required" value="${rkorder.agentClientId}" name="agentclient.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="agentclient/lookup_suggest" lookupGroup="agentclient" />
                 <a class="btnLook" href="agentclient/lookup" lookupGroup="agentclient">查找带回</a>
             </p>

@@ -55,7 +55,17 @@ public class RkOrderController extends BaseController {
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
-    public Object save(RkOrder rkorder) {
+    public Object save(RkOrder rkorder, HttpServletRequest request) {
+        int warehouseId = Integer.parseInt(request.getParameter("warehouse.id"));
+        int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
+        int userId = Integer.parseInt(request.getParameter("user.id"));
+        int agentClientId = Integer.parseInt(request.getParameter("agentclient.id"));
+        int providerId = Integer.parseInt(request.getParameter("provider.id"));
+        rkorder.setWarehouseId(warehouseId);
+        rkorder.setMedicineId(medicineId);
+        rkorder.setSysUserId(userId);
+        rkorder.setAgentClientId(agentClientId);
+        rkorder.setProviderId(providerId);
         rkorderService.save(rkorder);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
