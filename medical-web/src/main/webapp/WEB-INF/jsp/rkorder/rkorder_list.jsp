@@ -36,12 +36,13 @@
         <tr>
             <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
             <th>入库单编号</th>
-            <th>单据日期</th>
+            <%--<th>单据日期</th>--%>
             <th>仓库名称</th>
             <th>药品名称</th>
             <th>操作人名称</th>
-            <th>代理商名称</th>
             <th>供应商名称</th>
+            <%--<th>代理商名称</th>--%>
+            <%--<th>配送商名称</th>--%>
             <th>实际单价</th>
             <th>高开单价</th>
             <th>采购付款日期</th>
@@ -62,13 +63,13 @@
         <c:forEach items="${page.list}" var="rkorder">
             <tr target="id" rel="${rkorder.id}">
                 <td><div><input name="ids" value="${rkorder.id}" type="checkbox"></div></td>
-                <td>${rkorder.code}</td>
-                <td>${rkorder.billDate}</td>
-                <td>${rkorder.warehouseId}</td>
-                <td>${rkorder.medicineId}</td>
-                <td>${rkorder.sysUserId}</td>
-                <td>${rkorder.agentClientId}</td>
-                <td>${rkorder.providerId}</td>
+                <td>${rkorder.id}</td>
+                <%--<td>${rkorder.billDate}</td>--%>
+                <td>${rkorder.warehouseName}</td>
+                <td>${rkorder.medicineName}</td>
+                <td>${rkorder.operatorName}</td>
+                <%--<td>${rkorder.agentClientId}</td>--%>
+                <td>${rkorder.providerName}</td>
                 <td>${rkorder.unitPrice}</td>
                 <td>${rkorder.highUnitPrice}</td>
                 <td>${rkorder.payDate}</td>
