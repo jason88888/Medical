@@ -18,33 +18,44 @@
         update_date, del_flag
     </sql>
 
-    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <sql id="Base_Column_List_Dto">
+       t.id, medicine_id, warehouse_id, start_quantity, now_quantity,
+        t.descript, t.create_date, t.update_date, t.del_flag, m.name as medicine_name,
+        w.name as warehouse_name
+    </sql>
+
+    <resultMap id="BaseResultMapDto" type="com.taotaotech.dto.StockDTO" extends="BaseResultMap">
+        <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
+        <result column="warehouse_name" property="warehouseName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="get" resultMap="BaseResultMapDto" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        from stock
-        where id = #{id,jdbcType=INTEGER}
+        <include refid="Base_Column_List_Dto"/>
+        from stock t ,medicine m ,warehouse w
+        where t.del_flag = 0 and t.medicine_id = m.id and t.warehouse_id = w.id AND t.id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMapDto">
         select
-        <include refid="Base_Column_List"/>
-        from stock t
+        <include refid="Base_Column_List_Dto"/>
+        from stock t ,medicine m ,warehouse w
         <where>
-            del_flag = 0
+            t.del_flag = 0 and t.medicine_id = m.id and t.warehouse_id = w.id
             <if test="medicineId != null">
-                medicine_id = #{medicineId,jdbcType=INTEGER},
+               AND medicine_id = #{medicineId,jdbcType=INTEGER}
             </if>
             <if test="warehouseId != null">
-                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+                AND  warehouse_id = #{warehouseId,jdbcType=INTEGER}
             </if>
             <if test="startQuantity != null">
-                start_quantity = #{startQuantity,jdbcType=VARCHAR},
+                AND t_quantity = #{startQuantity,jdbcType=VARCHAR}
             </if>
             <if test="nowQuantity != null">
-                now_quantity = #{nowQuantity,jdbcType=VARCHAR},
+                AND quantity = #{nowQuantity,jdbcType=VARCHAR}
             </if>
             <if test="descript != null">
-                descript = #{descript,jdbcType=VARCHAR},
+                AND ript = #{descript,jdbcType=VARCHAR}
             </if>
         </where>
         <choose>

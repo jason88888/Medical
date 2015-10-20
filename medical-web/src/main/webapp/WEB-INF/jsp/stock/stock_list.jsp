@@ -44,8 +44,8 @@
         <c:forEach items="${page.list}" var="stock">
             <tr target="id" rel="${stock.id}">
                 <td><div><input name="ids" value="${stock.id}" type="checkbox"></div></td>
-                <td>${stock.medicineId}</td>
-                <td>${stock.warehouseId}</td>
+                <td>${stock.medicineName}</td>
+                <td>${stock.warehouseName}</td>
                 <td>${stock.nowQuantity}</td>
                 <td>${stock.descript}</td>
             </tr>
