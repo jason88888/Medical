@@ -31,6 +31,46 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
+    <select id="find" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from agent_client t
+        <where>
+            del_flag = 0
+            <if test="name != null and name != ''">
+                and name =  #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="eng_name != null and eng_name != ''">
+                and eng_name =  #{eng_name,jdbcType=VARCHAR}
+            </if>
+            <if test="attribution != null and attribution != ''">
+                and attribution = #{attribution}
+            </if>
+            <if test="area_name != null and area_name != ''">
+                and area_name = #{area_name}
+            </if>
+            <if test="chief_name != null and chief_name != ''">
+                and chief_name = #{chief_name}
+            </if>
+            <if test="fax_no != null and fax_no != ''">
+                and fax_no = #{fax_no}
+            </if>
+            <if test="telephone != null and telephone != ''">
+                and telephone = #{telephone}
+            </if>
+            <if test="level != null and level != ''">
+                and level = #{level}
+            </if>
+            <if test="whose_client != null and whose_client != ''">
+                and whose_client = #{whose_client}
+            </if>
+            <if test="sale_area != null and sale_area != ''">
+                and sale_area = #{sale_area}
+            </if>
+        </where>
+        limit 1
+    </select>
+
     <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

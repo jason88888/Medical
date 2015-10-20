@@ -24,6 +24,25 @@
     where id = #{id}
   </select>
 
+  <select id="find" parameterType="java.util.Map" resultType="User">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user t
+    <where>
+      del_flag = 0
+      <if test="code != null and code != ''">
+        AND code =  #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="username != null and username != ''">
+        AND username =  #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="role != null and role != ''">
+        AND role = #{role}
+      </if>
+    </where>
+    limit 1
+  </select>
+
   <select id="findList" parameterType="java.util.Map" resultType="User">
     select
     <include refid="Base_Column_List" />

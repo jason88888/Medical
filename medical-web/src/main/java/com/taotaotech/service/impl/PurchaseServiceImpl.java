@@ -42,6 +42,8 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
 
     @Autowired
     IStockService stockService ;
+    @Autowired
+    IUserService userService ;
 
     @Override
     @Transactional
@@ -94,10 +96,18 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     }
 
     private int generateProvider(ImportPurchasement ip){
-        Provider provider = new Provider();
-        provider.setName(ip.getSaleCompany());
-        provider.setAreaName(ip.getSaleArea());
-        return providerService.create(provider);
+        Provider p =  new Provider();
+        p.setName(ip.getSaleCompany());
+        p.setAreaName(ip.getSaleArea());
+
+        Provider provider = providerService.find(p);
+        if (null == provider){
+            return providerService.create(p);
+        }else {
+            return provider.getId();
+        }
+
+
     }
 
     private int generateAgentClient(ImportPurchasement ip){
@@ -107,7 +117,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         }else if (ip.getPurchaseSaleType().equals("铺货")){
             agentClient.setName(ip.getBuyCompany());
         }
-        AgentClient ac = agentClientService.get(agentClient);
+        AgentClient ac = agentClientService.find(agentClient);
         if (null == ac){
             return agentClientService.create(agentClient);
         }
@@ -117,7 +127,22 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     private int generateWarehouse(ImportPurchasement ip){
         Warehouse warehouse = new Warehouse();
         warehouse.setName(ip.getActualStorePlace());
-        return warehouseService.create(warehouse);
+        Warehouse wh = warehouseService.find(warehouse);
+        if (null == wh){
+            return warehouseService.create(warehouse);
+        }
+        return wh.getId();
+    }
+
+    private int getAdminUserId(){
+        User user = new User();
+        user.setUsername("admin");
+        User u = userService.find(user);
+        if(null == u){
+            user.setPassword("111111");
+            return userService.create(user);
+        }
+        return u.getId();
     }
 
     private int generateRkOrder(ImportPurchasement ip,Integer agentClientId,Integer medicineId,Integer warehouseId,Integer providerId){
@@ -140,7 +165,13 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         order.setUnits(ip.getUnits());
         order.setTaxpayMode(ip.getTaxPayMode());
         order.setTaxpayDate(ip.getTaxPayDate());
-        return rkOrderService.create(order);
+        order.setSysUserId(getAdminUserId());
+
+        RkOrder rk = rkOrderService.find(order);
+        if (null == rk){
+            return rkOrderService.create(order);
+        }
+        return rk.getId();
     }
 
 
