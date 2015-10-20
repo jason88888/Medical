@@ -1,15 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<script>
-    function medicineChange(){
-        var value = $("#medicineUniqueCode").find("option:selected").text();
-        $("#medicineName").val(value);
-    }
-
-</script>
-
 <div class="pageContent">
     <form method="post" action="purchase/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
@@ -19,15 +10,12 @@
                 <label>入库单编号：</label>
                 <input name="id" type="text" size="30" class="required" value="${rkorder.id}"/>
             </p>
-            <%--<p>--%>
-                <%--<label>入库单编号：</label>--%>
-                <%--<input name="code" type="text" size="30" class="required" value="${rkorder.code}"/>--%>
-            <%--</p>--%>
-            <%--<p>--%>
-                <%--<label>单据日期：</label>--%>
-                <%--<input name="billDate" class="date" type="text" readonly="true" value="${rkorder.billDate}"/>--%>
-                <%--<a class="inputDateButton" href="javascript:;">选择</a>--%>
-            <%--</p>--%>
+
+            <p>
+                <label>单据日期：</label>
+                <input name="billDate" class="date" type="text" readonly="true" value="${rkorder.billDate}"/>
+                <a class="inputDateButton" href="javascript:;">选择</a>
+            </p>
 
             <p>
                 <label>仓库名称：</label>
@@ -53,14 +41,6 @@
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>
 
-            <%--<p>--%>
-                <%--<label>代理商名称：</label>--%>
-                <%--<input name="agentClientId" type="hidden" value="${rkorder.agentClientId}"/>--%>
-                <%--<input name="agentclient.id" type="hidden" value="${rkorder.agentClientId}"/>--%>
-                <%--<input type="text" class="required" value="${rkorder.agentClientId}" name="agentclient.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="agentclient/lookup_suggest" lookupGroup="agentclient" />--%>
-                <%--<a class="btnLook" href="agentclient/lookup" lookupGroup="agentclient">查找带回</a>--%>
-            <%--</p>--%>
-
             <p>
                 <label>供应商名称：</label>
                 <input name="providerId" type="hidden" value="${rkorder.providerId}"/>
@@ -71,12 +51,12 @@
 
             <p>
                 <label>实际单价：</label>
-                <input name="unitPrice" class="required" value="${rkorder.unitPrice}" type="text" autocomplete="off" size="30" alt="请输入实际单价"/>
+                <input name="unitPrice" value="${rkorder.unitPrice}" type="text" autocomplete="off" size="30" alt="请输入实际单价"/>
             </p>
 
             <p>
                 <label>高开单价：</label>
-                <input name="highUnitPrice" class="required" value="${rkorder.highUnitPrice}" type="text" autocomplete="off" size="30" alt="请输入高开单价"/>
+                <input name="highUnitPrice" value="${rkorder.highUnitPrice}" type="text" autocomplete="off" size="30" alt="请输入高开单价"/>
             </p>
 
             <p>
@@ -98,22 +78,22 @@
 
             <p>
                 <label>采购单价：</label>
-                <input name="purchasePrice" class="required" type="text" value="${rkorder.purchasePrice}" autocomplete="off" size="30" alt="请输入采购单价"/>
+                <input name="purchasePrice" type="text" value="${rkorder.purchasePrice}" autocomplete="off" size="30" alt="请输入采购单价"/>
             </p>
 
             <p>
                 <label>付款金额：</label>
-                <input name="purchasePrice" class="required" type="text" value="${rkorder.purchaseMoney}" autocomplete="off" size="30" alt="请输入付款金额"/>
+                <input name="purchasePrice" type="text" value="${rkorder.purchaseMoney}" autocomplete="off" size="30" alt="请输入付款金额"/>
             </p>
 
             <p>
                 <label>应付税：</label>
-                <input name="tax" class="required" type="text" value="${rkorder.tax}" autocomplete="off" size="30" alt="请输入应付税"/>
+                <input name="tax" type="text" value="${rkorder.tax}" autocomplete="off" size="30" alt="请输入应付税"/>
             </p>
 
             <p>
                 <label>付税方式：</label>
-                <input name="taxpayMode" class="required" type="text" value="${rkorder.taxpayMode}" autocomplete="off" size="30" alt="请输入付税方式"/>
+                <input name="taxpayMode" type="text" value="${rkorder.taxpayMode}" autocomplete="off" size="30" alt="请输入付税方式"/>
             </p>
 
             <p>

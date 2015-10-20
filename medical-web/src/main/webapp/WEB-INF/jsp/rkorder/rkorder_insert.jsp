@@ -15,7 +15,6 @@
                 <label>单据日期：</label>
                 <input name="billDate" class="date" type="text" readonly="true"/>
                 <a class="inputDateButton" href="javascript:;">选择</a>
-                <%--<input name="invoiceDate" type="text" autocomplete="off" size="30" alt="请输入开票日期"/>--%>
             </p>
 
             <p>
