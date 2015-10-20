@@ -77,7 +77,7 @@
     ORDER BY create_date DESC
   </select>
 
-  <insert id="insert" parameterType="User" >
+  <insert id="insert" parameterType="User"  useGeneratedKeys="true" keyProperty="id" >
     INSERT INTO sys_user
     (<include refid="Base_Column_List" />)
     VALUES (
@@ -123,7 +123,7 @@
     delete from sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="User" >
+  <insert id="insertSelective" parameterType="User"  useGeneratedKeys="true" keyProperty="id" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

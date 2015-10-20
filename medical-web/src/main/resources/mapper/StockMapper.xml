@@ -114,10 +114,7 @@
     delete from stock
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.taotaotech.domain.Stock">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insert" parameterType="com.taotaotech.domain.Stock"  useGeneratedKeys="true" keyProperty="id" >
         insert into stock (medicine_id, warehouse_id, start_quantity,
         now_quantity, descript,
         create_date, update_date, del_flag
@@ -127,10 +124,7 @@
         #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.Stock">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.Stock"  useGeneratedKeys="true" keyProperty="id" >
         insert into stock
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="medicineId != null">

@@ -130,10 +130,7 @@
     delete from warehouse
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.taotaotech.domain.Warehouse">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insert" parameterType="com.taotaotech.domain.Warehouse"  useGeneratedKeys="true" keyProperty="id" >
         insert into warehouse (code,name, link_man, telephone,
         address, descript, create_date,
         update_date, del_flag)
@@ -141,10 +138,7 @@
         #{address,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
         #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT})
     </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.Warehouse">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.Warehouse"  useGeneratedKeys="true" keyProperty="id" >
         insert into warehouse
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">

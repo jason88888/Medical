@@ -40,7 +40,7 @@
     #{threeLevelCode,jdbcType=VARCHAR},#{number,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{medicineName,jdbcType=VARCHAR}
      ,#{medicineCode,jdbcType=VARCHAR},#{twoLevelName,jdbcType=VARCHAR},#{threeLevelName,jdbcType=VARCHAR},#{regional,jdbcType=VARCHAR},#{descript,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="Bill">
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="Bill">
         insert into bill
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

@@ -294,10 +294,7 @@
     delete from rk_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.taotaotech.domain.RkOrder">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insert" parameterType="com.taotaotech.domain.RkOrder"  useGeneratedKeys="true" keyProperty="id" >
         insert into rk_order (bill_date, warehouse_id, medicine_id,
         sys_user_id, agent_client_id, provider_id,
         unit_price, high_unit_price, pay_date,
@@ -318,10 +315,7 @@
         #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.RkOrder">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.RkOrder"  useGeneratedKeys="true" keyProperty="id" >
         insert into rk_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="billDate != null">

@@ -90,13 +90,13 @@
     delete from agent
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.taotaotech.domain.Agent" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.taotaotech.domain.Agent" >
     insert into agent (id, code, name, 
       level,descript)
     values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{level,jdbcType=VARCHAR},#{descript,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="Agent" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="Agent" >
     insert into agent
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

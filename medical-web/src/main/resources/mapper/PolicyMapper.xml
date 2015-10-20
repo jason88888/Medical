@@ -97,7 +97,7 @@
     ORDER BY create_date DESC
   </select>
 
-  <insert id="insert" parameterType="Policy" >
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"  parameterType="Policy" >
     INSERT INTO medicine_policy
     (<include refid="Base_Column_List" />)
     VALUES (
@@ -159,7 +159,7 @@
     delete from medicine_policy
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="Policy">
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id"  parameterType="Policy">
     insert into medicine_policy
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

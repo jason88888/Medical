@@ -79,7 +79,7 @@
     ORDER BY create_date DESC
   </select>
 
-  <insert id="insert" parameterType="Medicine" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Medicine" >
     INSERT INTO medicine
     (<include refid="Base_Column_List" />)
     VALUES (
@@ -159,7 +159,7 @@
     delete from medicine
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="Medicine" >
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id"  parameterType="Medicine" >
     insert into medicine
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
