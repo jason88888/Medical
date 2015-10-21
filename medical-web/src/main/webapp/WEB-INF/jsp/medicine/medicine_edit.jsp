@@ -38,8 +38,8 @@
             </p>
 
             <p>
-                <label>单价：</label>
-                <input name="price" class="required" type="text" value="${medicine.price}" autocomplete="off" size="30" alt="请输入单价"/>
+                <label>中标单价：</label>
+                <input name="bidPrice" class="required" type="text" value="${medicine.bidPrice}" autocomplete="off" size="30" alt="请输入单价"/>
             </p>
 
             <p>
@@ -50,6 +50,18 @@
             <p>
                 <label>有效期：</label>
                 <input name="validityPeriod" class="date" type="text" value="${medicine.validityPeriod}" autocomplete="off" size="30" alt="请输入有效期"/>
+            </p>
+            <p>
+                <label>保质期：</label>
+                <input name="shelfLife" class="required" type="text" value="${medicine.shelfLife}" autocomplete="off" size="30" alt="请输入保质期"/>
+            </p>
+            <p>
+                <label>装箱数：</label>
+                <input name="packageNumber" class="required" type="text" value="${medicine.packageNumber}" autocomplete="off" size="30" alt="请输入装箱数"/>
+            </p>
+            <p>
+                <label>可做区域：</label>
+                <input name="salesRange" class="required" type="text"  value="${medicine.salesRange}" autocomplete="off" size="30" alt="请输入可做区域"/>
             </p>
 
             <p>

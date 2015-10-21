@@ -31,6 +31,12 @@ public class Medicine  extends DataEntity<Medicine> {
 
     private String descript;
 
+    private String shelfLife;
+
+    private Float bidPrice;
+
+    private String salesRange;
+
     public Integer getId() {
         return id;
     }
@@ -141,5 +147,29 @@ public class Medicine  extends DataEntity<Medicine> {
 
     public void setDescript(String descript) {
         this.descript = descript;
+    }
+
+    public String getShelfLife() {
+        return shelfLife;
+    }
+
+    public void setShelfLife(String shelfLife) {
+        this.shelfLife = shelfLife;
+    }
+
+    public Float getBidPrice() {
+        return bidPrice;
+    }
+
+    public void setBidPrice(Float bidPrice) {
+        this.bidPrice = bidPrice;
+    }
+
+    public String getSalesRange() {
+        return salesRange;
+    }
+
+    public void setSalesRange(String salesRange) {
+        this.salesRange = salesRange;
     }
 }

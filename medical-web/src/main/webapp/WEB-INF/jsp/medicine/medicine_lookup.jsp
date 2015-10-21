@@ -38,14 +38,15 @@
             <th style="width: 18px; cursor: col-resize;">
                 <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
             </th>
-            <th width="120">药品编码</th>
             <th width="200">药品名称</th>
             <th width="100">药品规格</th>
             <th width="250">生产厂商名称</th>
+            <th width="120">中标价</th>
             <th width="120">单位</th>
-            <th width="120">单价</th>
-            <th width="120">药品批号</th>
-            <th width="150">有效期</th>
+            <th width="120">装箱数</th>
+            <th width="120">保质期</th>
+            <th width="120">可做区域</th>
+            <th width="150">备注</th>
             <th width="150">查找带回</th>
         </tr>
         </thead>
@@ -55,14 +56,15 @@
                 <td>
                     <div><input name="ids" value="${medicine.id}" type="checkbox"></div>
                 </td>
-                <td>${medicine.code}</td>
                 <td>${medicine.name}</td>
                 <td>${medicine.specification}</td>
                 <td>${medicine.manufacturerName}</td>
+                <td>${medicine.bidPrice}</td>
                 <td>${medicine.units}</td>
-                <td>${medicine.price}</td>
-                <td>${medicine.lotNumber}</td>
-                <td>${medicine.validityPeriod}</td>
+                <td>${medicine.packageNumber}</td>
+                <td>${medicine.shelfLife}</td>
+                <td>${medicine.salesRange}</td>
+                <td>${medicine.descript}</td>
                 <td>
                     <a class="btnSelect" href="javascript:$.bringBack({id:'${medicine.id}', code:'${medicine.code}', name:'${medicine.name}'})" title="查找带回">选择</a>
                 </td>

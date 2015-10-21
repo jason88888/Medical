@@ -30,8 +30,8 @@
                 <input name="units"  type="text" autocomplete="off" size="30" alt="请输入单位"/>
             </p>
             <p>
-                <label>单价：</label>
-                <input name="price" class="required" type="text" autocomplete="off" size="30" alt="请输入单价"/>
+                <label>中标单价：</label>
+                <input name="bidPrice" class="required" type="text" autocomplete="off" size="30" alt="请输入中标单价"/>
             </p>
             <p>
                 <label>药品批号：</label>
@@ -43,7 +43,18 @@
                 <a class="inputDateButton" href="javascript:;">选择</a>
                 <span class="info">yyyy-MM-dd</span>
             </p>
-
+            <p>
+                <label>保质期：</label>
+                <input name="shelfLife" class="required" type="text" autocomplete="off" size="30" alt="请输入保质期"/>
+            </p>
+            <p>
+                <label>装箱数：</label>
+                <input name="packageNumber" class="required" type="text" autocomplete="off" size="30" alt="请输入装箱数"/>
+            </p>
+            <p>
+                <label>可做区域：</label>
+                <input name="salesRange" class="required" type="text" autocomplete="off" size="30" alt="请输入可做区域"/>
+            </p>
             <p>
                 <label>备注</label>
                 <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注"/>

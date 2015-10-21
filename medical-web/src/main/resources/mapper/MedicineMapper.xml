@@ -17,10 +17,13 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
     <result column="del_flag" jdbcType="BIT" property="delFlag" />
-    <result column="descript" property="descript" jdbcType="VARCHAR" />
+    <result column="shelf_life" property="shelfLife" jdbcType="VARCHAR" />
+    <result column="bid_price" property="bidPrice" jdbcType="REAL" />
+    <result column="sales_range" property="salesRange" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, unique_code, name, specification, manufacturer_name, units, price, lot_number, validity_period, package_number, purchase_number, create_date, update_date, del_flag,descript
+    id, code, unique_code, name, specification, manufacturer_name, units, price, lot_number, validity_period, package_number,
+     purchase_number, create_date, update_date, del_flag,descript,shelf_life,bid_price,sales_range
   </sql>
 
   <select id="get" resultMap="BaseResultMap" parameterType="Medicine" >
@@ -98,7 +101,10 @@
     #{create_date},
     #{update_date},
     #{del_flag},
-    #{descript}
+    #{descript},
+    #{shelfLife},
+    #{bidLrice},
+    #{salesRange}
     )
   </insert>
 
@@ -140,6 +146,15 @@
       </if>
       <if test="descript != null" >
         descript = #{descript,jdbcType=INTEGER},
+      </if>
+      <if test="shelfLife != null" >
+        shelf_life = #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="bidPrice != null" >
+        bid_price = #{bidPrice,jdbcType=REAL},
+      </if>
+      <if test="salesRange != null" >
+        sales_range = #{salesRange,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -210,6 +225,15 @@
       <if test="descript != null" >
         descript,
       </if>
+      <if test="shelfLife != null" >
+        shelf_life ,
+      </if>
+      <if test="bidPrice != null" >
+        bid_price,
+      </if>
+      <if test="salesRange != null" >
+        sales_range,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -257,6 +281,15 @@
       <if test="descript != null" >
         #{descript,jdbcType=DATE},
       </if>
+      <if test="shelfLife != null" >
+        #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="bidPrice != null" >
+        #{bidPrice,jdbcType=REAL},
+      </if>
+      <if test="salesRange != null" >
+        #{salesRange,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="Medicine" >
@@ -298,6 +331,15 @@
       <if test="descript != null" >
         descript = #{descript,jdbcType=INTEGER},
       </if>
+      <if test="shelfLife != null" >
+        shelf_life = #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="bidPrice != null" >
+        bid_price = #{bidPrice,jdbcType=REAL},
+      </if>
+      <if test="salesRange != null" >
+        sales_range = #{salesRange,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -311,7 +353,10 @@
       price = #{price,jdbcType=REAL},
       lot_number = #{lotNumber,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
-      validity_period = #{validityPeriod,jdbcType=VARCHAR}
+      validity_period = #{validityPeriod,jdbcType=VARCHAR},
+      shelf_life = #{shelfLife,jdbcType=INTEGER},
+      bid_price = #{bidPrice,jdbcType=REAL},
+      sales_range = #{salesRange,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
