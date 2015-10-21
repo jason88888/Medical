@@ -42,6 +42,9 @@
       <if test="name != null and name != ''">
         and name LIKE '%' #{name} '%'
       </if>
+      <if test="uniqueCode != null and uniqueCode != ''">
+        and unique_code LIKE '%' #{uniqueCode} '%'
+      </if>
       <if test="specification != null and specification != ''">
         and specification = #{specification}
       </if>

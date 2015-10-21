@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `agent_client`;
 CREATE TABLE `agent_client` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) DEFAULT NULL COMMENT '代理商代码',
-  `name` varchar(20) NOT NULL COMMENT '代理商名称',
+  `name` varchar(100) NOT NULL COMMENT '代理商名称',
   `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
   `attribution` varchar(20) DEFAULT NULL COMMENT '账款归属',
   `area_name` varchar(20) DEFAULT NULL COMMENT '地区',
@@ -53,7 +53,7 @@ CREATE TABLE `agent_client` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for bill
@@ -122,7 +122,7 @@ CREATE TABLE `medicine` (
   `unique_code` varchar(20) NOT NULL COMMENT '药品代码（药品的唯一性）',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`,`descript`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for medicine_policy
@@ -148,7 +148,7 @@ CREATE TABLE `medicine_policy` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for provider
@@ -157,7 +157,7 @@ DROP TABLE IF EXISTS `provider`;
 CREATE TABLE `provider` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) DEFAULT NULL COMMENT '供应商编号',
-  `name` varchar(20) NOT NULL COMMENT '供应商名称',
+  `name` varchar(100) NOT NULL COMMENT '供应商名称',
   `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
   `attribution` varchar(20) DEFAULT NULL COMMENT '账款归属',
   `area_name` varchar(20) DEFAULT NULL COMMENT '地区',
@@ -169,7 +169,7 @@ CREATE TABLE `provider` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for purchasement
@@ -214,47 +214,6 @@ CREATE TABLE `purchasement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for purchase_client
--- ----------------------------
-DROP TABLE IF EXISTS `purchase_client`;
-CREATE TABLE `purchase_client` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `sale_company` varchar(255) DEFAULT NULL COMMENT '我司上家销货单位',
-  `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
-  `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
-  `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
-  `create_date` varchar(50) NOT NULL COMMENT '创建时间',
-  `update_date` varchar(50) NOT NULL COMMENT '更新时间',
-  `del_flag` bit(1) DEFAULT b'0',
-  `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for purchase_moneytax
--- ----------------------------
-DROP TABLE IF EXISTS `purchase_moneytax`;
-CREATE TABLE `purchase_moneytax` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
-  `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
-  `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
-  `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
-  `purchase_unit_price` decimal(10,3) DEFAULT NULL COMMENT '进项单价',
-  `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
-  `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
-  `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
-  `tax_pay_date` varchar(50) DEFAULT NULL COMMENT '付税日期',
-  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
-  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `del_flag` bit(1) DEFAULT b'0',
-  `descript` varchar(200) DEFAULT '' COMMENT '描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
 -- Table structure for rk_order
 -- ----------------------------
 DROP TABLE IF EXISTS `rk_order`;
@@ -266,7 +225,7 @@ CREATE TABLE `rk_order` (
   `medicine_id` int(11) NOT NULL COMMENT '药品id',
   `sys_user_id` int(11) DEFAULT NULL COMMENT '操作人id',
   `agent_client_id` int(11) NOT NULL COMMENT '代理商id',
-  `provider_id` int(11) DEFAULT NULL COMMENT '配送商id',
+  `provider_id` int(11) DEFAULT NULL COMMENT '供应商id',
   `unit_price` decimal(10,0) DEFAULT NULL COMMENT '实际单价',
   `high_unit_price` decimal(10,0) DEFAULT NULL COMMENT '高开单价',
   `pay_date` varchar(50) DEFAULT NULL COMMENT '采购付款日期',
@@ -286,7 +245,7 @@ CREATE TABLE `rk_order` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for stock
@@ -303,7 +262,7 @@ CREATE TABLE `stock` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -320,7 +279,7 @@ CREATE TABLE `sys_user` (
   `del_flag` bit(1) DEFAULT b'0',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for warehouse
@@ -338,5 +297,5 @@ CREATE TABLE `warehouse` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
- INSERT INTO `sys_user` VALUES ('1', 'A000001', 'admin', '111111', '1', '1970-01-01 00:00:00', '1970-01-01 00:00:00', b'0', '');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+INSERT INTO `sys_user` VALUES ('1', 'A000001', 'admin', '111111', '1', '1970-01-01 00:00:00', '1970-01-01 00:00:00', b'0', '');

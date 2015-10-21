@@ -112,11 +112,11 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
 
     private int generateAgentClient(ImportPurchasement ip){
         AgentClient agentClient = new AgentClient();
-        if (ip.getPurchaseSaleType().equals("底价销售")){
-            agentClient.setName(ip.getSaleCompany());
-        }else if (ip.getPurchaseSaleType().equals("铺货")){
+//        if (ip.getPurchaseSaleType().equals("底价销售")){
+//            agentClient.setName(ip.getSaleCompany());
+//        }else if (ip.getPurchaseSaleType().equals("铺货")){
             agentClient.setName(ip.getBuyCompany());
-        }
+//        }
         AgentClient ac = agentClientService.find(agentClient);
         if (null == ac){
             return agentClientService.create(agentClient);

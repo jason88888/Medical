@@ -25,44 +25,44 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="purchase/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="purchase/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="purchase/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
+            <%--<li><a class="add" href="purchase/insert" target="dialog"><span>添加</span></a></li>--%>
+            <%--<li><a class="delete" href="purchase/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>--%>
+            <%--<li><a class="edit" href="purchase/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>--%>
             <li><a class="icon" href="purchase/upload" target="dialog"><span>导入EXCEL</span></a></li>
         </ul>
     </div>
-    <table class="table" width="100%" layoutH="138">
-        <thead>
-        <tr>
-            <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
-            <th>采购销售类别</th>
-            <th>采购付款日期</th>
-            <th>采购入库日期</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${page.list}" var="purchasement">
-            <tr target="id" rel="${purchasement.id}">
-                <td><div><input name="ids" value="${purchasement.id}" type="checkbox"></div></td>
-                <td>${purchasement.purchaseSaleType}</td>
-                <td>${purchasement.purchasePayDate}</td>
-                <td>${purchasement.purchaseStoreDate}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    <div class="panelBar">
-        <div class="pages">
-            <span>显示</span>
-            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-                <option value="20" <c:if test="${page.numPerPage == 20}">selected</c:if>>20</option>
-                <option value="50" <c:if test="${page.numPerPage == 50}">selected</c:if>>50</option>
-                <option value="100" <c:if test="${page.numPerPage == 100}">selected</c:if>>100</option>
-                <option value="200" <c:if test="${page.numPerPage == 200}">selected</c:if>>200</option>
-            </select>
-            <span>条，共${page.totalCount}条</span>
-        </div>
+    <%--<table class="table" width="100%" layoutH="138">--%>
+        <%--<thead>--%>
+        <%--<tr>--%>
+            <%--<th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>--%>
+            <%--<th>采购销售类别</th>--%>
+            <%--<th>采购付款日期</th>--%>
+            <%--<th>采购入库日期</th>--%>
+        <%--</tr>--%>
+        <%--</thead>--%>
+        <%--<tbody>--%>
+        <%--<c:forEach items="${page.list}" var="purchasement">--%>
+            <%--<tr target="id" rel="${purchasement.id}">--%>
+                <%--<td><div><input name="ids" value="${purchasement.id}" type="checkbox"></div></td>--%>
+                <%--<td>${purchasement.purchaseSaleType}</td>--%>
+                <%--<td>${purchasement.purchasePayDate}</td>--%>
+                <%--<td>${purchasement.purchaseStoreDate}</td>--%>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
+        <%--</tbody>--%>
+    <%--</table>--%>
+    <%--<div class="panelBar">--%>
+        <%--<div class="pages">--%>
+            <%--<span>显示</span>--%>
+            <%--<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">--%>
+                <%--<option value="20" <c:if test="${page.numPerPage == 20}">selected</c:if>>20</option>--%>
+                <%--<option value="50" <c:if test="${page.numPerPage == 50}">selected</c:if>>50</option>--%>
+                <%--<option value="100" <c:if test="${page.numPerPage == 100}">selected</c:if>>100</option>--%>
+                <%--<option value="200" <c:if test="${page.numPerPage == 200}">selected</c:if>>200</option>--%>
+            <%--</select>--%>
+            <%--<span>条，共${page.totalCount}条</span>--%>
+        <%--</div>--%>
 
-        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
-    </div>
+        <%--<div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>--%>
+    <%--</div>--%>
 </div>

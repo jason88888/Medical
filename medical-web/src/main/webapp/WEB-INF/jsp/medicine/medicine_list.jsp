@@ -21,6 +21,10 @@
                     <label>药品名称:</label>
                     <input class="textInput" name="name" value="${param.name}" type="text">
                 </li>
+                <li>
+                    <label>药品代码:</label>
+                    <input class="textInput" name="uniqueCode" value="${param.uniqueCode}" type="text">
+                </li>
             </ul>
             <div class="subBar">
                 <ul>
