@@ -46,11 +46,20 @@
 
             <p>
                 <label>代理商名称：</label>
-                <input name="agentClientId" type="hidden" value="${rkorder.agentClientId}"/>
-                <input name="agentclient.id" type="hidden" value="${rkorder.agentClientId}"/>
-                <input type="text" class="required" name="agentclient.name" rel="lookup" value="" postField="name"
-                       suggestFields="name,code" suggestUrl="agentclient/lookup_suggest" lookupGroup="agentclient"/>
-                <a class="btnLook" href="agentclient/lookup" lookupGroup="agentclient">查找带回</a>
+                <input name="agentId" type="hidden" value="${rkorder.agentId}"/>
+                <input name="agent.id" type="hidden" value="${rkorder.agentId}"/>
+                <input type="text" class="required" name="agent.name" rel="lookup" value="" postField="name"
+                       suggestFields="name,code" suggestUrl="agent/lookup_suggest" lookupGroup="agent"/>
+                <a class="btnLook" href="agent/lookup" lookupGroup="agent">查找带回</a>
+            </p>
+
+            <p>
+                <label>购进商业公司名称：</label>
+                <input name="commercialCompanyId" type="hidden" value="${rkorder.commercialCompanyId}"/>
+                <input name="commercialcompany.id" type="hidden" value="${rkorder.commercialCompanyId}"/>
+                <input type="text" class="required" name="agent.name" rel="lookup" value="" postField="name"
+                       suggestFields="name,code" suggestUrl="commercialcompany/lookup_suggest" lookupGroup="commercialcompany"/>
+                <a class="btnLook" href="commercialcompany/lookup" lookupGroup="commercialcompany">查找带回</a>
             </p>
 
             <p>

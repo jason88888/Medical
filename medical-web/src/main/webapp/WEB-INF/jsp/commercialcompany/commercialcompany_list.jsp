@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form id="pagerForm" method="post" action="agentclient/list">
+<form id="pagerForm" method="post" action="commercialcompany/list">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}"/>
     <input type="hidden" name="currentPage" value="1"/>
@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="agentclient/list" method="post">
+    <form onsubmit="return navTabSearch(this);" action="commercialcompany/list" method="post">
         <div class="searchBar">
             <div class="subBar">
                 <ul>
@@ -32,10 +32,10 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="agentclient/insert" target="dialog"><span>添加</span></a></li>
-            <li><a class="delete" href="agentclient/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a>
+            <li><a class="add" href="commercialcompany/insert" target="dialog"><span>添加</span></a></li>
+            <li><a class="delete" href="commercialcompany/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a>
             </li>
-            <li><a class="edit" href="agentclient/view?id={id}" target="dialog" warn="请选择一个代理商"><span>查看</span></a></li>
+            <li><a class="edit" href="commercialcompany/view?id={id}" target="dialog" warn="请选择一个代理商"><span>查看</span></a></li>
         </ul>
     </div>
     <table class="table" width="130%" layoutH="138">
@@ -52,29 +52,25 @@
             <th>负责人</th>
             <th>传真</th>
             <th>联系电话</th>
-            <th>代理级别</th>
-            <th>谁的客户</th>
             <th>采购销售区域</th>
             <th>备注</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${page.list}" var="agentclient">
-            <tr target="id" rel="${agentclient.id}">
+        <c:forEach items="${page.list}" var="commercialcompany">
+            <tr target="id" rel="${commercialcompany.id}">
                 <td>
-                    <div><input name="ids" value="${agentclient.id}" type="checkbox"></div>
+                    <div><input name="ids" value="${commercialcompany.id}" type="checkbox"></div>
                 </td>
-                <td>${agentclient.code}</td>
-                <td>${agentclient.name}</td>
-                <td>${agentclient.engName}</td>
-                <td>${agentclient.areaName}</td>
-                <td>${agentclient.chiefName}</td>
-                <td>${agentclient.faxNo}</td>
-                <td>${agentclient.telephone}</td>
-                <td>${agentclient.level}级代理</td>
-                <td>${agentclient.whoseClient}</td>
-                <td>${agentclient.saleArea}</td>
-                <td>${agentclient.descript}</td>
+                <td>${commercialcompany.code}</td>
+                <td>${commercialcompany.name}</td>
+                <td>${commercialcompany.engName}</td>
+                <td>${commercialcompany.areaName}</td>
+                <td>${commercialcompany.chiefName}</td>
+                <td>${commercialcompany.faxNo}</td>
+                <td>${commercialcompany.telephone}</td>
+                <td>${commercialcompany.saleArea}</td>
+                <td>${commercialcompany.descript}</td>
             </tr>
         </c:forEach>
         </tbody>

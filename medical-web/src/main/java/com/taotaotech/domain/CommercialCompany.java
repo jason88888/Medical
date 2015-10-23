@@ -5,7 +5,7 @@ import com.taotaotech.core.domain.DataEntity;
 /**
  * 代理商
  */
-public class AgentClient extends DataEntity<AgentClient> {
+public class CommercialCompany extends DataEntity<CommercialCompany> {
     //代理商id
     private Integer id;
     //代理商代码
@@ -24,10 +24,6 @@ public class AgentClient extends DataEntity<AgentClient> {
     private String faxNo;
     //联系电话
     private String telephone;
-    //代理级别2或者3
-    private String level;
-    //为所属客户
-    private String whoseClient;
     //采购销售区域
     private String saleArea;
     //备注
@@ -103,22 +99,6 @@ public class AgentClient extends DataEntity<AgentClient> {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone == null ? null : telephone.trim();
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
-    }
-
-    public String getWhoseClient() {
-        return whoseClient;
-    }
-
-    public void setWhoseClient(String whoseClient) {
-        this.whoseClient = whoseClient == null ? null : whoseClient.trim();
     }
 
     public String getSaleArea() {

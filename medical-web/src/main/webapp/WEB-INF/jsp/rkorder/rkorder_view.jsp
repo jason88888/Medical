@@ -16,7 +16,7 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>入库单编号：</label>
-                <input name="rkorderSaleType" type="text" size="30"  value="${rkorder.id}" readonly/>
+                <input name="code" type="text" size="30"  value="${rkorder.id}" readonly/>
             </p>
             <%--<p>--%>
                 <%--<label>单据日期：</label>--%>
@@ -24,24 +24,28 @@
             <%--</p>--%>
             <p>
                 <label>仓库名称：</label>
-                <input name="rkorderStoreDate"  type="text" autocomplete="off" size="30" value="${rkorder.warehouseName}" alt="请输入仓库名称" readonly/>
+                <input name="warehouseId"  type="text" autocomplete="off" size="30" value="${rkorder.warehouseName}" alt="请输入仓库名称" readonly/>
             </p>
             <p>
                 <label>药品名称：</label>
-                <input name="actualStorePlace"  type="text" autocomplete="off" size="30" value="${rkorder.medicineName}" alt="请输入药品名称" readonly/>
+                <input name="medicineId"  type="text" autocomplete="off" size="30" value="${rkorder.medicineName}" alt="请输入药品名称" readonly/>
             </p>
             <p>
                 <label>操作人名称：</label>
-                <input name="rkorderSaleCode"  type="text" min="0"  autocomplete="off" size="30" value="${rkorder.operatorName}" alt="请输入操作人名称" readonly/>
+                <input name="sysUserId"  type="text" min="0"  autocomplete="off" size="30" value="${rkorder.operatorName}" alt="请输入操作人名称" readonly/>
             </p>
-            <%--<p>--%>
-                <%--<label>代理商名称：</label>--%>
-                <%--<input name="manufacturerName"  type="text" autocomplete="off" size="30" value="${rkorder.agentClientId}" alt="请输入代理商名称" readonly/>--%>
-            <%--</p>--%>
-            <%--<p>--%>
-                <%--<label>配送商名称：</label>--%>
-                <%--<input name="specification"  type="text" autocomplete="off" size="30" value="${rkorder.providerId}" alt="请输入配送商名称" readonly/>--%>
-            <%--</p>--%>
+            <p>
+                <label>代理商名称：</label>
+                <input name="agentId"  type="text" autocomplete="off" size="30" value="${rkorder.agentName}" alt="请输入代理商名称" readonly/>
+            </p>
+            <p>
+                <label>供应商名称：</label>
+                <input name="providerId"  type="text" autocomplete="off" size="30" value="${rkorder.providerName}" alt="请输入配送商名称" readonly/>
+            </p>
+            <p>
+                <label>购进商业公司名称：</label>
+                <input name="commercialCompanyId"  type="text" autocomplete="off" size="30" value="${rkorder.commercialCompanyName}" alt="请输入配送商名称" readonly/>
+            </p>
             <p>
                 <label>实际单价：</label>
                 <input name="units"  type="text" autocomplete="off" size="30" value="${rkorder.unitPrice}" alt="请输入实际单价" readonly/>

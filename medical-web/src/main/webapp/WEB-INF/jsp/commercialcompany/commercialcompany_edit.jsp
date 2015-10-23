@@ -2,76 +2,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="pageContent">
-    <form method="post" action="agentclient/save" class="pageForm required-validate"
+    <form method="post" action="commercialcompany/save" class="pageForm required-validate"
           onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
-            <input type="hidden" name="id" value="${agentclient.id}"/>
+            <input type="hidden" name="id" value="${commercialcompany.id}"/>
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>代理商代码：</label>
-                <input name="code" class="required" type="text" value="${agentclient.code}" autocomplete="off" size="30"
+                <input name="code" class="required" type="text" value="${commercialcompany.code}" autocomplete="off" size="30"
                        alt="请输入代理商代码"/>
             </p>
 
             <p>
                 <label>代理商名称：</label>
-                <input name="name" class="required" type="text" value="${agentclient.name}" autocomplete="off" size="30"
+                <input name="name" class="required" type="text" value="${commercialcompany.name}" autocomplete="off" size="30"
                        alt="请输入代理商名称"
                         />
             </p>
 
             <p>
                 <label>英文名</label>
-                <input name="engName" type="text" value="${agentclient.engName}" autocomplete="off" size="30"
+                <input name="engName" type="text" value="${commercialcompany.engName}" autocomplete="off" size="30"
                        alt="请输入英文名"/>
             </p>
 
             <p>
                 <label>地区</label>
-                <input name="areaName" type="text" value="${agentclient.areaName}" autocomplete="off" size="30"
+                <input name="areaName" type="text" value="${commercialcompany.areaName}" autocomplete="off" size="30"
                        alt="请输入地区"/>
             </p>
 
             <p>
                 <label>负责人</label>
-                <input name="chiefName" type="text" value="${agentclient.chiefName}" autocomplete="off" size="30"
+                <input name="chiefName" type="text" value="${commercialcompany.chiefName}" autocomplete="off" size="30"
                        alt="请输入负责人"/>
             </p>
 
             <p>
                 <label>传真</label>
-                <input name="faxNo" type="text" value="${agentclient.faxNo}" autocomplete="off" size="30"
+                <input name="faxNo" type="text" value="${commercialcompany.faxNo}" autocomplete="off" size="30"
                        alt="请输入传真"/>
             </p>
 
             <p>
                 <label>联系电话</label>
-                <input name="telephone" type="text" value="${agentclient.telephone}" autocomplete="off" size="30"
+                <input name="telephone" type="text" value="${commercialcompany.telephone}" autocomplete="off" size="30"
                        alt="请输入联系电话"/>
             </p>
 
             <p>
-                <label>代理级别</label>
-                <input name="level" type="text" value="${agentclient.level}" autocomplete="off" size="30"
-                       alt="请输入代理级别"/>
-            </p>
-
-            <p>
-                <label>谁的客户</label>
-                <input name="whoseClient" type="text" value="${agentclient.whoseClient}" autocomplete="off" size="30"
-                       alt="请输入谁的客户"/>
-            </p>
-
-            <p>
                 <label>采购销售区域</label>
-                <input name="saleArea" type="text" value="${agentclient.saleArea}" autocomplete="off" size="30"
+                <input name="saleArea" type="text" value="${commercialcompany.saleArea}" autocomplete="off" size="30"
                        alt="请输入采购销售区域"/>
             </p>
 
             <p>
                 <label>备注</label>
                 <textarea name="descript" type="text"  autocomplete="off" cols="28"
-                          alt="请输入备注">${agentclient.descript}</textarea>
+                          alt="请输入备注">${commercialcompany.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

@@ -32,13 +32,13 @@ CREATE TABLE `agent` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='代理商表';
 
 -- ----------------------------
---  Table structure for `agent_client`
+-- Table structure for commercial_company
 -- ----------------------------
-DROP TABLE IF EXISTS `agent_client`;
-CREATE TABLE `agent_client` (
+DROP TABLE IF EXISTS `commercial_company`;
+CREATE TABLE `commercial_company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) DEFAULT NULL COMMENT '代理商代码',
-  `name` varchar(20) NOT NULL COMMENT '代理商名称',
+  `name` varchar(100) NOT NULL COMMENT '代理商名称',
   `eng_name` varchar(20) DEFAULT NULL COMMENT '英文名',
   `attribution` varchar(20) DEFAULT NULL COMMENT '账款归属',
   `area_name` varchar(20) DEFAULT NULL COMMENT '地区',
@@ -53,7 +53,7 @@ CREATE TABLE `agent_client` (
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `bill`
@@ -111,7 +111,7 @@ CREATE TABLE `medicine` (
   `specification` varchar(100) DEFAULT NULL COMMENT '药品规格',
   `manufacturer_name` varchar(100) DEFAULT NULL COMMENT '生产厂商名称',
   `units` varchar(10) DEFAULT NULL COMMENT '单位',
-  `price` float(10,0) DEFAULT NULL COMMENT '单价',
+  `price` float(10,3) DEFAULT NULL COMMENT '单价',
   `lot_number` varchar(50) DEFAULT NULL COMMENT '药品批号',
   `validity_period` varchar(50) DEFAULT NULL COMMENT '有效期',
   `create_date` datetime NOT NULL COMMENT '创建时间',
@@ -121,6 +121,9 @@ CREATE TABLE `medicine` (
   `purchase_number` int(11) NOT NULL DEFAULT '0' COMMENT '购进数',
   `unique_code` varchar(20) NOT NULL COMMENT '药品代码（药品的唯一性）',
   `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
+  `shelf_life` varchar(100) DEFAULT '-1' COMMENT '保质期',
+  `bid_price` float(10,3) DEFAULT NULL,
+  `sales_range` varchar(100) DEFAULT '' COMMENT '销售区域（可做范围）',
   PRIMARY KEY (`id`,`descript`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -170,47 +173,6 @@ CREATE TABLE `provider` (
   `del_flag` bit(1) DEFAULT b'0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Table structure for `purchase_client`
--- ----------------------------
-DROP TABLE IF EXISTS `purchase_client`;
-CREATE TABLE `purchase_client` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `sale_company` varchar(255) DEFAULT NULL COMMENT '我司上家销货单位',
-  `buy_company` varchar(255) DEFAULT NULL COMMENT '我司或下家购货单位',
-  `client_name` varchar(255) DEFAULT NULL COMMENT '为所属客户',
-  `sale_area` varchar(255) DEFAULT NULL COMMENT '采购销售区域',
-  `create_date` varchar(50) NOT NULL COMMENT '创建时间',
-  `update_date` varchar(50) NOT NULL COMMENT '更新时间',
-  `del_flag` bit(1) DEFAULT b'0',
-  `descript` varchar(200) NOT NULL DEFAULT '' COMMENT '描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
---  Table structure for `purchase_moneytax`
--- ----------------------------
-DROP TABLE IF EXISTS `purchase_moneytax`;
-CREATE TABLE `purchase_moneytax` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `payment_category` varchar(255) DEFAULT NULL COMMENT '打款分类',
-  `payment_mode` varchar(255) DEFAULT NULL COMMENT '付款方式',
-  `payment_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
-  `work_flow` varchar(255) DEFAULT NULL COMMENT '业务流程及价',
-  `purchase_unit_price` decimal(10,3) DEFAULT NULL COMMENT '进项单价',
-  `purchase_money` varchar(255) DEFAULT NULL COMMENT '进项金额',
-  `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
-  `tax_pay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
-  `tax_pay_date` varchar(50) DEFAULT NULL COMMENT '付税日期',
-  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
-  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `del_flag` bit(1) DEFAULT b'0',
-  `descript` varchar(200) DEFAULT '' COMMENT '描述',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `purchasement`

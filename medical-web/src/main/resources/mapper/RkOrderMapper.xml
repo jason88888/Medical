@@ -7,7 +7,8 @@
         <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER"/>
         <result column="medicine_id" property="medicineId" jdbcType="INTEGER"/>
         <result column="sys_user_id" property="sysUserId" jdbcType="INTEGER"/>
-        <result column="agent_client_id" property="agentClientId" jdbcType="INTEGER"/>
+        <result column="commercial_company_id" property="commercialCompanyId" jdbcType="INTEGER"/>
+        <result column="agent_id" property="agentId" jdbcType="INTEGER"/>
         <result column="provider_id" property="providerId" jdbcType="INTEGER"/>
         <result column="unit_price" property="unitPrice" jdbcType="DECIMAL"/>
         <result column="high_unit_price" property="highUnitPrice" jdbcType="DECIMAL"/>
@@ -29,42 +30,46 @@
         <result column="del_flag" property="delFlag" jdbcType="BIT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_client_id, provider_id, 
+    id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_id, commercial_company_id,provider_id,
     unit_price, high_unit_price, pay_date, store_date, order_code, purchase_price, purchase_money, 
     tax, taxpay_mode, taxpay_date, invoice_number, invoice_date,
     descript, create_date, update_date, del_flag,quantity,units
   </sql>
 
     <sql id="Base_Column_List_Dto">
-        rk.id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_client_id,
-        provider_id, unit_price, high_unit_price, pay_date, store_date,
+        rk.id, bill_date, warehouse_id, medicine_id, sys_user_id, commercial_company_id,
+        agent_id,provider_id, unit_price, high_unit_price, pay_date, store_date,
         order_code, purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
         invoice_number, invoice_date, rk.descript, rk.create_date, rk.update_date, rk.del_flag,
         quantity,rk.units,p.name as provider_name, w.name as warehouse_name,
-        su.username as operator_name, m.name as medicine_name
+        su.username as operator_name, m.name as medicine_name, a.name as agent_name,c.name as commercial_company_name
     </sql>
     <resultMap id="BaseResultMapDTO" type="com.taotaotech.dto.RkOrderDTO" extends="BaseResultMap">
         <result column="provider_name" property="providerName" jdbcType="VARCHAR"/>
         <result column="warehouse_name" property="warehouseName" jdbcType="VARCHAR"/>
         <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
         <result column="operator_name" property="operatorName" jdbcType="VARCHAR"/>
+        <result column="agent_name" property="agentName" jdbcType="VARCHAR"/>
+        <result column="commercial_company_name" property="commercialCompanyName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="get" resultMap="BaseResultMapDTO" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List_Dto"/>
-        from rk_order rk, provider p, warehouse w, sys_user su, medicine m
+        from rk_order rk, provider p, warehouse w, sys_user su, medicine m, agent a, commercial_company c
         where rk.del_flag = 0 AND p.id = rk.provider_id and w.id = rk.warehouse_id
-        and su.id = rk.sys_user_id AND m.id = rk.medicine_id AND rk.id = #{id,jdbcType=INTEGER}
+        AND su.id = rk.sys_user_id AND m.id = rk.medicine_id AND c.id = rk.commercial_company_id
+        AND a.id = rk.agent_id AND rk.id = #{id,jdbcType=INTEGER}
     </select>
 
     <select id="find" parameterType="java.util.Map" resultMap="BaseResultMapDTO">
         select
         <include refid="Base_Column_List_Dto"/>
-        from rk_order rk, provider p, warehouse w, sys_user su, medicine m
+        from rk_order rk, provider p, warehouse w, sys_user su, medicine m,agent a,commercial_company c
         <where>
             rk.del_flag = 0 AND p.id = rk.provider_id and w.id = rk.warehouse_id
-            and su.id = rk.sys_user_id AND m.id = rk.medicine_id
+            and su.id = rk.sys_user_id AND m.id = rk.medicine_id AND c.id = rk.commercial_company_id
+            AND a.id = agent_id
             <if test="billDate != null">
                AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
@@ -77,8 +82,11 @@
             <if test="sysUserId != null">
                 AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
             </if>
-            <if test="agentClientId != null">
-                AND agent_client_id = #{agentClientId,jdbcType=INTEGER}
+            <if test="commercialCompanyId != null">
+                AND commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+            </if>
+            <if test="agentId != null">
+                AND agent_id = #{agentId,jdbcType=INTEGER}
             </if>
             <if test="providerId != null">
                 AND provider_id = #{providerId,jdbcType=INTEGER}
@@ -128,10 +136,11 @@
     <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMapDTO">
         select
         <include refid="Base_Column_List_Dto"/>
-        from rk_order rk, provider p, warehouse w, sys_user su, medicine m
+        from rk_order rk, provider p, warehouse w, sys_user su, medicine m,agent a,commercial_company c
         <where>
             rk.del_flag = 0 AND p.id = rk.provider_id and w.id = rk.warehouse_id
-            and su.id = rk.sys_user_id AND m.id = rk.medicine_id
+            and su.id = rk.sys_user_id AND m.id = rk.medicine_id AND c.id = rk.commercial_company_id
+            AND a.id = agent_id
             <if test="billDate != null">
                AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
@@ -144,8 +153,11 @@
             <if test="sysUserId != null">
                 AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
             </if>
-            <if test="agentClientId != null">
-                AND agent_client_id = #{agentClientId,jdbcType=INTEGER}
+            <if test="commercialCompanyId != null">
+                AND commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+            </if>
+            <if test="agentId != null">
+                AND agent_id = #{agentId,jdbcType=INTEGER}
             </if>
             <if test="providerId != null">
                 AND provider_id = #{providerId,jdbcType=INTEGER}
@@ -215,8 +227,11 @@
             <if test="sysUserId != null">
                 sys_user_id = #{sysUserId,jdbcType=INTEGER},
             </if>
-            <if test="agentClientId != null">
-                agent_client_id = #{agentClientId,jdbcType=INTEGER},
+            <if test="commercialCompanyId != null">
+                AND commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+            </if>
+            <if test="agentId != null">
+                agent_id = #{agentId,jdbcType=INTEGER},
             </if>
             <if test="providerId != null">
                 provider_id = #{providerId,jdbcType=INTEGER},
@@ -296,7 +311,7 @@
   </delete>
     <insert id="insert" parameterType="com.taotaotech.domain.RkOrder"  useGeneratedKeys="true" keyProperty="id" >
         insert into rk_order (bill_date, warehouse_id, medicine_id,
-        sys_user_id, agent_client_id, provider_id,
+        sys_user_id, commercial_company_id,agent_id, provider_id,
         unit_price, high_unit_price, pay_date,
         store_date, order_code, purchase_price,
         purchase_money,
@@ -305,7 +320,7 @@
         create_date, update_date, del_flag,quantity,units
         )
         values (#{billDate,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, #{medicineId,jdbcType=INTEGER},
-        #{sysUserId,jdbcType=INTEGER}, #{agentClientId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER},
+        #{sysUserId,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER},
         #{unitPrice,jdbcType=DECIMAL}, #{highUnitPrice,jdbcType=DECIMAL}, #{payDate,jdbcType=VARCHAR},
         #{storeDate,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=VARCHAR},
         #{purchaseMoney,jdbcType=VARCHAR},
@@ -330,8 +345,11 @@
             <if test="sysUserId != null">
                 sys_user_id,
             </if>
-            <if test="agentClientId != null">
-                agent_client_id,
+            <if test="agentId != null">
+                agent_id,
+            </if>
+            <if test="commercialCompanyId != null">
+                commercial_company_id,
             </if>
             <if test="providerId != null">
                 provider_id,
@@ -404,8 +422,11 @@
             <if test="sysUserId != null">
                 #{sysUserId,jdbcType=INTEGER},
             </if>
-            <if test="agentClientId != null">
-                #{agentClientId,jdbcType=INTEGER},
+            <if test="agentId != null">
+                #{agentId,jdbcType=INTEGER},
+            </if>
+            <if test="commercialCompanyId != null">
+                #{commercialCompanyId,jdbcType=INTEGER},
             </if>
             <if test="providerId != null">
                 #{providerId,jdbcType=INTEGER},
@@ -482,8 +503,11 @@
             <if test="sysUserId != null">
                 sys_user_id = #{sysUserId,jdbcType=INTEGER},
             </if>
-            <if test="agentClientId != null">
-                agent_client_id = #{agentClientId,jdbcType=INTEGER},
+            <if test="commercialCompanyId != null">
+               commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+            </if>
+            <if test="agentId != null">
+                agent_id = #{agentId,jdbcType=INTEGER},
             </if>
             <if test="providerId != null">
                 provider_id = #{providerId,jdbcType=INTEGER},
@@ -551,7 +575,8 @@
       warehouse_id = #{warehouseId,jdbcType=INTEGER},
       medicine_id = #{medicineId,jdbcType=INTEGER},
       sys_user_id = #{sysUserId,jdbcType=INTEGER},
-      agent_client_id = #{agentClientId,jdbcType=INTEGER},
+      commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
+      agent_id = #{agentId,jdbcType=INTEGER},
       provider_id = #{providerId,jdbcType=INTEGER},
       unit_price = #{unitPrice,jdbcType=DECIMAL},
       high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},

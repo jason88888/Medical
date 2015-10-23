@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<form id="pagerForm" action="agentclient/lookup">
+<form id="pagerForm" action="commercialcompany/lookup">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}"/>
     <input type="hidden" name="currentPage" value="1"/>
@@ -10,7 +10,7 @@
 </form>
 
 <div class="pageHeader">
-    <form target="dialog" rel="pagerForm" method="post" action="agentagentclient/lookup" onsubmit="return dwzSearch(this, 'dialog');">
+    <form target="dialog" rel="pagerForm" method="post" action="commercialcompany/lookup" onsubmit="return dwzSearch(this, 'dialog');">
         <div class="searchBar">
             <ul class="searchContent">
                 <li>
@@ -43,30 +43,26 @@
             <th>负责人</th>
             <th>传真</th>
             <th>联系电话</th>
-            <th>代理级别</th>
-            <th>谁的客户</th>
             <th>采购销售区域</th>
             <th>备注</th>
             <th width="150">查找带回</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${page.list}" var="agentclient">
-            <tr target="id" rel="${agentclient.id}">
-                <td><div><input name="ids" value="${agentclient.id}" type="checkbox"></div></td>
-                <td>${agentclient.code}</td>
-                <td>${agentclient.name}</td>
-                <td>${agentclient.engName}</td>
-                <td>${agentclient.areaName}</td>
-                <td>${agentclient.chiefName}</td>
-                <td>${agentclient.faxNo}</td>
-                <td>${agentclient.telephone}</td>
-                <td>${agentclient.level}级代理</td>
-                <td>${agentclient.whoseClient}</td>
-                <td>${agentclient.saleArea}</td>
-                <td>${agentclient.descript}</td>
+        <c:forEach items="${page.list}" var="commercialcompany">
+            <tr target="id" rel="${commercialcompany.id}">
+                <td><div><input name="ids" value="${commercialcompany.id}" type="checkbox"></div></td>
+                <td>${commercialcompany.code}</td>
+                <td>${commercialcompany.name}</td>
+                <td>${commercialcompany.engName}</td>
+                <td>${commercialcompany.areaName}</td>
+                <td>${commercialcompany.chiefName}</td>
+                <td>${commercialcompany.faxNo}</td>
+                <td>${commercialcompany.telephone}</td>
+                <td>${commercialcompany.saleArea}</td>
+                <td>${commercialcompany.descript}</td>
                 <td>
-                    <a class="btnSelect" href="javascript:$.bringBack({id:'${agentclient.id}', code:'${agentclient.code}', name:'${agentclient.name}'})" title="查找带回">选择</a>
+                    <a class="btnSelect" href="javascript:$.bringBack({id:'${commercialcompany.id}', code:'${commercialcompany.code}', name:'${commercialcompany.name}'})" title="查找带回">选择</a>
                 </td>
             </tr>
         </c:forEach>

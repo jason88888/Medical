@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author zk
@@ -64,7 +63,7 @@ public class RkOrderController extends BaseController {
         rkorder.setWarehouseId(warehouseId);
         rkorder.setMedicineId(medicineId);
         rkorder.setSysUserId(userId);
-        rkorder.setAgentClientId(agentClientId);
+        rkorder.setAgentId(agentClientId);
         rkorder.setProviderId(providerId);
         rkorderService.save(rkorder);
         DWZResponseResult result = new DWZResponseResult();

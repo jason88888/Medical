@@ -18,8 +18,10 @@ public class RkOrder extends DataEntity<RkOrder> {
     private Integer medicineId;
     //操作人id
     private Integer sysUserId;
+    //购进商业公司id（开票公司）
+    private Integer commercialCompanyId;
     //代理商id
-    private Integer agentClientId;
+    private Integer agentId;
     //供应商id
     private Integer providerId;
     //实际单价
@@ -101,12 +103,20 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.sysUserId = sysUserId;
     }
 
-    public Integer getAgentClientId() {
-        return agentClientId;
+    public Integer getCommercialCompanyId() {
+        return commercialCompanyId;
     }
 
-    public void setAgentClientId(Integer agentClientId) {
-        this.agentClientId = agentClientId;
+    public void setCommercialCompanyId(Integer commercialCompanyId) {
+        this.commercialCompanyId = commercialCompanyId;
+    }
+
+    public Integer getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(Integer agentId) {
+        this.agentId = agentId;
     }
 
     public Integer getProviderId() {

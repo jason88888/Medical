@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.taotaotech.dao.AgentClientMapper">
-    <resultMap id="BaseResultMap" type="com.taotaotech.domain.AgentClient">
+<mapper namespace="com.taotaotech.dao.CommercialCompanyMapper">
+    <resultMap id="BaseResultMap" type="com.taotaotech.domain.CommercialCompany">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -11,8 +11,6 @@
         <result column="chief_name" jdbcType="VARCHAR" property="chiefName"/>
         <result column="fax_no" jdbcType="VARCHAR" property="faxNo"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
-        <result column="level" jdbcType="VARCHAR" property="level"/>
-        <result column="whose_client" jdbcType="VARCHAR" property="whoseClient"/>
         <result column="sale_area" jdbcType="VARCHAR" property="saleArea"/>
         <result column="descript" jdbcType="VARCHAR" property="descript"/>
         <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
@@ -20,21 +18,20 @@
         <result column="del_flag" jdbcType="BIT" property="delFlag"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, code ,name, eng_name, attribution, area_name, chief_name, fax_no, telephone, level,
-    whose_client, sale_area, descript, create_date, update_date, del_flag
+    id, code ,name, eng_name, attribution, area_name, chief_name, fax_no, telephone, sale_area, descript, create_date, update_date, del_flag
   </sql>
 
     <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from agent_client
+        from commercial_company
         where id = #{id,jdbcType=INTEGER}
     </select>
 
     <select id="find" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from agent_client t
+        from commercial_company t
         <where>
             del_flag = 0
             <if test="name != null and name != ''">
@@ -58,9 +55,6 @@
             <if test="telephone != null and telephone != ''">
                 and telephone = #{telephone}
             </if>
-            <if test="level != null and level != ''">
-                and level = #{level}
-            </if>
             <if test="whose_client != null and whose_client != ''">
                 and whose_client = #{whose_client}
             </if>
@@ -74,7 +68,7 @@
     <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from agent_client t
+        from commercial_company t
         <where>
             del_flag = 0
             <if test="name != null and name != ''">
@@ -98,12 +92,6 @@
             <if test="telephone != null and telephone != ''">
                 and telephone = #{telephone}
             </if>
-            <if test="level != null and level != ''">
-                and level = #{level}
-            </if>
-            <if test="whose_client != null and whose_client != ''">
-                and whose_client = #{whose_client}
-            </if>
             <if test="sale_area != null and sale_area != ''">
                 and sale_area = #{sale_area}
             </if>
@@ -118,8 +106,8 @@
         </choose>
     </select>
 
-    <update id="update" parameterType="com.taotaotech.domain.AgentClient">
-        update agent_client
+    <update id="update" parameterType="com.taotaotech.domain.CommercialCompany">
+        update commercial_company
         <set>
             <if test="code != null">
                 code = #{code,jdbcType=VARCHAR},
@@ -145,12 +133,6 @@
             <if test="telephone != null">
                 telephone = #{telephone,jdbcType=VARCHAR},
             </if>
-            <if test="level != null">
-                level = #{level,jdbcType=VARCHAR},
-            </if>
-            <if test="whoseClient != null">
-                whose_client = #{whoseClient,jdbcType=VARCHAR},
-            </if>
             <if test="saleArea != null">
                 sale_area = #{saleArea,jdbcType=VARCHAR},
             </if>
@@ -171,35 +153,34 @@
     </update>
 
     <delete id="delete" parameterType="java.lang.Integer">
-        delete from agent_client
+        delete from commercial_company
         where id = #{id,jdbcType=INTEGER}
     </delete>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from agent_client
+        from commercial_company
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from agent_client
+    delete from commercial_company
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.taotaotech.domain.AgentClient">
-        insert into agent_client (code, name, eng_name, attribution,
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.taotaotech.domain.CommercialCompany">
+        insert into commercial_company (code, name, eng_name, attribution,
         area_name, chief_name, fax_no,
-        telephone, level, whose_client,
+        telephone,  whose_client,
         sale_area, descript, create_date,
         update_date, del_flag)
         values (#{code,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}, #{engName,jdbcType=VARCHAR},
         #{attribution,jdbcType=VARCHAR},
         #{areaName,jdbcType=VARCHAR}, #{chiefName,jdbcType=VARCHAR}, #{faxNo,jdbcType=VARCHAR},
-        #{telephone,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{whoseClient,jdbcType=VARCHAR},
-        #{saleArea,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
-        #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT})
+        #{telephone,jdbcType=VARCHAR}, #{saleArea,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
+        #{createDate,jdbcType=TIMESTAMP},#{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT})
     </insert>
-    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.taotaotech.domain.AgentClient">
-        insert into agent_client
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.taotaotech.domain.CommercialCompany">
+        insert into commercial_company
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">
                 code,
@@ -224,12 +205,6 @@
             </if>
             <if test="telephone != null">
                 telephone,
-            </if>
-            <if test="level != null">
-                level,
-            </if>
-            <if test="whoseClient != null">
-                whose_client,
             </if>
             <if test="saleArea != null">
                 sale_area,
@@ -272,12 +247,6 @@
             <if test="telephone != null">
                 #{telephone,jdbcType=VARCHAR},
             </if>
-            <if test="level != null">
-                #{level,jdbcType=VARCHAR},
-            </if>
-            <if test="whoseClient != null">
-                #{whoseClient,jdbcType=VARCHAR},
-            </if>
             <if test="saleArea != null">
                 #{saleArea,jdbcType=VARCHAR},
             </if>
@@ -295,8 +264,8 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.AgentClient">
-        update agent_client
+    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.CommercialCompany">
+        update commercial_company
         <set>
             <if test="code != null">
                 code = #{code,jdbcType=VARCHAR},
@@ -322,12 +291,6 @@
             <if test="telephone != null">
                 telephone = #{telephone,jdbcType=VARCHAR},
             </if>
-            <if test="level != null">
-                level = #{level,jdbcType=VARCHAR},
-            </if>
-            <if test="whoseClient != null">
-                whose_client = #{whoseClient,jdbcType=VARCHAR},
-            </if>
             <if test="saleArea != null">
                 sale_area = #{saleArea,jdbcType=VARCHAR},
             </if>
@@ -346,8 +309,8 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.AgentClient">
-    update agent_client
+    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.CommercialCompany">
+    update commercial_company
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       eng_name = #{engName,jdbcType=VARCHAR},
@@ -356,8 +319,6 @@
       chief_name = #{chiefName,jdbcType=VARCHAR},
       fax_no = #{faxNo,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
-      level = #{level,jdbcType=VARCHAR},
-      whose_client = #{whoseClient,jdbcType=VARCHAR},
       sale_area = #{saleArea,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},

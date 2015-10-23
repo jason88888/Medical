@@ -41,7 +41,8 @@
             <th>药品名称</th>
             <th>操作人名称</th>
             <th>供应商名称</th>
-            <%--<th>代理商名称</th>--%>
+            <th>代理商名称</th>
+            <th>商业公司名称</th>
             <%--<th>配送商名称</th>--%>
             <th>实际单价</th>
             <th>高开单价</th>
@@ -68,7 +69,8 @@
                 <td>${rkorder.warehouseName}</td>
                 <td>${rkorder.medicineName}</td>
                 <td>${rkorder.operatorName}</td>
-                <%--<td>${rkorder.agentClientId}</td>--%>
+                <td>${rkorder.agentName}</td>
+                <td>${rkorder.commercialCompanyName}</td>
                 <td>${rkorder.providerName}</td>
                 <td>${rkorder.unitPrice}</td>
                 <td>${rkorder.highUnitPrice}</td>

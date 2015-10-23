@@ -34,16 +34,18 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     @Autowired
     IProviderService providerService;
     @Autowired
-    IAgentClientService agentClientService;
+    ICommercialCompanyService commercialCompanyService;
     @Autowired
     IWarehouseService warehouseService;
     @Autowired
     IRkOrderService rkOrderService;
+    @Autowired
+    IAgentService agentService;
 
     @Autowired
-    IStockService stockService ;
+    IStockService stockService;
     @Autowired
-    IUserService userService ;
+    IUserService userService;
 
     @Override
     @Transactional
@@ -70,13 +72,11 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
                         ImportPurchasement ip = importPurchases.get(index);
                         Integer medicineId = generateMedicine(ip);
                         Integer providerId = generateProvider(ip);
-                        Integer agentClientId = generateAgentClient(ip);
+                        Integer commercialCompanyId = generateCommercialCompany(ip);
                         Integer warehouseId = generateWarehouse(ip);
-                        generateRkOrder(ip,agentClientId,medicineId,warehouseId,providerId);
-                        generateStock(ip,medicineId,warehouseId);
-//                        generatePurchasement(ip);
-//                        generatePurchaseCilent(ip);
-//                        generatePurchaseTaxMoney(ip);
+                        Integer agentId = generateAgent(ip);
+                        generateRkOrder(ip, commercialCompanyId, medicineId, warehouseId, providerId, agentId);
+                        generateStock(ip, medicineId, warehouseId);
                     }
                     break;
                 }
@@ -95,62 +95,70 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         return result;
     }
 
-    private int generateProvider(ImportPurchasement ip){
-        Provider p =  new Provider();
+    private int generateProvider(ImportPurchasement ip) {
+        Provider p = new Provider();
         p.setName(ip.getSaleCompany());
         p.setAreaName(ip.getSaleArea());
 
         Provider provider = providerService.find(p);
-        if (null == provider){
+        if (null == provider) {
             return providerService.create(p);
-        }else {
+        } else {
             return provider.getId();
         }
 
 
     }
 
-    private int generateAgentClient(ImportPurchasement ip){
-        AgentClient agentClient = new AgentClient();
-//        if (ip.getPurchaseSaleType().equals("底价销售")){
-//            agentClient.setName(ip.getSaleCompany());
-//        }else if (ip.getPurchaseSaleType().equals("铺货")){
-            agentClient.setName(ip.getBuyCompany());
-//        }
-        AgentClient ac = agentClientService.find(agentClient);
-        if (null == ac){
-            return agentClientService.create(agentClient);
+    private int generateCommercialCompany(ImportPurchasement ip) {
+        CommercialCompany commercialCompany = new CommercialCompany();
+        commercialCompany.setName(ip.getBuyCompany());
+        CommercialCompany ac = commercialCompanyService.find(commercialCompany);
+        if (null == ac) {
+            return commercialCompanyService.create(commercialCompany);
         }
         return ac.getId();
     }
 
-    private int generateWarehouse(ImportPurchasement ip){
+    private int generateAgent(ImportPurchasement ip) {
+        Agent agent = new Agent();
+        agent.setName(ip.getClientName());
+        Agent ag = agentService.find(agent);
+        if (null == ag) {
+            return agentService.create(agent);
+        }
+        return ag.getId();
+    }
+
+
+    private int generateWarehouse(ImportPurchasement ip) {
         Warehouse warehouse = new Warehouse();
         warehouse.setName(ip.getActualStorePlace());
         Warehouse wh = warehouseService.find(warehouse);
-        if (null == wh){
+        if (null == wh) {
             return warehouseService.create(warehouse);
         }
         return wh.getId();
     }
 
-    private int getAdminUserId(){
+    private int getAdminUserId() {
         User user = new User();
         user.setUsername("admin");
         User u = userService.find(user);
-        if(null == u){
+        if (null == u) {
             user.setPassword("111111");
             return userService.create(user);
         }
         return u.getId();
     }
 
-    private int generateRkOrder(ImportPurchasement ip,Integer agentClientId,Integer medicineId,Integer warehouseId,Integer providerId){
+    private int generateRkOrder(ImportPurchasement ip, Integer commercialCompanyId, Integer medicineId, Integer warehouseId, Integer providerId, Integer agentId) {
         RkOrder order = new RkOrder();
-        if (!StringUtils.isEmpty(ip.getInvoiceNumber())){
+        if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
             order.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
         }
-        order.setAgentClientId(agentClientId);
+        order.setCommercialCompanyId(commercialCompanyId);
+        order.setAgentId(agentId);
         order.setOrderCode(ip.getPurchaseSaleCode());
         order.setProviderId(providerId);
         order.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
@@ -166,22 +174,20 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         order.setTaxpayMode(ip.getTaxPayMode());
         order.setTaxpayDate(ip.getTaxPayDate());
         order.setSysUserId(getAdminUserId());
-
         RkOrder rk = rkOrderService.find(order);
-        if (null == rk){
+        if (null == rk) {
             return rkOrderService.create(order);
         }
         return rk.getId();
     }
 
 
-
-    private void generateStock(ImportPurchasement ip,Integer medicineId,Integer warehouseId){
-        Stock stock = stockService.getStockByMedicineIdAndWarehouseId(medicineId,warehouseId);
-        if (null != stock){
+    private void generateStock(ImportPurchasement ip, Integer medicineId, Integer warehouseId) {
+        Stock stock = stockService.getStockByMedicineIdAndWarehouseId(medicineId, warehouseId);
+        if (null != stock) {
             Integer quantity = Integer.parseInt(stock.getNowQuantity()) + ip.getPurchaseNumber();
             stock.setNowQuantity(quantity.toString());
-        }else {
+        } else {
             stock = new Stock();
             stock.setNowQuantity(ip.getPurchaseNumber().toString());
             stock.setWarehouseId(warehouseId);
@@ -192,66 +198,66 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     }
 
 
-    private void generatePurchasement(ImportPurchasement ip) {
-        if (ip.getPurchaseSaleCode() == null || ip.getPurchaseSaleCode().equals("")) {
-            return;
-        }
-        if (!purchasementMapper.existByPurchaseSaleCode(ip.getPurchaseSaleCode())) {
-            Purchasement purchasement = new Purchasement();
-            purchasement.setPurchaseSaleType(ip.getPurchaseSaleType());
-            try {
-                purchasement.setPurchasePayDate(DateUtil.dateFormat(ip.getPurchasePayDate(), DateUtil.FORMAT_YYYYMMDD));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                purchasement.setPurchaseStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            purchasement.setActualStorePlace(ip.getActualStorePlace());
-            purchasement.setPurchaseSaleCode(ip.getPurchaseSaleCode());
-            purchasement.setMedicineName(ip.getMedicineName());
-            purchasement.setMedicineUniqueCode(ip.getMedicineUniqueCode());
-            purchasement.setManufacturerName(ip.getManufacturerName());
-            purchasement.setSpecification(ip.getSpecification());
-            purchasement.setUnits(ip.getUnits());
-            purchasement.setPackageNumber(ip.getPackageNumber());
-            purchasement.setSaleCompany(ip.getSaleCompany());
-            purchasement.setBuyCompany(ip.getBuyCompany());
-            purchasement.setPaymentCategory(ip.getPaymentCategory());
-            purchasement.setPaymentMode(ip.getPaymentMode());
-            purchasement.setPurchaseNumber(ip.getPurchaseNumber());
-            if (!StringUtils.isEmpty(ip.getPurchasePrice())) {
-                purchasement.setPurchasePrice(Long.parseLong(ip.getPurchasePrice()));
-            }
-            purchasement.setPaymentMoney(ip.getPaymentMoney());
-            purchasement.setWorkFlow(ip.getWorkFlow());
-            purchasement.setClientName(ip.getClientName());
-            purchasement.setSaleArea(ip.getSaleArea());
-            if (!StringUtils.isEmpty(ip.getPurchaseUnitPrice())) {
-                purchasement.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
-            }
-            purchasement.setPurchaseMoney(ip.getPurchaseMoney());
-            purchasement.setTax(ip.getTax());
-            purchasement.setTaxPayMode(ip.getTaxPayMode());
-            try {
-                purchasement.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
-                purchasement.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
-            }
-            try {
-                purchasement.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            purchasement.setIfCheck(ip.getCheck());
-            save(purchasement);
-        }
-    }
+//    private void generatePurchasement(ImportPurchasement ip) {
+//        if (ip.getPurchaseSaleCode() == null || ip.getPurchaseSaleCode().equals("")) {
+//            return;
+//        }
+//        if (!purchasementMapper.existByPurchaseSaleCode(ip.getPurchaseSaleCode())) {
+//            Purchasement purchasement = new Purchasement();
+//            purchasement.setPurchaseSaleType(ip.getPurchaseSaleType());
+//            try {
+//                purchasement.setPurchasePayDate(DateUtil.dateFormat(ip.getPurchasePayDate(), DateUtil.FORMAT_YYYYMMDD));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                purchasement.setPurchaseStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            purchasement.setActualStorePlace(ip.getActualStorePlace());
+//            purchasement.setPurchaseSaleCode(ip.getPurchaseSaleCode());
+//            purchasement.setMedicineName(ip.getMedicineName());
+//            purchasement.setMedicineUniqueCode(ip.getMedicineUniqueCode());
+//            purchasement.setManufacturerName(ip.getManufacturerName());
+//            purchasement.setSpecification(ip.getSpecification());
+//            purchasement.setUnits(ip.getUnits());
+//            purchasement.setPackageNumber(ip.getPackageNumber());
+//            purchasement.setSaleCompany(ip.getSaleCompany());
+//            purchasement.setBuyCompany(ip.getBuyCompany());
+//            purchasement.setPaymentCategory(ip.getPaymentCategory());
+//            purchasement.setPaymentMode(ip.getPaymentMode());
+//            purchasement.setPurchaseNumber(ip.getPurchaseNumber());
+//            if (!StringUtils.isEmpty(ip.getPurchasePrice())) {
+//                purchasement.setPurchasePrice(Long.parseLong(ip.getPurchasePrice()));
+//            }
+//            purchasement.setPaymentMoney(ip.getPaymentMoney());
+//            purchasement.setWorkFlow(ip.getWorkFlow());
+//            purchasement.setClientName(ip.getClientName());
+//            purchasement.setSaleArea(ip.getSaleArea());
+//            if (!StringUtils.isEmpty(ip.getPurchaseUnitPrice())) {
+//                purchasement.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
+//            }
+//            purchasement.setPurchaseMoney(ip.getPurchaseMoney());
+//            purchasement.setTax(ip.getTax());
+//            purchasement.setTaxPayMode(ip.getTaxPayMode());
+//            try {
+//                purchasement.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
+//                purchasement.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
+//            }
+//            try {
+//                purchasement.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            purchasement.setIfCheck(ip.getCheck());
+//            save(purchasement);
+//        }
+//    }
 
 
     private int generateMedicine(ImportPurchasement ip) {
@@ -274,8 +280,8 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
             medicine.setValidityPeriod(ip.getValidityPeriod());
             medicine.setPurchaseNumber(ip.getPurchaseNumber());
             medicine.setPackageNumber(ip.getPackageNumber());
-           return medicineService.create(medicine);
-        }else {
+            return medicineService.create(medicine);
+        } else {
             return m.getId();
         }
     }
