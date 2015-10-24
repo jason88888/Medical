@@ -138,7 +138,7 @@
         #{address,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
         #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT})
     </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.Warehouse"  useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.Warehouse"   keyProperty="id" useGeneratedKeys="true">
         insert into warehouse
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">

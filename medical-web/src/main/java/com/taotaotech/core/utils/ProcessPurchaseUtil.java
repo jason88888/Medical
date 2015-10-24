@@ -118,6 +118,7 @@ public class ProcessPurchaseUtil {
                 purchasement.setInvoiceYearAndMonth(ExcelUtil.getValue(hssfRow.getCell(34)));
                 purchasement.setCheck(ExcelUtil.getValue(hssfRow.getCell(35)));
                 list.add(purchasement);
+//                System.out.println(rowNum);
             }else {
                 break;
             }

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form id="pagerForm" method="post" action="agent/list">
+<form id="pagerForm" method="post" action="agent/lookup">
     <input type="hidden" name="status" value="${param.status}">
     <input type="hidden" name="keywords" value="${param.keywords}"/>
     <input type="hidden" name="currentPage" value="1"/>
@@ -11,7 +11,7 @@
 
 
 <div class="pageHeader">
-    <form onsubmit="return navTabSearch(this);" action="agent/list" method="post">
+    <form onsubmit="return navTabSearch(this);" action="agent/lookup" method="post">
         <div class="searchBar">
             <div class="subBar">
                 <ul>
@@ -47,6 +47,7 @@
             <th>代理商姓名</th>
             <th>代理级别</th>
             <th>备注</th>
+            <th width="150">查找带回</th>
         </tr>
         </thead>
         <tbody>
@@ -59,6 +60,9 @@
                 <td>${agent.name}</td>
                 <td>${agent.level}级代理</td>
                 <td>${agent.descript}</td>
+                <td>
+                    <a class="btnSelect" href="javascript:$.bringBack({id:'${agent.id}', code:'${agent.code}', name:'${agent.name}'})" title="查找带回">选择</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

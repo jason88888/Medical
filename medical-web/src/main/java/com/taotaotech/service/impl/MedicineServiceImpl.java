@@ -31,8 +31,8 @@ public class MedicineServiceImpl  extends CrudService<MedicineMapper,Medicine> i
         return medicineMapper.existByMedicineCodeAndLotNumber(code,lotNumber);
     }
 
-    @Override
-    public Medicine getMedicineByMedicineCodeAndLotNumber(String code, String lotNumber) {
-        return medicineMapper.getMedicineByMedicineCodeAndLotNumber(code,lotNumber);
-    }
+//    @Override
+//    public Medicine getMedicineByMedicineCodeAndLotNumber(String code, String lotNumber) {
+//        return medicineMapper.getMedicineByMedicineCodeAndLotNumber(code,lotNumber);
+//    }
 }

@@ -97,7 +97,8 @@ public abstract class CrudService<D extends CrudMapper<T>, T extends DataEntity<
     @Transactional(readOnly = false)
     public int create(T entity) {
         entity.preInsert();
-        return mapper.insertSelective(entity);
+        mapper.insertSelective(entity);
+        return entity.getId();
     }
 
     /**

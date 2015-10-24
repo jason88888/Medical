@@ -2,6 +2,7 @@ package com.taotaotech.service.impl;
 
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.service.CrudService;
+import com.taotaotech.core.utils.ChineseCharToEn;
 import com.taotaotech.core.utils.DateUtil;
 import com.taotaotech.core.utils.ProcessPurchaseUtil;
 import com.taotaotech.dao.PurchasementMapper;
@@ -55,13 +56,10 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         if (!file.isEmpty()) {
             try {
                 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(file.getInputStream());
-
                 List<ImportPurchasement> list = new ArrayList<ImportPurchasement>();
                 // 循环工作表Sheet
                 for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
-
                     HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
-
                     if (hssfSheet == null || !ProcessPurchaseUtil.isValidPurchaseExcel(hssfSheet.getRow(0))) {
                         result.setStatusCode("300");
                         result.setMessage("请选择有效的文件上传!");
@@ -77,6 +75,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
                         Integer agentId = generateAgent(ip);
                         generateRkOrder(ip, commercialCompanyId, medicineId, warehouseId, providerId, agentId);
                         generateStock(ip, medicineId, warehouseId);
+//                        System.out.println("--------------------------------------------------"+index);
                     }
                     break;
                 }
@@ -198,76 +197,16 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     }
 
 
-//    private void generatePurchasement(ImportPurchasement ip) {
-//        if (ip.getPurchaseSaleCode() == null || ip.getPurchaseSaleCode().equals("")) {
-//            return;
-//        }
-//        if (!purchasementMapper.existByPurchaseSaleCode(ip.getPurchaseSaleCode())) {
-//            Purchasement purchasement = new Purchasement();
-//            purchasement.setPurchaseSaleType(ip.getPurchaseSaleType());
-//            try {
-//                purchasement.setPurchasePayDate(DateUtil.dateFormat(ip.getPurchasePayDate(), DateUtil.FORMAT_YYYYMMDD));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            try {
-//                purchasement.setPurchaseStoreDate(DateUtil.dateFormat(ip.getPurchaseStoreDate(), DateUtil.FORMAT_YYYYMMDD));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            purchasement.setActualStorePlace(ip.getActualStorePlace());
-//            purchasement.setPurchaseSaleCode(ip.getPurchaseSaleCode());
-//            purchasement.setMedicineName(ip.getMedicineName());
-//            purchasement.setMedicineUniqueCode(ip.getMedicineUniqueCode());
-//            purchasement.setManufacturerName(ip.getManufacturerName());
-//            purchasement.setSpecification(ip.getSpecification());
-//            purchasement.setUnits(ip.getUnits());
-//            purchasement.setPackageNumber(ip.getPackageNumber());
-//            purchasement.setSaleCompany(ip.getSaleCompany());
-//            purchasement.setBuyCompany(ip.getBuyCompany());
-//            purchasement.setPaymentCategory(ip.getPaymentCategory());
-//            purchasement.setPaymentMode(ip.getPaymentMode());
-//            purchasement.setPurchaseNumber(ip.getPurchaseNumber());
-//            if (!StringUtils.isEmpty(ip.getPurchasePrice())) {
-//                purchasement.setPurchasePrice(Long.parseLong(ip.getPurchasePrice()));
-//            }
-//            purchasement.setPaymentMoney(ip.getPaymentMoney());
-//            purchasement.setWorkFlow(ip.getWorkFlow());
-//            purchasement.setClientName(ip.getClientName());
-//            purchasement.setSaleArea(ip.getSaleArea());
-//            if (!StringUtils.isEmpty(ip.getPurchaseUnitPrice())) {
-//                purchasement.setPurchaseUnitPrice(Long.parseLong(ip.getPurchaseUnitPrice()));
-//            }
-//            purchasement.setPurchaseMoney(ip.getPurchaseMoney());
-//            purchasement.setTax(ip.getTax());
-//            purchasement.setTaxPayMode(ip.getTaxPayMode());
-//            try {
-//                purchasement.setTaxPayDate(DateUtil.dateFormat(ip.getTaxPayDate(), DateUtil.FORMAT_YYYYMMDD));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
-//                purchasement.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
-//            }
-//            try {
-//                purchasement.setInvoiceDate(DateUtil.dateFormat(ip.getInvoiceDate(), DateUtil.FORMAT_YYYYMMDD));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            purchasement.setIfCheck(ip.getCheck());
-//            save(purchasement);
-//        }
-//    }
-
-
     private int generateMedicine(ImportPurchasement ip) {
 //        if (StringUtils.isEmpty(ip.getLotNumber()) || StringUtils.isEmpty(ip.getMedicineUniqueCode())) {
 //            return -1;
 //        }
-        Medicine m = medicineService.getMedicineByMedicineCodeAndLotNumber(ip.getMedicineCode(), ip.getLotNumber());
+        Medicine medicine = new Medicine();
+        medicine.setName(ip.getMedicineName());
+        Medicine m = medicineService.find(medicine);
         if (null == m) {
-            Medicine medicine = new Medicine();
-            medicine.setUniqueCode(ip.getMedicineUniqueCode());
+            medicine = new Medicine();
+            medicine.setUniqueCode(ChineseCharToEn.getAllFirstLetter(ip.getMedicineName()));
             medicine.setCode(ip.getMedicineCode());
             medicine.setName(ip.getMedicineName());
             medicine.setLotNumber(ip.getLotNumber());

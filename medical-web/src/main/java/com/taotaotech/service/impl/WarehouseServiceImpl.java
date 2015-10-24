@@ -18,11 +18,11 @@ import java.util.List;
 @Service
 public class WarehouseServiceImpl extends CrudService<WarehouseMapper,Warehouse> implements IWarehouseService{
     @Autowired
-    private WarehouseMapper providerMapper;
+    private WarehouseMapper warehouseMapper;
 
 
     @Override
     public List<Warehouse> findWarehouseList() {
-        return providerMapper.findWarehouseList(new PageBounds());
+        return warehouseMapper.findWarehouseList(new PageBounds());
     }
 }
