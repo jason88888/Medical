@@ -21,9 +21,9 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `agent`;
 CREATE TABLE `agent` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(20) NOT NULL COMMENT '代理商代码',
+  `code` varchar(20) DEFAULT NULL COMMENT '代理商代码',
   `name` varchar(50) DEFAULT '' COMMENT '代理商名称',
-  `level` varchar(3) DEFAULT NULL COMMENT '代理级别',
+  `level` varchar(3) DEFAULT '2' COMMENT '代理级别',
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT b'0',
@@ -90,8 +90,6 @@ CREATE TABLE `commercial_company` (
   `chief_name` varchar(20) DEFAULT NULL COMMENT '负责人',
   `fax_no` varchar(20) DEFAULT NULL COMMENT '传真',
   `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话',
-  `level` varchar(3) DEFAULT '2' COMMENT '代理级别2或者3',
-  `whose_client` varchar(20) DEFAULT NULL COMMENT '为所属客户',
   `sale_area` varchar(20) DEFAULT NULL COMMENT '采购销售区域',
   `descript` varchar(20) DEFAULT NULL COMMENT '备注',
   `create_date` datetime NOT NULL COMMENT '创建时间',
