@@ -20,7 +20,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/index"/>
-            <bean class="com.taotaotech.core.interceptor.LoingInterceptor"></bean>
+            <bean class="com.taotaotech.core.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @eMail cailin618@sina.com
  */
 
-public class LoingInterceptor implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {
 
     public final static String SEESION_USER = "user";
 
