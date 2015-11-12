@@ -7,6 +7,7 @@ import com.taotaotech.domain.Bill;
 import com.taotaotech.domain.Client;
 import com.taotaotech.domain.Medicine;
 import com.taotaotech.domain.User;
+import com.taotaotech.dto.BillDTO;
 import com.taotaotech.service.IBillService;
 import com.taotaotech.core.persistence.Page;
 import com.taotaotech.service.IClientService;
@@ -119,7 +120,18 @@ public class BillController extends BaseController {
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
-    public Object save(Bill bill) {
+    public Object save(BillDTO billDTO) {
+        Bill bill = new Bill();
+        bill.setCode(billDTO.getCode());
+        bill.setDate(billDTO.getDate());
+        bill.setNumber(billDTO.getNumber());
+        bill.setClientCode(billDTO.getClient().getCode());
+        bill.setClientName(billDTO.getClient().getName());
+        bill.setUserCode(billDTO.getUser().getCode());
+        bill.setUserName(billDTO.getUser().getUsername());
+        bill.setMedicineCode(billDTO.getMedicine().getCode());
+        bill.setMedicineName(billDTO.getMedicine().getName());
+        bill.setDescript(billDTO.getDescript());
         DWZResponseResult result = new DWZResponseResult();
         if (!DateUtil.isCurrentMonth(bill.getDate(),"yyyy-MM-dd")){
             result.setStatusCode("300");
@@ -136,6 +148,7 @@ public class BillController extends BaseController {
 
         return result;
     }
+
 
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
