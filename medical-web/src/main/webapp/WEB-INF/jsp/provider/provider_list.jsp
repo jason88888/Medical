@@ -32,10 +32,11 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="provider/insert" target="dialog"><span>添加</span></a></li>
+            <li><a class="add" href="provider/insert" target="dialog" width="800" height="400"><span>添加</span></a></li>
             <li><a class="delete" href="provider/delete" target="selectedTodo"
                    title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="provider/view?id={id}" target="dialog" warn="请选择一个供应商"><span>详情</span></a></li>
+            <li><a class="edit" href="provider/view?id={id}" target="dialog" warn="请选择一个供应商" width="800"
+                   height="400"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">

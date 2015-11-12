@@ -23,9 +23,11 @@
                 <input name="level" class="required" type="text" value="${agent.level}" autocomplete="off" size="30"
                        alt="请输入代理级别" readonly/>
             </p>
+
             <p>
                 <label>备注</label>
-                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" readonly>${agent.descript}</textarea>
+                <textarea name="descript" type="text" autocomplete="off" cols="28" alt="请输入备注"
+                          readonly>${agent.descript}</textarea>
             </p>
         </div>
         <div class="formBar">
@@ -34,7 +36,8 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="agent/edit?id=${agent.id}" target="dialog">编辑</a></button>
+                            <button type="submit"><a href="agent/edit?id=${agent.id}" target="dialog" width="800"
+                                                     height="400">编辑</a></button>
                         </div>
                     </div>
                 </li>

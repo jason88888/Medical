@@ -3,10 +3,10 @@
 
 <form id="pagerForm" method="post" action="rkorder/list">
     <input type="hidden" name="status" value="${param.status}">
-    <input type="hidden" name="keywords" value="${param.keywords}" />
-    <input type="hidden" name="currentPage" value="1" />
-    <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-    <input type="hidden" name="orderField" value="${param.orderField}" />
+    <input type="hidden" name="keywords" value="${param.keywords}"/>
+    <input type="hidden" name="currentPage" value="1"/>
+    <input type="hidden" name="numPerPage" value="${model.numPerPage}"/>
+    <input type="hidden" name="orderField" value="${param.orderField}"/>
 </form>
 
 
@@ -15,8 +15,15 @@
         <div class="searchBar">
             <div class="subBar">
                 <ul>
-                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-                    <li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+                    <li>
+                        <div class="buttonActive">
+                            <div class="buttonContent">
+                                <button type="submit">检索</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a class="button" href="demo_page6.html" target="dialog" mask="true"
+                           title="查询框"><span>高级检索</span></a></li>
                 </ul>
             </div>
         </div>
@@ -25,16 +32,20 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="rkorder/insert" target="dialog" rel="form"><span>添加</span></a></li>
+            <li><a class="add" href="rkorder/insert" target="dialog" rel="form" width="800"
+                   height="400"><span>添加</span></a></li>
             <li><a class="delete" href="rkorder/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="rkorder/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
+            <li><a class="edit" href="rkorder/view?id={id}" target="dialog" warn="请选择要查看的数据" width="800"
+                   height="400"><span>详情</span></a></li>
             <li><a class="icon" href="rkorder/upload" target="dialog"><span>导入EXCEL</span></a></li>
         </ul>
     </div>
     <table class="table" width="150%" layoutH="138">
         <thead>
         <tr>
-            <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
+            <th style="width: 18px; cursor: col-resize;">
+                <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
+            </th>
             <th>入库单编号</th>
             <%--<th>单据日期</th>--%>
             <th>仓库名称</th>
@@ -63,9 +74,11 @@
         <tbody>
         <c:forEach items="${page.list}" var="rkorder">
             <tr target="id" rel="${rkorder.id}">
-                <td><div><input name="ids" value="${rkorder.id}" type="checkbox"></div></td>
+                <td>
+                    <div><input name="ids" value="${rkorder.id}" type="checkbox"></div>
+                </td>
                 <td>${rkorder.id}</td>
-                <%--<td>${rkorder.billDate}</td>--%>
+                    <%--<td>${rkorder.billDate}</td>--%>
                 <td>${rkorder.warehouseName}</td>
                 <td>${rkorder.medicineName}</td>
                 <td>${rkorder.operatorName}</td>
@@ -102,6 +115,7 @@
             <span>条，共${page.totalCount}条</span>
         </div>
 
-        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
+        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}"
+             pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
     </div>
 </div>
