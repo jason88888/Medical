@@ -55,7 +55,7 @@ public class UserController extends BaseController {
     public String edit(Integer id, Model model) {
         if (id != null) {
             User user = userService.get(id);
-            model.addAttribute("mser", user);
+            model.addAttribute("user", user);
         }
 
         return "user/user_form";

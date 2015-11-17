@@ -3,33 +3,33 @@
 
 <div class="pageContent">
     <form method="post" action="user/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);" autocomplete="off">
-        <input type="hidden" name="id" value="${mser.id}"/>
+        <input type="hidden" name="id" value="${user.id}"/>
         <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
         <input style="display:none" type="text" name="fakeusernameremembered">
         <input style="display:none" type="password" name="fakepasswordremembered">
         <div class="pageFormContent" layoutH="56">
             <p>
                 <label>用户编号：</label>
-                <input name="code" type="text" size="30" value="${mser.code}"/>
+                <input name="code" type="text" size="30" value="${user.code}"/>
             </p>
             <p>
                 <label>用户名：</label>
-                <input name="username" class="required" type="text" size="30" value="${mser.username}" autocomplete="off" alt="请输入客户名称"/>
+                <input name="username" class="required" type="text" size="30" value="${user.username}" autocomplete="off" alt="请输入客户名称"/>
             </p>
             <p>
                 <label>密码：</label>
-                <input name="password" class="required" type="password" size="30" value="${mser.password}" autocomplete="off" alt="请输入密码"/>
+                <input name="password" class="required" type="password" size="30" value="${user.password}" autocomplete="off" alt="请输入密码"/>
             </p>
             <p>
                 <label>角色：</label>
                 <select name="role">
-                    <option value="2" <c:if test="${mser.role == 2}">selected="selected"</c:if>>业务员</option>
-                    <option value="1" <c:if test="${mser.role == 1}">selected="selected"</c:if>>管理员</option>
+                    <option value="2" <c:if test="${user.role == 2}">selected="selected"</c:if>>业务员</option>
+                    <option value="1" <c:if test="${user.role == 1}">selected="selected"</c:if>>管理员</option>
                 </select>
             </p>
             <p>
                 <label>备注</label>
-                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" >${mser.descript}</textarea>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" >${user.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

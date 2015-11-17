@@ -89,6 +89,7 @@
                             <li><a href="commercialcompany/list" target="navTab" rel="commercialcompany_list">购进商业公司管理</a></li>
                             <li><a href="policy/list" target="navTab" rel="policy_list">销售政策管理</a></li>
                             <li><a href="user/list" target="navTab" rel="user_list">公司人员管理</a></li>
+                            <li><a href="upload/view" target="navTab">数据导入</a></li>
                                 <%--<li><a href="coming.html" target="navTab" rel="list3">管理员设置</a></li>--%>
                         </ul>
                     </div>
@@ -99,7 +100,6 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="purchase/list" target="navTab" rel="purchase_list">采购数据导入</a></li>
                             <li><a href="rkorder/list" target="navTab" rel="rkorder_list">入库单管理</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>

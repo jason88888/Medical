@@ -27,9 +27,7 @@
         <ul class="toolBar">
             <li><a class="add" href="policy/form" target="dialog" rel="form" width="800" height="400"><span>添加</span></a></li>
             <li><a class="delete" href="policy/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="policy/view?id={id}" target="dialog" warn="请选择一条政策" width="800" height="400"><span>详情</span></a></li>
-            <li class="line">line</li>
-            <li><a class="icon" href="policy/upload" target="dialog"><span>导入EXCEL</span></a></li>
+            <li><a class="edit" href="policy/view?id={id}" target="dialog" warn="请选择一条政策"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="112">
@@ -46,9 +44,7 @@
             <th>业务员政策</th>
             <th>临床政策</th>
             <th>厂家政策</th>
-            <%--<th>二级代码</th>--%>
             <th>二级政策</th>
-            <%--<th>三级代码</th>--%>
             <th>三级政策</th>
             <th>附加政策1</th>
             <th>附加政策2</th>
