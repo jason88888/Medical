@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.taotaotech.dao.RkOrderMapper">
-    <resultMap id="BaseResultMap" type="com.taotaotech.domain.RkOrder">
+<mapper namespace="com.taotaotech.dao.CgrkOrderMapper">
+    <resultMap id="BaseResultMap" type="com.taotaotech.domain.CgrkOrder">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="bill_date" property="billDate" jdbcType="VARCHAR"/>
         <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER"/>
@@ -44,7 +44,7 @@
         quantity,rk.units,p.name as provider_name, w.name as warehouse_name,
         su.username as operator_name, m.name as medicine_name, a.name as agent_name,c.name as commercial_company_name
     </sql>
-    <resultMap id="BaseResultMapDTO" type="com.taotaotech.dto.RkOrderDTO" extends="BaseResultMap">
+    <resultMap id="BaseResultMapDTO" type="com.taotaotech.dto.CgrkOrderDTO" extends="BaseResultMap">
         <result column="provider_name" property="providerName" jdbcType="VARCHAR"/>
         <result column="warehouse_name" property="warehouseName" jdbcType="VARCHAR"/>
         <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
@@ -212,7 +212,7 @@
         </choose>
     </select>
 
-    <update id="update" parameterType="com.taotaotech.domain.RkOrder">
+    <update id="update" parameterType="com.taotaotech.domain.CgrkOrder">
         update rk_order
         <set>
             <if test="billDate != null">
@@ -309,7 +309,7 @@
     delete from rk_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.taotaotech.domain.RkOrder"  useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.taotaotech.domain.CgrkOrder"  useGeneratedKeys="true" keyProperty="id" >
         insert into rk_order (bill_date, warehouse_id, medicine_id,
         sys_user_id, commercial_company_id,agent_id, provider_id,
         unit_price, high_unit_price, pay_date,
@@ -330,7 +330,7 @@
         #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.RkOrder"  useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.CgrkOrder"  useGeneratedKeys="true" keyProperty="id" >
         insert into rk_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="billDate != null">
@@ -488,7 +488,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.RkOrder">
+    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.CgrkOrder">
         update rk_order
         <set>
             <if test="billDate != null">
@@ -569,7 +569,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.RkOrder">
+    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.CgrkOrder">
     update rk_order
     set bill_date = #{billDate,jdbcType=VARCHAR},
       warehouse_id = #{warehouseId,jdbcType=INTEGER},

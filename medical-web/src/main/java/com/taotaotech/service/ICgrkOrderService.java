@@ -1,7 +1,7 @@
 package com.taotaotech.service;
 
 import com.taotaotech.core.service.IBaseService;
-import com.taotaotech.domain.RkOrder;
+import com.taotaotech.domain.CgrkOrder;
 
 /**
  * @author Cailin.Chen
@@ -9,5 +9,5 @@ import com.taotaotech.domain.RkOrder;
  * @eMail cailin618@sina.com
  */
 
-public interface IRkOrderService extends IBaseService<RkOrder> {
+public interface ICgrkOrderService extends IBaseService<CgrkOrder> {
 }

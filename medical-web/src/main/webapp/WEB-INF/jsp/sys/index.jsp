@@ -42,10 +42,6 @@
                 <li theme="green">
                     <div>绿色</div>
                 </li>
-                <!--<li theme="red"><div>红色</div></li>-->
-                <li theme="purple">
-                    <div>紫色</div>
-                </li>
                 <li theme="silver">
                     <div>银色</div>
                 </li>
@@ -100,7 +96,9 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="rkorder/list" target="navTab" rel="rkorder_list">入库单管理</a></li>
+                            <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购申请单管理</a></li>
+                            <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购入库单管理</a></li>
+                            <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购退货单管理</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>
                         </ul>

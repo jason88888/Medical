@@ -1,6 +1,6 @@
 package com.taotaotech.dto;
 
-import com.taotaotech.domain.RkOrder;
+import com.taotaotech.domain.CgrkOrder;
 
 /**
  * @author Cailin.Chen
@@ -8,7 +8,7 @@ import com.taotaotech.domain.RkOrder;
  * @eMail cailin618@sina.com
  */
 
-public class RkOrderDTO extends RkOrder {
+public class CgrkOrderDTO extends CgrkOrder {
     //仓库名称
     private String warehouseName;
     //药品名称

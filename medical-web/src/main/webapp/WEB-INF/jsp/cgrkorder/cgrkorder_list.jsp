@@ -32,10 +32,10 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="rkorder/insert" target="dialog" rel="form" width="800"
+            <li><a class="add" href="cgrkorder/insert" target="dialog" rel="form" width="800"
                    height="400"><span>添加</span></a></li>
-            <li><a class="delete" href="rkorder/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="rkorder/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
+            <li><a class="delete" href="cgrkorder/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
+            <li><a class="edit" href="cgrkorder/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="150%" layoutH="138">

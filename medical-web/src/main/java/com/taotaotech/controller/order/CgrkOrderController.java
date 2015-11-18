@@ -1,10 +1,10 @@
-package com.taotaotech.controller;
+package com.taotaotech.controller.order;
 
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
-import com.taotaotech.domain.RkOrder;
-import com.taotaotech.service.IRkOrderService;
+import com.taotaotech.domain.CgrkOrder;
+import com.taotaotech.service.ICgrkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,39 +22,39 @@ import javax.servlet.http.HttpServletResponse;
  * @description
  */
 @Controller
-@RequestMapping("rkorder")
-public class RkOrderController extends BaseController {
+@RequestMapping("cgrkorder")
+public class CgrkOrderController extends BaseController {
     @Autowired
-    private IRkOrderService rkorderService;
+    private ICgrkOrderService rkorderService;
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
     public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
-        Page<RkOrder> page = rkorderService.findPage(new Page<RkOrder>(request, response), new RkOrder());
+        Page<CgrkOrder> page = rkorderService.findPage(new Page<CgrkOrder>(request, response), new CgrkOrder());
         model.addAttribute("page", page);
-        return "rkorder/rkorder_list";
+        return "cgrkorder/cgrkorder_list";
     }
 
     @RequestMapping(value = "insert", method = {RequestMethod.GET})
     public String add() {
-        return "rkorder/rkorder_insert";
+        return "cgrkorder/cgrkorder_insert";
     }
 
     @RequestMapping(value = "edit", method = {RequestMethod.GET})
     public String edit(Integer id, Model model) {
-        RkOrder rkorder = rkorderService.get(id);
+        CgrkOrder rkorder = rkorderService.get(id);
         model.addAttribute("rkorder", rkorder);
-        return "rkorder/rkorder_edit";
+        return "cgrkorder/cgrkorder_edit";
     }
 
     @RequestMapping(value = "view", method = {RequestMethod.GET})
     public String view(Integer id, Model model) {
-        RkOrder rkorder = rkorderService.get(id);
+        CgrkOrder rkorder = rkorderService.get(id);
         model.addAttribute("rkorder", rkorder);
-        return "rkorder/rkorder_view";
+        return "cgrkorder/cgrkorder_view";
     }
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
-    public Object save(RkOrder rkorder, HttpServletRequest request) {
+    public Object save(CgrkOrder rkorder, HttpServletRequest request) {
         int warehouseId = Integer.parseInt(request.getParameter("warehouse.id"));
         int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
         int userId = Integer.parseInt(request.getParameter("user.id"));
@@ -69,8 +69,8 @@ public class RkOrderController extends BaseController {
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
-        result.setForwardUrl("rkorder/list");
-        result.setNavTabId("rkorder_list");
+        result.setForwardUrl("cgrkorder/list");
+        result.setNavTabId("cgrkorder_list");
         return result;
     }
 
@@ -80,8 +80,8 @@ public class RkOrderController extends BaseController {
         rkorderService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
-        result.setForwardUrl("rkorder/list");
-        result.setNavTabId("rkorder_list");
+        result.setForwardUrl("cgrkorder/list");
+        result.setNavTabId("cgrkorder_list");
         return result;
     }
 

@@ -2,59 +2,50 @@ package com.taotaotech.domain;
 
 import com.taotaotech.core.domain.DataEntity;
 
+import java.util.Date;
+
 /**
- * å…¥åº“å•
+ * ²É¹ºÉêÇëµ¥
  */
-public class RkOrder extends DataEntity<RkOrder> {
+public class CgsqOrder extends DataEntity<CgsqOrder> {
     //id
     private Integer id;
-    //å…¥åº“å•ç¼–å·
+    //²É¹ºÉêÇëµ¥ºÅ
     private String code;
-    //å•æ®æ—¥æœŸ
+    //µ¥¾İÈÕÆÚ
     private String billDate;
-    //ä»“åº“id
-    private Integer warehouseId;
-    //è¯å“id
+    //Ò©Æ·id
     private Integer medicineId;
-    //æ“ä½œäººid
+    //²Ù×÷ÈËid
     private Integer sysUserId;
-    //è´­è¿›å•†ä¸šå…¬å¸idï¼ˆå¼€ç¥¨å…¬å¸ï¼‰
-    private Integer commercialCompanyId;
-    //ä»£ç†å•†id
-    private Integer agentId;
-    //ä¾›åº”å•†id
+    //¹©Ó¦ÉÌid
     private Integer providerId;
-    //å®é™…å•ä»·
+    //Êµ¼Êµ¥¼Û
     private Long unitPrice;
-    //é«˜å¼€å•ä»·
+    //¸ß¿ªµ¥¼Û
     private Long highUnitPrice;
-    //é‡‡è´­ä»˜æ¬¾æ—¥æœŸ
-    private String payDate;
-    //é‡‡è´­å…¥åº“æ—¥æœŸ
-    private String storeDate;
-    //é‡‡è´­ç”³è¯·å•å·
+    //²É¹ºÉêÇëµ¥ºÅ
     private String orderCode;
-    //é‡‡è´­å•ä»·
+    //²É¹ºµ¥¼Û
     private String purchasePrice;
-    //ä»˜æ¬¾é‡‘é¢
+    //¸¶¿î½ğ¶î
     private String purchaseMoney;
-    //åº”ä»˜ç¨
-    private String tax;
-    //ä»˜ç¨æ–¹å¼
-    private String taxpayMode;
-    //ä»˜ç¨æ—¥æœŸ
-    private String taxpayDate;
-    //å‘ç¥¨å·ç 
-    private Integer invoiceNumber;
-    //å¼€ç¥¨æ—¥æœŸ
-    private String invoiceDate;
-    //å…¥åº“æ•°é‡
+    //Èë¿âÊıÁ¿
     private Integer quantity;
-    //å•ä½
+    //µ¥Î»
     private String units;
-    //å¤‡æ³¨
+    //Ó¦¸¶Ë°
+    private String tax;
+    //¸¶Ë°·½Ê½
+    private String taxpayMode;
+    //¸¶Ë°ÈÕÆÚ
+    private String taxpayDate;
+    //·¢Æ±ºÅÂë
+    private Integer invoiceNumber;
+    //¿ªÆ±ÈÕÆÚ
+    private String invoiceDate;
+    //±¸×¢
     private String descript;
-
     public Integer getId() {
         return id;
     }
@@ -68,7 +59,7 @@ public class RkOrder extends DataEntity<RkOrder> {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code = code == null ? null : code.trim();
     }
 
     public String getBillDate() {
@@ -77,14 +68,6 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     public void setBillDate(String billDate) {
         this.billDate = billDate == null ? null : billDate.trim();
-    }
-
-    public Integer getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId(Integer warehouseId) {
-        this.warehouseId = warehouseId;
     }
 
     public Integer getMedicineId() {
@@ -101,22 +84,6 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     public void setSysUserId(Integer sysUserId) {
         this.sysUserId = sysUserId;
-    }
-
-    public Integer getCommercialCompanyId() {
-        return commercialCompanyId;
-    }
-
-    public void setCommercialCompanyId(Integer commercialCompanyId) {
-        this.commercialCompanyId = commercialCompanyId;
-    }
-
-    public Integer getAgentId() {
-        return agentId;
-    }
-
-    public void setAgentId(Integer agentId) {
-        this.agentId = agentId;
     }
 
     public Integer getProviderId() {
@@ -143,22 +110,6 @@ public class RkOrder extends DataEntity<RkOrder> {
         this.highUnitPrice = highUnitPrice;
     }
 
-    public String getPayDate() {
-        return payDate;
-    }
-
-    public void setPayDate(String payDate) {
-        this.payDate = payDate == null ? null : payDate.trim();
-    }
-
-    public String getStoreDate() {
-        return storeDate;
-    }
-
-    public void setStoreDate(String storeDate) {
-        this.storeDate = storeDate == null ? null : storeDate.trim();
-    }
-
     public String getOrderCode() {
         return orderCode;
     }
@@ -181,6 +132,22 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     public void setPurchaseMoney(String purchaseMoney) {
         this.purchaseMoney = purchaseMoney == null ? null : purchaseMoney.trim();
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units == null ? null : units.trim();
     }
 
     public String getTax() {
@@ -229,21 +196,5 @@ public class RkOrder extends DataEntity<RkOrder> {
 
     public void setDescript(String descript) {
         this.descript = descript == null ? null : descript.trim();
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getUnits() {
-        return units;
-    }
-
-    public void setUnits(String units) {
-        this.units = units;
     }
 }

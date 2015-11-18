@@ -39,7 +39,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     @Autowired
     IWarehouseService warehouseService;
     @Autowired
-    IRkOrderService rkOrderService;
+    ICgrkOrderService rkOrderService;
     @Autowired
     IAgentService agentService;
 
@@ -152,7 +152,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
     }
 
     private int generateRkOrder(ImportPurchasement ip, Integer commercialCompanyId, Integer medicineId, Integer warehouseId, Integer providerId, Integer agentId) {
-        RkOrder order = new RkOrder();
+        CgrkOrder order = new CgrkOrder();
         if (!StringUtils.isEmpty(ip.getInvoiceNumber())) {
             order.setInvoiceNumber(Integer.parseInt(ip.getInvoiceNumber()));
         }
@@ -173,7 +173,7 @@ public class PurchaseServiceImpl extends CrudService<PurchasementMapper, Purchas
         order.setTaxpayMode(ip.getTaxPayMode());
         order.setTaxpayDate(ip.getTaxPayDate());
         order.setSysUserId(getAdminUserId());
-        RkOrder rk = rkOrderService.find(order);
+        CgrkOrder rk = rkOrderService.find(order);
         if (null == rk) {
             return rkOrderService.create(order);
         }
