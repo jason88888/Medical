@@ -10,7 +10,6 @@ import com.taotaotech.domain.Agent;
  * @description
  */
 public interface IAgentService extends IBaseService<Agent> {
-    public Page<Agent> findAgentList(Page<Agent> page);
 
     public Boolean existByAgentCode(String code);
 }

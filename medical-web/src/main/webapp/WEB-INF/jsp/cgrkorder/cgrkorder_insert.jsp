@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="pageContent">
-    <form method="post" action="rkorder/save" class="pageForm required-validate"
+    <form method="post" action="cgrkorder/save" class="pageForm required-validate"
           onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
@@ -19,17 +19,17 @@
 
             <p>
                 <label>仓库名称：</label>
-                <input name="warehouseId" type="hidden" value="${rkorder.warehouseId}"/>
-                <input name="warehouse.id" type="hidden" value="${rkorder.warehouseId}"/>
-                <input type="text" class="required" name="warehouse.name" rel="lookup" value="" postField="name"
+                <input name="warehouseId" type="hidden" value="${cgrkorder.warehouseId}"/>
+                <input name="warehouse.id" type="hidden" value="${cgrkorder.warehouseId}"/>
+                <input type="text" class="required" value="" name="warehouse.name" rel="lookup" postField="name"
                        suggestFields="name,code" suggestUrl="warehouse/lookup_suggest" lookupGroup="warehouse"/>
                 <a class="btnLook" href="warehouse/lookup" lookupGroup="warehouse">查找带回</a>
             </p>
 
             <p>
                 <label>药品名称：</label>
-                <input name="medicineId" type="hidden" value="${rkorder.medicineId}"/>
-                <input name="medicine.id" type="hidden" value="${rkorder.medicineId}"/>
+                <input name="medicineId" type="hidden" value="${cgrkorder.medicineId}"/>
+                <input name="medicine.id" type="hidden" value="${cgrkorder.medicineId}"/>
                 <input type="text" class="required" name="medicine.name" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine"/>
                 <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
@@ -37,8 +37,8 @@
 
             <p>
                 <label>操作人名称：</label>
-                <input name="sysUserId" type="hidden" value="${rkorder.sysUserId}"/>
-                <input name="user.id" type="hidden" value="${rkorder.sysUserId}"/>
+                <input name="sysUserId" type="hidden" value="${cgrkorder.sysUserId}"/>
+                <input name="user.id" type="hidden" value="${cgrkorder.sysUserId}"/>
                 <input type="text" class="required" name="user.name" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user"/>
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
@@ -46,8 +46,8 @@
 
             <p>
                 <label>代理商名称：</label>
-                <input name="agentId" type="hidden" value="${rkorder.agentId}"/>
-                <input name="agent.id" type="hidden" value="${rkorder.agentId}"/>
+                <input name="agentId" type="hidden" value="${cgrkorder.agentId}"/>
+                <input name="agent.id" type="hidden" value="${cgrkorder.agentId}"/>
                 <input type="text" class="required" name="agent.name" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="agent/lookup_suggest" lookupGroup="agent"/>
                 <a class="btnLook" href="agent/lookup" lookupGroup="agent">查找带回</a>
@@ -55,17 +55,18 @@
 
             <p>
                 <label>购进商业公司名称：</label>
-                <input name="commercialCompanyId" type="hidden" value="${rkorder.commercialCompanyId}"/>
-                <input name="commercialcompany.id" type="hidden" value="${rkorder.commercialCompanyId}"/>
+                <input name="commercialCompanyId" type="hidden" value="${cgrkorder.commercialCompanyId}"/>
+                <input name="commercialcompany.id" type="hidden" value="${cgrkorder.commercialCompanyId}"/>
                 <input type="text" class="required" name="agent.name" rel="lookup" value="" postField="name"
-                       suggestFields="name,code" suggestUrl="commercialcompany/lookup_suggest" lookupGroup="commercialcompany"/>
+                       suggestFields="name,code" suggestUrl="commercialcompany/lookup_suggest"
+                       lookupGroup="commercialcompany"/>
                 <a class="btnLook" href="commercialcompany/lookup" lookupGroup="commercialcompany">查找带回</a>
             </p>
 
             <p>
                 <label>供应商名称：</label>
-                <input name="providerId" type="hidden" value="${rkorder.providerId}"/>
-                <input name="provider.id" type="hidden" value="${rkorder.providerId}"/>
+                <input name="providerId" type="hidden" value="${cgrkorder.providerId}"/>
+                <input name="provider.id" type="hidden" value="${cgrkorder.providerId}"/>
                 <input type="text" class="required" name="provider.name" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="provider/lookup_suggest" lookupGroup="provider"/>
                 <a class="btnLook" href="provider/lookup" lookupGroup="provider">查找带回</a>
@@ -94,8 +95,8 @@
             </p>
 
             <p>
-                <label>采购申请单号：</label>
-                <input name="orderCode" class="required" type="text" autocomplete="off" size="30" alt="请输入采购申请单号"/>
+                <label>入库单编号：</label>
+                <input name="orderCode" class="required" type="text" autocomplete="off" size="30" alt="请输入入库单编号"/>
             </p>
 
             <p>

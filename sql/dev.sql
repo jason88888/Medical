@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-11-18 17:20:04
+Date: 2015-11-19 17:23:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1928,7 +1928,6 @@ INSERT INTO `cgrk_order` VALUES ('484', null, null, '10', '1', '1', '1', '1', '1
 INSERT INTO `cgrk_order` VALUES ('485', null, null, '25', '1', '1', '1', '14', '1', null, null, '2015-05-29', '2015-06-01', '201505-74', '3.9', '11232', '2880', '盒', '0', '底价含税', '-', '5272837', '2015-05-29', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
 INSERT INTO `cgrk_order` VALUES ('486', null, null, '21', '1', '1', '1', '14', '1', null, null, '2015-05-29', '2015-06-01', '201505-75', '3.9', '11232', '2880', '盒', '0', '底价含税', '-', '5272837', '2015-05-29', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
 INSERT INTO `cgrk_order` VALUES ('487', null, null, '14', '1', '1', '1', '8', '1', null, null, '2015-06-04', '2015-06-08', '201506-09', '3.9', '14040', '3600', '盒', '0', '底价含税', '-', '5272927', '2015-06-05', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
-INSERT INTO `cgrk_order` VALUES ('488', null, null, '1', '1', '1', '1', '1', '1', null, null, '2015-06-05', '2015-06-09', '201506-15', '3.9', '70200', '18000', '盒', '0', '底价含税', '-', '5272933', '2015-06-08', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
 INSERT INTO `cgrk_order` VALUES ('489', null, null, '5', '1', '1', '1', '1', '1', null, null, '2015-06-05', '2015-07-02', '201506-20', '3.9', '128.7', '33', '盒', '0', '底价含税', '-', '5272932', '2015-06-08', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
 INSERT INTO `cgrk_order` VALUES ('490', null, null, '5', '1', '1', '1', '1', '1', null, null, '2015-06-05', '2015-06-09', '201506-20', '3.9', '91131.3', '23367', '盒', '0', '底价含税', '-', '5272932', '2015-06-08', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
 INSERT INTO `cgrk_order` VALUES ('491', null, null, '14', '1', '1', '1', '8', '1', null, null, '2015-06-18', '2015-06-24', '201506-47', '3.9', '14040', '3600', '盒', '0', '底价含税', '-', '19731848', '2015-06-23', null, '2015-10-24 22:55:02', '2015-10-24 22:55:02', '');
@@ -1962,18 +1961,14 @@ CREATE TABLE `cgsq_order` (
   `provider_id` int(11) DEFAULT NULL COMMENT '配送商id',
   `unit_price` decimal(10,0) DEFAULT NULL COMMENT '实际单价',
   `high_unit_price` decimal(10,0) DEFAULT NULL COMMENT '高开单价',
-  `pay_date` varchar(50) DEFAULT NULL COMMENT '采购付款日期',
-  `store_date` varchar(50) DEFAULT NULL COMMENT '采购入库日期',
   `order_code` varchar(50) DEFAULT NULL COMMENT '采购申请单号',
   `purchase_price` varchar(255) DEFAULT NULL COMMENT '采购单价',
   `purchase_money` varchar(255) DEFAULT NULL COMMENT '付款金额',
-  `quantity` int(11) NOT NULL DEFAULT '0' COMMENT '入库数量',
+  `quantity` int(11) NOT NULL DEFAULT '0' COMMENT '采购数量',
   `units` varchar(50) NOT NULL DEFAULT '' COMMENT '单位',
   `tax` varchar(255) DEFAULT NULL COMMENT '应付税',
   `taxpay_mode` varchar(255) DEFAULT NULL COMMENT '付税方式',
   `taxpay_date` varchar(255) DEFAULT NULL COMMENT '付税日期',
-  `invoice_number` int(11) DEFAULT NULL COMMENT '发票号码',
-  `invoice_date` varchar(50) DEFAULT NULL COMMENT '开票日期',
   `descript` varchar(200) DEFAULT NULL COMMENT '备注',
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_date` datetime NOT NULL COMMENT '更新时间',

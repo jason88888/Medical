@@ -96,7 +96,7 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购申请单管理</a></li>
+                            <li><a href="cgsqorder/list" target="navTab" rel="cgsqorder_list">采购申请单管理</a></li>
                             <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购入库单管理</a></li>
                             <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购退货单管理</a></li>
                             <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>

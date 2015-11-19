@@ -30,7 +30,7 @@ public class CgsqOrder extends DataEntity<CgsqOrder> {
     private String purchasePrice;
     //付款金额
     private String purchaseMoney;
-    //入库数量
+    //采购数量
     private Integer quantity;
     //单位
     private String units;
@@ -40,10 +40,6 @@ public class CgsqOrder extends DataEntity<CgsqOrder> {
     private String taxpayMode;
     //付税日期
     private String taxpayDate;
-    //发票号码
-    private Integer invoiceNumber;
-    //开票日期
-    private String invoiceDate;
     //备注
     private String descript;
     public Integer getId() {
@@ -172,22 +168,6 @@ public class CgsqOrder extends DataEntity<CgsqOrder> {
 
     public void setTaxpayDate(String taxpayDate) {
         this.taxpayDate = taxpayDate == null ? null : taxpayDate.trim();
-    }
-
-    public Integer getInvoiceNumber() {
-        return invoiceNumber;
-    }
-
-    public void setInvoiceNumber(Integer invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
-    }
-
-    public String getInvoiceDate() {
-        return invoiceDate;
-    }
-
-    public void setInvoiceDate(String invoiceDate) {
-        this.invoiceDate = invoiceDate == null ? null : invoiceDate.trim();
     }
 
     public String getDescript() {

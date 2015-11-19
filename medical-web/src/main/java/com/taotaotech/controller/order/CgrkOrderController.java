@@ -25,10 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("cgrkorder")
 public class CgrkOrderController extends BaseController {
     @Autowired
-    private ICgrkOrderService rkorderService;
+    private ICgrkOrderService cgrkOrderService;
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
     public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
-        Page<CgrkOrder> page = rkorderService.findPage(new Page<CgrkOrder>(request, response), new CgrkOrder());
+        Page<CgrkOrder> page = cgrkOrderService.findPage(new Page<CgrkOrder>(request, response), new CgrkOrder());
         model.addAttribute("page", page);
         return "cgrkorder/cgrkorder_list";
     }
@@ -40,32 +40,32 @@ public class CgrkOrderController extends BaseController {
 
     @RequestMapping(value = "edit", method = {RequestMethod.GET})
     public String edit(Integer id, Model model) {
-        CgrkOrder rkorder = rkorderService.get(id);
-        model.addAttribute("rkorder", rkorder);
+        CgrkOrder cgrkorder = cgrkOrderService.get(id);
+        model.addAttribute("cgrkorder", cgrkorder);
         return "cgrkorder/cgrkorder_edit";
     }
 
     @RequestMapping(value = "view", method = {RequestMethod.GET})
     public String view(Integer id, Model model) {
-        CgrkOrder rkorder = rkorderService.get(id);
-        model.addAttribute("rkorder", rkorder);
+        CgrkOrder cgrkorder = cgrkOrderService.get(id);
+        model.addAttribute("cgrkorder", cgrkorder);
         return "cgrkorder/cgrkorder_view";
     }
 
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
-    public Object save(CgrkOrder rkorder, HttpServletRequest request) {
+    public Object save(CgrkOrder cgrkorder, HttpServletRequest request) {
         int warehouseId = Integer.parseInt(request.getParameter("warehouse.id"));
         int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
         int userId = Integer.parseInt(request.getParameter("user.id"));
         int agentClientId = Integer.parseInt(request.getParameter("agentclient.id"));
         int providerId = Integer.parseInt(request.getParameter("provider.id"));
-        rkorder.setWarehouseId(warehouseId);
-        rkorder.setMedicineId(medicineId);
-        rkorder.setSysUserId(userId);
-        rkorder.setAgentId(agentClientId);
-        rkorder.setProviderId(providerId);
-        rkorderService.save(rkorder);
+        cgrkorder.setWarehouseId(warehouseId);
+        cgrkorder.setMedicineId(medicineId);
+        cgrkorder.setSysUserId(userId);
+        cgrkorder.setAgentId(agentClientId);
+        cgrkorder.setProviderId(providerId);
+        cgrkOrderService.save(cgrkorder);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
@@ -77,7 +77,7 @@ public class CgrkOrderController extends BaseController {
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Integer[] ids) {
-        rkorderService.delete(ids);
+        cgrkOrderService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
         result.setForwardUrl("cgrkorder/list");

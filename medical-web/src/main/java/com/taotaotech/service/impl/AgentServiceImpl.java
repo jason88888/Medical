@@ -22,13 +22,6 @@ public class AgentServiceImpl extends CrudService<AgentMapper, Agent> implements
     @Autowired
     private AgentMapper agentMapper;
 
-    @Override
-    public Page<Agent> findAgentList(Page<Agent> page) {
-        PageList<Agent> list = (PageList)agentMapper.findAgentList(page.createPageBounds());
-        page.setList(list);
-        return page;
-    }
-
     public Boolean existByAgentCode(String code){
         return agentMapper.existByAgentCode(code);
     }
