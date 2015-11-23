@@ -37,7 +37,7 @@
                 <label>操作人名称：</label>
                 <input name="sysUserId" type="hidden" value="${cgrkorder.sysUserId}"/>
                 <input name="user.id" type="hidden" value="${cgrkorder.sysUserId}"/>
-                <input type="text" class="required" value="${cgrkorder.operatorName}" name="user.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
+                <input type="text" class="required" value="${cgrkorder.operatorName}" name="user.username" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>
 

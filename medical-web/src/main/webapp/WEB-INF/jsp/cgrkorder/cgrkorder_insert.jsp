@@ -39,7 +39,7 @@
                 <label>操作人名称：</label>
                 <input name="sysUserId" type="hidden" value="${cgrkorder.sysUserId}"/>
                 <input name="user.id" type="hidden" value="${cgrkorder.sysUserId}"/>
-                <input type="text" class="required" name="user.name" rel="lookup" value="" postField="name"
+                <input type="text" class="required" name="user.username" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user"/>
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>
@@ -57,7 +57,7 @@
                 <label>购进商业公司名称：</label>
                 <input name="commercialCompanyId" type="hidden" value="${cgrkorder.commercialCompanyId}"/>
                 <input name="commercialcompany.id" type="hidden" value="${cgrkorder.commercialCompanyId}"/>
-                <input type="text" class="required" name="agent.name" rel="lookup" value="" postField="name"
+                <input type="text" class="required" name="commercialcompany.name" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="commercialcompany/lookup_suggest"
                        lookupGroup="commercialcompany"/>
                 <a class="btnLook" href="commercialcompany/lookup" lookupGroup="commercialcompany">查找带回</a>

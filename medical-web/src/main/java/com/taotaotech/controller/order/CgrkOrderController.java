@@ -26,8 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 public class CgrkOrderController extends BaseController {
     @Autowired
     private ICgrkOrderService cgrkOrderService;
+
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
+    public String list(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
         Page<CgrkOrder> page = cgrkOrderService.findPage(new Page<CgrkOrder>(request, response), new CgrkOrder());
         model.addAttribute("page", page);
         return "cgrkorder/cgrkorder_list";
@@ -58,13 +59,15 @@ public class CgrkOrderController extends BaseController {
         int warehouseId = Integer.parseInt(request.getParameter("warehouse.id"));
         int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
         int userId = Integer.parseInt(request.getParameter("user.id"));
-        int agentClientId = Integer.parseInt(request.getParameter("agentclient.id"));
+        int agentClientId = Integer.parseInt(request.getParameter("agent.id"));
         int providerId = Integer.parseInt(request.getParameter("provider.id"));
+        int commercialCompanyId = Integer.parseInt(request.getParameter("commercialcompany.id"));
         cgrkorder.setWarehouseId(warehouseId);
         cgrkorder.setMedicineId(medicineId);
         cgrkorder.setSysUserId(userId);
         cgrkorder.setAgentId(agentClientId);
         cgrkorder.setProviderId(providerId);
+        cgrkorder.setCommercialCompanyId(commercialCompanyId);
         cgrkOrderService.save(cgrkorder);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
