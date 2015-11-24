@@ -25,122 +25,103 @@
             <%--</p>--%>
             <p>
                 <label>仓库名称：</label>
-                <input name="warehouseId" type="text" autocomplete="off" size="30" value="${cgrkorder.warehouseName}"
-                       alt="请输入仓库名称" readonly/>
+                <input name="warehouseId" type="text" autocomplete="off" size="30" value="${cgrkorder.warehouseName}" readonly/>
             </p>
 
             <p>
                 <label>药品名称：</label>
-                <input name="medicineId" type="text" autocomplete="off" size="30" value="${cgrkorder.medicineName}"
-                       alt="请输入药品名称" readonly/>
+                <input name="medicineId" type="text" autocomplete="off" size="30" value="${cgrkorder.medicineName}" readonly/>
             </p>
 
             <p>
                 <label>操作人名称：</label>
-                <input name="sysUserId" type="text" autocomplete="off" size="30" value="${cgrkorder.operatorName}"
-                       alt="请输入操作人名称" readonly/>
+                <input name="sysUserId" type="text" autocomplete="off" size="30" value="${cgrkorder.operatorName}" readonly/>
             </p>
 
             <p>
                 <label>代理商名称：</label>
-                <input name="agentId" type="text" autocomplete="off" size="30" value="${cgrkorder.agentName}"
-                       alt="请输入代理商名称" readonly/>
+                <input name="agentId" type="text" autocomplete="off" size="30" value="${cgrkorder.agentName}" readonly/>
             </p>
 
             <p>
                 <label>供应商名称：</label>
-                <input name="providerId" type="text" autocomplete="off" size="30" value="${cgrkorder.providerName}"
-                       alt="请输入配送商名称" readonly/>
+                <input name="providerId" type="text" autocomplete="off" size="30" value="${cgrkorder.providerName}" readonly/>
             </p>
 
             <p>
                 <label>购进商业公司名称：</label>
                 <input name="commercialCompanyId" type="text" autocomplete="off" size="30"
-                       value="${cgrkorder.commercialCompanyName}" alt="请输入配送商名称" readonly/>
+                       value="${cgrkorder.commercialCompanyName}" readonly/>
             </p>
 
             <p>
                 <label>实际单价：</label>
-                <input name="units" type="text" autocomplete="off" size="30" value="${cgrkorder.unitPrice}" alt="请输入实际单价"
-                       readonly/>
+                <input name="units" type="text" autocomplete="off" size="30" value="${cgrkorder.unitPrice}" readonly/>
             </p>
 
             <p>
                 <label>高开单价：</label>
-                <input name="packageNumber" type="text" autocomplete="off" size="30" value="${cgrkorder.highUnitPrice}"
-                       alt="请输入高开单价" readonly/>
+                <input name="packageNumber" type="text" autocomplete="off" size="30" value="${cgrkorder.highUnitPrice}" readonly/>
             </p>
 
             <p>
                 <label>采购付款日期：</label>
-                <input name="saleCompany" type="text" autocomplete="off" size="30" value="${cgrkorder.payDate}"
-                       alt="请输入采购付款日期" readonly/>
+                <input name="saleCompany" type="text" autocomplete="off" size="30" value="${cgrkorder.payDate}" readonly/>
             </p>
 
             <p>
                 <label>采购入库日期：</label>
-                <input name="buyCompany" type="text" autocomplete="off" size="30" value="${cgrkorder.storeDate}"
-                       alt="请输入采购入库日期" readonly/>
+                <input name="buyCompany" type="text" autocomplete="off" size="30" value="${cgrkorder.storeDate}" readonly/>
             </p>
 
             <p>
                 <label>采购申请单号：</label>
-                <input name="payCategory" type="text" autocomplete="off" size="30" value="${cgrkorder.orderCode}"
-                       alt="请输入采购申请单号" readonly/>
+                <input name="payCategory" type="text" autocomplete="off" size="30" value="${cgrkorder.orderCode}" readonly/>
             </p>
 
             <p>
                 <label>采购单价：</label>
-                <input name="payMode" type="text" autocomplete="off" size="30" value="${cgrkorder.purchasePrice}"
-                       alt="请输入采购单价" readonly/>
+                <input name="payMode" type="text" autocomplete="off" size="30" value="${cgrkorder.purchasePrice}" readonly/>
             </p>
 
             <p>
                 <label>付款金额：</label>
-                <input name="cgrkorderNumber" type="text" autocomplete="off" size="30" value="${cgrkorder.purchaseMoney}"
-                       alt="请输入付款金额" readonly/>
+                <input name="cgrkorderNumber" type="text" autocomplete="off" size="30" value="${cgrkorder.purchaseMoney}" readonly/>
             </p>
 
             <p>
                 <label>应付税：</label>
-                <input name="cgrkorderUnitPrice" type="text" autocomplete="off" size="30" value="${cgrkorder.tax}"
-                       alt="请输入应付税" readonly/>
+                <input name="cgrkorderUnitPrice" type="text" autocomplete="off" size="30" value="${cgrkorder.tax}" readonly/>
             </p>
 
             <p>
                 <label>付税方式：</label>
-                <input name="cgrkorderMoney" type="text" autocomplete="off" size="30" value="${cgrkorder.taxpayMode}"
-                       alt="请输入付税方式" readonly/>
+                <input name="cgrkorderMoney" type="text" autocomplete="off" size="30" value="${cgrkorder.taxpayMode}" readonly/>
             </p>
 
             <p>
                 <label>付税日期：</label>
-                <input name="tax" type="text" autocomplete="off" size="30" value="${cgrkorder.taxpayDate}" alt="请输入付税日期"
-                       readonly/>
+                <input name="tax" type="text" autocomplete="off" size="30" value="${cgrkorder.taxpayDate}" readonly/>
             </p>
 
             <p>
                 <label>发票号码：</label>
-                <input name="taxPayMode" type="text" autocomplete="off" size="30" value="${cgrkorder.invoiceNumber}"
-                       alt="请输入发票号码" readonly/>
+                <input name="taxPayMode" type="text" autocomplete="off" size="30" value="${cgrkorder.invoiceNumber}" readonly/>
             </p>
 
             <p>
                 <label>开票日期：</label>
-                <input name="taxPayDate" type="text" autocomplete="off" size="30" value="${cgrkorder.invoiceDate}"
-                       alt="请输入开票日期" readonly/>
+                <input name="taxPayDate" type="text" autocomplete="off" size="30" value="${cgrkorder.invoiceDate}" readonly/>
             </p>
 
             <p>
                 <label>数量：</label>
-                <input name="invoiceNumber" type="text" autocomplete="off" size="30" value="${cgrkorder.quantity}"
-                       alt="请输入数量" readonly/>
+                <input name="invoiceNumber" type="text" autocomplete="off" size="30" value="${cgrkorder.quantity}" readonly/>
             </p>
 
             <p>
                 <label>备注：</label>
-                <input name="invoiceDate" type="text" autocomplete="off" size="30" value="${cgrkorder.descript}"
-                       alt="请输入备注" readonly/>
+                <input name="invoiceDate" type="text" autocomplete="off" size="30" value="${cgrkorder.descript}" readonly/>
             </p>
         </div>
         <div class="formBar">

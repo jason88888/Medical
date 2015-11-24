@@ -78,8 +78,7 @@
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" autocomplete="off" cols="28" alt="请输入备注"
-                          readonly>${policy.descript}</textarea>
+                <textarea name="descript" type="text" autocomplete="off" cols="28" readonly>${policy.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

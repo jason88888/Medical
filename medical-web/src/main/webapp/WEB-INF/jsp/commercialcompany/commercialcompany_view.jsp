@@ -8,58 +8,48 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>代理商代码：</label>
-                <input name="code" class="required" type="text" value="${commercialcompany.code}" autocomplete="off" size="30"
-                       alt="请输入代理商代码" readonly/>
+                <input name="code" class="required" type="text" value="${commercialcompany.code}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>代理商名称：</label>
-                <input name="name" class="required" type="text" value="${commercialcompany.name}" autocomplete="off" size="30"
-                       alt="请输入代理商名称"
-                       readonly/>
+                <input name="name" class="required" type="text" value="${commercialcompany.name}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>英文名</label>
-                <input name="engName" type="text" value="${commercialcompany.engName}" autocomplete="off" size="30"
-                       alt="请输入英文名" readonly/>
+                <input name="engName" type="text" value="${commercialcompany.engName}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>地区</label>
-                <input name="areaName" type="text" value="${commercialcompany.areaName}" autocomplete="off" size="30"
-                       alt="请输入地区" readonly/>
+                <input name="areaName" type="text" value="${commercialcompany.areaName}" autocomplete="off" size="30"  readonly/>
             </p>
 
             <p>
                 <label>负责人</label>
-                <input name="chiefName" type="text" value="${commercialcompany.chiefName}" autocomplete="off" size="30"
-                       alt="请输入负责人" readonly/>
+                <input name="chiefName" type="text" value="${commercialcompany.chiefName}" autocomplete="off" size="30"  readonly/>
             </p>
 
             <p>
                 <label>传真</label>
-                <input name="faxNo" type="text" value="${commercialcompany.faxNo}" autocomplete="off" size="30"
-                       alt="请输入传真" readonly/>
+                <input name="faxNo" type="text" value="${commercialcompany.faxNo}" autocomplete="off" size="30"  readonly/>
             </p>
 
             <p>
                 <label>联系电话</label>
-                <input name="telephone" type="text" value="${commercialcompany.telephone}" autocomplete="off" size="30"
-                       alt="请输入联系电话" readonly/>
+                <input name="telephone" type="text" value="${commercialcompany.telephone}" autocomplete="off" size="30"  readonly/>
             </p>
 
 
             <p>
                 <label>采购销售区域</label>
-                <input name="saleArea" type="text" value="${commercialcompany.saleArea}" autocomplete="off" size="30"
-                       alt="请输入采购销售区域" readonly/>
+                <input name="saleArea" type="text" value="${commercialcompany.saleArea}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" autocomplete="off" cols="28"
-                          alt="请输入备注" readonly>${commercialcompany.descript}</textarea>
+                <textarea name="descript" type="text" autocomplete="off" cols="28" readonly>${commercialcompany.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

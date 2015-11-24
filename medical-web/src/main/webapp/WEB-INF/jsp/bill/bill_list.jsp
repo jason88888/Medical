@@ -32,9 +32,9 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="bill/insert" target="dialog" rel="form" width="800" height="400"><span>添加</span></a></li>
+            <li><a class="add" href="bill/insert" target="dialog" rel="form" width="820" height="400"><span>添加</span></a></li>
             <li><a class="delete" href="bill/delete" target="selectedTodo" rel="ids" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="bill/view?id={id}" target="dialog" warn="请选择要查看的数据"><span>详情</span></a></li>
+            <li><a class="edit" href="bill/view?id={id}" target="dialog" warn="请选择要查看的数据"  width="820" height="400"><span>详情</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="112">

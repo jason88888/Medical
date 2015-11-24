@@ -25,7 +25,7 @@
         <label>客户名称：</label>
         <input name="clientCode" type="hidden" value="${bill.clientCode}"/>
         <input name="client.code" type="hidden" value="${bill.clientCode}"/>
-        <input type="text" class="required" value="${bill.clientName}" name="client.name" rel="lookup" value="" postField="name"
+        <input type="text" class="required" value="${bill.clientName}" name="client.name" rel="lookup" postField="name,id"
                suggestFields="name,code" suggestUrl="client/lookup_suggest" lookupGroup="client"/>
         <a class="btnLook" href="client/lookup" lookupGroup="client">查找带回</a>
       </p>
@@ -34,7 +34,7 @@
         <label>业务员姓名：</label>
         <input name="userCode" type="hidden" value="${user.code}"/>
         <input name="user.code" type="hidden" value="${user.code}"/>
-        <input type="text" class="required" value="${bill.userName}" name="user.name" rel="lookup" value="" postField="username" suggestFields="username,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
+        <input type="text" class="required" value="${bill.userName}" name="user.name" rel="lookup"  postField="username,id" suggestFields="username,code" suggestUrl="user/lookup_suggest" lookupGroup="user" />
         <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
       </p>
 
@@ -42,7 +42,7 @@
         <label>所属药品：</label>
         <input name="medicineCode" type="hidden" value="${bill.medicineCode}"/>
         <input name="medicine.code" type="hidden" value="${bill.medicineCode}"/>
-        <input type="text" class="required" value="${bill.medicineName}" name="medicine.name" rel="lookup" value="" postField="name" suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine" />
+        <input type="text" class="required" value="${bill.medicineName}" name="medicine.name" rel="lookup"  postField="name,,id" suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine" />
         <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
       </p>
 

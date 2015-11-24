@@ -69,24 +69,6 @@ public class CgsqOrderController  extends BaseController {
         return result;
     }
 
-//    @RequestMapping(value = "save", method = {RequestMethod.POST})
-//    @ResponseBody
-//    public Object save(CgsqOrder cgsqorder) {
-////        int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
-////        int userId = Integer.parseInt(request.getParameter("user.id"));
-////        int providerId = Integer.parseInt(request.getParameter("provider.id"));
-////        cgsqorder.setMedicineId(medicineId);
-////        cgsqorder.setSysUserId(userId);
-////        cgsqorder.setProviderId(providerId);
-//        cgsqOrderService.save(cgsqorder);
-//        DWZResponseResult result = new DWZResponseResult();
-//        result.setMessage("保存成功");
-//        result.setCallbackType("closeCurrent");
-//        result.setForwardUrl("cgsqorder/list");
-//        result.setNavTabId("cgsqorder_list");
-//        return result;
-//    }
-
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(Integer[] ids) {

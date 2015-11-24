@@ -47,8 +47,8 @@
                 <div class="gridCol" title="">
                     <input type="checkbox" group="ids" class="checkboxCtrl"></div>
             </th>
-            <th>代理商编码</th>
-            <th>代理商名称</th>
+            <th>购进商业公司编码</th>
+            <th>购进商业公司名称</th>
             <th>英文名</th>
             <th>地区</th>
             <th>负责人</th>

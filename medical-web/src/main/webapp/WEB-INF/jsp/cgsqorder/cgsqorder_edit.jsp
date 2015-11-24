@@ -7,14 +7,14 @@
             <input type="hidden" name="id" value="${cgsqorder.id}"/>
             <p>
                 <label>采购申请单编号：</label>
-                <input name="code" type="text" size="30" class="required" value="${cgsqorder.id}"/>
+                <input name="code" type="text" size="30" class="required" value="${cgsqorder.code}"/>
             </p>
 
             <p>
                 <label>药品名称：</label>
                 <input name="medicineId" type="hidden" value="${cgsqorder.medicineId}"/>
                 <input name="medicine.id" type="hidden" value="${cgsqorder.medicineId}"/>
-                <input type="text" class="required" name="medicine.name" rel="lookup" value="" postField="name"
+                <input type="text" class="required" name="medicine.name" rel="lookup" value="${cgsqorder.medicineName}" postField="name"
                        suggestFields="name,code" suggestUrl="medicine/lookup_suggest" lookupGroup="medicine"/>
                 <a class="btnLook" href="medicine/lookup" lookupGroup="medicine">查找带回</a>
             </p>
@@ -23,7 +23,7 @@
                 <label>操作人名称：</label>
                 <input name="sysUserId" type="hidden" value="${cgsqorder.sysUserId}"/>
                 <input name="user.id" type="hidden" value="${cgsqorder.sysUserId}"/>
-                <input type="text" class="required" name="user.username" rel="lookup" value="" postField="name"
+                <input type="text" class="required" name="user.username" rel="lookup" value="${cgsqorder.operatorName}" postField="name"
                        suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user"/>
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>
@@ -32,14 +32,14 @@
                 <label>供应商名称：</label>
                 <input name="providerId" type="hidden" value="${cgsqorder.providerId}"/>
                 <input name="provider.id" type="hidden" value="${cgsqorder.providerId}"/>
-                <input type="text" class="required" name="provider.name" rel="lookup" value="" postField="name"
+                <input type="text" class="required" name="agent.name" rel="lookup" value="${cgsqorder.providerName}" postField="name"
                        suggestFields="name,code" suggestUrl="provider/lookup_suggest" lookupGroup="provider"/>
                 <a class="btnLook" href="provider/lookup" lookupGroup="provider">查找带回</a>
             </p>
 
             <p>
                 <label>实际单价：</label>
-                <input name="unitPrice" value="${cgsqorder.unitPrice} type=" text" autocomplete="off" size="30"
+                <input name="unitPrice" value="${cgsqorder.unitPrice}" type=" text" autocomplete="off" size="30"
                 alt="请输入实际单价"/>
             </p>
 

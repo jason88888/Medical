@@ -11,6 +11,8 @@
 <script src="${basePath}assets/js/lib/dwz-ria/uploadify/scripts/jquery.uploadify.js" type="text/javascript"></script>
 
 <script src="${basePath}assets/js/lib/dwz-ria/bin/dwz.min.js" type="text/javascript"></script>
+<script src="${basePath}assets/js/lib/dwz-ria/js/dwz.regional.zh.js" type="text/javascript"></script>
+
 
 <script type="text/javascript">
     $(function(){
