@@ -37,7 +37,7 @@
 
             <p>
                 <label>操作人名称：</label>
-                <input name="sysUserId" type="text" min="0" autocomplete="off" size="30" value="${cgrkorder.operatorName}"
+                <input name="sysUserId" type="text" autocomplete="off" size="30" value="${cgrkorder.operatorName}"
                        alt="请输入操作人名称" readonly/>
             </p>
 

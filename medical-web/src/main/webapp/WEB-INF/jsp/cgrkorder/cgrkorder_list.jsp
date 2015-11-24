@@ -81,9 +81,9 @@
                 <td>${cgrkorder.warehouseName}</td>
                 <td>${cgrkorder.medicineName}</td>
                 <td>${cgrkorder.operatorName}</td>
+                <td>${cgrkorder.providerName}</td>
                 <td>${cgrkorder.agentName}</td>
                 <td>${cgrkorder.commercialCompanyName}</td>
-                <td>${cgrkorder.providerName}</td>
                 <td>${cgrkorder.unitPrice}</td>
                 <td>${cgrkorder.highUnitPrice}</td>
                 <td>${cgrkorder.payDate}</td>

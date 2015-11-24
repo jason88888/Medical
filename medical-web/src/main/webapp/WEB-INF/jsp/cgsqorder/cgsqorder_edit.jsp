@@ -4,6 +4,7 @@
     <form method="post" action="cgsqorder/save" class="pageForm required-validate"
           onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
+            <input type="hidden" name="id" value="${cgsqorder.id}"/>
             <p>
                 <label>采购申请单编号：</label>
                 <input name="code" type="text" size="30" class="required" value="${cgsqorder.id}"/>
@@ -22,7 +23,7 @@
                 <label>操作人名称：</label>
                 <input name="sysUserId" type="hidden" value="${cgsqorder.sysUserId}"/>
                 <input name="user.id" type="hidden" value="${cgsqorder.sysUserId}"/>
-                <input type="text" class="required" name="user.name" rel="lookup" value="" postField="name"
+                <input type="text" class="required" name="user.username" rel="lookup" value="" postField="name"
                        suggestFields="name,code" suggestUrl="user/lookup_suggest" lookupGroup="user"/>
                 <a class="btnLook" href="user/lookup" lookupGroup="user">查找带回</a>
             </p>

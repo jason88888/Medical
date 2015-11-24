@@ -24,25 +24,38 @@
         <result column="del_flag" property="delFlag" jdbcType="BIT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, code, bill_date, medicine_id, sys_user_id, provider_id, unit_price, high_unit_price, 
+    id, code, bill_date, medicine_id, sys_user_id, provider_id, unit_price, high_unit_price,
     order_code, purchase_price, purchase_money, quantity,
     units, tax, taxpay_mode, taxpay_date, descript,
     create_date, update_date, del_flag
-  </sql>
+    </sql>
 
-    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <sql id="Base_Column_List_Dto">
+        cgsq.id,cgsq.code, bill_date, medicine_id, sys_user_id,provider_id, unit_price, high_unit_price,
+        order_code, purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
+        cgsq.descript, cgsq.create_date, cgsq.update_date, cgsq.del_flag,
+        quantity,cgsq.units,p.name as provider_name,su.username as operator_name, m.name as medicine_name
+    </sql>
+    <resultMap id="BaseResultMapDTO" type="com.taotaotech.dto.CgsqOrderDTO" extends="BaseResultMap">
+        <result column="provider_name" property="providerName" jdbcType="VARCHAR"/>
+        <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
+        <result column="operator_name" property="operatorName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="get" resultMap="BaseResultMapDTO" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        from cgsq_order
-        where id = #{id,jdbcType=INTEGER}
+        <include refid="Base_Column_List_Dto"/>
+        from cgsq_order cgsq, provider p, sys_user su, medicine m
+        where cgsq.del_flag = 0 AND p.id = cgsq.provider_id AND su.id = cgsq.sys_user_id AND m.id = cgsq.medicine_id AND
+        cgsq.id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="find" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <select id="find" parameterType="java.util.Map" resultMap="BaseResultMapDTO">
         select
-        <include refid="Base_Column_List"/>
-        from cgsq_order cgsq
+        <include refid="Base_Column_List_Dto"/>
+        from cgsq_order cgsq, provider p, sys_user su, medicine m
         <where>
-            del_flag = 0
+            cgsq.del_flag = 0 AND p.id = cgsq.provider_id and su.id = cgsq.sys_user_id AND m.id = cgsq.medicine_id
             <if test="billDate != null">
                 AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
@@ -86,12 +99,12 @@
         limit 1
     </select>
 
-    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMapDTO">
         select
-        <include refid="Base_Column_List"/>
-        from cgsq_order cgsq
+        <include refid="Base_Column_List_Dto"/>
+        from cgsq_order cgsq, provider p, sys_user su, medicine m
         <where>
-            del_flag = 0
+            cgsq.del_flag = 0 AND p.id = cgsq.provider_id and su.id = cgsq.sys_user_id AND m.id = cgsq.medicine_id
             <if test="billDate != null">
                 AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
@@ -213,7 +226,7 @@
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List_Dto"/>
         from cgsq_order
         where id = #{id,jdbcType=INTEGER}
     </select>

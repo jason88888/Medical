@@ -3,6 +3,7 @@
 <mapper namespace="com.taotaotech.dao.CgrkOrderMapper">
     <resultMap id="BaseResultMap" type="com.taotaotech.domain.CgrkOrder">
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
         <result column="bill_date" property="billDate" jdbcType="VARCHAR"/>
         <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER"/>
         <result column="medicine_id" property="medicineId" jdbcType="INTEGER"/>
@@ -30,14 +31,14 @@
         <result column="del_flag" property="delFlag" jdbcType="BIT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, bill_date, warehouse_id, medicine_id, sys_user_id, agent_id, commercial_company_id,provider_id,
-    unit_price, high_unit_price, pay_date, store_date, order_code, purchase_price, purchase_money, 
-    tax, taxpay_mode, taxpay_date, invoice_number, invoice_date,
-    descript, create_date, update_date, del_flag,quantity,units
-  </sql>
+        id, code,bill_date, warehouse_id, medicine_id, sys_user_id, agent_id, commercial_company_id,provider_id,
+        unit_price, high_unit_price, pay_date, store_date, order_code, purchase_price, purchase_money,
+        tax, taxpay_mode, taxpay_date, invoice_number, invoice_date,
+        descript, create_date, update_date, del_flag,quantity,units
+    </sql>
 
     <sql id="Base_Column_List_Dto">
-        rk.id, bill_date, warehouse_id, medicine_id, sys_user_id, commercial_company_id,
+        rk.id,rk.code ,bill_date, warehouse_id, medicine_id, sys_user_id, commercial_company_id,
         agent_id,provider_id, unit_price, high_unit_price, pay_date, store_date,
         order_code, purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
         invoice_number, invoice_date, rk.descript, rk.create_date, rk.update_date, rk.del_flag,
@@ -71,13 +72,13 @@
             and su.id = rk.sys_user_id AND m.id = rk.medicine_id AND c.id = rk.commercial_company_id
             AND a.id = agent_id
             <if test="billDate != null">
-               AND bill_date = #{billDate,jdbcType=VARCHAR}
+                AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
             <if test="warehouseId != null">
-                AND  warehouse_id = #{warehouseId,jdbcType=INTEGER}
+                AND warehouse_id = #{warehouseId,jdbcType=INTEGER}
             </if>
             <if test="medicineId != null">
-                AND  medicine_id = #{medicineId,jdbcType=INTEGER}
+                AND medicine_id = #{medicineId,jdbcType=INTEGER}
             </if>
             <if test="sysUserId != null">
                 AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
@@ -142,13 +143,13 @@
             and su.id = rk.sys_user_id AND m.id = rk.medicine_id AND c.id = rk.commercial_company_id
             AND a.id = agent_id
             <if test="billDate != null">
-               AND bill_date = #{billDate,jdbcType=VARCHAR}
+                AND bill_date = #{billDate,jdbcType=VARCHAR}
             </if>
             <if test="warehouseId != null">
-                AND  warehouse_id = #{warehouseId,jdbcType=INTEGER}
+                AND warehouse_id = #{warehouseId,jdbcType=INTEGER}
             </if>
             <if test="medicineId != null">
-                AND  medicine_id = #{medicineId,jdbcType=INTEGER}
+                AND medicine_id = #{medicineId,jdbcType=INTEGER}
             </if>
             <if test="sysUserId != null">
                 AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
@@ -306,10 +307,10 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cgrk_order
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-    <insert id="insert" parameterType="com.taotaotech.domain.CgrkOrder"  useGeneratedKeys="true" keyProperty="id" >
+        delete from cgrk_order
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.taotaotech.domain.CgrkOrder" useGeneratedKeys="true" keyProperty="id">
         insert into cgrk_order (bill_date, warehouse_id, medicine_id,
         sys_user_id, commercial_company_id,agent_id, provider_id,
         unit_price, high_unit_price, pay_date,
@@ -330,7 +331,8 @@
         #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.taotaotech.domain.CgrkOrder"  useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.CgrkOrder" useGeneratedKeys="true"
+            keyProperty="id">
         insert into cgrk_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="billDate != null">
@@ -504,7 +506,7 @@
                 sys_user_id = #{sysUserId,jdbcType=INTEGER},
             </if>
             <if test="commercialCompanyId != null">
-               commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+                commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
             </if>
             <if test="agentId != null">
                 agent_id = #{agentId,jdbcType=INTEGER},
@@ -570,32 +572,32 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.CgrkOrder">
-    update cgrk_order
-    set bill_date = #{billDate,jdbcType=VARCHAR},
-      warehouse_id = #{warehouseId,jdbcType=INTEGER},
-      medicine_id = #{medicineId,jdbcType=INTEGER},
-      sys_user_id = #{sysUserId,jdbcType=INTEGER},
-      commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
-      agent_id = #{agentId,jdbcType=INTEGER},
-      provider_id = #{providerId,jdbcType=INTEGER},
-      unit_price = #{unitPrice,jdbcType=DECIMAL},
-      high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
-      pay_date = #{payDate,jdbcType=VARCHAR},
-      store_date = #{storeDate,jdbcType=VARCHAR},
-      order_code = #{orderCode,jdbcType=VARCHAR},
-      purchase_price = #{purchasePrice,jdbcType=VARCHAR},
-      purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
-      tax = #{tax,jdbcType=VARCHAR},
-      taxpay_mode = #{taxpayMode,jdbcType=VARCHAR},
-      taxpay_date = #{taxpayDate,jdbcType=VARCHAR},
-      invoice_number = #{invoiceNumber,jdbcType=INTEGER},
-      invoice_date = #{invoiceDate,jdbcType=VARCHAR},
-      descript = #{descript,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      quantity = #{quantity,jdbcType=INTEGER},
-      units = #{units,jdbcType=VARCHAR},
-      del_flag = #{delFlag,jdbcType=BIT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update cgrk_order
+        set bill_date = #{billDate,jdbcType=VARCHAR},
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+        medicine_id = #{medicineId,jdbcType=INTEGER},
+        sys_user_id = #{sysUserId,jdbcType=INTEGER},
+        commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
+        agent_id = #{agentId,jdbcType=INTEGER},
+        provider_id = #{providerId,jdbcType=INTEGER},
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+        high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
+        pay_date = #{payDate,jdbcType=VARCHAR},
+        store_date = #{storeDate,jdbcType=VARCHAR},
+        order_code = #{orderCode,jdbcType=VARCHAR},
+        purchase_price = #{purchasePrice,jdbcType=VARCHAR},
+        purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+        tax = #{tax,jdbcType=VARCHAR},
+        taxpay_mode = #{taxpayMode,jdbcType=VARCHAR},
+        taxpay_date = #{taxpayDate,jdbcType=VARCHAR},
+        invoice_number = #{invoiceNumber,jdbcType=INTEGER},
+        invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+        descript = #{descript,jdbcType=VARCHAR},
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+        quantity = #{quantity,jdbcType=INTEGER},
+        units = #{units,jdbcType=VARCHAR},
+        del_flag = #{delFlag,jdbcType=BIT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>
