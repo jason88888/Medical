@@ -8,19 +8,19 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>药品名称：</label>
-                <input name="code" class="required" type="text" value="${stock.medicineName}" autocomplete="off" size="30" alt="请输入供应商编号" readonly/>
+                <input name="code" class="required" type="text" value="${stock.medicineName}" autocomplete="off" size="30"  readonly/>
             </p>
             <p>
                 <label>仓库名称：</label>
-                <input name="name" class="required" type="text" value="${stock.warehouseName}" autocomplete="off" size="30" alt="请输入供应商名称" readonly/>
+                <input name="name" class="required" type="text" value="${stock.warehouseName}" autocomplete="off" size="30"  readonly/>
             </p>
             <p>
                 <label>现有数量</label>
-                <input name="areaName" type="text" value="${stock.nowQuantity}" autocomplete="off" size="30" alt="请输入地区" readonly/>
+                <input name="areaName" type="text" value="${stock.nowQuantity}" autocomplete="off" size="30"  readonly/>
             </p>
             <p>
                 <label>备注</label>
-                <textarea name="descript"  type="text" autocomplete="off" cols="28" alt="请输入备注" readonly>${stock.descript}</textarea>
+                <textarea name="descript"  type="text" autocomplete="off" cols="28"  readonly>${stock.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

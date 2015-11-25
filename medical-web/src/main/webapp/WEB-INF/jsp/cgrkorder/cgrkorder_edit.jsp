@@ -4,11 +4,10 @@
 <div class="pageContent">
     <form method="post" action="cgrkorder/save" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="56" autocomplete="off">
-            <%--<input type="hidden" name="id" value="${cgrkorder.id}"/>--%>
-            <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+            <input type="hidden" name="id" value="${cgrkorder.id}"/>
             <p>
                 <label>入库单编号：</label>
-                <input name="id" type="text" size="30" class="required" value="${cgrkorder.id}" readonly/>
+                <input name="code" type="text" size="30" class="required" value="${cgrkorder.code}"/>
             </p>
 
             <p>

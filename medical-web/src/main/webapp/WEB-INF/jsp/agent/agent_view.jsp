@@ -8,26 +8,22 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>代理商代码：</label>
-                <input name="code" class="required" type="text" value="${agent.code}" autocomplete="off" size="30"
-                       alt="请输入代理商代码" readonly/>
+                <input name="code" class="required" type="text" value="${agent.code}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>代理商姓名：</label>
-                <input name="name" type="text" value="${agent.name}" autocomplete="off" size="30" alt="请输入代理商姓名"
-                       readonly/>
+                <input name="name" type="text" value="${agent.name}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>代理级别</label>
-                <input name="level" class="required" type="text" value="${agent.level}" autocomplete="off" size="30"
-                       alt="请输入代理级别" readonly/>
+                <input name="level" class="required" type="text" value="${agent.level}" autocomplete="off" size="30" readonly/>
             </p>
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" autocomplete="off" cols="28" alt="请输入备注"
-                          readonly>${agent.descript}</textarea>
+                <textarea name="descript" type="text" autocomplete="off" cols="28" readonly>${agent.descript}</textarea>
             </p>
         </div>
         <div class="formBar">

@@ -8,7 +8,7 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>代理商代码：</label>
-                <input name="code" class="required" type="text" autocomplete="off" size="30" alt="请输入代理商代码"/>
+                <input name="code" class="required textInput valid" type="text" autocomplete="off" size="30" alt="请输入代理商代码"/>
             </p>
 
             <p>

@@ -229,7 +229,7 @@
                 sys_user_id = #{sysUserId,jdbcType=INTEGER},
             </if>
             <if test="commercialCompanyId != null">
-                AND commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+                commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
             </if>
             <if test="agentId != null">
                 agent_id = #{agentId,jdbcType=INTEGER},
