@@ -32,9 +32,9 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="agent/insert" target="dialog" width="800" height="400"><span>添加</span></a></li>
+            <li><a class="add" href="agent/insert" target="dialog" width="820" height="400"><span>添加</span></a></li>
             <li><a class="delete" href="agent/delete" target="selectedTodo" title="确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="agent/view?id={id}" target="dialog" warn="请选择一个代理商" width="800" height="400"><span>查看</span></a></li>
+            <li><a class="edit" href="agent/view?id={id}" target="dialog" warn="请选择一个代理商" width="820" height="400"><span>查看</span></a></li>
         </ul>
     </div>
     <table class="table" width="100%" layoutH="138">

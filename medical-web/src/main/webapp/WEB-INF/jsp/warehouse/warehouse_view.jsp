@@ -47,9 +47,8 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="warehouse/edit?id=${warehouse.id}" target="dialog"
-                                                     width="800" height="400">编辑</a>
-                            </button>
+                            <a href="warehouse/edit?id=${warehouse.id}" target="dialog" width="820" height="400">编辑</a>
+
                         </div>
                     </div>
                 </li>

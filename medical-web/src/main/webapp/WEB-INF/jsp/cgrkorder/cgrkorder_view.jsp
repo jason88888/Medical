@@ -130,8 +130,8 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="cgrkorder/edit?id=${cgrkorder.id}" target="dialog" rel="form"
-                                                     width="820" height="400">编辑</a></button>
+                            <a href="cgrkorder/edit?id=${cgrkorder.id}" target="dialog" rel="form"
+                                                     width="820" height="400">编辑</a>
                         </div>
                     </div>
                 </li>

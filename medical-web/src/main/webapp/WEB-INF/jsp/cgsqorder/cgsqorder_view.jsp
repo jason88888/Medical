@@ -76,8 +76,7 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="cgsqorder/edit?id=${cgsqorder.id}" target="dialog" rel="form"
-                                                     width="820" height="400">编辑</a></button>
+                          <a href="cgsqorder/edit?id=${cgsqorder.id}" target="dialog" rel="form" width="820" height="400">编辑</a></button>
                         </div>
                     </div>
                 </li>

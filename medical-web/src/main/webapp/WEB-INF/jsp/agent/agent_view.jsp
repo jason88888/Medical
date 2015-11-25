@@ -8,7 +8,8 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>代理商代码：</label>
-                <input name="code" class="required" type="text" value="${agent.code}" autocomplete="off" size="30" readonly/>
+                <input name="code" class="required" type="text" value="${agent.code}" autocomplete="off" size="30"
+                       readonly/>
             </p>
 
             <p>
@@ -18,7 +19,8 @@
 
             <p>
                 <label>代理级别</label>
-                <input name="level" class="required" type="text" value="${agent.level}" autocomplete="off" size="30" readonly/>
+                <input name="level" class="required" type="text" value="${agent.level}" autocomplete="off" size="30"
+                       readonly/>
             </p>
 
             <p>
@@ -32,8 +34,8 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="agent/edit?id=${agent.id}" target="dialog" width="800"
-                                                     height="400">编辑</a></button>
+                            <a href="agent/edit?id=${agent.id}" target="dialog" width="820"
+                               height="400">编辑</a>
                         </div>
                     </div>
                 </li>

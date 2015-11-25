@@ -32,7 +32,7 @@ public class LoginController extends BaseController {
         return "coming";
     }
 
-    @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
     public String login(@Param(value = "username") String username,
                         @Param(value = "password") String password, HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = null;

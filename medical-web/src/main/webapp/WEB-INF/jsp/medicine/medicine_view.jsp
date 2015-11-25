@@ -79,7 +79,8 @@
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" autocomplete="off" cols="28" readonly>${medicine.descript}</textarea>
+                <textarea name="descript" type="text" autocomplete="off" cols="28"
+                          readonly>${medicine.descript}</textarea>
             </p>
         </div>
         <div class="formBar">
@@ -88,9 +89,7 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="medicine/edit?id=${medicine.id}" target="dialog" width="800"
-                                                     height="400">编辑</a>
-                            </button>
+                            <a href="medicine/edit?id=${medicine.id}" target="dialog" width="820" height="400">编辑</a>
                         </div>
                     </div>
                 </li>

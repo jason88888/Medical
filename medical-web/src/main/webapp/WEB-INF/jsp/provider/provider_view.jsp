@@ -9,12 +9,14 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>供应商编号：</label>
-                <input name="code" class="required" type="text" value="${provider.code}" autocomplete="off" size="30" readonly/>
+                <input name="code" class="required" type="text" value="${provider.code}" autocomplete="off" size="30"
+                       readonly/>
             </p>
 
             <p>
                 <label>供应商名称：</label>
-                <input name="name" class="required" type="text" value="${provider.name}" autocomplete="off" size="30"readonly/>
+                <input name="name" class="required" type="text" value="${provider.name}" autocomplete="off" size="30"
+                       readonly/>
             </p>
 
             <p>
@@ -24,7 +26,8 @@
 
             <p>
                 <label>负责人：</label>
-                <input name="chiefName" type="text" value="${provider.chiefName}" autocomplete="off" size="30" readonly/>
+                <input name="chiefName" type="text" value="${provider.chiefName}" autocomplete="off" size="30"
+                       readonly/>
             </p>
 
             <p>
@@ -35,12 +38,14 @@
 
             <p>
                 <label>联系电话</label>
-                <input name="telephone" type="text" value="${provider.telephone}" autocomplete="off" cols="28" readonly/>
+                <input name="telephone" type="text" value="${provider.telephone}" autocomplete="off" cols="28"
+                       readonly/>
             </p>
 
             <p>
                 <label>备注</label>
-                <textarea name="descript" type="text" autocomplete="off" cols="28" readonly>${provider.descript}</textarea>
+                <textarea name="descript" type="text" autocomplete="off" cols="28"
+                          readonly>${provider.descript}</textarea>
             </p>
         </div>
         <div class="formBar">
@@ -49,8 +54,8 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="provider/edit?id=${provider.id}" target="dialog" width="800" height="400">编辑</a>
-                            </button>
+                            <a href="provider/edit?id=${provider.id}" target="dialog" width="820" height="400">编辑</a>
+
                         </div>
                     </div>
                 </li>

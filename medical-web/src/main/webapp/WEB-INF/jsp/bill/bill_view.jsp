@@ -55,9 +55,9 @@
                 <li>
                     <div class="buttonActive">
                         <div class="buttonContent">
-                            <button type="submit"><a href="bill/edit?id=${bill.id}" target="dialog" rel="form"
-                                                     width="800" height="400">编辑</a>
-                            </button>
+                            <a href="bill/edit?id=${bill.id}" target="dialog" rel="form"
+                                                     width="820" height="400">编辑</a>
+
                         </div>
                     </div>
                 </li>

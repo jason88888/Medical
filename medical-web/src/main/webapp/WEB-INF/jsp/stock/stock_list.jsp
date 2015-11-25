@@ -34,7 +34,7 @@
         <ul class="toolBar">
             <%--<li><a class="add" href="stock/insert" target="dialog"><span>添加</span></a></li>--%>
             <%--<li><a class="delete" href="stock/delete" target="selectedTodo" title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>--%>
-            <li><a class="edit" href="stock/view?id={id}" target="dialog" warn="请选择一个库存" width="800"
+            <li><a class="edit" href="stock/view?id={id}" target="dialog" warn="请选择一个库存" width="820"
                    height="400"><span>详情</span></a></li>
         </ul>
     </div>

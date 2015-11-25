@@ -3,13 +3,14 @@
 
 <form id="pagerForm" method="post" action="commission/list">
     <input type="hidden" name="status" value="${param.status}">
-    <input type="hidden" name="keywords" value="${param.keywords}" />
-    <input type="hidden" name="currentPage" value="1" />
-    <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-    <input type="hidden" name="orderField" value="${param.orderField}" />
+    <input type="hidden" name="keywords" value="${param.keywords}"/>
+    <input type="hidden" name="currentPage" value="1"/>
+    <input type="hidden" name="numPerPage" value="${model.numPerPage}"/>
+    <input type="hidden" name="orderField" value="${param.orderField}"/>
 </form>
 <div class="panel" style="margin: 5px;">
     <h1>当前数据总计</h1>
+
     <div>
         <table class="table" width="100%">
             <thead>
@@ -49,64 +50,51 @@
 
     <form onsubmit="return navTabSearch(this);" action="commission/list" method="post">
         <div class="searchBar">
-            <!--<ul class="searchContent">
-                <li>
-                    <label>我的客户：</label>
-                    <input type="text"/>
-                </li>
-                <li>
-                <select class="combox" name="province">
-                    <option value="">所有省市</option>
-                    <option value="北京">北京</option>
-                    <option value="上海">上海</option>
-                    <option value="天津">天津</option>
-                    <option value="重庆">重庆</option>
-                    <option value="广东">广东</option>
-                </select>
-                </li>
-            </ul>
-            -->
             <table class="searchContent">
-                <%--药品代码 业务员代码  二级代码 三级代码 终端代码--%>
                 <tr>
                     <td>
                         <select class="combox" name="province">
                             <option value="">所有</option>
-                            <option value="medicineCode" ${param.province.equals("medicineCode")?"selected":""}>药品代码</option>
+                            <option value="medicineCode" ${param.province.equals("medicineCode")?"selected":""}>药品代码
+                            </option>
                             <option value="userCode" ${param.province.equals("userCode")?"selected":""}>业务员代码</option>
-                            <option value="twoLevelCode" ${param.province.equals("twoLevelCode")?"selected":""}>二级代码</option>
-                            <option value="threeLevelCode" ${param.province.equals("threeLevelCode")?"selected":""}>三级代码</option>
-                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码</option>
+                            <option value="twoLevelCode" ${param.province.equals("twoLevelCode")?"selected":""}>二级代码
+                            </option>
+                            <option value="threeLevelCode" ${param.province.equals("threeLevelCode")?"selected":""}>
+                                三级代码
+                            </option>
+                            <option value="clientCode" ${param.province.equals("clientCode")?"selected":""}>终端代码
+                            </option>
                         </select>
                     </td>
                     <td>
-                        代码：<input type="text" name="keyword" value="${param.keyword}" />
+                        代码：<input type="text" name="keyword" value="${param.keyword}"/>
                     </td>
                 </tr>
             </table>
             <div class="subBar">
                 <ul>
-                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-                    <li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
+                    <li>
+                        <div class="buttonActive">
+                            <div class="buttonContent">
+                                <button type="submit">检索</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a class="button" href="demo_page6.html" target="dialog" mask="true"
+                           title="查询框"><span>高级检索</span></a></li>
                 </ul>
             </div>
         </div>
     </form>
 </div>
 <div class="pageContent">
-    <%--<div class="panelBar">--%>
-        <%--<ul class="toolBar">--%>
-            <%--<li><a class="add" href="commission/insert" target="dialog"><span>添加</span></a></li>--%>
-            <%--<li><a class="delete" href="demo/common/ajaxDone.html?uid={sid_user}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>--%>
-            <%--<li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>--%>
-            <%--<li class="line">line</li>--%>
-            <%--<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targetType="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>--%>
-        <%--</ul>--%>
-    <%--</div>--%>
     <table class="table" width="150%" layoutH="230">
         <thead>
         <tr>
-            <th style="width: 18px; cursor: col-resize;"><div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div></th>
+            <th style="width: 18px; cursor: col-resize;">
+                <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
+            </th>
             <th width="120">药品编码</th>
             <th width="250">药品名称</th>
             <th width="100">客户码</th>
@@ -128,7 +116,9 @@
         <tbody>
         <c:forEach items="${page.list}" var="commission">
             <tr>
-                <td><div><input name="ids" value="${commission.id}" type="checkbox"></div></td>
+                <td>
+                    <div><input name="ids" value="${commission.id}" type="checkbox"></div>
+                </td>
                 <td>${commission.medicineCode}</td>
                 <td>${commission.medicineName}</td>
                 <td>${commission.clientCode}</td>
@@ -161,7 +151,8 @@
             <span>条，共${page.totalCount}条</span>
         </div>
 
-        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}" pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
+        <div class="pagination" targetType="navTab" totalCount="${page.totalCount}" numPerPage="${page.numPerPage}"
+             pageNumShown="${page.numPerPage}" currentPage="${page.currentPage}"></div>
 
     </div>
 </div>

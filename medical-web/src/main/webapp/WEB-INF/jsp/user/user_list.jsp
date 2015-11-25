@@ -47,12 +47,12 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="user/form" target="dialog" width="800"
+            <li><a class="add" href="user/form" target="dialog" width="820"
                    height="400"><span>添加</span></a></li>
             <li><a class="delete" href="user/delete" target="selectedTodo" rel="ids"
                    title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a>
             </li>
-            <li><a class="edit" href="user/view?id={id}" target="dialog" warn="请选择一个用户" width="800"
+            <li><a class="edit" href="user/view?id={id}" target="dialog" warn="请选择一个用户" width="820"
                    height="400"><span>详情</span></a></li>
         </ul>
     </div>
