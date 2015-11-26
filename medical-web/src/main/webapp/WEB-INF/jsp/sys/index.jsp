@@ -82,7 +82,8 @@
                             <li><a href="provider/list" target="navTab" rel="provider_list">供应商管理</a></li>
                             <li><a href="client/list" target="navTab" rel="client_list">医疗机构管理</a></li>
                             <li><a href="agent/list" target="navTab" rel="agent_list">代理商管理</a></li>
-                            <li><a href="commercialcompany/list" target="navTab" rel="commercialcompany_list">购进商业公司管理</a></li>
+                            <li><a href="commercialcompany/list" target="navTab"
+                                   rel="commercialcompany_list">购进商业公司管理</a></li>
                             <li><a href="policy/list" target="navTab" rel="policy_list">销售政策管理</a></li>
                             <li><a href="user/list" target="navTab" rel="user_list">公司人员管理</a></li>
                             <li><a href="upload/view" target="navTab">数据导入</a></li>
@@ -98,9 +99,9 @@
                         <ul class="tree treeFolder">
                             <li><a href="cgsqorder/list" target="navTab" rel="cgsqorder_list">采购申请单管理</a></li>
                             <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购入库单管理</a></li>
-                            <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购退货单管理</a></li>
-                            <li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>
-                            <li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>
+                            <li><a href="cgthorder/list" target="navTab" rel="cgthorder_list">采购退货单管理</a></li>
+                            <%--<li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>--%>
+                            <%--<li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>--%>
                         </ul>
                     </div>
                 </c:if>
@@ -116,10 +117,10 @@
                         <li><a href="commission/list" target="navTab"
                                rel="admin_info">销售费用结算</a></li>
                         <c:if test="${user.role == 1}">
-                        <li><a href="coming" target="navTab"
-                               rel="admin_info">费用结算复核</a></li>
-                        <li><a href="coming" target="navTab"
-                               rel="admin_info">结算规则更改</a></li>
+                            <li><a href="coming" target="navTab"
+                                   rel="admin_info">费用结算复核</a></li>
+                            <li><a href="coming" target="navTab"
+                                   rel="admin_info">结算规则更改</a></li>
                         </c:if>
                     </ul>
                 </div>
@@ -132,22 +133,22 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="warehouse/list" target="navTab" rel="warehouse_list">仓库管理</a></li>
+                            <li><a href="warehouse/list" target="navTab" rel="warehouse_list">一级仓库管理</a></li>
+                            <li><a href="warehouse/list" target="navTab" rel="warehouse_list">二级仓库管理</a></li>
                             <li><a href="stock/list" target="navTab" rel="warehouse_list">库存管理</a></li>
-
                         </ul>
                     </div>
 
                     <div class="accordionHeader">
-                    <h2>
-                        <span>Folder</span>财务管理
-                    </h2>
-                </div>
-                <div class="accordionContent">
-                    <ul class="tree treeFolder">
-                        <li>尚未开发</li>
-                    </ul>
-                </div>
+                        <h2>
+                            <span>Folder</span>财务管理
+                        </h2>
+                    </div>
+                    <div class="accordionContent">
+                        <ul class="tree treeFolder">
+                            <li>尚未开发</li>
+                        </ul>
+                    </div>
 
                     <div class="accordionHeader">
                         <h2>

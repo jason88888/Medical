@@ -17,7 +17,7 @@
             <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
             <p>
                 <label>入库单编号：</label>
-                <input name="code" type="text" size="30" value="${cgrkorder.id}" readonly/>
+                <input name="code" type="text" size="30" value="${cgrkorder.code}" readonly/>
             </p>
             <%--<p>--%>
             <%--<label>单据日期：</label>--%>

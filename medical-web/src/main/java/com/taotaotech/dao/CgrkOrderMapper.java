@@ -17,7 +17,7 @@ public interface CgrkOrderMapper extends CrudMapper<CgrkOrder> {
 
     int updateByPrimaryKeySelective(CgrkOrder record);
 
-    List<CgrkOrder> findRkOrderList(PageBounds pageBounds);
+//    List<CgrkOrder> findRkOrderList(PageBounds pageBounds);
 
     int updateByPrimaryKey(CgrkOrder record);
 }

@@ -45,7 +45,7 @@
             <th style="width: 18px; cursor: col-resize;">
                 <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
             </th>
-            <th>入库单编号</th>
+            <th>采购入库单编号</th>
             <%--<th>单据日期</th>--%>
             <th>仓库名称</th>
             <th>药品名称</th>
@@ -76,7 +76,7 @@
                 <td>
                     <div><input name="ids" value="${cgrkorder.id}" type="checkbox"></div>
                 </td>
-                <td>${cgrkorder.id}</td>
+                <td>${cgrkorder.code}</td>
                     <%--<td>${rkorder.billDate}</td>--%>
                 <td>${cgrkorder.warehouseName}</td>
                 <td>${cgrkorder.medicineName}</td>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotaotech.dao.CgthOrderMapper">
+    <resultMap id="BaseResultMap" type="com.taotaotech.domain.CgthOrder">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="bill_date" property="billDate" jdbcType="VARCHAR"/>
+        <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER"/>
+        <result column="medicine_id" property="medicineId" jdbcType="INTEGER"/>
+        <result column="sys_user_id" property="sysUserId" jdbcType="INTEGER"/>
+        <result column="commercial_company_id" property="commercialCompanyId" jdbcType="INTEGER"/>
+        <result column="agent_id" property="agentId" jdbcType="INTEGER"/>
+        <result column="provider_id" property="providerId" jdbcType="INTEGER"/>
+        <result column="unit_price" property="unitPrice" jdbcType="DECIMAL"/>
+        <result column="high_unit_price" property="highUnitPrice" jdbcType="DECIMAL"/>
+        <result column="return_date" property="returnDate" jdbcType="VARCHAR"/>
+        <result column="outstore_date" property="outStoreDate" jdbcType="VARCHAR"/>
+        <result column="purchase_price" property="purchasePrice" jdbcType="VARCHAR"/>
+        <result column="purchase_money" property="purchaseMoney" jdbcType="VARCHAR"/>
+        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
+        <result column="units" property="units" jdbcType="VARCHAR"/>
+        <result column="descript" property="descript" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="del_flag" property="delFlag" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, code,bill_date, warehouse_id, medicine_id, sys_user_id, agent_id, commercial_company_id,provider_id,
+    unit_price, high_unit_price, return_date, outstore_date, purchase_price, purchase_money,
+    descript, create_date, update_date, del_flag,quantity,units
+  </sql>
+
+    <sql id="Base_Column_List_Dto">
+        th.id,th.code ,bill_date, warehouse_id, medicine_id, sys_user_id, commercial_company_id,
+        agent_id,provider_id, unit_price, high_unit_price, return_date, outstore_date, purchase_price, purchase_money, th.descript, th.create_date, th.update_date, th.del_flag,
+        quantity,th.units,p.name as provider_name, w.name as warehouse_name,
+        su.username as operator_name, m.name as medicine_name, a.name as agent_name,c.name as commercial_company_name
+    </sql>
+
+    <resultMap id="BaseResultMapDTO" type="com.taotaotech.dto.CgthOrderDTO" extends="BaseResultMap">
+        <result column="provider_name" property="providerName" jdbcType="VARCHAR"/>
+        <result column="warehouse_name" property="warehouseName" jdbcType="VARCHAR"/>
+        <result column="medicine_name" property="medicineName" jdbcType="VARCHAR"/>
+        <result column="operator_name" property="operatorName" jdbcType="VARCHAR"/>
+        <result column="agent_name" property="agentName" jdbcType="VARCHAR"/>
+        <result column="commercial_company_name" property="commercialCompanyName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="get" resultMap="BaseResultMapDTO" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List_Dto"/>
+        from cgth_order th, provider p, warehouse w, sys_user su, medicine m, agent a, commercial_company c
+        where th.del_flag = 0 AND p.id = th.provider_id and w.id = th.warehouse_id
+        AND su.id = th.sys_user_id AND m.id = th.medicine_id AND c.id = th.commercial_company_id
+        AND a.id = th.agent_id AND th.id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="find" parameterType="java.util.Map" resultMap="BaseResultMapDTO">
+        select
+        <include refid="Base_Column_List_Dto"/>
+        from cgth_order th, provider p, warehouse w, sys_user su, medicine m,agent a,commercial_company c
+        <where>
+            th.del_flag = 0 AND p.id = th.provider_id and w.id = th.warehouse_id
+            and su.id = th.sys_user_id AND m.id = th.medicine_id AND c.id = th.commercial_company_id
+            AND a.id = agent_id
+            <if test="billDate != null">
+                AND bill_date = #{billDate,jdbcType=VARCHAR}
+            </if>
+            <if test="warehouseId != null">
+                AND warehouse_id = #{warehouseId,jdbcType=INTEGER}
+            </if>
+            <if test="medicineId != null">
+                AND medicine_id = #{medicineId,jdbcType=INTEGER}
+            </if>
+            <if test="sysUserId != null">
+                AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
+            </if>
+            <if test="commercialCompanyId != null">
+                AND commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+            </if>
+            <if test="agentId != null">
+                AND agent_id = #{agentId,jdbcType=INTEGER}
+            </if>
+            <if test="providerId != null">
+                AND provider_id = #{providerId,jdbcType=INTEGER}
+            </if>
+            <if test="unitPrice != null">
+                AND unit_price = #{unitPrice,jdbcType=DECIMAL}
+            </if>
+            <if test="highUnitPrice != null">
+                AND high_unit_price = #{highUnitPrice,jdbcType=DECIMAL}
+            </if>
+            <if test="returnDate != null">
+                AND return_date = #{returnDate,jdbcType=VARCHAR}
+            </if>
+            <if test="outStoreDate != null">
+                AND outstore_date = #{outStoreDate,jdbcType=VARCHAR}
+            </if>
+            <if test="purchasePrice != null">
+                AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
+            </if>
+            <if test="purchaseMoney != null">
+                AND purchase_money = #{purchaseMoney,jdbcType=VARCHAR}
+            </if>
+            <if test="descript != null">
+                AND descript = #{descript,jdbcType=VARCHAR}
+            </if>
+        </where>
+        limit 1
+    </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMapDTO">
+        select
+        <include refid="Base_Column_List_Dto"/>
+        from cgth_order th, provider p, warehouse w, sys_user su, medicine m,agent a,commercial_company c
+        <where>
+            th.del_flag = 0 AND p.id = th.provider_id and w.id = th.warehouse_id
+            and su.id = th.sys_user_id AND m.id = th.medicine_id AND c.id = th.commercial_company_id
+            AND a.id = agent_id
+            <if test="billDate != null">
+                AND bill_date = #{billDate,jdbcType=VARCHAR}
+            </if>
+            <if test="warehouseId != null">
+                AND warehouse_id = #{warehouseId,jdbcType=INTEGER}
+            </if>
+            <if test="medicineId != null">
+                AND medicine_id = #{medicineId,jdbcType=INTEGER}
+            </if>
+            <if test="sysUserId != null">
+                AND sys_user_id = #{sysUserId,jdbcType=INTEGER}
+            </if>
+            <if test="commercialCompanyId != null">
+                AND commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER}
+            </if>
+            <if test="agentId != null">
+                AND agent_id = #{agentId,jdbcType=INTEGER}
+            </if>
+            <if test="providerId != null">
+                AND provider_id = #{providerId,jdbcType=INTEGER}
+            </if>
+            <if test="unitPrice != null">
+                AND unit_price = #{unitPrice,jdbcType=DECIMAL}
+            </if>
+            <if test="highUnitPrice != null">
+                AND high_unit_price = #{highUnitPrice,jdbcType=DECIMAL}
+            </if>
+            <if test="returnDate != null">
+                AND return_date = #{returnDate,jdbcType=VARCHAR}
+            </if>
+            <if test="outStoreDate != null">
+                AND outstore_date = #{outStoreDate,jdbcType=VARCHAR}
+            </if>
+            <if test="purchasePrice != null">
+                AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
+            </if>
+            <if test="purchaseMoney != null">
+                AND purchase_money = #{purchaseMoney,jdbcType=VARCHAR}
+            </if>
+            <if test="descript != null">
+                AND descript = #{descript,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY th.id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="update" parameterType="com.taotaotech.domain.CgthOrder">
+        update cgth_order
+        <set>
+            <if test="billDate != null">
+                bill_date = #{billDate,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="medicineId != null">
+                medicine_id = #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="sysUserId != null">
+                sys_user_id = #{sysUserId,jdbcType=INTEGER},
+            </if>
+            <if test="commercialCompanyId != null">
+                commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
+            </if>
+            <if test="agentId != null">
+                agent_id = #{agentId,jdbcType=INTEGER},
+            </if>
+            <if test="providerId != null">
+                provider_id = #{providerId,jdbcType=INTEGER},
+            </if>
+            <if test="unitPrice != null">
+                unit_price = #{unitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="highUnitPrice != null">
+                high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="returnDate != null">
+                return_date = #{returnDate,jdbcType=VARCHAR},
+            </if>
+            <if test="outStoreDate != null">
+                outstore_date = #{outStoreDate,jdbcType=VARCHAR},
+            </if>
+            <if test="purchasePrice != null">
+                purchase_price = #{purchasePrice,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseMoney != null">
+                purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                descript = #{descript,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=BIT},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=BIT},
+            </if>
+            <if test="units != null">
+                units = #{units,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from cgth_order
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from cgth_order
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cgth_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.taotaotech.domain.CgthOrder">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into cgth_order (code, bill_date, warehouse_id,
+        medicine_id, sys_user_id, commercial_company_id,
+        agent_id, provider_id, unit_price,
+        high_unit_price, return_date, outstore_date, purchase_price, purchase_money,
+        quantity, units, descript,
+        create_date, update_date, del_flag
+        )
+        values (#{code,jdbcType=VARCHAR}, #{billDate,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER},
+        #{medicineId,jdbcType=INTEGER}, #{sysUserId,jdbcType=INTEGER}, #{commercialCompanyId,jdbcType=INTEGER},
+        #{agentId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL},
+        #{highUnitPrice,jdbcType=DECIMAL}, #{returnDate,jdbcType=VARCHAR}, #{outStoreDate,jdbcType=VARCHAR},
+        #{purchasePrice,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR},
+        #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
+        #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BIT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.taotaotech.domain.CgthOrder">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into cgth_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="billDate != null">
+                bill_date,
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id,
+            </if>
+            <if test="medicineId != null">
+                medicine_id,
+            </if>
+            <if test="sysUserId != null">
+                sys_user_id,
+            </if>
+            <if test="commercialCompanyId != null">
+                commercial_company_id,
+            </if>
+            <if test="agentId != null">
+                agent_id,
+            </if>
+            <if test="providerId != null">
+                provider_id,
+            </if>
+            <if test="unitPrice != null">
+                unit_price,
+            </if>
+            <if test="highUnitPrice != null">
+                high_unit_price,
+            </if>
+            <if test="returnDate != null">
+                return_date,
+            </if>
+            <if test="outStoreDate != null">
+                outstore_date,
+            </if>
+            <if test="purchasePrice != null">
+                purchase_price,
+            </if>
+            <if test="purchaseMoney != null">
+                purchase_money,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="units != null">
+                units,
+            </if>
+            <if test="descript != null">
+                descript,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="billDate != null">
+                #{billDate,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null">
+                #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="medicineId != null">
+                #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="sysUserId != null">
+                #{sysUserId,jdbcType=INTEGER},
+            </if>
+            <if test="commercialCompanyId != null">
+                #{commercialCompanyId,jdbcType=INTEGER},
+            </if>
+            <if test="agentId != null">
+                #{agentId,jdbcType=INTEGER},
+            </if>
+            <if test="providerId != null">
+                #{providerId,jdbcType=INTEGER},
+            </if>
+            <if test="unitPrice != null">
+                #{unitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="highUnitPrice != null">
+                #{highUnitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="returnDate != null">
+                #{returnDate,jdbcType=VARCHAR},
+            </if>
+            <if test="outStoreDate != null">
+                #{outStoreDate,jdbcType=VARCHAR},
+            </if>
+            <if test="purchasePrice != null">
+                #{purchasePrice,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseMoney != null">
+                #{purchaseMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="units != null">
+                #{units,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                #{descript,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.taotaotech.domain.CgthOrder">
+        update cgth_order
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="billDate != null">
+                bill_date = #{billDate,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseId != null">
+                warehouse_id = #{warehouseId,jdbcType=INTEGER},
+            </if>
+            <if test="medicineId != null">
+                medicine_id = #{medicineId,jdbcType=INTEGER},
+            </if>
+            <if test="sysUserId != null">
+                sys_user_id = #{sysUserId,jdbcType=INTEGER},
+            </if>
+            <if test="commercialCompanyId != null">
+                commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
+            </if>
+            <if test="agentId != null">
+                agent_id = #{agentId,jdbcType=INTEGER},
+            </if>
+            <if test="providerId != null">
+                provider_id = #{providerId,jdbcType=INTEGER},
+            </if>
+            <if test="unitPrice != null">
+                unit_price = #{unitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="highUnitPrice != null">
+                high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="returnDate != null">
+                return_date = #{returnDate,jdbcType=VARCHAR},
+            </if>
+            <if test="outStoreDate != null">
+                outstore_date = #{outStoreDate,jdbcType=VARCHAR},
+            </if>
+            <if test="purchasePrice != null">
+                purchase_price = #{purchasePrice,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseMoney != null">
+                purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="units != null">
+                units = #{units,jdbcType=VARCHAR},
+            </if>
+            <if test="descript != null">
+                descript = #{descript,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.taotaotech.domain.CgthOrder">
+    update cgth_order
+    set code = #{code,jdbcType=VARCHAR},
+      bill_date = #{billDate,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      medicine_id = #{medicineId,jdbcType=INTEGER},
+      sys_user_id = #{sysUserId,jdbcType=INTEGER},
+      commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      provider_id = #{providerId,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
+      return_date = #{returnDate,jdbcType=VARCHAR},
+      outstore_date = #{outStoreDate,jdbcType=VARCHAR},
+      purchase_price = #{purchasePrice,jdbcType=VARCHAR},
+      purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      units = #{units,jdbcType=VARCHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

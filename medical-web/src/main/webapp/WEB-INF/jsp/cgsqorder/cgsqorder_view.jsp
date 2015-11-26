@@ -6,7 +6,7 @@
         <div class="pageFormContent" layoutH="56" autocomplete="off">
             <p>
                 <label>采购申请单编号：</label>
-                <input name="code" type="text" size="30" class="required" value="${cgsqorder.id}" readonly/>
+                <input name="code" type="text" size="30" class="required" value="${cgsqorder.code}" readonly/>
             </p>
 
             <p>

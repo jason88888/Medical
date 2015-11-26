@@ -17,7 +17,7 @@ public interface CgsqOrderMapper extends CrudMapper<CgsqOrder> {
 
     int updateByPrimaryKeySelective(CgsqOrder record);
 
-    List<CgsqOrder> findCgsqOrderList(PageBounds pageBounds);
+//    List<CgsqOrder> findCgsqOrderList(PageBounds pageBounds);
 
     int updateByPrimaryKey(CgsqOrder record);
 }
