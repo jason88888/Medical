@@ -38,6 +38,14 @@
             </p>
 
             <p>
+                <label>仓库级别</label>
+                <select name="warehouseLevel">
+                    <option value="1" <c:if test='${warehouse.warehouseLevel == "1"}'>selected="selected"</c:if>>1</option>
+                    <option value="2" <c:if test='${warehouse.warehouseLevel == "2"}'>selected="selected"</c:if>>2</option>
+                </select>
+            </p>
+
+            <p>
                 <label>备注</label>
                 <textarea name="descript" type="text" autocomplete=" off" cols="28"
                           alt="请输入备注">${warehouse.descript}</textarea>

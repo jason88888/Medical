@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zk
@@ -22,7 +23,12 @@ public class WarehouseServiceImpl extends CrudService<WarehouseMapper,Warehouse>
 
 
     @Override
-    public List<Warehouse> findWarehouseList() {
-        return warehouseMapper.findWarehouseList(new PageBounds());
+    public List<Warehouse> findFirstWarehouseList(Map map, PageBounds pageBounds) {
+        return warehouseMapper.findFirstList(map,pageBounds);
+    }
+
+    @Override
+    public List<Warehouse> findSecondWarehouseList(Map map, PageBounds pageBounds) {
+        return warehouseMapper.findSecondList(map,pageBounds);
     }
 }

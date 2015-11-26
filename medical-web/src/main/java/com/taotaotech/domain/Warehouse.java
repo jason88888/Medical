@@ -20,6 +20,8 @@ public class Warehouse extends DataEntity<Warehouse> {
     private String telephone;
     //仓库地址
     private String address;
+    //仓库级别
+    private String warehouseLevel;
     //备注
     private String descript;
 
@@ -69,6 +71,14 @@ public class Warehouse extends DataEntity<Warehouse> {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getWarehouseLevel() {
+        return warehouseLevel;
+    }
+
+    public void setWarehouseLevel(String warehouseLevel) {
+        this.warehouseLevel = warehouseLevel;
     }
 
     public String getDescript() {

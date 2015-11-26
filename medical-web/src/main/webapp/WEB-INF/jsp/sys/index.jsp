@@ -100,8 +100,8 @@
                             <li><a href="cgsqorder/list" target="navTab" rel="cgsqorder_list">采购申请单管理</a></li>
                             <li><a href="cgrkorder/list" target="navTab" rel="cgrkorder_list">采购入库单管理</a></li>
                             <li><a href="cgthorder/list" target="navTab" rel="cgthorder_list">采购退货单管理</a></li>
-                            <%--<li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>--%>
-                            <%--<li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>--%>
+                                <%--<li><a href="coming" target="navTab" rel="category_list">厂家发货与结算</a></li>--%>
+                                <%--<li><a href="coming" target="navTab" rel="category_list">结算方式匹配</a></li>--%>
                         </ul>
                     </div>
                 </c:if>
@@ -133,8 +133,8 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="warehouse/list" target="navTab" rel="warehouse_list">一级仓库管理</a></li>
-                            <li><a href="warehouse/list" target="navTab" rel="warehouse_list">二级仓库管理</a></li>
+                            <li><a href="warehouse/firstList" target="navTab" rel="warehouse_list">一级仓库管理</a></li>
+                            <li><a href="warehouse/secondList" target="navTab" rel="warehouse_list">二级仓库管理</a></li>
                             <li><a href="stock/list" target="navTab" rel="warehouse_list">库存管理</a></li>
                         </ul>
                     </div>

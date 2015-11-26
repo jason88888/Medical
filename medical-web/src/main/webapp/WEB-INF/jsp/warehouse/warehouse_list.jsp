@@ -50,6 +50,7 @@
             <th width="100">联系人员</th>
             <th width="250">联系电话</th>
             <th width="250">仓库地址</th>
+            <th width="250">仓库级别</th>
             <th width="250">备注</th>
         </tr>
         </thead>
@@ -64,6 +65,7 @@
                 <td>${warehouse.linkMan}</td>
                 <td>${warehouse.telephone}</td>
                 <td>${warehouse.address}</td>
+                <td>${warehouse.warehouseLevel}</td>
                 <td>${warehouse.descript}</td>
             </tr>
         </c:forEach>

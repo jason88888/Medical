@@ -19,7 +19,10 @@
 
             <p>
                 <label>代理级别</label>
-                <input name="level" class="required" type="text" value="${agent.level}" autocomplete="off" size="30" alt="请输入代理级别"/>
+                <select name="level">
+                    <option value="2" <c:if test='${agent.level == "2"}'>selected="selected"</c:if>>2</option>
+                    <option value="3" <c:if test='${agent.level == "3"}'>selected="selected"</c:if>>3</option>
+                </select>
             </p>
             <p>
                 <label>备注</label>

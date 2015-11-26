@@ -1,8 +1,11 @@
 package com.taotaotech.controller;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.taotaotech.core.controller.BaseController;
 import com.taotaotech.core.dto.DWZResponseResult;
 import com.taotaotech.core.persistence.Page;
+import com.taotaotech.core.utils.MapUtil;
+import com.taotaotech.domain.Agent;
 import com.taotaotech.domain.Warehouse;
 import com.taotaotech.domain.Warehouse;
 import com.taotaotech.service.IWarehouseService;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zk
@@ -28,9 +32,32 @@ import java.util.List;
 public class WarehouseController extends BaseController {
     @Autowired
     private IWarehouseService warehouseService;
+
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
+    public String list(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
         Page<Warehouse> page = warehouseService.findPage(new Page<Warehouse>(request, response), new Warehouse());
+        model.addAttribute("page", page);
+        return "warehouse/warehouse_list";
+    }
+
+    @RequestMapping(value = "firstList", method = {RequestMethod.POST, RequestMethod.GET})
+    public String firstList(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+        Page<Warehouse> page = new Page<Warehouse>(request, response);
+        Warehouse warehouse = new Warehouse();
+        warehouse.setPage(page);
+        Map map = MapUtil.bean2Map(warehouse);
+        page.setList(warehouseService.findFirstWarehouseList(map, page.createPageBounds()));
+        model.addAttribute("page", page);
+        return "warehouse/warehouse_list";
+    }
+
+    @RequestMapping(value = "secondList", method = {RequestMethod.POST, RequestMethod.GET})
+    public String secondList(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+        Page<Warehouse> page = new Page<Warehouse>(request, response);
+        Warehouse warehouse = new Warehouse();
+        warehouse.setPage(page);
+        Map map = MapUtil.bean2Map(warehouse);
+        page.setList(warehouseService.findSecondWarehouseList(map, page.createPageBounds()));
         model.addAttribute("page", page);
         return "warehouse/warehouse_list";
     }

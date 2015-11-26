@@ -1,9 +1,11 @@
 package com.taotaotech.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.taotaotech.core.service.IBaseService;
 import com.taotaotech.domain.Warehouse;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zk
@@ -11,6 +13,6 @@ import java.util.List;
  * @description
  */
 public interface IWarehouseService extends IBaseService<Warehouse> {
-    public List<Warehouse> findWarehouseList();
-
+    public List<Warehouse> findFirstWarehouseList(Map map, PageBounds pageBounds);
+    public List<Warehouse> findSecondWarehouseList(Map map, PageBounds pageBounds);
 }
