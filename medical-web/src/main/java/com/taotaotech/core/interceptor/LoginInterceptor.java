@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 /**
  * @author Cailin.Chen
@@ -59,7 +60,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         //这里可以根据session的用户来判断角色的权限，根据权限来重定向不同的页面，简单起见，这里只是做了一个重定向
         if (null ==user) {
             //被拦截，重定向到login界面
-            response.sendRedirect("");
+//            response.sendRedirect(contextPath);
+
+            PrintWriter out = response.getWriter();
+            out.println("{\"statusCode\":\"301\", \"message\":\"登录超时，请重新登录!\"}");
             return false;
         }
         return true;

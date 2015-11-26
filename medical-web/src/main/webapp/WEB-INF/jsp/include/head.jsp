@@ -17,7 +17,8 @@
 <script type="text/javascript">
     $(function(){
         DWZ.init("${basePath}assets/js/lib/dwz-ria/dwz.frag.xml", {
-            loginUrl:"${basePath}assets/js/lib/dwz-ria/login_dialog.html", loginTitle:"登录",  // 弹出登录对话框
+            <%--loginUrl:"${basePath}assets/js/lib/dwz-ria/login_dialog.html", loginTitle:"登录",  // 弹出登录对话框--%>
+            loginUrl:"login",
             statusCode:{ok:200, error:300, timeout:301}, //【可选】
             pageInfo:{pageNum:"currentPage", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderDirection"}, //【可选】
             debug:true, // 调试模式 【true|false】

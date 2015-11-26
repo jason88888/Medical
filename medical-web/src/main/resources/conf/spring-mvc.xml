@@ -19,10 +19,22 @@
     <!--  配置mvc的拦截器 可以配置多个 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/index"/>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/*/login"/>
             <bean class="com.taotaotech.core.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 自定义异常处理，SimpleMappingExceptionResolver这个类可以是个空类，但是要写，方便在java代码里面使用 -->
+    <!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+        <!--<property name="exceptionMappings">-->
+            <!--<props>-->
+                <!--<prop key="com.ziyou.platform.interceptor.SessionTimeoutException">redirect:/login</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
