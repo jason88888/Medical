@@ -33,10 +33,11 @@
 
             <p>
                 <label>仓库级别</label>
-                <select name="warehouseLevel">
-                    <option value="1" <c:if test='${warehouseLevel == "1"}'>selected="selected"</c:if>>1</option>
-                    <option value="2" <c:if test='${warehouseLevel == "2"}'>selected="selected"</c:if>>2</option>
-                </select>
+                <input name="warehouseLevel" type="text" autocomplete=" off" cols="30" value="${warehouseLevel}" readonly/>
+                <%--<select name="warehouseLevel">--%>
+                    <%--<option value="1" <c:if test='${warehouseLevel == "1"}'>selected="selected"</c:if>>1</option>--%>
+                    <%--<option value="2" <c:if test='${warehouseLevel == "2"}'>selected="selected"</c:if>>2</option>--%>
+                <%--</select>--%>
             </p>
 
             <p>

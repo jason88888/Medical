@@ -133,8 +133,8 @@
                     </div>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <li><a href="warehouse/firstList" target="navTab" rel="warehouse_list">一级仓库管理</a></li>
-                            <li><a href="warehouse/secondList" target="navTab" rel="warehouse_list">二级仓库管理</a></li>
+                            <li><a href="warehouse/list?warehouseLevel=1" target="navTab" rel="warehouse_list">一级仓库管理</a></li>
+                            <li><a href="warehouse/list?warehouseLevel=2" target="navTab" rel="warehouse_list">二级仓库管理</a></li>
                             <li><a href="stock/list" target="navTab" rel="warehouse_list">库存管理</a></li>
                         </ul>
                     </div>

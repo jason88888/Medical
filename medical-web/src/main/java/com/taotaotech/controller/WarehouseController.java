@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,9 +35,14 @@ public class WarehouseController extends BaseController {
     private IWarehouseService warehouseService;
 
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
-        Page<Warehouse> page = warehouseService.findPage(new Page<Warehouse>(request, response), new Warehouse());
+    public String list(Warehouse warehouse, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+        Page<Warehouse> page = warehouseService.findPage(new Page<Warehouse>(request, response), warehouse);
+        String warehouseLevel = warehouse.getWarehouseLevel();
+        if (StringUtils.isEmpty(warehouseLevel)){
+            warehouseLevel = null;
+        }
         model.addAttribute("page", page);
+        model.addAttribute("warehouseLevel", warehouseLevel);
         return "warehouse/warehouse_list";
     }
 
@@ -63,7 +69,8 @@ public class WarehouseController extends BaseController {
     }
 
     @RequestMapping(value = "insert", method = {RequestMethod.GET})
-    public String add() {
+    public String add(String warehouseLevel,ModelMap modelMap) {
+        modelMap.put("warehouseLevel",warehouseLevel);
         return "warehouse/warehouse_insert";
     }
 
@@ -88,18 +95,18 @@ public class WarehouseController extends BaseController {
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");
         result.setCallbackType("closeCurrent");
-        result.setForwardUrl("warehouse/list");
+        result.setForwardUrl("warehouse/list?warehouseLevel=" + warehouse.getWarehouseLevel());
         result.setNavTabId("warehouse_list");
         return result;
     }
 
     @RequestMapping(value = "delete", method = {RequestMethod.POST})
     @ResponseBody
-    public Object save(Integer[] ids) {
+    public Object save(Integer[] ids,String warehouseLevel) {
         warehouseService.delete(ids);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("删除成功");
-        result.setForwardUrl("warehouse/list");
+        result.setForwardUrl("warehouse/list?warehouseLevel="+warehouseLevel);
         result.setNavTabId("warehouse_list");
         return result;
     }

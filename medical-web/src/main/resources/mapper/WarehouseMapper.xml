@@ -239,6 +239,9 @@
             <if test="address != null">
                 address,
             </if>
+            <if test="warehouseLevel != null">
+                warehouse_level,
+            </if>
             <if test="descript != null">
                 descript,
             </if>
@@ -267,6 +270,9 @@
             </if>
             <if test="address != null">
                 #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="warehouseLevel != null">
+                #{warehouseLevel,jdbcType=VARCHAR},
             </if>
             <if test="descript != null">
                 #{descript,jdbcType=VARCHAR},
@@ -300,6 +306,9 @@
             <if test="address != null">
                 address = #{address,jdbcType=VARCHAR},
             </if>
+            <if test="warehouseLevel != null">
+                warehouse_level = #{warehouseLevel,jdbcType=VARCHAR},
+            </if>
             <if test="descript != null">
                 descript = #{descript,jdbcType=VARCHAR},
             </if>
@@ -316,6 +325,7 @@
       link_man = #{linkMan,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
+      warehouse_level = #{warehouseLevel,jdbcType=VARCHAR},
       descript = #{descript,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},

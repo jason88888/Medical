@@ -32,10 +32,10 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="warehouse/insert" target="dialog" width="820" height="400"><span>添加</span></a></li>
-            <li><a class="delete" href="warehouse/delete" target="selectedTodo"
+            <li><a class="add" href="warehouse/insert<c:if test="${!(empty warehouseLevel)}">?warehouseLevel=${warehouseLevel}</c:if>" target="dialog" width="820" height="400"><span>添加</span></a></li>
+            <li><a class="delete" href="warehouse/delete<c:if test="${!(empty warehouseLevel)}">?warehouseLevel=${warehouseLevel}</c:if>" target="selectedTodo"
                    title="不建议删除基础数据！！确定要删除吗?"><span>删除</span></a></li>
-            <li><a class="edit" href="warehouse/view?id={id}" target="dialog" warn="请选择一个仓库" width="820"
+            <li><a class="edit" href="warehouse/view?id={id}<c:if test="${!(empty warehouseLevel)}">&warehouseLevel=${warehouseLevel}</c:if>"  target="dialog" warn="请选择一个仓库" width="820"
                    height="400"><span>详情</span></a></li>
         </ul>
     </div>
