@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-11-24 14:58:17
+Date: 2015-11-27 13:50:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ PRIMARY KEY (`id`)
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='代理商表'
-AUTO_INCREMENT=25
+AUTO_INCREMENT=27
 
 ;
 
@@ -107,7 +107,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=509
+AUTO_INCREMENT=508
 
 ;
 
@@ -132,6 +132,40 @@ CREATE TABLE `cgsq_order` (
 `tax`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应付税' ,
 `taxpay_mode`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付税方式' ,
 `taxpay_date`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付税日期' ,
+`descript`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+`create_date`  datetime NOT NULL COMMENT '创建时间' ,
+`update_date`  datetime NOT NULL COMMENT '更新时间' ,
+`del_flag`  bit(1) NULL DEFAULT b'0' ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=509
+
+;
+
+-- ----------------------------
+-- Table structure for `cgth_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `cgth_order`;
+CREATE TABLE `cgth_order` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`code`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '入库单编号' ,
+`bill_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '单据日期' ,
+`warehouse_id`  int(11) NOT NULL COMMENT '仓库id' ,
+`medicine_id`  int(11) NOT NULL COMMENT '药品id' ,
+`sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
+`commercial_company_id`  int(11) NOT NULL ,
+`agent_id`  int(11) NOT NULL COMMENT '代理商id' ,
+`provider_id`  int(11) NULL DEFAULT NULL COMMENT '配送商id' ,
+`unit_price`  decimal(10,0) NULL DEFAULT NULL COMMENT '实际单价' ,
+`high_unit_price`  decimal(10,0) NULL DEFAULT NULL COMMENT '高开单价' ,
+`return_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '退货收款日期' ,
+`outstore_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '退货出库日期' ,
+`purchase_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购单价' ,
+`purchase_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付款金额' ,
+`quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '入库数量' ,
+`units`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '单位' ,
 `descript`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 `create_date`  datetime NOT NULL COMMENT '创建时间' ,
 `update_date`  datetime NOT NULL COMMENT '更新时间' ,
@@ -386,6 +420,7 @@ CREATE TABLE `warehouse` (
 `link_man`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系人员' ,
 `telephone`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系电话' ,
 `address`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '仓库地址' ,
+`warehouse_level`  varchar(3) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '2' COMMENT '仓库级别' ,
 `descript`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
 `create_date`  datetime NOT NULL COMMENT '创建时间' ,
 `update_date`  datetime NOT NULL COMMENT '更新时间' ,
@@ -401,7 +436,7 @@ AUTO_INCREMENT=30
 -- ----------------------------
 -- Auto increment value for `agent`
 -- ----------------------------
-ALTER TABLE `agent` AUTO_INCREMENT=25;
+ALTER TABLE `agent` AUTO_INCREMENT=27;
 
 -- ----------------------------
 -- Auto increment value for `bill`
@@ -411,12 +446,17 @@ ALTER TABLE `bill` AUTO_INCREMENT=1313;
 -- ----------------------------
 -- Auto increment value for `cgrk_order`
 -- ----------------------------
-ALTER TABLE `cgrk_order` AUTO_INCREMENT=509;
+ALTER TABLE `cgrk_order` AUTO_INCREMENT=508;
 
 -- ----------------------------
 -- Auto increment value for `cgsq_order`
 -- ----------------------------
 ALTER TABLE `cgsq_order` AUTO_INCREMENT=509;
+
+-- ----------------------------
+-- Auto increment value for `cgth_order`
+-- ----------------------------
+ALTER TABLE `cgth_order` AUTO_INCREMENT=509;
 
 -- ----------------------------
 -- Auto increment value for `client`
