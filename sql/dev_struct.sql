@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-11-27 13:50:32
+Date: 2015-12-04 17:43:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,7 +82,7 @@ CREATE TABLE `cgrk_order` (
 `warehouse_id`  int(11) NOT NULL COMMENT '仓库id' ,
 `medicine_id`  int(11) NOT NULL COMMENT '药品id' ,
 `sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
-`commercial_company_id`  int(11) NOT NULL ,
+`commercial_company_id`  int(11) NOT NULL COMMENT '购进商业公司id' ,
 `agent_id`  int(11) NOT NULL COMMENT '代理商id' ,
 `provider_id`  int(11) NULL DEFAULT NULL COMMENT '配送商id' ,
 `unit_price`  decimal(10,0) NULL DEFAULT NULL COMMENT '实际单价' ,
@@ -117,7 +117,7 @@ AUTO_INCREMENT=508
 DROP TABLE IF EXISTS `cgsq_order`;
 CREATE TABLE `cgsq_order` (
 `id`  int(11) NOT NULL AUTO_INCREMENT ,
-`code`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '入库单编号' ,
+`code`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购申请单编号' ,
 `bill_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '单据日期' ,
 `medicine_id`  int(11) NOT NULL COMMENT '药品id' ,
 `sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
@@ -429,7 +429,97 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=30
+AUTO_INCREMENT=31
+
+;
+
+-- ----------------------------
+-- Table structure for `xsck_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `xsck_order`;
+CREATE TABLE `xsck_order` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`code`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售出库单编号' ,
+`bill_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '单据日期' ,
+`warehouse_id`  int(11) NULL DEFAULT NULL COMMENT '仓库id' ,
+`medicine_id`  int(11) NOT NULL COMMENT '药品id' ,
+`sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
+`agent_id`  int(11) NULL DEFAULT NULL COMMENT '代理商id' ,
+`commercial_company_id`  int(11) NULL DEFAULT NULL COMMENT '购进商业公司id' ,
+`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售出库单号' ,
+`sale_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售单价' ,
+`sale_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售金额' ,
+`quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '销售数量' ,
+`units`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '单位' ,
+`descript`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+`create_date`  datetime NOT NULL COMMENT '创建时间' ,
+`update_date`  datetime NOT NULL COMMENT '更新时间' ,
+`del_flag`  bit(1) NULL DEFAULT b'0' ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=509
+
+;
+
+-- ----------------------------
+-- Table structure for `xssq_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `xssq_order`;
+CREATE TABLE `xssq_order` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`code`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售申请单编号' ,
+`bill_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '单据日期' ,
+`warehouse_id`  int(11) NULL DEFAULT NULL COMMENT '仓库id' ,
+`medicine_id`  int(11) NOT NULL COMMENT '药品id' ,
+`sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
+`agent_id`  int(11) NULL DEFAULT NULL COMMENT '代理商id' ,
+`commercial_company_id`  int(11) NULL DEFAULT NULL COMMENT '购进商业公司id' ,
+`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售申请单号' ,
+`sale_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售单价' ,
+`sale_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售金额' ,
+`quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '销售数量' ,
+`units`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '单位' ,
+`descript`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+`create_date`  datetime NOT NULL COMMENT '创建时间' ,
+`update_date`  datetime NOT NULL COMMENT '更新时间' ,
+`del_flag`  bit(1) NULL DEFAULT b'0' ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=509
+
+;
+
+-- ----------------------------
+-- Table structure for `xsth_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `xsth_order`;
+CREATE TABLE `xsth_order` (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`code`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售退货单编号' ,
+`bill_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '单据日期' ,
+`warehouse_id`  int(11) NULL DEFAULT NULL COMMENT '仓库id' ,
+`medicine_id`  int(11) NOT NULL COMMENT '药品id' ,
+`sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
+`agent_id`  int(11) NULL DEFAULT NULL COMMENT '代理商id' ,
+`commercial_company_id`  int(11) NULL DEFAULT NULL COMMENT '购进商业公司id' ,
+`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售退货单号' ,
+`sale_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售单价' ,
+`sale_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售金额' ,
+`quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '销售数量' ,
+`units`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '单位' ,
+`descript`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注' ,
+`create_date`  datetime NOT NULL COMMENT '创建时间' ,
+`update_date`  datetime NOT NULL COMMENT '更新时间' ,
+`del_flag`  bit(1) NULL DEFAULT b'0' ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+AUTO_INCREMENT=509
 
 ;
 
@@ -501,4 +591,19 @@ ALTER TABLE `sys_user` AUTO_INCREMENT=4;
 -- ----------------------------
 -- Auto increment value for `warehouse`
 -- ----------------------------
-ALTER TABLE `warehouse` AUTO_INCREMENT=30;
+ALTER TABLE `warehouse` AUTO_INCREMENT=31;
+
+-- ----------------------------
+-- Auto increment value for `xsck_order`
+-- ----------------------------
+ALTER TABLE `xsck_order` AUTO_INCREMENT=509;
+
+-- ----------------------------
+-- Auto increment value for `xssq_order`
+-- ----------------------------
+ALTER TABLE `xssq_order` AUTO_INCREMENT=509;
+
+-- ----------------------------
+-- Auto increment value for `xsth_order`
+-- ----------------------------
+ALTER TABLE `xsth_order` AUTO_INCREMENT=509;
