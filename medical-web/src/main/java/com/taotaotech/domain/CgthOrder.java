@@ -10,7 +10,7 @@ import java.util.Date;
 public class CgthOrder extends DataEntity<CgthOrder> {
     //id
     private Integer id;
-    //退货单编号
+    //采购退货单编号
     private String code;
     //单据日期
     private String billDate;

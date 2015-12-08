@@ -8,7 +8,7 @@ import com.taotaotech.core.domain.DataEntity;
 public class CgrkOrder extends DataEntity<CgrkOrder> {
     //id
     private Integer id;
-    //入库单编号
+    //采购入库单编号
     private String code;
     //单据日期
     private String billDate;

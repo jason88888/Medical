@@ -5,39 +5,34 @@ import com.taotaotech.core.domain.DataEntity;
 import java.util.Date;
 
 public class XssqOrder extends DataEntity<XssqOrder> {
+    // id
     private Integer id;
-
+    //销售申请单编号
     private String code;
-
+    //单据日期
     private String billDate;
-
+    //仓库id
     private Integer warehouseId;
-
+    //药品id
     private Integer medicineId;
-
+    //操作人id
     private Integer sysUserId;
-
+    //代理商id
     private Integer agentId;
-
+    //购进商业公司id（开票公司）
     private Integer commercialCompanyId;
-
+    //采购申请单号
     private String orderCode;
-
+    //采购单价
     private String salePrice;
-
+    //付款金额
     private String saleMoney;
-
+    //入库数量
     private Integer quantity;
-
+    //单位
     private String units;
-
+    //备注
     private String descript;
-
-    private Date createDate;
-
-    private Date updateDate;
-
-    private Boolean delFlag;
 
     public Integer getId() {
         return id;
@@ -149,29 +144,5 @@ public class XssqOrder extends DataEntity<XssqOrder> {
 
     public void setDescript(String descript) {
         this.descript = descript == null ? null : descript.trim();
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Boolean getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Boolean delFlag) {
-        this.delFlag = delFlag;
     }
 }

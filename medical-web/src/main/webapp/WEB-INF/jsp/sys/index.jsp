@@ -107,11 +107,14 @@
                 </c:if>
                 <div class="accordionHeader">
                     <h2>
-                        <span>Folder</span>销售业务管理
+                        <span>Folder</span>药品销售管理
                     </h2>
                 </div>
                 <div class="accordionContent">
                     <ul class="tree treeFolder">
+                        <li><a href="xssqorder/list" target="navTab" rel="xssqorder_list">销售申请单管理</a></li>
+                        <li><a href="xsckorder/list" target="navTab" rel="xsckorder_list">销售出库单管理</a></li>
+                        <li><a href="xsthorder/list" target="navTab" rel="xsthorder_list">销售退货单管理</a></li>
                         <li><a href="bill/list" target="navTab"
                                rel="bill_list">销售流向</a></li>
                         <li><a href="commission/list" target="navTab"
@@ -119,8 +122,6 @@
                         <c:if test="${user.role == 1}">
                             <li><a href="coming" target="navTab"
                                    rel="admin_info">费用结算复核</a></li>
-                            <li><a href="coming" target="navTab"
-                                   rel="admin_info">结算规则更改</a></li>
                         </c:if>
                     </ul>
                 </div>
