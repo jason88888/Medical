@@ -29,7 +29,8 @@
     <sql id="Base_Column_List_Dto">
     xsck.id,xsck.code, bill_date,warehouse_id, medicine_id, sys_user_id, agent_id,commercial_company_id,
     order_code,sale_price, sale_money, quantity, xsck.units,
-    xsck.descript, xsck.create_date, xsck.update_date, xsck.del_flag,su.username as operator_name, m.name as medicine_name
+    xsck.descript, xsck.create_date, xsck.update_date, xsck.del_flag,su.username as operator_name, m.name as medicine_name,
+    a.name as agent_name,c.name as commercial_company_name,w.name as warehouse_name
   </sql>
 
     <resultMap id="BaseResultMapDTO" type="com.taotaotech.dto.XsckOrderDTO" extends="BaseResultMap">
@@ -78,7 +79,7 @@
             <if test="orderCode != null">
                 AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
-            <if test="sale_price != null">
+            <if test="salePrice != null">
                 AND sale_price = #{salePrice,jdbcType=VARCHAR}
             </if>
             <if test="sale_money != null">
@@ -125,7 +126,7 @@
             <if test="orderCode != null">
                 AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
-            <if test="sale_price != null">
+            <if test="salePrice != null">
                 AND sale_price = #{salePrice,jdbcType=VARCHAR}
             </if>
             <if test="sale_money != null">
@@ -175,7 +176,7 @@
             <if test="orderCode != null">
                 order_code = #{orderCode,jdbcType=VARCHAR},
             </if>
-            <if test="sale_price != null">
+            <if test="salePrice != null">
                 AND sale_price = #{salePrice,jdbcType=VARCHAR}
             </if>
             <if test="sale_money != null">
