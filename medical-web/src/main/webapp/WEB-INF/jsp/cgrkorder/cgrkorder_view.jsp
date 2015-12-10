@@ -75,11 +75,6 @@
             </p>
 
             <p>
-                <label>采购申请单号：</label>
-                <input name="payCategory" type="text" autocomplete="off" size="30" value="${cgrkorder.orderCode}" readonly/>
-            </p>
-
-            <p>
                 <label>采购单价：</label>
                 <input name="payMode" type="text" autocomplete="off" size="30" value="${cgrkorder.purchasePrice}" readonly/>
             </p>

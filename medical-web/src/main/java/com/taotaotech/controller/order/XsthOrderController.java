@@ -53,10 +53,16 @@ public class XsthOrderController extends BaseController {
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(XsthOrder xsthorder, HttpServletRequest request) {
+        int warehouseId = Integer.parseInt(request.getParameter("warehouse.id"));
         int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
         int userId = Integer.parseInt(request.getParameter("user.id"));
+        int agentClientId = Integer.parseInt(request.getParameter("agent.id"));
+        int commercialCompanyId = Integer.parseInt(request.getParameter("commercialcompany.id"));
+        xsthorder.setWarehouseId(warehouseId);
         xsthorder.setMedicineId(medicineId);
         xsthorder.setSysUserId(userId);
+        xsthorder.setAgentId(agentClientId);
+        xsthorder.setCommercialCompanyId(commercialCompanyId);
         xsthOrderService.save(xsthorder);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");

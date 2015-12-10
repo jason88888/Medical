@@ -24,8 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 public class XsckOrderController extends BaseController {
     @Autowired
     private IXsckOrderService xsckOrderService;
+
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
-    public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response) {
+    public String list(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
         Page<XsckOrder> page = xsckOrderService.findPage(new Page<XsckOrder>(request, response), new XsckOrder());
         model.addAttribute("page", page);
         return "xsckorder/xsckorder_list";
@@ -53,10 +54,16 @@ public class XsckOrderController extends BaseController {
     @RequestMapping(value = "save", method = {RequestMethod.POST})
     @ResponseBody
     public Object save(XsckOrder xsckorder, HttpServletRequest request) {
+        int warehouseId = Integer.parseInt(request.getParameter("warehouse.id"));
         int medicineId = Integer.parseInt(request.getParameter("medicine.id"));
         int userId = Integer.parseInt(request.getParameter("user.id"));
+        int agentClientId = Integer.parseInt(request.getParameter("agent.id"));
+        int commercialCompanyId = Integer.parseInt(request.getParameter("commercialcompany.id"));
+        xsckorder.setWarehouseId(warehouseId);
         xsckorder.setMedicineId(medicineId);
         xsckorder.setSysUserId(userId);
+        xsckorder.setAgentId(agentClientId);
+        xsckorder.setCommercialCompanyId(commercialCompanyId);
         xsckOrderService.save(xsckorder);
         DWZResponseResult result = new DWZResponseResult();
         result.setMessage("保存成功");

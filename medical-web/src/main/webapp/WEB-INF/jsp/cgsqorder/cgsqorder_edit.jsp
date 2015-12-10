@@ -50,11 +50,6 @@
             </p>
 
             <p>
-                <label>采购申请单号：</label>
-                <input name="orderCode" class="required" value="${cgsqorder.orderCode}" type="text" autocomplete="off" size="30" alt="请输入采购申请单号"/>
-            </p>
-
-            <p>
                 <label>采购单价：</label>
                 <input name="purchasePrice" type="text" value="${cgsqorder.purchasePrice}" autocomplete="off" size="30" alt="请输入采购单价"/>
             </p>

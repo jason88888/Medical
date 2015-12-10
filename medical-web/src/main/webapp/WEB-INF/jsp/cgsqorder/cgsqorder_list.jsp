@@ -46,14 +46,11 @@
                 <div class="gridCol" title=""><input type="checkbox" group="ids" class="checkboxCtrl"></div>
             </th>
             <th>采购申请单编号</th>
-            <%--<th>单据日期</th>--%>
             <th>药品名称</th>
             <th>操作人名称</th>
             <th>供应商名称</th>
-            <%--<th>配送商名称</th>--%>
             <th>实际单价</th>
             <th>高开单价</th>
-            <th>采购申请单号</th>
             <th>采购单价</th>
             <th>付款金额</th>
             <th>应付税</th>
@@ -70,13 +67,11 @@
                     <div><input name="ids" value="${cgsqorder.id}" type="checkbox"></div>
                 </td>
                 <td>${cgsqorder.code}</td>
-                    <%--<td>${cgsqorder.billDate}</td>--%>
                 <td>${cgsqorder.medicineName}</td>
                 <td>${cgsqorder.operatorName}</td>
                 <td>${cgsqorder.providerName}</td>
                 <td>${cgsqorder.unitPrice}</td>
                 <td>${cgsqorder.highUnitPrice}</td>
-                <td>${cgsqorder.orderCode}</td>
                 <td>${cgsqorder.purchasePrice}</td>
                 <td>${cgsqorder.purchaseMoney}</td>
                 <td>${cgsqorder.tax}</td>
