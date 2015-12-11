@@ -10,7 +10,6 @@
         <result column="provider_id" property="providerId" jdbcType="INTEGER"/>
         <result column="unit_price" property="unitPrice" jdbcType="DECIMAL"/>
         <result column="high_unit_price" property="highUnitPrice" jdbcType="DECIMAL"/>
-        <result column="order_code" property="orderCode" jdbcType="VARCHAR"/>
         <result column="purchase_price" property="purchasePrice" jdbcType="VARCHAR"/>
         <result column="purchase_money" property="purchaseMoney" jdbcType="VARCHAR"/>
         <result column="quantity" property="quantity" jdbcType="INTEGER"/>
@@ -25,14 +24,14 @@
     </resultMap>
     <sql id="Base_Column_List">
     id, code, bill_date, medicine_id, sys_user_id, provider_id, unit_price, high_unit_price,
-    order_code, purchase_price, purchase_money, quantity,
+    purchase_price, purchase_money, quantity,
     units, tax, taxpay_mode, taxpay_date, descript,
     create_date, update_date, del_flag
     </sql>
 
     <sql id="Base_Column_List_Dto">
         cgsq.id,cgsq.code, bill_date, medicine_id, sys_user_id,provider_id, unit_price, high_unit_price,
-        order_code, purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
+        purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
         cgsq.descript, cgsq.create_date, cgsq.update_date, cgsq.del_flag,
         quantity,cgsq.units,p.name as provider_name,su.username as operator_name, m.name as medicine_name
     </sql>
@@ -73,9 +72,6 @@
             </if>
             <if test="highUnitPrice != null">
                 AND high_unit_price = #{highUnitPrice,jdbcType=DECIMAL}
-            </if>
-            <if test="orderCode != null">
-                AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
             <if test="purchasePrice != null">
                 AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
@@ -122,9 +118,6 @@
             </if>
             <if test="highUnitPrice != null">
                 AND high_unit_price = #{highUnitPrice,jdbcType=DECIMAL}
-            </if>
-            <if test="orderCode != null">
-                AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
             <if test="purchasePrice != null">
                 AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
@@ -178,9 +171,6 @@
             </if>
             <if test="highUnitPrice != null">
                 high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
-            </if>
-            <if test="orderCode != null">
-                order_code = #{orderCode,jdbcType=VARCHAR},
             </if>
             <if test="purchasePrice != null">
                 purchase_price = #{purchasePrice,jdbcType=VARCHAR},
@@ -240,15 +230,14 @@
         </selectKey>
         insert into cgsq_order (code, bill_date, medicine_id,
         sys_user_id, provider_id, unit_price,
-        high_unit_price,
-        order_code, purchase_price, purchase_money,
+        high_unit_price, purchase_price, purchase_money,
         quantity, units, tax, taxpay_mode,
         taxpay_date,descript, create_date, update_date,
         del_flag)
         values (#{code,jdbcType=VARCHAR}, #{billDate,jdbcType=VARCHAR}, #{medicineId,jdbcType=INTEGER},
         #{sysUserId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL},
         #{highUnitPrice,jdbcType=DECIMAL},
-        #{orderCode,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR},
+        #{purchasePrice,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR},
         #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR}, #{tax,jdbcType=VARCHAR},
         #{taxpayMode,jdbcType=VARCHAR},#{taxpayDate,jdbcType=VARCHAR},
         #{descript,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
@@ -280,9 +269,6 @@
             </if>
             <if test="highUnitPrice != null">
                 high_unit_price,
-            </if>
-            <if test="orderCode != null">
-                order_code,
             </if>
             <if test="purchasePrice != null">
                 purchase_price,
@@ -339,9 +325,6 @@
             </if>
             <if test="highUnitPrice != null">
                 #{highUnitPrice,jdbcType=DECIMAL},
-            </if>
-            <if test="orderCode != null">
-                #{orderCode,jdbcType=VARCHAR},
             </if>
             <if test="purchasePrice != null">
                 #{purchasePrice,jdbcType=VARCHAR},
@@ -402,9 +385,6 @@
             <if test="highUnitPrice != null">
                 high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
             </if>
-            <if test="orderCode != null">
-                order_code = #{orderCode,jdbcType=VARCHAR},
-            </if>
             <if test="purchasePrice != null">
                 purchase_price = #{purchasePrice,jdbcType=VARCHAR},
             </if>
@@ -450,7 +430,6 @@
       provider_id = #{providerId,jdbcType=INTEGER},
       unit_price = #{unitPrice,jdbcType=DECIMAL},
       high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
-      order_code = #{orderCode,jdbcType=VARCHAR},
       purchase_price = #{purchasePrice,jdbcType=VARCHAR},
       purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
       quantity = #{quantity,jdbcType=INTEGER},

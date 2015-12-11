@@ -15,7 +15,6 @@
         <result column="high_unit_price" property="highUnitPrice" jdbcType="DECIMAL"/>
         <result column="pay_date" property="payDate" jdbcType="VARCHAR"/>
         <result column="store_date" property="storeDate" jdbcType="VARCHAR"/>
-        <result column="order_code" property="orderCode" jdbcType="VARCHAR"/>
         <result column="purchase_price" property="purchasePrice" jdbcType="VARCHAR"/>
         <result column="purchase_money" property="purchaseMoney" jdbcType="VARCHAR"/>
         <result column="tax" property="tax" jdbcType="VARCHAR"/>
@@ -32,7 +31,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         id, code,bill_date, warehouse_id, medicine_id, sys_user_id, agent_id, commercial_company_id,provider_id,
-        unit_price, high_unit_price, pay_date, store_date, order_code, purchase_price, purchase_money,
+        unit_price, high_unit_price, pay_date, store_date, purchase_price, purchase_money,
         tax, taxpay_mode, taxpay_date, invoice_number, invoice_date,
         descript, create_date, update_date, del_flag,quantity,units
     </sql>
@@ -40,7 +39,7 @@
     <sql id="Base_Column_List_Dto">
         rk.id,rk.code ,bill_date, warehouse_id, medicine_id, sys_user_id, commercial_company_id,
         agent_id,provider_id, unit_price, high_unit_price, pay_date, store_date,
-        order_code, purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
+        purchase_price, purchase_money, tax, taxpay_mode, taxpay_date,
         invoice_number, invoice_date, rk.descript, rk.create_date, rk.update_date, rk.del_flag,
         quantity,rk.units,p.name as provider_name, w.name as warehouse_name,
         su.username as operator_name, m.name as medicine_name, a.name as agent_name,c.name as commercial_company_name
@@ -103,9 +102,6 @@
             </if>
             <if test="storeDate != null">
                 AND store_date = #{storeDate,jdbcType=VARCHAR}
-            </if>
-            <if test="orderCode != null">
-                AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
             <if test="purchasePrice != null">
                 AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
@@ -174,9 +170,6 @@
             </if>
             <if test="storeDate != null">
                 AND store_date = #{storeDate,jdbcType=VARCHAR}
-            </if>
-            <if test="orderCode != null">
-                AND order_code = #{orderCode,jdbcType=VARCHAR}
             </if>
             <if test="purchasePrice != null">
                 AND purchase_price = #{purchasePrice,jdbcType=VARCHAR}
@@ -249,9 +242,6 @@
             <if test="storeDate != null">
                 store_date = #{storeDate,jdbcType=VARCHAR},
             </if>
-            <if test="orderCode != null">
-                order_code = #{orderCode,jdbcType=VARCHAR},
-            </if>
             <if test="purchasePrice != null">
                 purchase_price = #{purchasePrice,jdbcType=VARCHAR},
             </if>
@@ -314,8 +304,7 @@
         insert into cgrk_order (bill_date, warehouse_id, medicine_id,
         sys_user_id, commercial_company_id,agent_id, provider_id,
         unit_price, high_unit_price, pay_date,
-        store_date, order_code, purchase_price,
-        purchase_money,
+        store_date, purchase_price,purchase_money,
         tax, taxpay_mode, taxpay_date,
         invoice_number, invoice_date, descript,
         create_date, update_date, del_flag,quantity,units
@@ -323,7 +312,7 @@
         values (#{billDate,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, #{medicineId,jdbcType=INTEGER},
         #{sysUserId,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER},
         #{unitPrice,jdbcType=DECIMAL}, #{highUnitPrice,jdbcType=DECIMAL}, #{payDate,jdbcType=VARCHAR},
-        #{storeDate,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=VARCHAR},
+        #{storeDate,jdbcType=VARCHAR},#{purchasePrice,jdbcType=VARCHAR},
         #{purchaseMoney,jdbcType=VARCHAR},
         #{tax,jdbcType=VARCHAR}, #{taxpayMode,jdbcType=VARCHAR}, #{taxpayDate,jdbcType=VARCHAR},
         #{invoiceNumber,jdbcType=INTEGER}, #{invoiceDate,jdbcType=VARCHAR}, #{descript,jdbcType=VARCHAR},
@@ -367,9 +356,6 @@
             </if>
             <if test="storeDate != null">
                 store_date,
-            </if>
-            <if test="orderCode != null">
-                order_code,
             </if>
             <if test="purchasePrice != null">
                 purchase_price,
@@ -444,9 +430,6 @@
             </if>
             <if test="storeDate != null">
                 #{storeDate,jdbcType=VARCHAR},
-            </if>
-            <if test="orderCode != null">
-                #{orderCode,jdbcType=VARCHAR},
             </if>
             <if test="purchasePrice != null">
                 #{purchasePrice,jdbcType=VARCHAR},
@@ -526,9 +509,6 @@
             <if test="storeDate != null">
                 store_date = #{storeDate,jdbcType=VARCHAR},
             </if>
-            <if test="orderCode != null">
-                order_code = #{orderCode,jdbcType=VARCHAR},
-            </if>
             <if test="purchasePrice != null">
                 purchase_price = #{purchasePrice,jdbcType=VARCHAR},
             </if>
@@ -584,7 +564,6 @@
         high_unit_price = #{highUnitPrice,jdbcType=DECIMAL},
         pay_date = #{payDate,jdbcType=VARCHAR},
         store_date = #{storeDate,jdbcType=VARCHAR},
-        order_code = #{orderCode,jdbcType=VARCHAR},
         purchase_price = #{purchasePrice,jdbcType=VARCHAR},
         purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
         tax = #{tax,jdbcType=VARCHAR},

@@ -10,7 +10,6 @@
     <result column="sys_user_id" property="sysUserId" jdbcType="INTEGER"/>
     <result column="agent_id" property="agentId" jdbcType="INTEGER"/>
     <result column="commercial_company_id" property="commercialCompanyId" jdbcType="INTEGER"/>
-    <result column="order_code" property="orderCode" jdbcType="VARCHAR"/>
     <result column="sale_price" property="salePrice" jdbcType="VARCHAR"/>
     <result column="sale_money" property="saleMoney" jdbcType="VARCHAR"/>
     <result column="quantity" property="quantity" jdbcType="INTEGER"/>
@@ -22,13 +21,13 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, code, bill_date, warehouse_id, medicine_id, sys_user_id, agent_id, commercial_company_id,
-    order_code, sale_price, sale_money, quantity, units, descript, create_date, update_date,
+    sale_price, sale_money, quantity, units, descript, create_date, update_date,
     del_flag
   </sql>
 
   <sql id="Base_Column_List_Dto">
     xssq.id,xssq.code, bill_date,warehouse_id, medicine_id, sys_user_id, agent_id,commercial_company_id,
-    order_code,sale_price, sale_money, quantity, xssq.units,
+    sale_price, sale_money, quantity, xssq.units,
     xssq.descript, xssq.create_date, xssq.update_date, xssq.del_flag,su.username as operator_name, m.name as medicine_name,
     a.name as agent_name,c.name as commercial_company_name,w.name as warehouse_name
   </sql>
@@ -76,9 +75,6 @@
       <if test="agentId != null">
         AND agent_id = #{agentId,jdbcType=INTEGER}
       </if>
-      <if test="orderCode != null">
-        AND order_code = #{orderCode,jdbcType=VARCHAR}
-      </if>
       <if test="salePrice != null">
         AND sale_price = #{salePrice,jdbcType=VARCHAR}
       </if>
@@ -122,9 +118,6 @@
       </if>
       <if test="agentId != null">
         AND agent_id = #{agentId,jdbcType=INTEGER}
-      </if>
-      <if test="orderCode != null">
-        AND order_code = #{orderCode,jdbcType=VARCHAR}
       </if>
       <if test="salePrice != null">
         AND sale_price = #{salePrice,jdbcType=VARCHAR}
@@ -172,9 +165,6 @@
       </if>
       <if test="agentId != null">
         agent_id = #{agentId,jdbcType=INTEGER},
-      </if>
-      <if test="orderCode != null">
-        order_code = #{orderCode,jdbcType=VARCHAR},
       </if>
       <if test="salePrice != null">
         AND sale_price = #{salePrice,jdbcType=VARCHAR}
@@ -232,7 +222,7 @@
     del_flag)
     values (#{code,jdbcType=VARCHAR}, #{billDate,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER},
     #{medicineId,jdbcType=INTEGER}, #{sysUserId,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER},
-    #{commercialCompanyId,jdbcType=INTEGER}, #{orderCode,jdbcType=VARCHAR}, #{salePrice,jdbcType=VARCHAR},
+    #{commercialCompanyId,jdbcType=INTEGER}, #{salePrice,jdbcType=VARCHAR},
     #{saleMoney,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{units,jdbcType=VARCHAR},
     #{descript,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
     #{delFlag,jdbcType=BIT})
@@ -263,9 +253,6 @@
       </if>
       <if test="commercialCompanyId != null">
         commercial_company_id,
-      </if>
-      <if test="orderCode != null">
-        order_code,
       </if>
       <if test="salePrice != null">
         sale_price,
@@ -313,9 +300,6 @@
       </if>
       <if test="commercialCompanyId != null">
         #{commercialCompanyId,jdbcType=INTEGER},
-      </if>
-      <if test="orderCode != null">
-        #{orderCode,jdbcType=VARCHAR},
       </if>
       <if test="salePrice != null">
         #{salePrice,jdbcType=VARCHAR},
@@ -367,9 +351,6 @@
       <if test="commercialCompanyId != null">
         commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
       </if>
-      <if test="orderCode != null">
-        order_code = #{orderCode,jdbcType=VARCHAR},
-      </if>
       <if test="salePrice != null">
         sale_price = #{salePrice,jdbcType=VARCHAR},
       </if>
@@ -406,7 +387,6 @@
       sys_user_id = #{sysUserId,jdbcType=INTEGER},
       agent_id = #{agentId,jdbcType=INTEGER},
       commercial_company_id = #{commercialCompanyId,jdbcType=INTEGER},
-      order_code = #{orderCode,jdbcType=VARCHAR},
       sale_price = #{salePrice,jdbcType=VARCHAR},
       sale_money = #{saleMoney,jdbcType=VARCHAR},
       quantity = #{quantity,jdbcType=INTEGER},
