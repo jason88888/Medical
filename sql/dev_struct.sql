@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-12-04 17:43:17
+Date: 2015-12-11 10:31:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,7 +89,6 @@ CREATE TABLE `cgrk_order` (
 `high_unit_price`  decimal(10,0) NULL DEFAULT NULL COMMENT '高开单价' ,
 `pay_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购付款日期' ,
 `store_date`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购入库日期' ,
-`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购申请单号' ,
 `purchase_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购单价' ,
 `purchase_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付款金额' ,
 `quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '入库数量' ,
@@ -107,7 +106,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=508
+AUTO_INCREMENT=509
 
 ;
 
@@ -124,7 +123,6 @@ CREATE TABLE `cgsq_order` (
 `provider_id`  int(11) NULL DEFAULT NULL COMMENT '配送商id' ,
 `unit_price`  decimal(10,0) NULL DEFAULT NULL COMMENT '实际单价' ,
 `high_unit_price`  decimal(10,0) NULL DEFAULT NULL COMMENT '高开单价' ,
-`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购申请单号' ,
 `purchase_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '采购单价' ,
 `purchase_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '付款金额' ,
 `quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '采购数量' ,
@@ -446,7 +444,6 @@ CREATE TABLE `xsck_order` (
 `sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
 `agent_id`  int(11) NULL DEFAULT NULL COMMENT '代理商id' ,
 `commercial_company_id`  int(11) NULL DEFAULT NULL COMMENT '购进商业公司id' ,
-`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售出库单号' ,
 `sale_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售单价' ,
 `sale_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售金额' ,
 `quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '销售数量' ,
@@ -459,7 +456,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=509
+AUTO_INCREMENT=1
 
 ;
 
@@ -476,7 +473,6 @@ CREATE TABLE `xssq_order` (
 `sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
 `agent_id`  int(11) NULL DEFAULT NULL COMMENT '代理商id' ,
 `commercial_company_id`  int(11) NULL DEFAULT NULL COMMENT '购进商业公司id' ,
-`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售申请单号' ,
 `sale_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售单价' ,
 `sale_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售金额' ,
 `quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '销售数量' ,
@@ -489,7 +485,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=509
+AUTO_INCREMENT=1
 
 ;
 
@@ -506,7 +502,6 @@ CREATE TABLE `xsth_order` (
 `sys_user_id`  int(11) NULL DEFAULT NULL COMMENT '操作人id' ,
 `agent_id`  int(11) NULL DEFAULT NULL COMMENT '代理商id' ,
 `commercial_company_id`  int(11) NULL DEFAULT NULL COMMENT '购进商业公司id' ,
-`order_code`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售退货单号' ,
 `sale_price`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售单价' ,
 `sale_money`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售金额' ,
 `quantity`  int(11) NOT NULL DEFAULT 0 COMMENT '销售数量' ,
@@ -519,7 +514,7 @@ PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
-AUTO_INCREMENT=509
+AUTO_INCREMENT=1
 
 ;
 
@@ -536,7 +531,7 @@ ALTER TABLE `bill` AUTO_INCREMENT=1313;
 -- ----------------------------
 -- Auto increment value for `cgrk_order`
 -- ----------------------------
-ALTER TABLE `cgrk_order` AUTO_INCREMENT=508;
+ALTER TABLE `cgrk_order` AUTO_INCREMENT=509;
 
 -- ----------------------------
 -- Auto increment value for `cgsq_order`
@@ -596,14 +591,14 @@ ALTER TABLE `warehouse` AUTO_INCREMENT=31;
 -- ----------------------------
 -- Auto increment value for `xsck_order`
 -- ----------------------------
-ALTER TABLE `xsck_order` AUTO_INCREMENT=509;
+ALTER TABLE `xsck_order` AUTO_INCREMENT=1;
 
 -- ----------------------------
 -- Auto increment value for `xssq_order`
 -- ----------------------------
-ALTER TABLE `xssq_order` AUTO_INCREMENT=509;
+ALTER TABLE `xssq_order` AUTO_INCREMENT=1;
 
 -- ----------------------------
 -- Auto increment value for `xsth_order`
 -- ----------------------------
-ALTER TABLE `xsth_order` AUTO_INCREMENT=509;
+ALTER TABLE `xsth_order` AUTO_INCREMENT=1;
